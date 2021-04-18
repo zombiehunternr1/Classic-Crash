@@ -16,16 +16,18 @@ public class TNT : MonoBehaviour, ICrateBase
             case 2:
                 StartCoroutine(Countdown());
                 break;
+            case 7:
+                Explode();
+                break;
         }
     }
 
     public void Explode()
     {
-
         Debug.Log("Kaboom");
     }
 
-    IEnumerator Countdown()
+    private IEnumerator Countdown()
     {
         if (!Started)
         {

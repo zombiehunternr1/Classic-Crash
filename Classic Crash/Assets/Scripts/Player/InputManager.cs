@@ -8,15 +8,15 @@ public class InputManager : MonoBehaviour
     public float Speed = 5;
     public float JumpForce = 7;
     public float DistanceToGround = 1.01f;
+    public float SpinRadius = 1.5f;
 
     private int SideHitValue;
-    private bool Attacking;
+    private bool Spinning;
 
     private PlayerControls PlayerControls;
     private Vector2 MovementInput;
     private Rigidbody RB;
     private BoxCollider HitBox;
-    private SphereCollider SpinSphere;
 
     private Vector3 PlayerMovement;
     private bool CanJump;
@@ -33,10 +33,6 @@ public class InputManager : MonoBehaviour
         if (HitBox == null)
         {
             HitBox = GetComponent<BoxCollider>();
-        }
-        if(SpinSphere == null)
-        {
-            SpinSphere = GetComponentInChildren<SphereCollider>();
         }
         if (PlayerControls == null)
         {
@@ -83,19 +79,18 @@ public class InputManager : MonoBehaviour
 
     private void SpinAttack()
     {
-        if (!Attacking)
+        Spinning = true;
+        Collider[] hitColliders = Physics.OverlapSphere(HitBox.bounds.center, SpinRadius);
+        foreach (var hitCollider in hitColliders)
         {
-            Attacking = true;
-            StartCoroutine(ResetAttack());
+            //Get reference to the script / interface
+            ICrateBase crate = (ICrateBase)hitCollider.gameObject.GetComponent(typeof(ICrateBase));
+            if (crate != null)
+            {
+                crate.Break((int)ReturnDirection(gameObject, hitCollider.gameObject));
+            }
         }
-    }
-
-    private IEnumerator ResetAttack()
-    {
-        SpinSphere.enabled = true;
-        yield return new WaitForSeconds(1);
-        SpinSphere.enabled = false;
-        Attacking = false;
+        Spinning = false;
     }
 
     bool IsGrounded()
@@ -106,8 +101,8 @@ public class InputManager : MonoBehaviour
     public void OnCollisionEnter(Collision collision)
     {
         ICrateBase crate = (ICrateBase)collision.gameObject.GetComponent(typeof(ICrateBase));
-
-        ReturnDirection(gameObject, collision.gameObject);
+    
+        ReturnDirection(gameObject, collision.gameObject);   
 
         if (crate != null)
         {
@@ -118,7 +113,12 @@ public class InputManager : MonoBehaviour
     //This Enum function checks which side the player hits a certain object and returns this information.
     private HitPlayerDirection ReturnDirection(GameObject Object, GameObject ObjectHit)
     {
-        HitPlayerDirection hitDirection = HitPlayerDirection.None;
+        HitPlayerDirection HitDirection = HitPlayerDirection.None;
+
+        if (Spinning)
+        {
+            return HitPlayerDirection.Spin;
+        }
         RaycastHit MyRayHit;
         Vector3 direction = (ObjectHit.transform.position - Object.transform.position).normalized;
         Ray MyRay = new Ray(Object.transform.position, direction);
@@ -132,36 +132,42 @@ public class InputManager : MonoBehaviour
 
                 if (MyNormal == MyRayHit.transform.up)
                 {
-                    hitDirection = HitPlayerDirection.Top;
-                    SideHitValue = Convert.ToInt32(hitDirection);
+                    HitDirection = HitPlayerDirection.Top;
+                    SideHitValue = Convert.ToInt32(HitDirection);
                 }
                 if (MyNormal == -MyRayHit.transform.up)
                 {
-                    hitDirection = HitPlayerDirection.Bottom;
-                    SideHitValue = Convert.ToInt32(hitDirection);
+                    HitDirection = HitPlayerDirection.Bottom;
+                    SideHitValue = Convert.ToInt32(HitDirection);
                 }
                 if (MyNormal == MyRayHit.transform.forward)
                 {
-                    hitDirection = HitPlayerDirection.Forward;
-                    SideHitValue = Convert.ToInt32(hitDirection);
+                    HitDirection = HitPlayerDirection.Forward;
+                    SideHitValue = Convert.ToInt32(HitDirection);
                 }
                 if (MyNormal == -MyRayHit.transform.forward)
                 {
-                    hitDirection = HitPlayerDirection.Back;
-                    SideHitValue = Convert.ToInt32(hitDirection);
+                    HitDirection = HitPlayerDirection.Back;
+                    SideHitValue = Convert.ToInt32(HitDirection);
                 }
                 if (MyNormal == MyRayHit.transform.right)
                 {
-                    hitDirection = HitPlayerDirection.Right;
-                    SideHitValue = Convert.ToInt32(hitDirection);
+                    HitDirection = HitPlayerDirection.Right;
+                    SideHitValue = Convert.ToInt32(HitDirection);
                 }
                 if (MyNormal == -MyRayHit.transform.right)
                 {
-                    hitDirection = HitPlayerDirection.Left;
-                    SideHitValue = Convert.ToInt32(hitDirection);
+                    HitDirection = HitPlayerDirection.Left;
+                    SideHitValue = Convert.ToInt32(HitDirection);
                 }
             }
         }
-        return hitDirection;
+        return HitDirection;
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(HitBox.bounds.center, SpinRadius);
     }
 }
