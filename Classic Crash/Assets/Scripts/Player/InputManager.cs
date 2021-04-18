@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class InputManager : MonoBehaviour
 {
@@ -8,23 +9,33 @@ public class InputManager : MonoBehaviour
     public float JumpForce = 7;
     public float DistanceToGround = 1.01f;
 
+    private int SideHitValue;
+
     private PlayerControls PlayerControls;
     private Vector2 MovementInput;
     private Rigidbody RB;
     private BoxCollider HitBox;
+    private SphereCollider SpinAttack;
 
     private Vector3 PlayerMovement;
     private bool CanJump;
 
+    //Enums to help check which side the player hit a certain object or with his attack.
+    private enum HitPlayerDirection { None, Top, Bottom, Forward, Back, Left, Right, Spin, Invincibility }
+
     private void OnEnable()
     {
-        if(RB == null)
+        if (RB == null)
         {
             RB = GetComponent<Rigidbody>();
         }
-        if(HitBox == null)
+        if (HitBox == null)
         {
             HitBox = GetComponent<BoxCollider>();
+        }
+        if(SpinAttack == null)
+        {
+            SpinAttack = GetComponentInChildren<SphereCollider>();
         }
         if (PlayerControls == null)
         {
@@ -54,7 +65,7 @@ public class InputManager : MonoBehaviour
 
     private void LookDirection()
     {
-        if(PlayerMovement != Vector3.zero)
+        if (PlayerMovement != Vector3.zero)
         {
             transform.forward = PlayerMovement;
         }
@@ -71,5 +82,67 @@ public class InputManager : MonoBehaviour
     bool IsGrounded()
     {
         return Physics.Raycast(transform.position, Vector3.down, DistanceToGround);
+    }
+
+    public void OnCollisionEnter(Collision collision)
+    {
+        ICrateBase crate = (ICrateBase)collision.gameObject.GetComponent(typeof(ICrateBase));
+
+        ReturnDirection(gameObject, collision.gameObject);
+
+        if (crate != null)
+        {
+            crate.Break(SideHitValue);
+        }
+    }
+
+    //This Enum function checks which side the player hits a certain object and returns this information.
+    private HitPlayerDirection ReturnDirection(GameObject Object, GameObject ObjectHit)
+    {
+        HitPlayerDirection hitDirection = HitPlayerDirection.None;
+        RaycastHit MyRayHit;
+        Vector3 direction = (ObjectHit.transform.position - Object.transform.position).normalized;
+        Ray MyRay = new Ray(Object.transform.position, direction);
+
+        if (Physics.Raycast(MyRay, out MyRayHit))
+        {
+            if (MyRayHit.collider != null)
+            {
+                Vector3 MyNormal = MyRayHit.normal;
+                MyNormal = MyRayHit.transform.TransformDirection(MyNormal);
+
+                if (MyNormal == MyRayHit.transform.up)
+                {
+                    hitDirection = HitPlayerDirection.Top;
+                    SideHitValue = Convert.ToInt32(hitDirection);
+                }
+                if (MyNormal == -MyRayHit.transform.up)
+                {
+                    hitDirection = HitPlayerDirection.Bottom;
+                    SideHitValue = Convert.ToInt32(hitDirection);
+                }
+                if (MyNormal == MyRayHit.transform.forward)
+                {
+                    hitDirection = HitPlayerDirection.Forward;
+                    SideHitValue = Convert.ToInt32(hitDirection);
+                }
+                if (MyNormal == -MyRayHit.transform.forward)
+                {
+                    hitDirection = HitPlayerDirection.Back;
+                    SideHitValue = Convert.ToInt32(hitDirection);
+                }
+                if (MyNormal == MyRayHit.transform.right)
+                {
+                    hitDirection = HitPlayerDirection.Right;
+                    SideHitValue = Convert.ToInt32(hitDirection);
+                }
+                if (MyNormal == -MyRayHit.transform.right)
+                {
+                    hitDirection = HitPlayerDirection.Left;
+                    SideHitValue = Convert.ToInt32(hitDirection);
+                }
+            }
+        }
+        return hitDirection;
     }
 }
