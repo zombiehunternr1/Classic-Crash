@@ -4,7 +4,22 @@ using UnityEngine;
 
 public class TNT : MonoBehaviour, ICrateBase
 {
-    bool Started;
+    private bool Started;
+
+    private List<Renderer> SubCrates = new List<Renderer>();
+
+    private void Awake()
+    {
+        foreach(Renderer TNT in gameObject.GetComponentsInChildren<Renderer>())
+        {
+            SubCrates.Add(TNT);
+        }
+        SubCrates.RemoveAt(0);
+        foreach(Renderer TNT in SubCrates)
+        {
+            TNT.enabled = false;
+        }
+    }
 
     public void Break(int Side)
     {
@@ -24,7 +39,7 @@ public class TNT : MonoBehaviour, ICrateBase
 
     public void Explode()
     {
-        Debug.Log("Kaboom");
+        gameObject.SetActive(false);
     }
 
     private IEnumerator Countdown()
@@ -32,11 +47,13 @@ public class TNT : MonoBehaviour, ICrateBase
         if (!Started)
         {
             Started = true;
-            Debug.Log(3);
+            SubCrates[0].enabled = true;
             yield return new WaitForSeconds(1);
-            Debug.Log(2);
+            SubCrates[0].enabled = false;
+            SubCrates[1].enabled = true;
             yield return new WaitForSeconds(1);
-            Debug.Log(1);
+            SubCrates[1].enabled = false;
+            SubCrates[2].enabled = true;
             yield return new WaitForSeconds(1);
             Explode();
         }    

@@ -11,6 +11,6 @@ public class Nitro : MonoBehaviour, ICrateBase
 
     public void Explode()
     {
-        Debug.Log("Kaboom");
+        gameObject.SetActive(false);
     }
 }

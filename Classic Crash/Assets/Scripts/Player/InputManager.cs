@@ -164,10 +164,4 @@ public class InputManager : MonoBehaviour
         }
         return HitDirection;
     }
-
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(HitBox.bounds.center, SpinRadius);
-    }
 }
