@@ -10,12 +10,13 @@ public class InputManager : MonoBehaviour
     public float DistanceToGround = 1.01f;
 
     private int SideHitValue;
+    private bool Attacking;
 
     private PlayerControls PlayerControls;
     private Vector2 MovementInput;
     private Rigidbody RB;
     private BoxCollider HitBox;
-    private SphereCollider SpinAttack;
+    private SphereCollider SpinSphere;
 
     private Vector3 PlayerMovement;
     private bool CanJump;
@@ -33,15 +34,16 @@ public class InputManager : MonoBehaviour
         {
             HitBox = GetComponent<BoxCollider>();
         }
-        if(SpinAttack == null)
+        if(SpinSphere == null)
         {
-            SpinAttack = GetComponentInChildren<SphereCollider>();
+            SpinSphere = GetComponentInChildren<SphereCollider>();
         }
         if (PlayerControls == null)
         {
             PlayerControls = new PlayerControls();
             PlayerControls.Player.Movement.performed += i => MovementInput = i.ReadValue<Vector2>();
             PlayerControls.Player.Jump.performed += i => Jump();
+            PlayerControls.Player.Spin.performed += i => SpinAttack();
         }
         PlayerControls.Enable();
     }
@@ -77,6 +79,23 @@ public class InputManager : MonoBehaviour
         {
             RB.AddForce(new Vector3(0, JumpForce, 0), ForceMode.Impulse);
         }
+    }
+
+    private void SpinAttack()
+    {
+        if (!Attacking)
+        {
+            Attacking = true;
+            StartCoroutine(ResetAttack());
+        }
+    }
+
+    private IEnumerator ResetAttack()
+    {
+        SpinSphere.enabled = true;
+        yield return new WaitForSeconds(1);
+        SpinSphere.enabled = false;
+        Attacking = false;
     }
 
     bool IsGrounded()
