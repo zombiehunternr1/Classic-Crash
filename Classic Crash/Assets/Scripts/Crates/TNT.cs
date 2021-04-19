@@ -14,11 +14,6 @@ public class TNT : MonoBehaviour, ICrateBase
         {
             SubCrates.Add(TNT);
         }
-        SubCrates.RemoveAt(0);
-        foreach(Renderer TNT in SubCrates)
-        {
-            TNT.enabled = false;
-        }
     }
 
     public void Break(int Side)
@@ -47,13 +42,14 @@ public class TNT : MonoBehaviour, ICrateBase
         if (!Started)
         {
             Started = true;
-            SubCrates[0].enabled = true;
-            yield return new WaitForSeconds(1);
             SubCrates[0].enabled = false;
             SubCrates[1].enabled = true;
             yield return new WaitForSeconds(1);
             SubCrates[1].enabled = false;
             SubCrates[2].enabled = true;
+            yield return new WaitForSeconds(1);
+            SubCrates[2].enabled = false;
+            SubCrates[3].enabled = true;
             yield return new WaitForSeconds(1);
             Explode();
         }    
