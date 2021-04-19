@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class TNT : MonoBehaviour, ICrateBase
 {
+    public ParticleSystem Explosion;
     private bool Started;
-
     private List<Renderer> SubCrates = new List<Renderer>();
 
     private void Awake()
@@ -35,6 +35,7 @@ public class TNT : MonoBehaviour, ICrateBase
     public void Explode()
     {
         gameObject.SetActive(false);
+        Instantiate(Explosion, transform.position, transform.rotation);
     }
 
     private IEnumerator Countdown()
