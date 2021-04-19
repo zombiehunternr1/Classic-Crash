@@ -26,7 +26,7 @@ public class TNT : MonoBehaviour, ICrateBase
             case 2:
                 StartCoroutine(Countdown());
                 break;
-            case 7:
+            case 10:
                 Explode();
                 break;
         }
@@ -34,8 +34,13 @@ public class TNT : MonoBehaviour, ICrateBase
 
     public void Explode()
     {
+        DisableCrate();
+        Instantiate(Explosion, transform.position, Quaternion.identity);
+    }
+
+    public void DisableCrate()
+    {
         gameObject.SetActive(false);
-        Instantiate(Explosion, transform.position, transform.rotation);
     }
 
     private IEnumerator Countdown()

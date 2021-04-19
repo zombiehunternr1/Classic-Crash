@@ -23,7 +23,7 @@ public class Explosion : MonoBehaviour
             ICrateBase crate = (ICrateBase)hitCollider.gameObject.GetComponent(typeof(ICrateBase));
             if (crate != null)
             {
-                crate.Break(7);
+                crate.Break(10);
             }
             else if(hitCollider.gameObject.GetComponent<InputManager>())
             {

@@ -13,7 +13,12 @@ public class Nitro : MonoBehaviour, ICrateBase
 
     public void Explode()
     {
+        DisableCrate();
+        Instantiate(Explosion, transform.position, Quaternion.identity);
+    }
+
+    public void DisableCrate()
+    {
         gameObject.SetActive(false);
-        Instantiate(Explosion, transform.position, transform.rotation);
     }
 }

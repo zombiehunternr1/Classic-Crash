@@ -5,4 +5,6 @@ using UnityEngine;
 public interface ICrateBase
 {
     void Break(int Side);
+
+    void DisableCrate();
 }
