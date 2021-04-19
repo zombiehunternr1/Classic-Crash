@@ -1,18 +1,24 @@
 fileFormatVersion: 2
-guid: d1b4f2a1a062e4d4d84f0882c36a71f5
+guid: 5fe3ed5ce48b8554288cb4eae1b4e101
 ModelImporter:
   serializedVersion: 20200
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      74: 518792697260917357
+    second: Diamond|Diamond|Take 001|BaseLayer
+  - first:
+      74: -4009586865045653520
+    second: Diamond|LIghts|Take 001|BaseLayer
   externalObjects:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Material
-    second: {fileID: 2100000, guid: 085d5712fb993d5478fd23e931ef1f9c, type: 2}
+      name: Crystal
+    second: {fileID: 2100000, guid: 1a8266d4e4053494c8115848853b499e, type: 2}
   materials:
     materialImportMode: 2
-    materialName: 2
-    materialSearch: 2
+    materialName: 0
+    materialSearch: 1
     materialLocation: 1
   animations:
     legacyGenerateAnimations: 4

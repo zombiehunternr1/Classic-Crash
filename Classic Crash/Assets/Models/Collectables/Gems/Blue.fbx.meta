@@ -1,16 +1,22 @@
 fileFormatVersion: 2
-guid: d1b4f2a1a062e4d4d84f0882c36a71f5
+guid: 617c9dd1535cbb04aa79fcfe42d77a78
 ModelImporter:
   serializedVersion: 20200
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      74: 518792697260917357
+    second: Diamond|Diamond|Take 001|BaseLayer
+  - first:
+      74: -4009586865045653520
+    second: Diamond|LIghts|Take 001|BaseLayer
   externalObjects:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Material
-    second: {fileID: 2100000, guid: 085d5712fb993d5478fd23e931ef1f9c, type: 2}
+      name: Crystal
+    second: {fileID: 2100000, guid: 777cddf32ac84f9469f9d3b506e0d84f, type: 2}
   materials:
-    materialImportMode: 2
+    materialImportMode: 1
     materialName: 2
     materialSearch: 2
     materialLocation: 1
@@ -78,7 +84,7 @@ ModelImporter:
     blendShapeNormalImportMode: 1
     normalSmoothingSource: 0
   referencedClips: []
-  importAnimation: 1
+  importAnimation: 0
   humanDescription:
     serializedVersion: 3
     human: []
@@ -100,7 +106,7 @@ ModelImporter:
   animationType: 2
   humanoidOversampling: 1
   avatarSetup: 0
-  addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 0
   additionalBone: 0
   userData: 
   assetBundleName: 

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: d1b4f2a1a062e4d4d84f0882c36a71f5
+guid: 4eb1389786980f34891f798bb61b1a6a
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable: []
@@ -7,8 +7,8 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Material
-    second: {fileID: 2100000, guid: 085d5712fb993d5478fd23e931ef1f9c, type: 2}
+      name: Exclamation Mark
+    second: {fileID: 2100000, guid: ffd0b651e542be84186505cb2accec8c, type: 2}
   materials:
     materialImportMode: 2
     materialName: 2
