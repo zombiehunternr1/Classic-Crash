@@ -9,7 +9,7 @@ public class Explosion : MonoBehaviour
     private void Awake()
     {
         HitBox = GetComponent<SphereCollider>();
-        Destroy(gameObject, 0.5f);
+        StartCoroutine(DisableCollider());
     }
 
     public void OnTriggerEnter(Collider other)
@@ -18,5 +18,11 @@ public class Explosion : MonoBehaviour
         {
             Debug.Log("Hit player");
         }
+    }
+
+    IEnumerator DisableCollider()
+    {
+        yield return new WaitForSeconds(0.5f);
+        HitBox.enabled = false;
     }
 }
