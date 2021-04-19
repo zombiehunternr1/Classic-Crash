@@ -90,6 +90,18 @@ public class InputManager : MonoBehaviour
                 crate.Break((int)ReturnDirection(gameObject, hitCollider.gameObject));
             }
         }
+        RaycastHit MyRayHit;
+        if(Physics.Raycast(transform.position, -Vector3.up, out MyRayHit))
+        {
+            if(MyRayHit.collider != null)
+            {
+                ICrateBase crate = (ICrateBase)MyRayHit.collider.GetComponent(typeof(ICrateBase));
+                if (crate != null)
+                {
+                    crate.Break((int)ReturnDirection(gameObject, MyRayHit.collider.gameObject));
+                }
+            }
+        }
         Spinning = false;
     }
 

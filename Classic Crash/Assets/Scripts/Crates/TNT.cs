@@ -26,6 +26,9 @@ public class TNT : MonoBehaviour, ICrateBase
             case 2:
                 StartCoroutine(Countdown());
                 break;
+            case 7:
+                Explode();
+                break;
             case 10:
                 Explode();
                 break;
