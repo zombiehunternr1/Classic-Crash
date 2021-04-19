@@ -44,12 +44,21 @@ public class TNT : MonoBehaviour, ICrateBase
             Started = true;
             SubCrates[0].enabled = false;
             SubCrates[1].enabled = true;
+            SubCrates[1].material.EnableKeyword("_EMISSION");
+            yield return new WaitForSeconds(0.2f);
+            SubCrates[1].material.DisableKeyword("_EMISSION");
             yield return new WaitForSeconds(1);
             SubCrates[1].enabled = false;
             SubCrates[2].enabled = true;
+            SubCrates[2].material.EnableKeyword("_EMISSION");
+            yield return new WaitForSeconds(0.2f);
+            SubCrates[2].material.DisableKeyword("_EMISSION");
             yield return new WaitForSeconds(1);
             SubCrates[2].enabled = false;
             SubCrates[3].enabled = true;
+            SubCrates[3].material.EnableKeyword("_EMISSION");
+            yield return new WaitForSeconds(0.2f);
+            SubCrates[3].material.DisableKeyword("_EMISSION");
             yield return new WaitForSeconds(1);
             Explode();
         }    
