@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 7256894595883887071}
   - component: {fileID: 7255961456560632615}
   - component: {fileID: 7485820457823918623}
-  - component: {fileID: 2848976876277832232}
   - component: {fileID: 7825728520496517316}
+  - component: {fileID: -4691374759068701998}
   m_Layer: 0
   m_Name: TNT Particle
   m_TagString: Untagged
@@ -4863,19 +4863,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   OnlyDeactivate: 0
---- !u!135 &2848976876277832232
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7381633609138849787}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 1.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &7825728520496517316
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4888,6 +4875,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e39bd5b1dcad70a4fbbd1d9f721f90a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ExplosionRadius: 1.5
+--- !u!135 &-4691374759068701998
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7381633609138849787}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7381641708263062837
 GameObject:
   m_ObjectHideFlags: 0

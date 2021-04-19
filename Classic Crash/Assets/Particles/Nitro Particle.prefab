@@ -28461,8 +28461,8 @@ GameObject:
   - component: {fileID: 6660441922141446290}
   - component: {fileID: 6658947034918746730}
   - component: {fileID: 6861785467590955858}
-  - component: {fileID: 2257032199127143269}
   - component: {fileID: 6071306585187457417}
+  - component: {fileID: 281925714712800318}
   m_Layer: 0
   m_Name: Nitro Particle
   m_TagString: Untagged
@@ -28478,7 +28478,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6821787008760696502}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 4.18, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6827129085124061512}
@@ -33312,19 +33312,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   OnlyDeactivate: 0
---- !u!135 &2257032199127143269
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6821787008760696502}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 1.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &6071306585187457417
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33337,3 +33324,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e39bd5b1dcad70a4fbbd1d9f721f90a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ExplosionRadius: 1.5
+--- !u!135 &281925714712800318
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6821787008760696502}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
