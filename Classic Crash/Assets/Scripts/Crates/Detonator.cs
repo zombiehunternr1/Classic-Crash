@@ -22,10 +22,7 @@ public class Detonator : MonoBehaviour, IInteractable
 
         foreach(Nitro crate in Crates)
         {
-            if (crate.enabled)
-            {
-                crate.Explode();
-            }
+            crate.Explode();
         }
         gameObject.GetComponent<Renderer>().enabled = false;
     }
