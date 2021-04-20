@@ -6,6 +6,7 @@ public class Questionmark : MonoBehaviour, ICrateBase, ISpawnable
 {
     public GameObject Item;
     public int amount = 1;
+    public bool AutoAdd;
 
     public void Break(int side)
     {
@@ -33,18 +34,25 @@ public class Questionmark : MonoBehaviour, ICrateBase, ISpawnable
 
     public void SpawnItem()
     {
-        for (int i = 0; i < amount; i++)
+        if (AutoAdd)
         {
-            if (i > 0)
+            Debug.Log("Auto add");
+        }
+        else
+        {
+            for (int i = 0; i < amount; i++)
             {
-                var x = Random.Range(-0.5f, 0.5f);
-                var z = Random.Range(-0.5f, 0.5f);
-                Instantiate(Item, new Vector3(transform.position.x + x, transform.position.y, transform.position.z + z), Quaternion.identity);
-            }
-            else
-            {
-                Instantiate(Item, transform.position, Quaternion.identity);
-            }
+                if (i > 0)
+                {
+                    var x = Random.Range(-0.5f, 0.5f);
+                    var z = Random.Range(-0.5f, 0.5f);
+                    Instantiate(Item, new Vector3(transform.position.x + x, transform.position.y, transform.position.z + z), Quaternion.identity);
+                }
+                else
+                {
+                    Instantiate(Item, transform.position, Quaternion.identity);
+                }
+            }         
         }
         DisableCrate();
     }

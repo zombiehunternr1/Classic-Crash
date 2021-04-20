@@ -5,6 +5,7 @@ using UnityEngine;
 public class Default : MonoBehaviour, ICrateBase, ISpawnable
 {
     public GameObject Item;
+    public bool AutoAdd;
 
     public void Break(int side)
     {
@@ -31,8 +32,15 @@ public class Default : MonoBehaviour, ICrateBase, ISpawnable
     }
 
     public void SpawnItem()
-    {           
-        Instantiate(Item, transform.position, Quaternion.identity);
+    {
+        if (AutoAdd)
+        {
+            Debug.Log("Auto add");
+        }
+        else
+        {
+            Instantiate(Item, transform.position, Quaternion.identity);
+        }
         DisableCrate();
     }
 }
