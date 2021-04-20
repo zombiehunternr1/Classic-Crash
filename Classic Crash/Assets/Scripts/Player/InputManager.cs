@@ -83,7 +83,6 @@ public class InputManager : MonoBehaviour
         Collider[] hitColliders = Physics.OverlapSphere(HitBox.bounds.center, SpinRadius);
         foreach (var hitCollider in hitColliders)
         {
-            //Get reference to the script / interface
             ICrateBase Crate = (ICrateBase)hitCollider.gameObject.GetComponent(typeof(ICrateBase));
             if (Crate != null)
             {
