@@ -19,12 +19,12 @@ public class Activator : MonoBehaviour, IInteractable
     public void Interacting(int Side)
     {
         if(Side <= 2)
-            StartCoroutine(DisplayHidden());
+            StartCoroutine(ActivateHidden());
         else if(Side >= 7)
-            StartCoroutine(DisplayHidden());
+            StartCoroutine(ActivateHidden());
     }
 
-    IEnumerator DisplayHidden()
+    IEnumerator ActivateHidden()
     {
         gameObject.GetComponent<Renderer>().enabled = false;
         foreach (GameObject crate in Crates)
