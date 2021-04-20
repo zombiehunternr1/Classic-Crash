@@ -4,13 +4,6 @@ using UnityEngine;
 
 public class Life : MonoBehaviour, IInteractable
 {
-    private BoxCollider HitBox;
-
-    private void Awake()
-    {
-        HitBox = GetComponent<BoxCollider>();
-    }
-
     public void Interacting(int Side)
     {
         if (Side >= 1 && Side <= 6 || Side >= 8 && Side <= 9)

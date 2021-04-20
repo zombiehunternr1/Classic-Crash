@@ -2,17 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Wumpa : MonoBehaviour, IInteractable
+public class AkuAku : MonoBehaviour, IInteractable
 {
-    public void Interacting(int Side)
+    public void Interacting(int side)
     {
-        if(Side >= 1 && Side <= 6 || Side >= 8 && Side <= 9)
+        if(side <= 7)
         {
             CollectItem();
         }
-        else if(Side == 7 || Side >= 10)
+        if(side == 8)
         {
-            DestroyItem();
+            DestoryItem();
         }
     }
 
@@ -21,7 +21,7 @@ public class Wumpa : MonoBehaviour, IInteractable
         gameObject.SetActive(false);
     }
 
-    private void DestroyItem()
+    private void DestoryItem()
     {
         Destroy(gameObject);
     }
