@@ -2,9 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Default : MonoBehaviour, ICrateBase, ISpawnable
+public class Questionmark : MonoBehaviour, ICrateBase, ISpawnable
 {
     public GameObject Item;
+    public int amount = 1;
 
     public void Break(int side)
     {
@@ -31,8 +32,20 @@ public class Default : MonoBehaviour, ICrateBase, ISpawnable
     }
 
     public void SpawnItem()
-    {           
-        Instantiate(Item, transform.position, Quaternion.identity);
+    {
+        for (int i = 0; i < amount; i++)
+        {
+            if (i > 0)
+            {
+                var x = Random.Range(-0.5f, 0.5f);
+                var z = Random.Range(-0.5f, 0.5f);
+                Instantiate(Item, new Vector3(transform.position.x + x, transform.position.y, transform.position.z + z), Quaternion.identity);
+            }
+            else
+            {
+                Instantiate(Item, transform.position, Quaternion.identity);
+            }
+        }
         DisableCrate();
     }
 }
