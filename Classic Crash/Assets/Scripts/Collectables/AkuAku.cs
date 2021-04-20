@@ -6,9 +6,9 @@ public class AkuAku : MonoBehaviour, IInteractable
 {
     public void Interacting(int side)
     {
-        if(side <= 7)
+        if(side <= 6)
             CollectItem();
-        if(side == 8)
+        if(side >= 7)
             DestoryItem();
     }
 
