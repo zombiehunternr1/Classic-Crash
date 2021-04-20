@@ -84,10 +84,15 @@ public class InputManager : MonoBehaviour
         foreach (var hitCollider in hitColliders)
         {
             //Get reference to the script / interface
-            ICrateBase crate = (ICrateBase)hitCollider.gameObject.GetComponent(typeof(ICrateBase));
-            if (crate != null)
+            ICrateBase Crate = (ICrateBase)hitCollider.gameObject.GetComponent(typeof(ICrateBase));
+            if (Crate != null)
             {
-                crate.Break((int)ReturnDirection(gameObject, hitCollider.gameObject));
+                Crate.Break((int)ReturnDirection(gameObject, hitCollider.gameObject));
+            }
+            IInteractable Item = (IInteractable)hitCollider.gameObject.GetComponent(typeof(IInteractable));
+            if(Item != null)
+            {
+                Item.Interacting((int)ReturnDirection(gameObject, hitCollider.gameObject));
             }
         }
         RaycastHit MyRayHit;
@@ -112,13 +117,15 @@ public class InputManager : MonoBehaviour
 
     public void OnCollisionEnter(Collision collision)
     {
-        ICrateBase crate = (ICrateBase)collision.gameObject.GetComponent(typeof(ICrateBase));
-    
-        ReturnDirection(gameObject, collision.gameObject);   
-
+        ICrateBase crate = (ICrateBase)collision.gameObject.GetComponent(typeof(ICrateBase));    
         if (crate != null)
         {
-            crate.Break(SideHitValue);
+            crate.Break((int)ReturnDirection(gameObject, collision.gameObject));
+        }
+        IInteractable Item = (IInteractable)collision.gameObject.GetComponent(typeof(IInteractable));
+        if (Item != null)
+        {
+            Item.Interacting((int)ReturnDirection(gameObject, collision.gameObject));
         }
     }
 

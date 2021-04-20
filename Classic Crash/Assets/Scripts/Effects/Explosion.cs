@@ -2,30 +2,39 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Explosion : MonoBehaviour
+public class Explosion : MonoBehaviour, IInteractable
 {
     private SphereCollider HitBox;
-    public float ExplosionRadius = 1.5f;
+    public float ExplosionRadius;
+
+    private int Side;
 
     private void Awake()
     {
         HitBox = GetComponent<SphereCollider>();
-        CheckExplosionRadius();
+        Interacting(Side);
         StartCoroutine(DisableCollider());
     }
 
-    void CheckExplosionRadius()
+    public void Interacting(int Side)
     {
         Collider[] hitColliders = Physics.OverlapSphere(HitBox.bounds.center, ExplosionRadius);
         foreach (var hitCollider in hitColliders)
         {
-            //Get reference to the script / interface
-            ICrateBase crate = (ICrateBase)hitCollider.gameObject.GetComponent(typeof(ICrateBase));
-            if (crate != null)
+            ICrateBase Crate = (ICrateBase)hitCollider.gameObject.GetComponent(typeof(ICrateBase));
+            if (Crate != null)
             {
-                crate.Break(10);
+                Crate.Break(10);
             }
-            else if(hitCollider.gameObject.GetComponent<InputManager>())
+            IInteractable Item = (IInteractable)hitCollider.gameObject.GetComponent(typeof(IInteractable));
+            if(Item != null)
+            {
+                if (!hitCollider.gameObject.GetComponent<Explosion>())
+                {
+                    Item.Interacting(10);
+                }
+            }
+            else if (hitCollider.gameObject.GetComponent<InputManager>())
             {
                 Debug.Log("Hit player");
             }
