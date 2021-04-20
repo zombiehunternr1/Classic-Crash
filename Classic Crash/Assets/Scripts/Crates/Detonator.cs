@@ -6,23 +6,20 @@ public class Detonator : MonoBehaviour, IInteractable
 {
     public void Interacting(int Side)
     {
-        if(Side <= 2)
-        {
+        if (Side <= 2)
             Detonate();
-        }
-        else if(Side == 7)
-        {
+        else if (Side == 7)
             Detonate();
-        }
     }
 
     private void Detonate()
     {
         Nitro[] Crates = FindObjectsOfType(typeof(Nitro)) as Nitro[];
 
-        foreach(Nitro crate in Crates)
+        foreach (Nitro crate in Crates)
         {
-            crate.Explode();
+            if (crate.enabled)
+                crate.Explode();
         }
         gameObject.GetComponent<Renderer>().enabled = false;
     }

@@ -19,13 +19,9 @@ public class Activator : MonoBehaviour, IInteractable
     public void Interacting(int Side)
     {
         if(Side <= 2)
-        {
             StartCoroutine(DisplayHidden());
-        }
         else if(Side >= 7)
-        {
             StartCoroutine(DisplayHidden());
-        }
     }
 
     IEnumerator DisplayHidden()
