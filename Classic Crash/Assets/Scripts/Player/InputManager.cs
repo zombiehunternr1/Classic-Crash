@@ -68,8 +68,7 @@ public class InputManager : MonoBehaviour
             transform.forward = PlayerMovement;
         }
     }
-
-    public void Jump()
+    private void Jump()
     {
         if (IsGrounded())
         {
