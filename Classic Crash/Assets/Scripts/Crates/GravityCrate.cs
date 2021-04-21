@@ -5,7 +5,7 @@ using UnityEngine;
 public class GravityCrate : MonoBehaviour, IInteractable
 {
     public float BounceForce = 7;
-    public bool CanHit;
+    private bool CanHit;
 
     private Rigidbody RB;
 
@@ -45,10 +45,20 @@ public class GravityCrate : MonoBehaviour, IInteractable
         {
             if (MyRayHit.collider != null)
             {
-                Bounce Crate = MyRayHit.collider.GetComponent<Bounce>();
-                if (Crate != null)
+                Bounce Bounce = MyRayHit.collider.GetComponent<Bounce>();
+                if (Bounce != null)
                 {
-                    Crate.BounceObject(RB, BounceForce);
+                    Bounce.BounceObject(RB, BounceForce);
+                }
+                TNT TNT = MyRayHit.collider.GetComponent<TNT>();
+                if(TNT != null)
+                {
+                    TNT.GetComponent<TNT>().StartCoroutine(TNT.Countdown());
+                }
+                Nitro Nitro = MyRayHit.collider.GetComponent<Nitro>();
+                if(Nitro != null)
+                {
+                    Nitro.Explode();
                 }
                 InputManager Player = MyRayHit.collider.GetComponent<InputManager>();
                 if(Player != null)

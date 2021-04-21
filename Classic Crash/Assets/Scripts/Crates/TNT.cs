@@ -45,8 +45,7 @@ public class TNT : MonoBehaviour, ICrateBase
     {
         gameObject.SetActive(false);
     }
-
-    private IEnumerator Countdown()
+    public IEnumerator Countdown()
     {
         if (!Started)
         {
