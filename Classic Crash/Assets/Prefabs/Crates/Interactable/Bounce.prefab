@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 5898862712727313072}
   - component: {fileID: 7382283760049820949}
   - component: {fileID: 4726480248990294495}
+  - component: {fileID: -3655059594899083302}
+  - component: {fileID: 3487021577692225016}
   m_Layer: 0
   m_Name: Bounce
   m_TagString: Untagged
@@ -81,3 +83,32 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &-3655059594899083302
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6527731052815368202}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.0000005, y: 1, z: 1.0000005}
+  m_Center: {x: -0.000000029802322, y: 0, z: 0.000000059604645}
+--- !u!114 &3487021577692225016
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6527731052815368202}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4cf9c488e3b5e304789ecf7664247546, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  crateType: 0
+  breakAfter: 5
+  DistanceRadius: 0.1
+  BounceForce: 7
