@@ -69,7 +69,7 @@ public class InputManager : MonoBehaviour
         }
     }
 
-    private void Jump()
+    public void Jump()
     {
         if (IsGrounded())
         {

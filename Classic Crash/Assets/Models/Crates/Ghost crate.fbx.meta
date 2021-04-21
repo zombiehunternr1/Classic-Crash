@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: a0dc2b49f06faa04290d3cec76ac2ab7
+guid: 5e46bac83dc4c2c47873be65166e01c7
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable: []
@@ -7,12 +7,12 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Life
-    second: {fileID: 2100000, guid: 07e7df8d14f61114d8f76a8269818181, type: 2}
+      name: White
+    second: {fileID: 2100000, guid: a3a611d13f168bf41a046862c18790bf, type: 2}
   materials:
     materialImportMode: 2
-    materialName: 0
-    materialSearch: 1
+    materialName: 2
+    materialSearch: 2
     materialLocation: 1
   animations:
     legacyGenerateAnimations: 4

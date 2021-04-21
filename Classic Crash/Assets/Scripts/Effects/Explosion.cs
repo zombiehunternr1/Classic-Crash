@@ -19,7 +19,7 @@ public class Explosion : MonoBehaviour, IInteractable
     public void Interacting(int Side)
     {
         Collider[] hitColliders = Physics.OverlapSphere(HitBox.bounds.center, ExplosionRadius);
-        foreach (var hitCollider in hitColliders)
+        foreach (Collider hitCollider in hitColliders)
         {
             ICrateBase Crate = (ICrateBase)hitCollider.gameObject.GetComponent(typeof(ICrateBase));
             if (Crate != null)
