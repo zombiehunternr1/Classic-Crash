@@ -6,12 +6,15 @@ using System;
 public class InputManager : MonoBehaviour
 {
     public float Speed = 5;
-    public float JumpForce = 7;
+    public float RegularJump = 7;
+    public float BigJump = 10;
     public float DistanceToGround = 1.01f;
     public float SpinRadius = 1.5f;
 
     private int SideHitValue;
     private bool Spinning;
+    private bool HoldJump;
+    private float JumpTimer = 0.4f;
 
     private PlayerControls PlayerControls;
     private Vector2 MovementInput;
@@ -38,7 +41,8 @@ public class InputManager : MonoBehaviour
         {
             PlayerControls = new PlayerControls();
             PlayerControls.Player.Movement.performed += i => MovementInput = i.ReadValue<Vector2>();
-            PlayerControls.Player.Jump.performed += i => Jump();
+            PlayerControls.Player.JumpPressed.performed += i => JumpPressed();
+            PlayerControls.Player.JumpReleased.performed += i => JumpReleased();
             PlayerControls.Player.Spin.performed += i => SpinAttack();
         }
         PlayerControls.Enable();
@@ -52,6 +56,7 @@ public class InputManager : MonoBehaviour
     private void Update()
     {
         Movement();
+        JumpingTImer();
     }
 
     private void Movement()
@@ -68,12 +73,64 @@ public class InputManager : MonoBehaviour
             transform.forward = PlayerMovement;
         }
     }
-    private void Jump()
+
+    private void JumpingTImer()
     {
+        if (HoldJump)
+        {
+            if(JumpTimer >= 0)
+            {
+                JumpTimer -= Time.deltaTime;
+            }
+        }
+        else
+        {
+            JumpTimer = 0.4f;
+        }
+    }
+
+    public void Jumping()
+    {
+        if(JumpTimer >= 0)
+        {
+            JumpTimer = 0.4f;
+            RB.AddForce(new Vector3(0, RegularJump, 0), ForceMode.Impulse);
+            return;
+        }
+        else
+        {
+            JumpTimer = 0.4f;
+            RaycastHit MyRayHit;
+            if(Physics.Raycast(transform.position, -Vector3.up, out MyRayHit))
+            {
+                if(MyRayHit.collider != null)
+                {
+                    Bounce BounceCrate = MyRayHit.collider.GetComponent<Bounce>();
+                    if(BounceCrate != null)
+                    {
+                        BounceCrate.BounceObject(RB, BigJump);
+                        return;
+                    }
+                }
+                RB.AddForce(new Vector3(0, RegularJump, 0), ForceMode.Impulse);
+            }
+        }
+    }
+
+    private void JumpPressed()
+    {
+        HoldJump = true;
+        
+    }
+
+    private void JumpReleased()
+    {
+        HoldJump = false;
         if (IsGrounded())
         {
-            RB.AddForce(new Vector3(0, JumpForce, 0), ForceMode.Impulse);
+            Jumping();
         }
+
     }
 
     private void SpinAttack()

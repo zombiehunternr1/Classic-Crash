@@ -7,7 +7,7 @@ public class Bounce : MonoBehaviour, ICrateBase
     public CrateType crateType;
     public int breakAfter = 5;
     public float DistanceRadius = 0.1f;
-    public float BounceForce = 7;
+    public float BounceForce = 10;
     
     private int currentBounces;
     private BoxCollider Hitbox;
@@ -39,15 +39,6 @@ public class Bounce : MonoBehaviour, ICrateBase
         }
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        IInteractable Crate = other.gameObject.GetComponent<IInteractable>();
-        if(other != null)
-        {
-
-        }
-    }
-
     public void DisableCrate()
     {
         gameObject.SetActive(false);
@@ -70,14 +61,14 @@ public class Bounce : MonoBehaviour, ICrateBase
                 InputManager Player = MyRayHit.collider.GetComponent<InputManager>();
                 if (Player != null)
                 {
-                    BounceObject(Player.GetComponent<Rigidbody>(), BounceForce);
+                    Player.Jumping();
                 }
             }
         }
     }
     public void BounceObject(Rigidbody RB, float BounceForce)
     {
-        RB.AddForce(new Vector3(0, BounceForce, 0), ForceMode.VelocityChange);
+        RB.AddForce(new Vector3(0, BounceForce, 0), ForceMode.Impulse);
     }
     public enum CrateType { Unbreakable, BreakInstant, BreakAfterX }
 }

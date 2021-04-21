@@ -27,12 +27,20 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""Jump"",
+                    ""name"": ""JumpPressed"",
                     ""type"": ""Button"",
                     ""id"": ""69dcc5cc-01a5-4d6a-8978-c7c362ce8e3e"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": """"
+                    ""interactions"": ""Press(behavior=2)""
+                },
+                {
+                    ""name"": ""JumpReleased"",
+                    ""type"": ""Button"",
+                    ""id"": ""2f02d0b6-5611-4ef8-a450-b450b518d3d6"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press(behavior=1)""
                 },
                 {
                     ""name"": ""Spin"",
@@ -161,7 +169,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Jump"",
+                    ""action"": ""JumpPressed"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -172,7 +180,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Jump"",
+                    ""action"": ""JumpPressed"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -197,6 +205,28 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""action"": ""Spin"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""09e84e8f-7f76-479d-82e2-202a6b21130f"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""JumpReleased"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9a22f0e0-607e-4c15-85dc-6342b77ecbb4"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""JumpReleased"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -206,7 +236,8 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         // Player
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Movement = m_Player.FindAction("Movement", throwIfNotFound: true);
-        m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
+        m_Player_JumpPressed = m_Player.FindAction("JumpPressed", throwIfNotFound: true);
+        m_Player_JumpReleased = m_Player.FindAction("JumpReleased", throwIfNotFound: true);
         m_Player_Spin = m_Player.FindAction("Spin", throwIfNotFound: true);
     }
 
@@ -258,14 +289,16 @@ public class @PlayerControls : IInputActionCollection, IDisposable
     private readonly InputActionMap m_Player;
     private IPlayerActions m_PlayerActionsCallbackInterface;
     private readonly InputAction m_Player_Movement;
-    private readonly InputAction m_Player_Jump;
+    private readonly InputAction m_Player_JumpPressed;
+    private readonly InputAction m_Player_JumpReleased;
     private readonly InputAction m_Player_Spin;
     public struct PlayerActions
     {
         private @PlayerControls m_Wrapper;
         public PlayerActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movement => m_Wrapper.m_Player_Movement;
-        public InputAction @Jump => m_Wrapper.m_Player_Jump;
+        public InputAction @JumpPressed => m_Wrapper.m_Player_JumpPressed;
+        public InputAction @JumpReleased => m_Wrapper.m_Player_JumpReleased;
         public InputAction @Spin => m_Wrapper.m_Player_Spin;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
@@ -279,9 +312,12 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @Movement.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMovement;
                 @Movement.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMovement;
                 @Movement.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMovement;
-                @Jump.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
-                @Jump.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
-                @Jump.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
+                @JumpPressed.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJumpPressed;
+                @JumpPressed.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJumpPressed;
+                @JumpPressed.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJumpPressed;
+                @JumpReleased.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJumpReleased;
+                @JumpReleased.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJumpReleased;
+                @JumpReleased.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJumpReleased;
                 @Spin.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSpin;
                 @Spin.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSpin;
                 @Spin.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSpin;
@@ -292,9 +328,12 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @Movement.started += instance.OnMovement;
                 @Movement.performed += instance.OnMovement;
                 @Movement.canceled += instance.OnMovement;
-                @Jump.started += instance.OnJump;
-                @Jump.performed += instance.OnJump;
-                @Jump.canceled += instance.OnJump;
+                @JumpPressed.started += instance.OnJumpPressed;
+                @JumpPressed.performed += instance.OnJumpPressed;
+                @JumpPressed.canceled += instance.OnJumpPressed;
+                @JumpReleased.started += instance.OnJumpReleased;
+                @JumpReleased.performed += instance.OnJumpReleased;
+                @JumpReleased.canceled += instance.OnJumpReleased;
                 @Spin.started += instance.OnSpin;
                 @Spin.performed += instance.OnSpin;
                 @Spin.canceled += instance.OnSpin;
@@ -305,7 +344,8 @@ public class @PlayerControls : IInputActionCollection, IDisposable
     public interface IPlayerActions
     {
         void OnMovement(InputAction.CallbackContext context);
-        void OnJump(InputAction.CallbackContext context);
+        void OnJumpPressed(InputAction.CallbackContext context);
+        void OnJumpReleased(InputAction.CallbackContext context);
         void OnSpin(InputAction.CallbackContext context);
     }
 }
