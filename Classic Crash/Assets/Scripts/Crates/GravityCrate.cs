@@ -55,10 +55,17 @@ public class GravityCrate : MonoBehaviour, IInteractable
                 {
                     if (CanHit)
                     {
+                        StartCoroutine(TempDisable(Player));
                         Debug.Log("Hit player");
                     }
                 }
             }
         }
+    }
+    IEnumerator TempDisable(InputManager Player)
+    {
+        Physics.IgnoreCollision(gameObject.GetComponent<BoxCollider>(), Player.gameObject.GetComponent<BoxCollider>());
+        yield return new WaitForSeconds(2);
+        Physics.IgnoreCollision(gameObject.GetComponent<BoxCollider>(), Player.gameObject.GetComponent<BoxCollider>(), false);
     }
 }
