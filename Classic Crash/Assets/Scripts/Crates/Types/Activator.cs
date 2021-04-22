@@ -15,12 +15,24 @@ public class Activator : MonoBehaviour, IInteractable
     private void Awake()
     {
         Activation = gameObject.GetComponentInChildren<Animation>();
-        foreach(GameObject Crate in Crates)
+        Setup();
+    }
+
+    public void Setup()
+    {
+        if(Crates != null)
         {
-            Crate.GetComponent<BoxCollider>().enabled = false;
-            Crate.GetComponent<Renderer>().enabled = false;
-            GameObject Child = Instantiate(GhostCrate, Crate.transform.position, Crate.transform.rotation);
-            Child.transform.SetParent(Crate.transform);
+            foreach (GameObject Crate in Crates)
+            {
+                Crate.GetComponent<BoxCollider>().enabled = false;
+                Crate.GetComponent<Renderer>().enabled = false;
+                GameObject Child = Instantiate(GhostCrate, Crate.transform.position, Crate.transform.rotation);
+                Child.transform.SetParent(Crate.transform);
+            }
+        }
+        else
+        {
+            gameObject.GetComponent<Renderer>().enabled = false;
         }
     }
 

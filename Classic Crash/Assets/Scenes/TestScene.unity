@@ -495,8 +495,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: Activator Activatable
       objectReference: {fileID: 0}
+    - target: {fileID: 8238931933723702443, guid: 01f6e02b46b0942449a9b0a84ff087d4, type: 3}
+      propertyPath: Crates.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8238931933723702443, guid: 01f6e02b46b0942449a9b0a84ff087d4, type: 3}
+      propertyPath: Crates.Array.data[0]
+      value: 
+      objectReference: {fileID: 1285010236}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 01f6e02b46b0942449a9b0a84ff087d4, type: 3}
+--- !u!1 &1285010236 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4773758666335377725, guid: 54ea4c1bc4059e045b6d18c5fbf2d602, type: 3}
+  m_PrefabInstance: {fileID: 6611127033108547475}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1370203936
 GameObject:
   m_ObjectHideFlags: 0
@@ -1197,7 +1210,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5292886911779373959, guid: 54ea4c1bc4059e045b6d18c5fbf2d602, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.5
+      value: -0.42
       objectReference: {fileID: 0}
     - target: {fileID: 5292886911779373959, guid: 54ea4c1bc4059e045b6d18c5fbf2d602, type: 3}
       propertyPath: m_LocalPosition.y

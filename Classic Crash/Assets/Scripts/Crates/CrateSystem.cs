@@ -9,6 +9,8 @@ public class CrateSystem : MonoBehaviour
     [HideInInspector]
     public List<GameObject> BreakableCrates = new List<GameObject>();
 
+    private List<GameObject> InteractCrates = new List<GameObject>();
+
     private void Awake()
     {
         GetAllBreakableCrates();   
@@ -20,8 +22,8 @@ public class CrateSystem : MonoBehaviour
 
         foreach (GameObject Crate in AllCrates)
         {
-            ICrateBase Component = Crate.GetComponent<ICrateBase>();
-            if (Component != null)
+            ICrateBase ICrate = Crate.GetComponent<ICrateBase>();
+            if (ICrate != null)
             {
                 if (Crate.GetComponent<Checkpoint>())
                 {
@@ -34,6 +36,18 @@ public class CrateSystem : MonoBehaviour
                 else
                 {
                     BreakableCrates.Add(Crate);
+                }
+            }
+            IInteractable IInteract = Crate.GetComponent<IInteractable>();
+            if(IInteract != null)
+            {
+                if (Crate.GetComponent<Activator>())
+                {
+                    InteractCrates.Add(Crate);
+                }
+                else if (Crate.GetComponent<Detonator>())
+                {
+                    InteractCrates.Add(Crate);
                 }
             }
         }
