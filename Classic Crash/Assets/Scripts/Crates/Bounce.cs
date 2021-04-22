@@ -91,7 +91,7 @@ public class Bounce : MonoBehaviour, ICrateBase
                 InputManager Player = MyRayHit.collider.GetComponent<InputManager>();
                 if (Player != null)
                 {
-                    Player.Jumping();
+                    BounceObject(Player.GetComponent<Rigidbody>(), BounceForce);
                 }
             }
         }
