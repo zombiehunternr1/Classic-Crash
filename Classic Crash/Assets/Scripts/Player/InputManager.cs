@@ -24,6 +24,8 @@ public class InputManager : MonoBehaviour
     private Vector3 PlayerMovement;
     private bool CanJump;
 
+    private Vector3 LastCheckpointPosition;
+
     //Enums to help check which side the player hit a certain object or with his attack.
     private enum HitPlayerDirection { None, Top, Bottom, Forward, Back, Left, Right, Spin, Invincibility }
 
@@ -46,6 +48,7 @@ public class InputManager : MonoBehaviour
             PlayerControls.Player.Spin.performed += i => SpinAttack();
         }
         PlayerControls.Enable();
+        LastSavedCheckpoint(transform.position);
     }
 
     private void OnDisable()
@@ -130,7 +133,6 @@ public class InputManager : MonoBehaviour
         {
             Jumping();
         }
-
     }
 
     private void SpinAttack()
@@ -164,6 +166,25 @@ public class InputManager : MonoBehaviour
         }
         Spinning = false;
     }
+
+    public void LastSavedCheckpoint(Vector3 Position)
+    {
+        if(LastCheckpointPosition == null)
+        {
+            LastCheckpointPosition = transform.position;
+            return;
+        }
+        else
+        {
+            LastCheckpointPosition = Position;
+        }
+    }
+
+    public void LoadLastCheckpoint()
+    {
+        transform.position = LastCheckpointPosition;
+    }
+
 
     bool IsGrounded()
     {

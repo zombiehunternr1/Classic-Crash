@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 6491981830371408654}
   - component: {fileID: 7906065303490852011}
   - component: {fileID: 5355637337836224609}
+  - component: {fileID: 1705851671}
+  - component: {fileID: 1705851670}
   m_Layer: 0
   m_Name: Checkpoint
   m_TagString: Untagged
@@ -25,7 +27,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5860299912958419380}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -81,3 +83,31 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &1705851671
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5860299912958419380}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.0000005, y: 1, z: 1.0000005}
+  m_Center: {x: -0.000000029802322, y: 0, z: 0.000000059604645}
+--- !u!114 &1705851670
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5860299912958419380}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fce70a51028e0b4e844656c41159413, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  crateType: 1
+  BrokenCrate: {fileID: 9048058967566234233, guid: 2a6f459c8f657b241be83bd554d145d7, type: 3}
+  MetalCrate: {fileID: 334549118307310939, guid: 84ae75b7eb7dfbb4dadd41d166479656, type: 3}

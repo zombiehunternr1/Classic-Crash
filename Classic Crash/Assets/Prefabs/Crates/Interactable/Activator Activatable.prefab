@@ -109,6 +109,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6ae7676cebff2f46bad86036509b0b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ActivatingSpeed: 0
+  GhostCrate: {fileID: 110134546903624754, guid: 43d4399b72d94d445a479425cdeb3479, type: 3}
   Crates: []
 --- !u!1001 &7668696969183104958
 PrefabInstance:
