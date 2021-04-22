@@ -7,9 +7,14 @@ public class Activator : MonoBehaviour, IInteractable
     public float ActivatingSpeed;
     public GameObject GhostCrate;
     public List<GameObject> Crates = new List<GameObject>();
+    [HideInInspector]
+    public bool IsActivated;
+
+    private Animation Activation;
 
     private void Awake()
     {
+        Activation = gameObject.GetComponentInChildren<Animation>();
         foreach(GameObject Crate in Crates)
         {
             Crate.GetComponent<BoxCollider>().enabled = false;
@@ -29,14 +34,18 @@ public class Activator : MonoBehaviour, IInteractable
 
     IEnumerator ActivateHidden()
     {
-        gameObject.GetComponent<Renderer>().enabled = false;
-        foreach (GameObject Crate in Crates)
+        if (!IsActivated)
         {
-            Crate.GetComponent<BoxCollider>().enabled = true;
-            Crate.GetComponentInChildren<Renderer>();
-            Crate.transform.GetChild(Crate.transform.childCount - 1).GetComponent<Renderer>().enabled = false;
-            Crate.GetComponent<Renderer>().enabled = true;
-            yield return new WaitForSeconds(ActivatingSpeed);
-        }
+            IsActivated = true;
+            Activation.Play();
+            foreach (GameObject Crate in Crates)
+            {
+                Crate.GetComponent<BoxCollider>().enabled = true;
+                Crate.GetComponentInChildren<Renderer>();
+                Crate.transform.GetChild(Crate.transform.childCount - 1).GetComponent<Renderer>().enabled = false;
+                Crate.GetComponent<Renderer>().enabled = true;
+                yield return new WaitForSeconds(ActivatingSpeed);
+            }
+        }      
     }
 }

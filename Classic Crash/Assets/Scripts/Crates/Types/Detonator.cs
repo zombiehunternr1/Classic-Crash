@@ -4,6 +4,15 @@ using UnityEngine;
 
 public class Detonator : MonoBehaviour, IInteractable
 {
+    private Animation AnimDetonate;
+    [HideInInspector]
+    public bool HasDetonated;
+
+    private void Awake()
+    {
+        AnimDetonate = gameObject.GetComponentInChildren<Animation>();
+    }
+
     public void Interacting(int Side)
     {
         if (Side <= 2)
@@ -14,13 +23,17 @@ public class Detonator : MonoBehaviour, IInteractable
 
     private void Detonate()
     {
-        Nitro[] Crates = FindObjectsOfType(typeof(Nitro)) as Nitro[];
-
-        foreach (Nitro crate in Crates)
+        if (!HasDetonated)
         {
-            if (crate.enabled)
-                crate.Explode();
-        }
-        gameObject.GetComponent<Renderer>().enabled = false;
+            HasDetonated = true;
+            gameObject.GetComponent<Renderer>().enabled = false;
+            AnimDetonate.Play();
+            Nitro[] Crates = FindObjectsOfType(typeof(Nitro)) as Nitro[];
+            foreach (Nitro crate in Crates)
+            {
+                if (crate.enabled)
+                    crate.Explode();
+            }
+        }       
     }
 }
