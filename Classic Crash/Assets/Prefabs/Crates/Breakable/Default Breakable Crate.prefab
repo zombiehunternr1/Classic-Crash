@@ -108,5 +108,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb8eeaf11b1055641a86b57017a3d082, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Item: {fileID: 212630264620583023, guid: e27d6c3911a6e1b45a3fe8c71ea1221d, type: 3}
-  amount: 1
+  Item: {fileID: 6819524890254654404, guid: e27d6c3911a6e1b45a3fe8c71ea1221d, type: 3}
+  AutoAdd: 0

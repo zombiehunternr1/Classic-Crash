@@ -21,7 +21,7 @@ public class Bounce : MonoBehaviour, ICrateBase
         {
             case CrateType.Unbreakable:
                 if(Side == 1)
-                    BounceUp();
+                    Bouncing();
                 break;
             case CrateType.BreakAfterX:
                 if(Side == 1)
@@ -29,14 +29,14 @@ public class Bounce : MonoBehaviour, ICrateBase
                 else if(Side == 2)
                 {
                     BreakAfterX();
-                    BounceDown();
+                    Bouncing();
                 }
                 else if(Side >= 7)
                     DisableCrate();
                 break;
             case CrateType.BreakInstant:
                 if(Side == 1)
-                    BounceUp();
+                    Bouncing();
                 else if(Side >=7)
                 DisableCrate();
                 break;
@@ -54,7 +54,7 @@ public class Bounce : MonoBehaviour, ICrateBase
         {
             FirstBounce = true;
             currentBounces++;
-            BounceUp();
+            Bouncing();
             StartCoroutine(ResetCounter());
         }
         else if (CurrentTime < MaxTime)
@@ -63,25 +63,25 @@ public class Bounce : MonoBehaviour, ICrateBase
             CurrentTime = 0;
             if (currentBounces >= breakAfter)
             {
-                BounceUp();
+                Bouncing();
                 DisableCrate();
                 StopCoroutine(ResetCounter());
             }
             else
             {
-                BounceUp();
+                Bouncing();
             }
         }
         else
         {
             StopCoroutine(ResetCounter());
             CurrentTime = 0;
-            BounceUp();
+            Bouncing();
             DisableCrate();
         }
     }
 
-    private void BounceUp()
+    private void Bouncing()
     {
         RaycastHit MyRayHit;
         if (Physics.Raycast(transform.position, Vector3.up, out MyRayHit))
@@ -95,12 +95,7 @@ public class Bounce : MonoBehaviour, ICrateBase
                 }
             }
         }
-    }
-
-    private void BounceDown()
-    {
-        RaycastHit MyRayHit;
-        if (Physics.Raycast(transform.position, -Vector3.up, out MyRayHit))
+        else if(Physics.Raycast(transform.position, -Vector3.up, out MyRayHit))
         {
             if (MyRayHit.collider != null)
             {
