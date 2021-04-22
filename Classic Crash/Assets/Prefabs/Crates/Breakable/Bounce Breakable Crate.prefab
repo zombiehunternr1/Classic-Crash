@@ -108,3 +108,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cf9c488e3b5e304789ecf7664247546, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  crateType: 1
+  breakAfter: 5
+  DistanceRadius: 0.1
+  BounceForce: 7
