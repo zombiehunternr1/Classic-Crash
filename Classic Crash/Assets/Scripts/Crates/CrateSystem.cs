@@ -62,5 +62,27 @@ public class CrateSystem : MonoBehaviour
                 Crate.SetActive(true);
             }
         }
+        foreach(GameObject Interact in InteractCrates)
+        {
+            if (InteractCrates.Contains(Interact))
+            {
+                if (Interact.GetComponent<Activator>())
+                {
+                    Activator ActivatorCrate = Interact.GetComponent<Activator>();
+                    foreach(GameObject Crate in BreakableCrates)
+                    {
+                        if (ActivatorCrate.Crates.Contains(Crate))
+                        {
+                            if (!Crate.activeInHierarchy)
+                            {
+                                ActivatorCrate.Crates.Remove(Crate);
+                            }                           
+                        }
+                    }
+                    Interact.GetComponent<Activator>().Setup();
+                }
+            }
+
+        }
     }
 }

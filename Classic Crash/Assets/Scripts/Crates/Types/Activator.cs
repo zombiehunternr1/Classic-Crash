@@ -20,8 +20,12 @@ public class Activator : MonoBehaviour, IInteractable
 
     public void Setup()
     {
-        if(Crates != null)
+        if (Crates != null && Crates.Count != 0)
         {
+            IsActivated = false;
+            gameObject.GetComponent<Renderer>().enabled = true;
+            Animation ChildRenderer = gameObject.GetComponentInChildren<Animation>();
+            ChildRenderer.GetComponent<Renderer>().enabled = false;
             foreach (GameObject Crate in Crates)
             {
                 Crate.GetComponent<BoxCollider>().enabled = false;
