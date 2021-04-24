@@ -375,6 +375,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: deb35bf563d655b409b0f8078b9c4fe5, type: 3}
+--- !u!1 &473216308 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1086610317921316750, guid: b3923375a2f7b184c8e75f6047609535, type: 3}
+  m_PrefabInstance: {fileID: 1772233795}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1152685290
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -496,13 +501,13 @@ PrefabInstance:
       value: Activator Activatable
       objectReference: {fileID: 0}
     - target: {fileID: 8238931933723702443, guid: 01f6e02b46b0942449a9b0a84ff087d4, type: 3}
-      propertyPath: Crates.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8238931933723702443, guid: 01f6e02b46b0942449a9b0a84ff087d4, type: 3}
       propertyPath: Crates.Array.data[0]
       value: 
       objectReference: {fileID: 1285010236}
+    - target: {fileID: 8238931933723702443, guid: 01f6e02b46b0942449a9b0a84ff087d4, type: 3}
+      propertyPath: Crates.Array.data[1]
+      value: 
+      objectReference: {fileID: 473216308}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 01f6e02b46b0942449a9b0a84ff087d4, type: 3}
 --- !u!1 &1285010236 stripped
@@ -740,7 +745,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1670938306}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalPosition: {x: -0.43, y: 1, z: -0.74}
   m_LocalScale: {x: 1, y: 2, z: 1}
   m_Children:
   - {fileID: 1370203937}

@@ -4,13 +4,30 @@ using UnityEngine;
 
 public class Detonator : MonoBehaviour, IInteractable
 {
-    private Animation AnimDetonate;
+    [HideInInspector]
+    public List<Nitro> Nitros = new List<Nitro>();
+    private Animator Activation;
     [HideInInspector]
     public bool HasDetonated;
 
     private void Awake()
     {
-        AnimDetonate = gameObject.GetComponentInChildren<Animation>();
+        Activation = gameObject.GetComponentInChildren<Animator>();
+        Setup();
+
+    }
+
+    public void Setup()
+    {
+        Nitros = new List<Nitro>();
+        HasDetonated = false;
+        Activation.SetBool("Active", false);
+        Nitro[] Crates = FindObjectsOfType(typeof(Nitro)) as Nitro[];
+        foreach(Nitro Crate in Crates)
+        {
+            Nitros.Add(Crate);
+        }
+
     }
 
     public void Interacting(int Side)
@@ -25,11 +42,10 @@ public class Detonator : MonoBehaviour, IInteractable
     {
         if (!HasDetonated)
         {
-            HasDetonated = true;
-            gameObject.GetComponent<Renderer>().enabled = false;
-            AnimDetonate.Play();
-            Nitro[] Crates = FindObjectsOfType(typeof(Nitro)) as Nitro[];
-            foreach (Nitro crate in Crates)
+            Activation.SetBool("Active", true);
+            gameObject.GetComponentInChildren<Renderer>().enabled = true;
+            HasDetonated = true;            
+            foreach (Nitro crate in Nitros)
             {
                 if (crate.enabled)
                     crate.Explode();

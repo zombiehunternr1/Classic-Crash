@@ -109,10 +109,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6ae7676cebff2f46bad86036509b0b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ActivatingSpeed: 0
-  GhostCrate: {fileID: 110134546903624754, guid: 43d4399b72d94d445a479425cdeb3479, type: 3}
-  Crates: []
+  ActivatingSpeed: 0.5
+  GhostCratePrefab: {fileID: 110134546903624754, guid: 43d4399b72d94d445a479425cdeb3479, type: 3}
+  Crates:
+  - {fileID: 0}
+  - {fileID: 0}
   IsActivated: 0
+--- !u!95 &1803826892
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7982667610685084389}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: fcb802025ced20841a65e48ec31c7668, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &447437377484283799
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -190,6 +211,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 56b17be9bb84d4e4bb977447bf4fba17, type: 3}
+--- !u!1 &7982667610685084389 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7565409697080561010, guid: 56b17be9bb84d4e4bb977447bf4fba17, type: 3}
+  m_PrefabInstance: {fileID: 447437377484283799}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7314955516761262175 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7185049715140466632, guid: 56b17be9bb84d4e4bb977447bf4fba17, type: 3}

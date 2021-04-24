@@ -5,16 +5,16 @@ using UnityEngine;
 public class Activator : MonoBehaviour, IInteractable
 {
     public float ActivatingSpeed;
-    public GameObject GhostCrate;
+    public GameObject GhostCratePrefab;
     public List<GameObject> Crates = new List<GameObject>();
     [HideInInspector]
     public bool IsActivated;
 
-    private Animation Activation;
+    private Animator Activation;
 
     private void Awake()
     {
-        Activation = gameObject.GetComponentInChildren<Animation>();
+        Activation = gameObject.GetComponentInChildren<Animator>();
         Setup();
     }
 
@@ -24,8 +24,8 @@ public class Activator : MonoBehaviour, IInteractable
         {
             IsActivated = false;
             gameObject.GetComponent<Renderer>().enabled = true;
-            Animation ChildRenderer = gameObject.GetComponentInChildren<Animation>();
-            ChildRenderer.GetComponent<Renderer>().enabled = false;
+            Activation.SetBool("Active", false);
+            GameObject GhostCrate = GhostCratePrefab;
             foreach (GameObject Crate in Crates)
             {
                 Crate.GetComponent<BoxCollider>().enabled = false;
@@ -53,7 +53,7 @@ public class Activator : MonoBehaviour, IInteractable
         if (!IsActivated)
         {
             IsActivated = true;
-            Activation.Play();
+            Activation.SetBool("Active", true);
             foreach (GameObject Crate in Crates)
             {
                 Crate.GetComponent<BoxCollider>().enabled = true;

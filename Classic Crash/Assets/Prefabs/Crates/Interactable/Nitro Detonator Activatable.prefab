@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1583890883939908051}
   - component: {fileID: 2473821760264910454}
   - component: {fileID: 409880898044445372}
-  - component: {fileID: 1564860393}
+  - component: {fileID: 813972847}
   m_Layer: 0
   m_Name: Disabled
   m_TagString: Untagged
@@ -53,7 +53,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2211492754218279785}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -87,22 +87,25 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!111 &1564860393
-Animation:
+--- !u!95 &813972847
+Animator:
+  serializedVersion: 3
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2211492754218279785}
   m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: 4b75f36e54da523488e6fb9b8d21adfe, type: 2}
-  m_Animations:
-  - {fileID: 7400000, guid: 4b75f36e54da523488e6fb9b8d21adfe, type: 2}
-  m_WrapMode: 0
-  m_PlayAutomatically: 0
-  m_AnimatePhysics: 0
-  m_CullingType: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8403e325cc6d4b841ab7a8a2c2c45f20, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &3433565291951897117
 GameObject:
   m_ObjectHideFlags: 0
@@ -197,6 +200,7 @@ GameObject:
   - component: {fileID: 5367775329264240223}
   - component: {fileID: 8255201835893315133}
   - component: {fileID: 8101999492860594951}
+  - component: {fileID: 6016933775938770540}
   m_Layer: 0
   m_Name: Nitro Detonator Activatable
   m_TagString: Untagged
@@ -294,6 +298,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HasDetonated: 0
+--- !u!95 &6016933775938770540
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5872367671869777802}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8403e325cc6d4b841ab7a8a2c2c45f20, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &6079638511368317152
 GameObject:
   m_ObjectHideFlags: 0
@@ -319,13 +342,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6079638511368317152}
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: 0.5, y: 0.5, z: -0.5, w: 0.5}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1583890883939908051}
   m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: -90}
 --- !u!33 &1623755823333680328
 MeshFilter:
   m_ObjectHideFlags: 0

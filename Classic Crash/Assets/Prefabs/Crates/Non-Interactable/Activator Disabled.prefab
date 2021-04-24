@@ -416,7 +416,7 @@ GameObject:
   - component: {fileID: 7185049715140466632}
   - component: {fileID: 6060076192981522541}
   - component: {fileID: 8357907373790588071}
-  - component: {fileID: 6719865968072698163}
+  - component: {fileID: 5012970391972127627}
   m_Layer: 0
   m_Name: Activator Disabled
   m_TagString: Untagged
@@ -492,19 +492,22 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!111 &6719865968072698163
-Animation:
+--- !u!95 &5012970391972127627
+Animator:
+  serializedVersion: 3
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7565409697080561010}
   m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: 3f89977598bfdf844b8b2a0b0bfe89e6, type: 2}
-  m_Animations:
-  - {fileID: 7400000, guid: 3f89977598bfdf844b8b2a0b0bfe89e6, type: 2}
-  m_WrapMode: 0
-  m_PlayAutomatically: 0
-  m_AnimatePhysics: 0
-  m_CullingType: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: fcb802025ced20841a65e48ec31c7668, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
