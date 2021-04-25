@@ -150,6 +150,11 @@ public class InputManager : MonoBehaviour
             {
                 Item.Interacting((int)ReturnDirection(gameObject, hitCollider.gameObject));
             }
+            HurtPlayer HurtPlayer = hitCollider.GetComponent<HurtPlayer>();
+            if(HurtPlayer != null)
+            {
+                HurtPlayer.PlayerHit(this);
+            }
         }
         RaycastHit MyRayHit;
         if(Physics.Raycast(transform.position, -Vector3.up, out MyRayHit))

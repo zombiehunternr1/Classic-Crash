@@ -17,8 +17,13 @@ public class HurtPlayer : MonoBehaviour
         if (collision.gameObject.GetComponent<InputManager>())
         {
             InputManager Player = collision.gameObject.GetComponent<InputManager>();
-            Player.LoadLastCheckpoint();
-            CrateSystem.ResetCrates();
+            PlayerHit(Player);
         }
+    }
+
+    public void PlayerHit(InputManager Player)
+    {
+        Player.LoadLastCheckpoint();
+        CrateSystem.ResetCrates();
     }
 }
