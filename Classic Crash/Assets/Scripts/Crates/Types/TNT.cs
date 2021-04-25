@@ -59,7 +59,7 @@ public class TNT : MonoBehaviour, ICrateBase
 
     public void CrateReset()
     {
-        if (AnimTNT.GetCurrentAnimatorStateInfo(0).IsName("SetInactive"))
+        if (AnimTNT.GetCurrentAnimatorStateInfo(0).IsName("Ghost"))
         {
             if (IsGhost)
             {
