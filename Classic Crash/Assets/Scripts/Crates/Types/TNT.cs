@@ -104,6 +104,7 @@ public class TNT : MonoBehaviour, ICrateBase
 
     public void Explode()
     {
+        DisableEmission();
         DisableCrate();
         Instantiate(Explosion, transform.position, Quaternion.identity);
     }
@@ -111,6 +112,22 @@ public class TNT : MonoBehaviour, ICrateBase
     public void DisableCrate()
     {
         gameObject.SetActive(false);
+    }
+
+    public void EnableEmission()
+    {
+        for(int i = 0; i < SubCrates.Count; i++)
+        {
+            SubCrates[i].material.EnableKeyword("_EMISSION");
+        }
+    }
+
+    public void DisableEmission()
+    {
+        for (int i = 0; i < SubCrates.Count; i++)
+        {
+            SubCrates[i].material.DisableKeyword("_EMISSION");
+        }
     }
 
     public void Countdown()

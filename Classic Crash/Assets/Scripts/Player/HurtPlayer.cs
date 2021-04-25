@@ -11,7 +11,6 @@ public class HurtPlayer : MonoBehaviour
         CrateSystem = FindObjectOfType<CrateSystem>();
     }
 
-
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.GetComponent<InputManager>())

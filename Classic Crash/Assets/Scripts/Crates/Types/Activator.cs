@@ -33,6 +33,7 @@ public class Activator : MonoBehaviour, IInteractable
                 if (Crate.GetComponent<TNT>())
                 {
                     Crate.GetComponent<TNT>().IsGhost = true;
+                    Crate.GetComponent<TNT>().DisableEmission();
                 }
 
                 int LastChild = Crate.transform.childCount;
