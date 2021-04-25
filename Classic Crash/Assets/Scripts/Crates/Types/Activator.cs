@@ -7,9 +7,9 @@ public class Activator : MonoBehaviour, IInteractable
     public float ActivatingSpeed;
     public GameObject GhostCratePrefab;
     public List<GameObject> Crates = new List<GameObject>();
+
     [HideInInspector]
     public bool IsActivated;
-
     private Animator Activation;
 
     private void Awake()

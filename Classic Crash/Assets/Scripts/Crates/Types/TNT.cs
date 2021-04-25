@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class TNT : MonoBehaviour, ICrateBase
 {
+    public ParticleSystem Explosion;
     [HideInInspector]
     public bool IsGhost = false;
-    public ParticleSystem Explosion;
-    private List<Renderer> SubCrates = new List<Renderer>();
     [HideInInspector]
     public Animator AnimTNT;
+    private List<Renderer> SubCrates = new List<Renderer>();
 
     private void Awake()
     {

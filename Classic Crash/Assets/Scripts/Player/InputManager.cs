@@ -22,7 +22,6 @@ public class InputManager : MonoBehaviour
     private BoxCollider HitBox;
 
     private Vector3 PlayerMovement;
-    private bool CanJump;
 
     private Vector3 LastCheckpointPosition;
 
@@ -184,7 +183,6 @@ public class InputManager : MonoBehaviour
     {
         transform.position = LastCheckpointPosition;
     }
-
 
     bool IsGrounded()
     {

@@ -6,9 +6,9 @@ public class Detonator : MonoBehaviour, IInteractable
 {
     [HideInInspector]
     public List<Nitro> Nitros = new List<Nitro>();
-    private Animator Activation;
     [HideInInspector]
     public bool HasDetonated;
+    private Animator Activation;
 
     private void Awake()
     {
