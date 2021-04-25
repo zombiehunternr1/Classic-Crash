@@ -13,10 +13,10 @@ public class CrateSystem : MonoBehaviour
 
     private void Awake()
     {
-        GetAllBreakableCrates();   
+        GetAllCrateTypes();
     }
 
-    private void GetAllBreakableCrates()
+    private void GetAllCrateTypes()
     {
         GameObject[] AllCrates = FindObjectsOfType<GameObject>();
 
