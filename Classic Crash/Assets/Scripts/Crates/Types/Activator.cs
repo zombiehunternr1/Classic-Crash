@@ -30,8 +30,40 @@ public class Activator : MonoBehaviour, IInteractable
             {
                 Crate.GetComponent<BoxCollider>().enabled = false;
                 Crate.GetComponent<Renderer>().enabled = false;
-                GameObject Child = Instantiate(GhostCrate, Crate.transform.position, Crate.transform.rotation);
-                Child.transform.SetParent(Crate.transform);
+                if (Crate.GetComponent<TNT>())
+                {
+                    Crate.GetComponent<TNT>().IsGhost = true;
+                }
+
+                int LastChild = Crate.transform.childCount;
+                if (LastChild > 0)
+                {
+                    for (int i = 0; i < LastChild; i++)
+                    {
+                        if (Crate.transform.GetChild(i).gameObject.layer == 6)
+                        {
+                            Crate.transform.GetChild(Crate.transform.childCount - 1).GetComponent<Renderer>().enabled = true;
+                        }
+                        else
+                        {
+                            if(Crate.transform.GetChild(LastChild - 1).gameObject.layer == 6)
+                            {
+                                Crate.transform.GetChild(Crate.transform.childCount - 1).GetComponent<Renderer>().enabled = true;
+                            }
+                            else
+                            {
+                                GameObject Child = Instantiate(GhostCrate, Crate.transform.position, Crate.transform.rotation);
+                                Child.transform.SetParent(Crate.transform);
+                                return;
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    GameObject Child = Instantiate(GhostCrate, Crate.transform.position, Crate.transform.rotation);
+                    Child.transform.SetParent(Crate.transform);
+                }
             }
         }
         else
@@ -56,6 +88,10 @@ public class Activator : MonoBehaviour, IInteractable
             Activation.SetBool("Active", true);
             foreach (GameObject Crate in Crates)
             {
+                if (Crate.GetComponent<TNT>())
+                {
+                    Crate.GetComponent<TNT>().AnimTNT.SetTrigger("SetInactive");
+                }
                 Crate.GetComponent<BoxCollider>().enabled = true;
                 Crate.GetComponentInChildren<Renderer>();
                 Crate.transform.GetChild(Crate.transform.childCount - 1).GetComponent<Renderer>().enabled = false;

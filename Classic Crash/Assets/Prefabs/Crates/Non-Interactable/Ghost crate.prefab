@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 778162200106776200}
   - component: {fileID: 4423464955098904877}
   - component: {fileID: 1911701871767047655}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Ghost crate
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class TNT : MonoBehaviour, ICrateBase
 {
+    [HideInInspector]
+    public bool IsGhost = false;
     public ParticleSystem Explosion;
-    private bool Started;
     private List<Renderer> SubCrates = new List<Renderer>();
+    [HideInInspector]
+    public Animator AnimTNT;
 
     private void Awake()
     {
@@ -14,6 +17,12 @@ public class TNT : MonoBehaviour, ICrateBase
         {
             SubCrates.Add(TNT);
         }
+        AnimTNT = GetComponent<Animator>();
+    }
+
+    private void Start()
+    {
+        Setup();
     }
 
     public void Break(int Side)
@@ -21,10 +30,10 @@ public class TNT : MonoBehaviour, ICrateBase
         switch (Side)
         {
             case 1:
-                StartCoroutine(Countdown());
+                Countdown();
                 break;
             case 2:
-                StartCoroutine(Countdown());
+                Countdown();
                 break;
             case 7:
                 Explode();
@@ -32,6 +41,64 @@ public class TNT : MonoBehaviour, ICrateBase
             case 10:
                 Explode();
                 break;
+        }
+    }
+
+    private void Setup()
+    {
+        if (IsGhost)
+        {
+            AnimTNT.SetBool("Active", false);
+        }
+        else
+        {
+            AnimTNT.SetTrigger("SetInactive");
+            AnimTNT.SetBool("Active", false);
+        }
+    }
+
+    public void CrateReset()
+    {
+        if (AnimTNT.GetCurrentAnimatorStateInfo(0).IsName("SetInactive"))
+        {
+            if (IsGhost)
+            {
+                Debug.Log("Hallo");
+            }
+            else
+            {
+                AnimTNT.Play("Inactive");
+                AnimTNT.SetBool("Active", false);
+            }
+            return;
+        }
+        else
+        {
+            if (gameObject.activeSelf)
+            {
+                if (IsGhost)
+                {
+                    if (AnimTNT.GetCurrentAnimatorStateInfo(0).IsName("Inactive"))
+                    {
+                        AnimTNT.SetTrigger("SetInactive");
+                    }
+                    else if (AnimTNT.GetCurrentAnimatorStateInfo(0).IsName("Active"))
+                    {
+                        AnimTNT.SetTrigger("SetInactive");
+                    }
+
+                }
+                if (AnimTNT.GetCurrentAnimatorStateInfo(0).IsName("Active"))
+                {
+                    AnimTNT.SetBool("Active", false);
+                }
+                return;
+            }
+            else
+            {
+                AnimTNT.SetTrigger("SetInactive");
+                AnimTNT.SetBool("Active", false);
+            }
         }
     }
 
@@ -45,30 +112,9 @@ public class TNT : MonoBehaviour, ICrateBase
     {
         gameObject.SetActive(false);
     }
-    public IEnumerator Countdown()
+
+    public void Countdown()
     {
-        if (!Started)
-        {
-            Started = true;
-            SubCrates[0].enabled = false;
-            SubCrates[1].enabled = true;
-            SubCrates[1].material.EnableKeyword("_EMISSION");
-            yield return new WaitForSeconds(0.2f);
-            SubCrates[1].material.DisableKeyword("_EMISSION");
-            yield return new WaitForSeconds(1);
-            SubCrates[1].enabled = false;
-            SubCrates[2].enabled = true;
-            SubCrates[2].material.EnableKeyword("_EMISSION");
-            yield return new WaitForSeconds(0.2f);
-            SubCrates[2].material.DisableKeyword("_EMISSION");
-            yield return new WaitForSeconds(1);
-            SubCrates[2].enabled = false;
-            SubCrates[3].enabled = true;
-            SubCrates[3].material.EnableKeyword("_EMISSION");
-            yield return new WaitForSeconds(0.2f);
-            SubCrates[3].material.DisableKeyword("_EMISSION");
-            yield return new WaitForSeconds(1);
-            Explode();
-        }    
+        AnimTNT.SetBool("Active", true);
     }
 }
