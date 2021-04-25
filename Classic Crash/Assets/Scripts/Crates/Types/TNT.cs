@@ -13,9 +13,9 @@ public class TNT : MonoBehaviour, ICrateBase
 
     private void Awake()
     {
-        foreach(Renderer TNT in gameObject.GetComponentsInChildren<Renderer>())
+        foreach(Renderer Subscrate in gameObject.GetComponentsInChildren<Renderer>())
         {
-            SubCrates.Add(TNT);
+            SubCrates.Add(Subscrate);
         }
         AnimTNT = GetComponent<Animator>();
     }
@@ -63,7 +63,7 @@ public class TNT : MonoBehaviour, ICrateBase
         {
             if (IsGhost)
             {
-                Debug.Log("Hallo");
+                return;
             }
             else
             {
