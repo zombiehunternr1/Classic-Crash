@@ -47,7 +47,7 @@ public class Detonator : MonoBehaviour, IInteractable
             HasDetonated = true;            
             foreach (Nitro crate in Nitros)
             {
-                if (crate.enabled)
+                if (crate.gameObject.activeSelf)
                     crate.Explode();
             }
         }       

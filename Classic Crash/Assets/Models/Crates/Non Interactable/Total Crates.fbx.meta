@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 1d3c82afd265f4e41a2cad645514f5c1
+guid: e71119ca71cce644497a075ea4e2abe3
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable: []
@@ -7,12 +7,12 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Material
-    second: {fileID: 2100000, guid: 89f22eaf8d6d0254eaf52b6796e6c9db, type: 2}
+      name: Total Crate
+    second: {fileID: 2100000, guid: 8c69be8eeb4a5a940a39500e217ca986, type: 2}
   materials:
     materialImportMode: 2
-    materialName: 2
-    materialSearch: 2
+    materialName: 0
+    materialSearch: 1
     materialLocation: 1
   animations:
     legacyGenerateAnimations: 4

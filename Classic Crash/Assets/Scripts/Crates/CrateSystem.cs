@@ -16,6 +16,7 @@ public class CrateSystem : MonoBehaviour
     private void Awake()
     {
         GetAllCrateTypes();
+        Debug.Log(BreakableCrates.Count);
     }
 
     private void GetAllCrateTypes()
@@ -117,11 +118,11 @@ public class CrateSystem : MonoBehaviour
         CurrentlyBrokenAmount = CurrentlyBroken;
     }
 
-    public void CheckTotalCount()
+    public void CheckTotalCount(Transform SpawnPosition)
     {
         if(CurrentlyBrokenAmount == BreakableCrates.Count)
         {
-            Debug.Log("Spawn gem");
+            Debug.Log(SpawnPosition.position);
         }
     }
 }
