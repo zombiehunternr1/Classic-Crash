@@ -24,6 +24,7 @@ public class Activator : MonoBehaviour, IInteractable
         {
             IsActivated = false;
             gameObject.GetComponent<Renderer>().enabled = true;
+            Activation.SetTrigger("NotEmpty");
             Activation.SetBool("Active", false);
             GameObject GhostCrate = GhostCratePrefab;
             foreach (GameObject Crate in Crates)
@@ -70,10 +71,6 @@ public class Activator : MonoBehaviour, IInteractable
                     Child.transform.SetParent(Crate.transform);
                 }
             }
-        }
-        else
-        {
-            gameObject.GetComponent<Renderer>().enabled = false;
         }
     }
 

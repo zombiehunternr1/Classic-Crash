@@ -111,3 +111,4 @@ MonoBehaviour:
   crateType: 1
   BrokenCrate: {fileID: 9048058967566234233, guid: 2a6f459c8f657b241be83bd554d145d7, type: 3}
   MetalCrate: {fileID: 334549118307310939, guid: 84ae75b7eb7dfbb4dadd41d166479656, type: 3}
+  UpdateCrateCount: {fileID: 11400000, guid: 80ba4f4513136074b833a8fb1b3a2dc8, type: 2}

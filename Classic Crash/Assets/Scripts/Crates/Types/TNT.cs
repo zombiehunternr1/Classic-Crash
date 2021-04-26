@@ -5,6 +5,8 @@ using UnityEngine;
 public class TNT : MonoBehaviour, ICrateBase
 {
     public ParticleSystem Explosion;
+    public GameEvent CrateBroken;
+
     [HideInInspector]
     public bool IsGhost = false;
     [HideInInspector]
@@ -111,6 +113,7 @@ public class TNT : MonoBehaviour, ICrateBase
 
     public void DisableCrate()
     {
+        CrateBroken.Raise();
         gameObject.SetActive(false);
     }
 

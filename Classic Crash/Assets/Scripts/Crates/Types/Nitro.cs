@@ -6,6 +6,7 @@ public class Nitro : MonoBehaviour, ICrateBase
 {
     public ParticleSystem Explosion;
     public bool CanBounce;
+    public GameEvent CrateBroken;
 
     private Animator AnimNitro;
     private int SmallhopsTriggered = 0;
@@ -34,19 +35,8 @@ public class Nitro : MonoBehaviour, ICrateBase
 
     public void DisableCrate()
     {
+        CrateBroken.Raise();
         gameObject.SetActive(false);
-    }
-
-    private IEnumerator RandomHopCheck()
-    {
-        RandomCheck = Random.Range(0, 5);
-        while (RandomCheck > 0)
-        {
-            RandomCheck -= Time.deltaTime;
-            yield return RandomCheck;
-        }
-        SelectRandomHop();
-        StartCoroutine(RandomHopCheck());
     }
 
     private void SelectRandomHop()
@@ -62,5 +52,17 @@ public class Nitro : MonoBehaviour, ICrateBase
             SmallhopsTriggered = 0;
             AnimNitro.SetTrigger("BigHop");
         }
+    }
+
+    private IEnumerator RandomHopCheck()
+    {
+        RandomCheck = Random.Range(0, 5);
+        while (RandomCheck > 0)
+        {
+            RandomCheck -= Time.deltaTime;
+            yield return RandomCheck;
+        }
+        SelectRandomHop();
+        StartCoroutine(RandomHopCheck());
     }
 }

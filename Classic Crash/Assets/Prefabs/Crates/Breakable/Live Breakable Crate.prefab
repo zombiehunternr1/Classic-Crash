@@ -110,3 +110,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Life: {fileID: 4519319795387716966, guid: 886071fb8e8f37b4187d13c2eb04d97a, type: 3}
   AutoAdd: 0
+  CrateBroken: {fileID: 11400000, guid: 5f965b2e97384fb4192d9b9b866aa59e, type: 2}

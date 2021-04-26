@@ -7,6 +7,7 @@ public class Questionmark : MonoBehaviour, ICrateBase, ISpawnable
     public GameObject Item;
     public int amount = 1;
     public bool AutoAdd;
+    public GameEvent CrateBroken;
 
     public void Break(int side)
     {
@@ -29,6 +30,7 @@ public class Questionmark : MonoBehaviour, ICrateBase, ISpawnable
 
     public void DisableCrate()
     {
+        CrateBroken.Raise();
         gameObject.SetActive(false);
     }
 

@@ -110,6 +110,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Explosion: {fileID: 6660441922141446290, guid: 31cf7807181110b4d81983551f57bed2, type: 3}
+  CanBounce: 0
+  CrateBroken: {fileID: 11400000, guid: 5f965b2e97384fb4192d9b9b866aa59e, type: 2}
 --- !u!95 &937861512394146697
 Animator:
   serializedVersion: 3

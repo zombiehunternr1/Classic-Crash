@@ -8,6 +8,7 @@ public class Bounce : MonoBehaviour, ICrateBase
     public int breakAfter = 5;
     public float DistanceRadius = 0.1f;
     public float BounceForce = 10;
+    public GameEvent CrateBroken;
 
     private bool FirstBounce;
     private int currentBounces;
@@ -45,6 +46,7 @@ public class Bounce : MonoBehaviour, ICrateBase
 
     public void DisableCrate()
     {
+        CrateBroken.Raise();
         gameObject.SetActive(false);
     }
 

@@ -6,6 +6,7 @@ public class AkuAkuCrate : MonoBehaviour, ICrateBase
 {
     public GameObject AkuAku;
     public bool AutoAdd;
+    public GameEvent CrateBroken;
 
     public void Break(int Side)
     {
@@ -25,6 +26,7 @@ public class AkuAkuCrate : MonoBehaviour, ICrateBase
     }
     public void DisableCrate()
     {
+        CrateBroken.Raise();
         gameObject.SetActive(false);
     }
 

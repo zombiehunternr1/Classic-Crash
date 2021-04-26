@@ -226,6 +226,8 @@ GameObject:
   m_Component:
   - component: {fileID: 173832336}
   - component: {fileID: 173832335}
+  - component: {fileID: 173832337}
+  - component: {fileID: 173832338}
   m_Layer: 0
   m_Name: LevelManager
   m_TagString: Untagged
@@ -247,6 +249,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CurrentlyBroken: []
   BreakableCrates: []
+  CurrentlyBrokenAmount: 0
 --- !u!4 &173832336
 Transform:
   m_ObjectHideFlags: 0
@@ -259,8 +262,64 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &173832337
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 173832334}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72e9521e68e659a4cbffcd04f6d2d34c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _gameEventInt: {fileID: 11400000, guid: 80ba4f4513136074b833a8fb1b3a2dc8, type: 2}
+  _responseInt:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 173832335}
+        m_TargetAssemblyTypeName: CrateSystem, Assembly-CSharp
+        m_MethodName: SaveCheckpointCount
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &173832338
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 173832334}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90749240303c2b24e8c1aea0adbdc041, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _gameEvent: {fileID: 11400000, guid: 5f965b2e97384fb4192d9b9b866aa59e, type: 2}
+  _response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 173832335}
+        m_TargetAssemblyTypeName: CrateSystem, Assembly-CSharp
+        m_MethodName: UpdateCurrentCrateCount
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1001 &237152471
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -270,7 +329,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 315176103893873972, guid: b3923375a2f7b184c8e75f6047609535, type: 3}
       propertyPath: m_RootOrder
-      value: 15
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 315176103893873972, guid: b3923375a2f7b184c8e75f6047609535, type: 3}
       propertyPath: m_LocalPosition.x
@@ -540,6 +599,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1705851670, guid: deb35bf563d655b409b0f8078b9c4fe5, type: 3}
+      propertyPath: UpdateCrateCount
+      value: 
+      objectReference: {fileID: 11400000, guid: 80ba4f4513136074b833a8fb1b3a2dc8, type: 2}
     - target: {fileID: 5860299912958419380, guid: deb35bf563d655b409b0f8078b9c4fe5, type: 3}
       propertyPath: m_Name
       value: Checkpoint
@@ -590,11 +653,71 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: deb35bf563d655b409b0f8078b9c4fe5, type: 3}
---- !u!1 &473216308 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1086610317921316750, guid: b3923375a2f7b184c8e75f6047609535, type: 3}
-  m_PrefabInstance: {fileID: 1772233795}
-  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &853108438
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1450893705951749754, guid: 01f6e02b46b0942449a9b0a84ff087d4, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1450893705951749754, guid: 01f6e02b46b0942449a9b0a84ff087d4, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.5692687
+      objectReference: {fileID: 0}
+    - target: {fileID: 1450893705951749754, guid: 01f6e02b46b0942449a9b0a84ff087d4, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1450893705951749754, guid: 01f6e02b46b0942449a9b0a84ff087d4, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.6488962
+      objectReference: {fileID: 0}
+    - target: {fileID: 1450893705951749754, guid: 01f6e02b46b0942449a9b0a84ff087d4, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1450893705951749754, guid: 01f6e02b46b0942449a9b0a84ff087d4, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1450893705951749754, guid: 01f6e02b46b0942449a9b0a84ff087d4, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1450893705951749754, guid: 01f6e02b46b0942449a9b0a84ff087d4, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1450893705951749754, guid: 01f6e02b46b0942449a9b0a84ff087d4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1450893705951749754, guid: 01f6e02b46b0942449a9b0a84ff087d4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1450893705951749754, guid: 01f6e02b46b0942449a9b0a84ff087d4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2263424468899265728, guid: 01f6e02b46b0942449a9b0a84ff087d4, type: 3}
+      propertyPath: m_Name
+      value: Activator Activatable
+      objectReference: {fileID: 0}
+    - target: {fileID: 8238931933723702443, guid: 01f6e02b46b0942449a9b0a84ff087d4, type: 3}
+      propertyPath: Crates.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8238931933723702443, guid: 01f6e02b46b0942449a9b0a84ff087d4, type: 3}
+      propertyPath: Crates.Array.data[0]
+      value: 
+      objectReference: {fileID: 1784653651}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 01f6e02b46b0942449a9b0a84ff087d4, type: 3}
 --- !u!1001 &1152685290
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -660,76 +783,67 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2ff385c3ae5225441b299830646ab1c7, type: 3}
---- !u!1001 &1159608357
+--- !u!1001 &1175885181
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1450893705951749754, guid: 01f6e02b46b0942449a9b0a84ff087d4, type: 3}
+    - target: {fileID: 1705851670, guid: deb35bf563d655b409b0f8078b9c4fe5, type: 3}
+      propertyPath: UpdateCrateCount
+      value: 
+      objectReference: {fileID: 11400000, guid: 80ba4f4513136074b833a8fb1b3a2dc8, type: 2}
+    - target: {fileID: 5860299912958419380, guid: deb35bf563d655b409b0f8078b9c4fe5, type: 3}
+      propertyPath: m_Name
+      value: Checkpoint (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6491981830371408654, guid: deb35bf563d655b409b0f8078b9c4fe5, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 16
       objectReference: {fileID: 0}
-    - target: {fileID: 1450893705951749754, guid: 01f6e02b46b0942449a9b0a84ff087d4, type: 3}
+    - target: {fileID: 6491981830371408654, guid: deb35bf563d655b409b0f8078b9c4fe5, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.0638826
+      value: -5.53
       objectReference: {fileID: 0}
-    - target: {fileID: 1450893705951749754, guid: 01f6e02b46b0942449a9b0a84ff087d4, type: 3}
+    - target: {fileID: 6491981830371408654, guid: deb35bf563d655b409b0f8078b9c4fe5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.497
+      value: 0.548
       objectReference: {fileID: 0}
-    - target: {fileID: 1450893705951749754, guid: 01f6e02b46b0942449a9b0a84ff087d4, type: 3}
+    - target: {fileID: 6491981830371408654, guid: deb35bf563d655b409b0f8078b9c4fe5, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.34131145
+      value: -2.385109
       objectReference: {fileID: 0}
-    - target: {fileID: 1450893705951749754, guid: 01f6e02b46b0942449a9b0a84ff087d4, type: 3}
+    - target: {fileID: 6491981830371408654, guid: deb35bf563d655b409b0f8078b9c4fe5, type: 3}
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 1450893705951749754, guid: 01f6e02b46b0942449a9b0a84ff087d4, type: 3}
+    - target: {fileID: 6491981830371408654, guid: deb35bf563d655b409b0f8078b9c4fe5, type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1450893705951749754, guid: 01f6e02b46b0942449a9b0a84ff087d4, type: 3}
+    - target: {fileID: 6491981830371408654, guid: deb35bf563d655b409b0f8078b9c4fe5, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: 1450893705951749754, guid: 01f6e02b46b0942449a9b0a84ff087d4, type: 3}
+    - target: {fileID: 6491981830371408654, guid: deb35bf563d655b409b0f8078b9c4fe5, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: 1450893705951749754, guid: 01f6e02b46b0942449a9b0a84ff087d4, type: 3}
+    - target: {fileID: 6491981830371408654, guid: deb35bf563d655b409b0f8078b9c4fe5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1450893705951749754, guid: 01f6e02b46b0942449a9b0a84ff087d4, type: 3}
+    - target: {fileID: 6491981830371408654, guid: deb35bf563d655b409b0f8078b9c4fe5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1450893705951749754, guid: 01f6e02b46b0942449a9b0a84ff087d4, type: 3}
+    - target: {fileID: 6491981830371408654, guid: deb35bf563d655b409b0f8078b9c4fe5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2263424468899265728, guid: 01f6e02b46b0942449a9b0a84ff087d4, type: 3}
-      propertyPath: m_Name
-      value: Activator Activatable
-      objectReference: {fileID: 0}
-    - target: {fileID: 8238931933723702443, guid: 01f6e02b46b0942449a9b0a84ff087d4, type: 3}
-      propertyPath: Crates.Array.data[0]
-      value: 
-      objectReference: {fileID: 1285010236}
-    - target: {fileID: 8238931933723702443, guid: 01f6e02b46b0942449a9b0a84ff087d4, type: 3}
-      propertyPath: Crates.Array.data[1]
-      value: 
-      objectReference: {fileID: 473216308}
     m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 01f6e02b46b0942449a9b0a84ff087d4, type: 3}
---- !u!1 &1285010236 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4773758666335377725, guid: 54ea4c1bc4059e045b6d18c5fbf2d602, type: 3}
-  m_PrefabInstance: {fileID: 6611127033108547475}
-  m_PrefabAsset: {fileID: 0}
+  m_SourcePrefab: {fileID: 100100000, guid: deb35bf563d655b409b0f8078b9c4fe5, type: 3}
 --- !u!1 &1370203936
 GameObject:
   m_ObjectHideFlags: 0
@@ -818,6 +932,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1239288274, guid: 1a1f0c34d5f64794fa3971882870ace6, type: 3}
+      propertyPath: CrateBroken
+      value: 
+      objectReference: {fileID: 11400000, guid: 5f965b2e97384fb4192d9b9b866aa59e, type: 2}
     - target: {fileID: 43565382820452136, guid: 1a1f0c34d5f64794fa3971882870ace6, type: 3}
       propertyPath: m_Name
       value: Live Breakable Crate
@@ -1091,6 +1209,11 @@ PrefabInstance:
       objectReference: {fileID: 395635196}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b3923375a2f7b184c8e75f6047609535, type: 3}
+--- !u!1 &1784653651 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4773758666335377725, guid: 54ea4c1bc4059e045b6d18c5fbf2d602, type: 3}
+  m_PrefabInstance: {fileID: 6611127033108547475}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1895741024
 GameObject:
   m_ObjectHideFlags: 0

@@ -7,7 +7,9 @@ public class Checkpoint : MonoBehaviour, ICrateBase
     public CrateType crateType;
     public GameObject BrokenCrate;
     public GameObject MetalCrate;
+    public GameEventInt UpdateCrateCount;
     private float DetectionRadius = 1f;
+    private int CurrentlyBrokenAmount;
 
     public void Break(int Side)
     {
@@ -86,8 +88,10 @@ public class Checkpoint : MonoBehaviour, ICrateBase
             if (!Crate.activeInHierarchy)
             {
                 AllCrates.CurrentlyBroken.Add(Crate);
+                CurrentlyBrokenAmount++;
             }
         }
+        UpdateCrateCount.RaiseInt(CurrentlyBrokenAmount);
     }
 
     public void DisableCrate()

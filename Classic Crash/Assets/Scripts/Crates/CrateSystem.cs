@@ -11,6 +11,8 @@ public class CrateSystem : MonoBehaviour
 
     private List<GameObject> InteractCrates = new List<GameObject>();
 
+    public int CurrentlyBrokenAmount;
+
     private void Awake()
     {
         GetAllCrateTypes();
@@ -59,11 +61,15 @@ public class CrateSystem : MonoBehaviour
         {
             if (!CurrentlyBroken.Contains(Crate))
             {
-                Crate.SetActive(true);
-                if (Crate.GetComponent<TNT>())
+                if (!Crate.activeSelf)
                 {
-                    Crate.GetComponent<TNT>().CrateReset();
-                }
+                    CurrentlyBrokenAmount--;
+                    Crate.SetActive(true);
+                    if (Crate.GetComponent<TNT>())
+                    {
+                        Crate.GetComponent<TNT>().CrateReset();
+                    }
+                }               
             }
         }
         foreach (GameObject Interact in InteractCrates)
@@ -98,6 +104,24 @@ public class CrateSystem : MonoBehaviour
                     }                   
                 }
             }
+        }
+    }
+
+    public void UpdateCurrentCrateCount()
+    {
+        CurrentlyBrokenAmount++;
+    }
+
+    public void SaveCheckpointCount(int CurrentlyBroken)
+    {
+        CurrentlyBrokenAmount = CurrentlyBroken;
+    }
+
+    public void CheckTotalCount()
+    {
+        if(CurrentlyBrokenAmount == BreakableCrates.Count)
+        {
+            Debug.Log("Spawn gem");
         }
     }
 }
