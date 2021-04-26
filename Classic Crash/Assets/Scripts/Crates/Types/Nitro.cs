@@ -9,13 +9,14 @@ public class Nitro : MonoBehaviour, ICrateBase
 
     private Animator AnimNitro;
     private int SmallhopsTriggered = 0;
+    private float RandomCheck;
 
-    private void Awake()
+    private void Start()
     {
         AnimNitro = GetComponent<Animator>();
         if (CanBounce)
         {
-            StartCoroutine(RandomBounce());
+            StartCoroutine(RandomHopCheck());
         }
     }
 
@@ -26,7 +27,7 @@ public class Nitro : MonoBehaviour, ICrateBase
 
     public void Explode()
     {
-        StopCoroutine(RandomBounce());
+        StopCoroutine(RandomHopCheck());
         DisableCrate();
         Instantiate(Explosion, transform.position, Quaternion.identity);
     }
@@ -36,14 +37,20 @@ public class Nitro : MonoBehaviour, ICrateBase
         gameObject.SetActive(false);
     }
 
-    private IEnumerator RandomBounce()
+    private IEnumerator RandomHopCheck()
     {
-        float RandomCheck = Random.Range(0, 5);
+        RandomCheck = Random.Range(0, 5);
         while (RandomCheck > 0)
         {
             RandomCheck -= Time.deltaTime;
             yield return RandomCheck;
         }
+        SelectRandomHop();
+        StartCoroutine(RandomHopCheck());
+    }
+
+    private void SelectRandomHop()
+    {
         float SelectRandom = Random.Range(0, 1);
         if (SelectRandom < 0.5f && SmallhopsTriggered < 5)
         {
@@ -55,6 +62,5 @@ public class Nitro : MonoBehaviour, ICrateBase
             SmallhopsTriggered = 0;
             AnimNitro.SetTrigger("BigHop");
         }
-        StartCoroutine(RandomBounce());
     }
 }

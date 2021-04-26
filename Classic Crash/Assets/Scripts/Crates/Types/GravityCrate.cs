@@ -53,7 +53,6 @@ public class GravityCrate : MonoBehaviour, IInteractable
                 TNT TNT = MyRayHit.collider.GetComponent<TNT>();
                 if(TNT != null)
                 {
-                    //TNT.GetComponent<TNT>().StartCoroutine(TNT.Countdown());
                     TNT.GetComponent<TNT>().Countdown();
                 }
                 Nitro Nitro = MyRayHit.collider.GetComponent<Nitro>();
