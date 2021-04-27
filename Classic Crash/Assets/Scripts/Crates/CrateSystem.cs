@@ -12,7 +12,7 @@ public class CrateSystem : MonoBehaviour
 
     private List<GameObject> InteractCrates = new List<GameObject>();
 
-    public int CurrentlyBrokenAmount;
+    private int CurrentlyBrokenAmount;
 
     private void Awake()
     {
@@ -122,7 +122,6 @@ public class CrateSystem : MonoBehaviour
     {
         if(CurrentlyBrokenAmount == BreakableCrates.Count)
         {
-            Debug.Log(SpawnPosition.position);
             SpawnGem.RaiseTransform(SpawnPosition);
         }
     }

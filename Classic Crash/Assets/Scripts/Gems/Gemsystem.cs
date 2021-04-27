@@ -4,15 +4,55 @@ using UnityEngine;
 
 public class Gemsystem : MonoBehaviour
 {
-   public GameObject PrefabGem;
+    public GameObject CrateGem;
+    public GameEvent DisableTotalCrates;
 
-   public void SpawnGem(Transform location)
+    public List<Gem> GemsCollected;
+    public List<Gem> GemsInLevel;
+
+    private void Awake()
+    {
+        GetAllGemsInLevel();     
+    }
+
+    private void GetAllGemsInLevel()
+    {
+        Gem[] GemsFound = FindObjectsOfType<Gem>();
+        foreach (Gem Gem in GemsFound)
+        {
+            GemsInLevel.Add(Gem);
+        }
+        CheckGemsCollected();
+    }
+
+    private void CheckGemsCollected()
+    {
+        foreach (Gem Gem in GemsCollected)
+        {
+            if (GemsInLevel.Contains(Gem))
+            {
+                if (Gem.GemType == Gem.GemColor.BoxCrate)
+                {
+                    DisableTotalCrates.Raise();
+                    Gem.enabled = false;
+                }
+            }
+        }
+    }
+
+    public void SpawnGem(Transform location)
     {
         if (location.gameObject.GetComponent<TotalCrates>())
         {
             var TotalCrates = location.gameObject.GetComponent<TotalCrates>();
-            Instantiate(PrefabGem, location.position, transform.rotation);
+            CrateGem.transform.position = location.position;
             TotalCrates.gameObject.SetActive(false);
         }
-   }
+    }
+
+    public void GemCollected(Gem Gem)
+    {
+        GemsCollected.Add(Gem);
+        Gem.gameObject.SetActive(false);
+    }
 }

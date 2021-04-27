@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class Objective : MonoBehaviour, IInteractable
 {
+    private Gem GemObject;
+    private void Awake()
+    {
+        GemObject = GetComponent<Gem>();
+    }
+
     public void Interacting(int side)
     {
         if(side <= 8)
@@ -12,6 +18,9 @@ public class Objective : MonoBehaviour, IInteractable
 
     public void CollectItem()
     {
-        gameObject.SetActive(false);
+        if (GemObject != null)
+        {
+            GemObject.CollectGem();
+        }
     }
 }

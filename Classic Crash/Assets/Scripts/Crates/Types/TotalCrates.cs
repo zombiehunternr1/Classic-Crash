@@ -21,4 +21,9 @@ public class TotalCrates : MonoBehaviour
             CheckTotal.RaiseTransform(transform);
         }
     }
+    
+    public void DisableTotalCrate()
+    {
+        gameObject.SetActive(false);
+    }
 }
