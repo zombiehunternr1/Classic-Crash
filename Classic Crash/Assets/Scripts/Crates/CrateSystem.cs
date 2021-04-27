@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CrateSystem : MonoBehaviour
 {
+    public GameEventTransform SpawnGem;
     [HideInInspector]
     public List<GameObject> CurrentlyBroken = new List<GameObject>();
     [HideInInspector]
@@ -16,7 +17,6 @@ public class CrateSystem : MonoBehaviour
     private void Awake()
     {
         GetAllCrateTypes();
-        Debug.Log(BreakableCrates.Count);
     }
 
     private void GetAllCrateTypes()
@@ -123,6 +123,7 @@ public class CrateSystem : MonoBehaviour
         if(CurrentlyBrokenAmount == BreakableCrates.Count)
         {
             Debug.Log(SpawnPosition.position);
+            SpawnGem.RaiseTransform(SpawnPosition);
         }
     }
 }
