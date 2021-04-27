@@ -6,6 +6,7 @@ public class Gemsystem : MonoBehaviour
 {
     public GameObject CrateGem;
     public GameEvent DisableTotalCrates;
+    public ItemsCollected CollectedItems;
 
     public List<Gem> GemsCollected;
     public List<Gem> GemsInLevel;
@@ -54,5 +55,10 @@ public class Gemsystem : MonoBehaviour
     {
         GemsCollected.Add(Gem);
         Gem.gameObject.SetActive(false);
+    }
+
+    public void SaveGemsCollected()
+    {
+        CollectedItems.GemsCollected = GemsCollected;
     }
 }
