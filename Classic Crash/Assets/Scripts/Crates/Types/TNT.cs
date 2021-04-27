@@ -11,6 +11,9 @@ public class TNT : MonoBehaviour, ICrateBase
     public bool IsGhost = false;
     [HideInInspector]
     public Animator AnimTNT;
+    [HideInInspector]
+    public bool Isbroken;
+
     private List<Renderer> SubCrates = new List<Renderer>();
 
     private void Awake()
@@ -61,6 +64,7 @@ public class TNT : MonoBehaviour, ICrateBase
 
     public void CrateReset()
     {
+        Isbroken = false;
         if (AnimTNT.GetCurrentAnimatorStateInfo(0).IsName("Ghost"))
         {
             if (IsGhost)
@@ -113,8 +117,12 @@ public class TNT : MonoBehaviour, ICrateBase
 
     public void DisableCrate()
     {
-        CrateBroken.Raise();
-        gameObject.SetActive(false);
+        if (!Isbroken)
+        {
+            Isbroken = true;
+            CrateBroken.Raise();
+            gameObject.SetActive(false);
+        }
     }
 
     public void EnableEmission()

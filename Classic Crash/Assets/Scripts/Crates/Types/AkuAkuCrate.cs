@@ -7,7 +7,8 @@ public class AkuAkuCrate : MonoBehaviour, ICrateBase
     public GameObject AkuAku;
     public bool AutoAdd;
     public GameEvent CrateBroken;
-
+    [HideInInspector]
+    public bool IsBroken;
     public void Break(int Side)
     {
         if (Side <= 2)
@@ -26,8 +27,13 @@ public class AkuAkuCrate : MonoBehaviour, ICrateBase
     }
     public void DisableCrate()
     {
-        CrateBroken.Raise();
-        gameObject.SetActive(false);
+        if (!IsBroken)
+        {
+            IsBroken = true;
+            CrateBroken.Raise();
+            gameObject.SetActive(false);
+        }
+
     }
 
     private void SpawnAkuAku()

@@ -116,6 +116,7 @@ MonoBehaviour:
   CrateBroken: {fileID: 11400000, guid: 5f965b2e97384fb4192d9b9b866aa59e, type: 2}
   IsGhost: 0
   AnimTNT: {fileID: 0}
+  Isbroken: 0
 --- !u!95 &5719767614287978075
 Animator:
   serializedVersion: 3

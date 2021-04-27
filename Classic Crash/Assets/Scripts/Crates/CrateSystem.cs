@@ -12,7 +12,7 @@ public class CrateSystem : MonoBehaviour
 
     private List<GameObject> InteractCrates = new List<GameObject>();
 
-    private int CurrentlyBrokenAmount;
+    public int CurrentlyBrokenAmount;
 
     private void Awake()
     {
@@ -58,6 +58,12 @@ public class CrateSystem : MonoBehaviour
 
     public void ResetCrates()
     {
+        AllBreakablesReset();
+        AllInteractablesReset();
+    }
+
+    private void AllBreakablesReset()
+    {
         foreach (GameObject Crate in BreakableCrates)
         {
             if (!CurrentlyBroken.Contains(Crate))
@@ -66,13 +72,41 @@ public class CrateSystem : MonoBehaviour
                 {
                     CurrentlyBrokenAmount--;
                     Crate.SetActive(true);
+                    if (Crate.GetComponent<Default>())
+                    {
+                        Crate.GetComponent<Default>().IsBroken = false;
+                    }
+                    if (Crate.GetComponent<AkuAkuCrate>())
+                    {
+                        Crate.GetComponent<AkuAkuCrate>().IsBroken = false;
+                    }
+                    if (Crate.GetComponent<Bounce>())
+                    {
+                        Crate.GetComponent<Bounce>().IsBroken = false;
+                    }
+                    if (Crate.GetComponent<LifeCrate>())
+                    {
+                        Crate.GetComponent<LifeCrate>().IsBroken = false;
+                    }
+                    if (Crate.GetComponent<Questionmark>())
+                    {
+                        Crate.GetComponent<Questionmark>().IsBroken = false;
+                    }
+                    if (Crate.GetComponent<Nitro>())
+                    {
+                        Crate.GetComponent<Nitro>().IsBroken = false;
+                    }
                     if (Crate.GetComponent<TNT>())
                     {
                         Crate.GetComponent<TNT>().CrateReset();
                     }
-                }               
+                }
             }
         }
+    }
+
+    private void AllInteractablesReset()
+    {
         foreach (GameObject Interact in InteractCrates)
         {
             if (InteractCrates.Contains(Interact))
@@ -80,14 +114,14 @@ public class CrateSystem : MonoBehaviour
                 if (Interact.GetComponent<Activator>())
                 {
                     Activator ActivatorCrate = Interact.GetComponent<Activator>();
-                    foreach(GameObject Crate in BreakableCrates)
+                    foreach (GameObject Crate in BreakableCrates)
                     {
                         if (ActivatorCrate.Crates.Contains(Crate))
                         {
                             if (!Crate.activeInHierarchy)
                             {
                                 ActivatorCrate.Crates.Remove(Crate);
-                            }                           
+                            }
                         }
                     }
                     Interact.GetComponent<Activator>().Setup();
@@ -95,14 +129,14 @@ public class CrateSystem : MonoBehaviour
                 if (Interact.GetComponent<Detonator>())
                 {
                     Detonator DetonatorCrate = Interact.GetComponent<Detonator>();
-                    foreach(GameObject Crate in BreakableCrates)
+                    foreach (GameObject Crate in BreakableCrates)
                     {
                         if (DetonatorCrate.Nitros.Contains(Crate.GetComponent<Nitro>()))
                         {
                             DetonatorCrate.Setup();
                             break;
                         }
-                    }                   
+                    }
                 }
             }
         }

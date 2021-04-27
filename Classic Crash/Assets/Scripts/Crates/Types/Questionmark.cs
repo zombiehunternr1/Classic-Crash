@@ -5,9 +5,11 @@ using UnityEngine;
 public class Questionmark : MonoBehaviour, ICrateBase, ISpawnable
 {
     public GameObject Item;
+    public GameEvent CrateBroken;
     public int amount = 1;
     public bool AutoAdd;
-    public GameEvent CrateBroken;
+    [HideInInspector]
+    public bool IsBroken;
 
     public void Break(int side)
     {
@@ -30,8 +32,12 @@ public class Questionmark : MonoBehaviour, ICrateBase, ISpawnable
 
     public void DisableCrate()
     {
-        CrateBroken.Raise();
-        gameObject.SetActive(false);
+        if (!IsBroken)
+        {
+            IsBroken = true;
+            CrateBroken.Raise();
+            gameObject.SetActive(false);
+        }
     }
 
     public void SpawnItem()

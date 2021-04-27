@@ -8,6 +8,9 @@ public class Default : MonoBehaviour, ICrateBase, ISpawnable
     public bool AutoAdd;
     public GameEvent CrateBroken;
 
+    [HideInInspector]
+    public bool IsBroken;
+
     public void Break(int side)
     {
         switch (side)
@@ -29,8 +32,12 @@ public class Default : MonoBehaviour, ICrateBase, ISpawnable
 
     public void DisableCrate()
     {
-        CrateBroken.Raise();
-        gameObject.SetActive(false);
+        if (!IsBroken)
+        {
+            IsBroken = true;
+            CrateBroken.Raise();
+            gameObject.SetActive(false);
+        }
     }
 
     public void SpawnItem()

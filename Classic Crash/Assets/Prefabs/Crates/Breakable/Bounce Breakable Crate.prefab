@@ -113,3 +113,4 @@ MonoBehaviour:
   DistanceRadius: 0.1
   BounceForce: 7
   CrateBroken: {fileID: 11400000, guid: 5f965b2e97384fb4192d9b9b866aa59e, type: 2}
+  IsBroken: 0

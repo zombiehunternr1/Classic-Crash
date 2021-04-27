@@ -7,6 +7,8 @@ public class LifeCrate : MonoBehaviour, ICrateBase
     public GameObject Life;
     public bool AutoAdd;
     public GameEvent CrateBroken;
+    [HideInInspector]
+    public bool IsBroken;
 
     public void Break(int Side)
     {
@@ -27,8 +29,12 @@ public class LifeCrate : MonoBehaviour, ICrateBase
 
     public void DisableCrate()
     {
-        CrateBroken.Raise();
-        gameObject.SetActive(false);
+        if (!IsBroken)
+        {
+            IsBroken = true;
+            CrateBroken.Raise();
+            gameObject.SetActive(false);
+        }
     }
 
     private void SpawnLife()

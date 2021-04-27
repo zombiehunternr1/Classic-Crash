@@ -8,6 +8,8 @@ public class Nitro : MonoBehaviour, ICrateBase
     public bool CanBounce;
     public GameEvent CrateBroken;
 
+    [HideInInspector]
+    public bool IsBroken;
     private Animator AnimNitro;
     private int SmallhopsTriggered = 0;
     private float RandomCheck;
@@ -35,8 +37,12 @@ public class Nitro : MonoBehaviour, ICrateBase
 
     public void DisableCrate()
     {
-        CrateBroken.Raise();
-        gameObject.SetActive(false);
+        if (!IsBroken)
+        {
+            IsBroken = true;
+            CrateBroken.Raise();
+            gameObject.SetActive(false);
+        }
     }
 
     private void SelectRandomHop()

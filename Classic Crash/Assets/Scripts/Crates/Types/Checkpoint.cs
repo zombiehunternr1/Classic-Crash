@@ -8,6 +8,8 @@ public class Checkpoint : MonoBehaviour, ICrateBase
     public GameObject BrokenCrate;
     public GameObject MetalCrate;
     public GameEventInt UpdateCrateCount;
+    [HideInInspector]
+    public bool IsBroken;
     private float DetectionRadius = 1f;
     private int CurrentlyBrokenAmount;
 
@@ -96,8 +98,12 @@ public class Checkpoint : MonoBehaviour, ICrateBase
 
     public void DisableCrate()
     {
-        gameObject.GetComponent<BoxCollider>().enabled = false;
-        gameObject.GetComponent<Renderer>().enabled = false;
+        if (!IsBroken)
+        {
+            IsBroken = true;
+            gameObject.GetComponent<BoxCollider>().enabled = false;
+            gameObject.GetComponent<Renderer>().enabled = false;
+        }
     }
 
     public enum CrateType { Breakable, Unbreakable }
