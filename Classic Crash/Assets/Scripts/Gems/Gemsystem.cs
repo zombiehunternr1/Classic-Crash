@@ -27,14 +27,14 @@ public class Gemsystem : MonoBehaviour
 
     private void CheckGemsCollected()
     {
-        foreach (Gem Gem in GemsCollected)
+        foreach (Gem CollectedGem in GemsCollected)
         {
-            if (GemsInLevel.Contains(Gem))
+            if (GemsInLevel.Contains(CollectedGem))
             {
-                if (Gem.GemType == Gem.GemColor.BoxCrate)
+                if (CollectedGem.GemType == Gem.GemColor.BoxCrate)
                 {
+                    CollectedGem.gameObject.SetActive(false);
                     DisableTotalCrates.Raise();
-                    Gem.enabled = false;
                 }
             }
         }

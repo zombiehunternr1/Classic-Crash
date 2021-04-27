@@ -254,7 +254,6 @@ MonoBehaviour:
   SpawnGem: {fileID: 11400000, guid: 526dbcb9a32c6734491400074494a562, type: 2}
   CurrentlyBroken: []
   BreakableCrates: []
-  CurrentlyBrokenAmount: 0
 --- !u!4 &173832336
 Transform:
   m_ObjectHideFlags: 0
@@ -367,7 +366,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CrateGem: {fileID: 968992614}
   DisableTotalCrates: {fileID: 11400000, guid: c9153cccb8bd14444b32b7f3a0c0c905, type: 2}
-  GemsCollected: []
+  GemsCollected:
+  - {fileID: 968992616}
   GemsInLevel: []
 --- !u!114 &173832341
 MonoBehaviour:
@@ -487,6 +487,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7362626314865477622, guid: e5407991d9dea98488b8380ab09c081c, type: 3}
   m_PrefabInstance: {fileID: 6156952722432555266}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &968992616 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6344964260943772498, guid: e5407991d9dea98488b8380ab09c081c, type: 3}
+  m_PrefabInstance: {fileID: 6156952722432555266}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 968992614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7375880e1bad3534cac6192989706c49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1152685290
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -633,50 +644,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1370203936}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &1451420629 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2364332264869275426, guid: 6e90501f83ecf4a459fd8248b0bf8125, type: 3}
-  m_PrefabInstance: {fileID: 315131900}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1451420630 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5177895736158285287, guid: 6e90501f83ecf4a459fd8248b0bf8125, type: 3}
-  m_PrefabInstance: {fileID: 315131900}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1451420629}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e244cb77ed9047c47a9a5b774c64d001, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1451420631
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1451420629}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 90749240303c2b24e8c1aea0adbdc041, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _gameEvent: {fileID: 11400000, guid: c9153cccb8bd14444b32b7f3a0c0c905, type: 2}
-  _response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1451420630}
-        m_TargetAssemblyTypeName: TotalCrates, Assembly-CSharp
-        m_MethodName: DisableTotalCrate
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1 &1670938306
 GameObject:
   m_ObjectHideFlags: 0
@@ -1064,15 +1031,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4785042398104192733, guid: e5407991d9dea98488b8380ab09c081c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -15.02
+      value: -5.23
       objectReference: {fileID: 0}
     - target: {fileID: 4785042398104192733, guid: e5407991d9dea98488b8380ab09c081c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -9.89
+      value: 2.23
       objectReference: {fileID: 0}
     - target: {fileID: 4785042398104192733, guid: e5407991d9dea98488b8380ab09c081c, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 10.8
+      value: 3.25
       objectReference: {fileID: 0}
     - target: {fileID: 4785042398104192733, guid: e5407991d9dea98488b8380ab09c081c, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1106,10 +1073,6 @@ PrefabInstance:
       propertyPath: GemType
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6344964260943772498, guid: e5407991d9dea98488b8380ab09c081c, type: 3}
-      propertyPath: GemCollected
-      value: 
-      objectReference: {fileID: 11400000, guid: 4d8ebe0244460bb438d844e39d4d7760, type: 2}
     - target: {fileID: 7362626314865477622, guid: e5407991d9dea98488b8380ab09c081c, type: 3}
       propertyPath: m_Name
       value: Crate Gem

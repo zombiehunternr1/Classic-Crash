@@ -11,14 +11,13 @@ public class GameEventListenerTransform : MonoBehaviour
     [SerializeField] private GameEventTransform _gameEventTransform;
     [SerializeField] private TransformEvent _responseTransform;
 
- /*   void Start()
+    void Start()
     {
         if (_responseTransform == null)
         {
             _responseTransform = new TransformEvent();
         }
-    }
-    */
+    }  
 
     void OnEnable()
     {
