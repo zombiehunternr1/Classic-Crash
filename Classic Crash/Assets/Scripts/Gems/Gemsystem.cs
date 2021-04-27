@@ -7,35 +7,65 @@ public class Gemsystem : MonoBehaviour
     public GameObject CrateGem;
     public GameEvent DisableTotalCrates;
     public ItemsCollected CollectedItems;
+    public AllGems AllGemsAvailable;
 
-    public List<Gem> GemsCollected;
-    public List<Gem> GemsInLevel;
+    [HideInInspector]
+    public List<GemBase> GemsCollected;
+    [HideInInspector]
+    public List<GemBase> GemsInLevel;
+    [HideInInspector]
+    public List<GemSpawner> GemSpawnersInLevel;
 
     private void Awake()
     {
-        GetAllGemsInLevel();     
+        GetCollectedGems();
+        GetAllGemSpawnersInLevel();
+        CheckGemsCollected();
+    }
+
+    private void GetCollectedGems()
+    {
+        GemsCollected = new List<GemBase>();
+        foreach (GemBase Gem in CollectedItems.GemsCollected)
+        {
+            GemsCollected.Add(Gem);
+        }
+    }
+
+    private void GetAllGemSpawnersInLevel()
+    {
+        GemSpawner[] GemSpawner = FindObjectsOfType<GemSpawner>();
+        foreach(GemSpawner Spawner in GemSpawner)
+        {
+            GemSpawnersInLevel.Add(Spawner);
+        }
+        GetAllGemsInLevel();
     }
 
     private void GetAllGemsInLevel()
     {
-        Gem[] GemsFound = FindObjectsOfType<Gem>();
-        foreach (Gem Gem in GemsFound)
+        foreach(GemSpawner Spawner in GemSpawnersInLevel)
         {
-            GemsInLevel.Add(Gem);
+            GemsInLevel.Add(Spawner.Gemtype);
         }
-        CheckGemsCollected();
     }
 
     private void CheckGemsCollected()
     {
-        foreach (Gem CollectedGem in GemsCollected)
+        foreach (GemBase CollectedGem in GemsCollected)
         {
             if (GemsInLevel.Contains(CollectedGem))
             {
-                if (CollectedGem.GemType == Gem.GemColor.BoxCrate)
+                if (CollectedGem.Type == GemBase.GemColor.BoxCrate)
                 {
-                    CollectedGem.gameObject.SetActive(false);
-                    DisableTotalCrates.Raise();
+                    foreach(GemSpawner Spawner in GemSpawnersInLevel)
+                    {
+                        if(Spawner.Gemtype.Type == GemBase.GemColor.BoxCrate)
+                        {
+                            Spawner.gameObject.SetActive(false);
+                            DisableTotalCrates.Raise();
+                        }
+                    }
                 }
             }
         }
@@ -51,10 +81,9 @@ public class Gemsystem : MonoBehaviour
         }
     }
 
-    public void GemCollected(Gem Gem)
+    public void GemCollected(GemBase GemType)
     {
-        GemsCollected.Add(Gem);
-        Gem.gameObject.SetActive(false);
+        GemsCollected.Add(GemType);
     }
 
     public void SaveGemsCollected()

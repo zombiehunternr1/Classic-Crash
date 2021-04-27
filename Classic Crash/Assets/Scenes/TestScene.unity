@@ -477,8 +477,10 @@ MonoBehaviour:
   CrateGem: {fileID: 968992614}
   DisableTotalCrates: {fileID: 11400000, guid: c9153cccb8bd14444b32b7f3a0c0c905, type: 2}
   CollectedItems: {fileID: 11400000, guid: be1f995f06c814e47b9af02c3215b9bd, type: 2}
+  AllGemsAvailable: {fileID: 11400000, guid: a51a597bacc683443b4f854031c91b02, type: 2}
   GemsCollected: []
   GemsInLevel: []
+  GemSpawnersInLevel: []
 --- !u!114 &173832341
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -863,7 +865,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1670938306}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.43, y: 1, z: -0.74}
+  m_LocalPosition: {x: 0.47, y: 1, z: -0.74}
   m_LocalScale: {x: 1, y: 2, z: 1}
   m_Children:
   - {fileID: 1370203937}
@@ -1152,6 +1154,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1262823237394694314, guid: e5407991d9dea98488b8380ab09c081c, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4785042398104192733, guid: e5407991d9dea98488b8380ab09c081c, type: 3}
       propertyPath: m_RootOrder
       value: 9
@@ -1199,6 +1205,14 @@ PrefabInstance:
     - target: {fileID: 7362626314865477622, guid: e5407991d9dea98488b8380ab09c081c, type: 3}
       propertyPath: m_Name
       value: Crate Gem
+      objectReference: {fileID: 0}
+    - target: {fileID: 7362626314865477622, guid: e5407991d9dea98488b8380ab09c081c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8908584187189931929, guid: e5407991d9dea98488b8380ab09c081c, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e5407991d9dea98488b8380ab09c081c, type: 3}

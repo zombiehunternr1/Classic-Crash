@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class Objective : MonoBehaviour, IInteractable
 {
-    private Gem GemObject;
+    private GemSpawner GemObject;
     private void Awake()
     {
-        GemObject = GetComponent<Gem>();
+        GemObject = GetComponent<GemSpawner>();
     }
 
     public void Interacting(int side)

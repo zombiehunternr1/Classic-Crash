@@ -3,71 +3,72 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class Gem : MonoBehaviour
+public class GemSpawner : MonoBehaviour
 {
+    public GemBase Gemtype;
     public GameEventGem GemCollected;
-    public enum GemColor { BoxCrate, Hidden, Blue, Green, Orange, Purple, Red, Yellow}
-    public GemColor GemType;
-    private List<Renderer> GemVariants;
+
+    private GameObject Gem;
+    public List<Renderer> GemVariants;
     private int Selected;
 
     private void Awake()
     {
+        Gem = Gemtype.Gem;
         GetGemVariants();
     }
 
     private void GetGemVariants()
     {
         GemVariants = new List<Renderer>();
-        Renderer[] Gems = GetComponentsInChildren<Renderer>();
+        Renderer[] Gems = Gem.GetComponentsInChildren<Renderer>();
         foreach (Renderer Gem in Gems)
         {
             GemVariants.Add(Gem);
         }
         SelectGemType();
     }
-
     private void SelectGemType()
     {
-        switch (GemType)
+        switch (Gemtype.Type)
         {
-            case GemColor.BoxCrate:
-                Selected = Convert.ToInt32(GemType);
+            case GemBase.GemColor.BoxCrate:
+                Selected = Convert.ToInt32(Gemtype.Type);
                 GemVariants[Selected].enabled = true;
                 break;
-            case GemColor.Hidden:
-                Selected = Convert.ToInt32(GemType);
+            case GemBase.GemColor.Hidden:
+                Selected = Convert.ToInt32(Gemtype.Type);
                 GemVariants[Selected].enabled = true;
                 break;
-            case GemColor.Blue:
-                Selected = Convert.ToInt32(GemType);
+            case GemBase.GemColor.Blue:
+                Selected = Convert.ToInt32(Gemtype.Type);
                 GemVariants[Selected].enabled = true;
                 break;
-            case GemColor.Green:
-                Selected = Convert.ToInt32(GemType);
+            case GemBase.GemColor.Green:
+                Selected = Convert.ToInt32(Gemtype.Type);
                 GemVariants[Selected].enabled = true;
                 break;
-            case GemColor.Orange:
-                Selected = Convert.ToInt32(GemType);
+            case GemBase.GemColor.Orange:
+                Selected = Convert.ToInt32(Gemtype.Type);
                 GemVariants[Selected].enabled = true;
                 break;
-            case GemColor.Purple:
-                Selected = Convert.ToInt32(GemType);
+            case GemBase.GemColor.Purple:
+                Selected = Convert.ToInt32(Gemtype.Type);
                 GemVariants[Selected].enabled = true;
                 break;
-            case GemColor.Red:
-                Selected = Convert.ToInt32(GemType);
+            case GemBase.GemColor.Red:
+                Selected = Convert.ToInt32(Gemtype.Type);
                 GemVariants[Selected].enabled = true;
                 break;
-            case GemColor.Yellow:
-                Selected = Convert.ToInt32(GemType);
+            case GemBase.GemColor.Yellow:
+                Selected = Convert.ToInt32(Gemtype.Type);
                 GemVariants[Selected].enabled = true;
                 break;
         }
     }
-
     public void CollectGem()
     {
-        GemCollected.RaiseGem(this);
+        GemCollected.RaiseGem(Gemtype);
+        gameObject.SetActive(false);
     }
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 
 [System.Serializable]
-public class GemEvent : UnityEvent<Gem> { }
+public class GemEvent : UnityEvent<GemBase> { }
 
 public class GameEventListenerGem : MonoBehaviour
 {
@@ -29,7 +29,7 @@ public class GameEventListenerGem : MonoBehaviour
         _gameEventGem.UnregisterGemListener(this);
     }
 
-    public void OnEventGemRaise(Gem value)
+    public void OnEventGemRaise(GemBase value)
     {
         _responseGem.Invoke(value);
     }

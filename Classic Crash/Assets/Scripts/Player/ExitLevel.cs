@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ExitLevel : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class ExitLevel : MonoBehaviour
         if (collision.gameObject.GetComponent<InputManager>())
         {
             SaveProgress.Raise();
+            SceneManager.LoadScene("Reload");
         }
     }
 }

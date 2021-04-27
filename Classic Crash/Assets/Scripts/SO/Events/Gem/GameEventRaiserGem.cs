@@ -6,7 +6,7 @@ public class GameEventRaiserGem : MonoBehaviour
 {
     [SerializeField] GameEventGem _gameEventGem;
 
-    public void RaiseGemEvent(Gem value)
+    public void RaiseGemEvent(GemBase value)
     {
         _gameEventGem.RaiseGem(value);
     }

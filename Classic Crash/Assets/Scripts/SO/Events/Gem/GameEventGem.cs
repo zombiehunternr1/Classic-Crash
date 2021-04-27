@@ -7,7 +7,7 @@ public class GameEventGem : ScriptableObject
 {
     private List<GameEventListenerGem> _Gemlisteners = new List<GameEventListenerGem>();
 
-    public void RaiseGem(Gem value)
+    public void RaiseGem(GemBase value)
     {
         for (int i = _Gemlisteners.Count - 1; i >= 0; i--)
         {
