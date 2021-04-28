@@ -18,8 +18,8 @@ public class Gemsystem : MonoBehaviour
     [HideInInspector]
     public List<GemSpawner> GemSpawnersInLevel;
 
-    public int Level;
-
+    private int Level;
+    private int[] GemTypes;
     private void Start()
     {
         Level = SceneManager.GetActiveScene().buildIndex;
@@ -62,29 +62,31 @@ public class Gemsystem : MonoBehaviour
             if (GemsInLevel.Contains(CollectedGem))
             {    
                 if(CollectedGem.Level == Level)
-                {
-                    if (CollectedGem.Type == GemBase.GemColor.BoxCrate)
-                    {
-                        foreach (GemSpawner Spawner in GemSpawnersInLevel)
-                        {
-                            if (Spawner.Gemtype.Type == GemBase.GemColor.BoxCrate)
-                            {
-                                Spawner.gameObject.SetActive(false);
-                                DisableTotalCrates.Raise();
-                            }
-                        }
-                    }
-                    if (CollectedGem.Type == GemBase.GemColor.Orange)
-                    {
-                        foreach (GemSpawner Spawner in GemSpawnersInLevel)
-                        {
-                            if (Spawner.Gemtype.Type == GemBase.GemColor.Orange)
-                            {
-                                Spawner.gameObject.SetActive(false);
-                            }
-                        }
-                    }
+                {                  
+                    DisableGemTypeSpawner(CollectedGem);
                 }                   
+            }
+        }
+    }
+
+    private void DisableGemTypeSpawner(GemBase Gem)
+    {
+        GemTypes = Array.ConvertAll((int[])Enum.GetValues(typeof(GemBase.GemColor)), Convert.ToInt32);
+        int Selected = Convert.ToInt32(Gem.Type);
+        
+        foreach(GemSpawner Spawner in GemSpawnersInLevel)
+        {
+            if (GemTypes[Selected] == Convert.ToInt32(Spawner.Gemtype.Type))
+            {
+                if(Spawner.Gemtype.Type == GemBase.GemColor.BoxCrate)
+                {
+                    Spawner.gameObject.SetActive(false);
+                    DisableTotalCrates.Raise();
+                }
+                else
+                {
+                    Spawner.gameObject.SetActive(false);
+                }
             }
         }
     }
