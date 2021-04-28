@@ -208,7 +208,7 @@ GameObject:
   - component: {fileID: 369585200}
   - component: {fileID: 369585199}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: Menu Handler
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -405,7 +405,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1379536110}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 369585199}
+        m_TargetAssemblyTypeName: TestingReload, Assembly-CSharp
+        m_MethodName: SaveGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1379536110
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -444,6 +456,63 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1379536107}
   m_CullTransparentMesh: 1
+--- !u!1001 &1493369187
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1413504033817468000, guid: 4054f88baad51a74292ef2e038f8d274, type: 3}
+      propertyPath: m_Name
+      value: Game Manager
+      objectReference: {fileID: 0}
+    - target: {fileID: 1413504033817468002, guid: 4054f88baad51a74292ef2e038f8d274, type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1413504033817468002, guid: 4054f88baad51a74292ef2e038f8d274, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.46791205
+      objectReference: {fileID: 0}
+    - target: {fileID: 1413504033817468002, guid: 4054f88baad51a74292ef2e038f8d274, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.8363304
+      objectReference: {fileID: 0}
+    - target: {fileID: 1413504033817468002, guid: 4054f88baad51a74292ef2e038f8d274, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 5.6102943
+      objectReference: {fileID: 0}
+    - target: {fileID: 1413504033817468002, guid: 4054f88baad51a74292ef2e038f8d274, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1413504033817468002, guid: 4054f88baad51a74292ef2e038f8d274, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1413504033817468002, guid: 4054f88baad51a74292ef2e038f8d274, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1413504033817468002, guid: 4054f88baad51a74292ef2e038f8d274, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1413504033817468002, guid: 4054f88baad51a74292ef2e038f8d274, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1413504033817468002, guid: 4054f88baad51a74292ef2e038f8d274, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1413504033817468002, guid: 4054f88baad51a74292ef2e038f8d274, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4054f88baad51a74292ef2e038f8d274, type: 3}
 --- !u!1 &1540765080
 GameObject:
   m_ObjectHideFlags: 0
@@ -831,7 +900,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1858062086}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 369585199}
+        m_TargetAssemblyTypeName: MenuTester, Assembly-CSharp
+        m_MethodName: LoadGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1858062086
 MonoBehaviour:
   m_ObjectHideFlags: 0

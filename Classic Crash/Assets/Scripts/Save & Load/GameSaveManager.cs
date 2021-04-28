@@ -17,12 +17,12 @@ public class GameSaveManager : MonoBehaviour
         if(Instance == null)
         {
             Instance = this;
+            DontDestroyOnLoad(gameObject);
         }
-        else if (Instance != this)
+        else
         {
-            Destroy(this);
+            Destroy(gameObject);
         }
-        DontDestroyOnLoad(this);
     }
 
     private bool IsSaveFile()
