@@ -20,6 +20,7 @@ public class Gemsystem : MonoBehaviour
 
     private int Level;
     private int[] GemTypes;
+    private int Selected;
     private void Start()
     {
         Level = SceneManager.GetActiveScene().buildIndex;
@@ -72,7 +73,7 @@ public class Gemsystem : MonoBehaviour
     private void DisableGemTypeSpawner(GemBase Gem)
     {
         GemTypes = Array.ConvertAll((int[])Enum.GetValues(typeof(GemBase.GemColor)), Convert.ToInt32);
-        int Selected = Convert.ToInt32(Gem.Type);
+        Selected = Convert.ToInt32(Gem.Type);
         
         foreach(GemSpawner Spawner in GemSpawnersInLevel)
         {
