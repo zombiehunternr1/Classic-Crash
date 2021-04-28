@@ -5,9 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class TestingReload : MonoBehaviour
 {
-    private void Start()
+    public void StartGame()
     {
         SceneManager.LoadScene("TestScene");
-
     }
 }
