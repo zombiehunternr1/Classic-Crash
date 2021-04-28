@@ -21,7 +21,7 @@ public class GemSpawner : MonoBehaviour
     private void GetGemVariants()
     {
         GemVariants = new List<Renderer>();
-        Renderer[] Gems = Gem.GetComponentsInChildren<Renderer>();
+        Renderer[] Gems = GetComponentsInChildren<Renderer>();
         foreach (Renderer Gem in Gems)
         {
             GemVariants.Add(Gem);
@@ -30,40 +30,13 @@ public class GemSpawner : MonoBehaviour
     }
     private void SelectGemType()
     {
-        switch (Gemtype.Type)
+        Selected = Convert.ToInt32(Gemtype.Type);
+        foreach(Renderer Gem in GemVariants)
         {
-            case GemBase.GemColor.BoxCrate:
-                Selected = Convert.ToInt32(Gemtype.Type);
-                GemVariants[Selected].enabled = true;
-                break;
-            case GemBase.GemColor.Hidden:
-                Selected = Convert.ToInt32(Gemtype.Type);
-                GemVariants[Selected].enabled = true;
-                break;
-            case GemBase.GemColor.Blue:
-                Selected = Convert.ToInt32(Gemtype.Type);
-                GemVariants[Selected].enabled = true;
-                break;
-            case GemBase.GemColor.Green:
-                Selected = Convert.ToInt32(Gemtype.Type);
-                GemVariants[Selected].enabled = true;
-                break;
-            case GemBase.GemColor.Orange:
-                Selected = Convert.ToInt32(Gemtype.Type);
-                GemVariants[Selected].enabled = true;
-                break;
-            case GemBase.GemColor.Purple:
-                Selected = Convert.ToInt32(Gemtype.Type);
-                GemVariants[Selected].enabled = true;
-                break;
-            case GemBase.GemColor.Red:
-                Selected = Convert.ToInt32(Gemtype.Type);
-                GemVariants[Selected].enabled = true;
-                break;
-            case GemBase.GemColor.Yellow:
-                Selected = Convert.ToInt32(Gemtype.Type);
-                GemVariants[Selected].enabled = true;
-                break;
+            if(Gem == GemVariants[Selected])
+            {
+                Gem.enabled = true;
+            }
         }
     }
     public void CollectGem()
