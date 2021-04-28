@@ -1,0 +1,242 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1443198673236297398
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1443198673236297384}
+  - component: {fileID: 1443198673236297399}
+  - component: {fileID: 1443198673236297388}
+  - component: {fileID: 1443198673236297385}
+  - component: {fileID: 1443198673236297386}
+  - component: {fileID: 1443198673236297387}
+  - component: {fileID: 1443198673236297389}
+  - component: {fileID: 1443198673236297390}
+  - component: {fileID: 1443198673236297391}
+  m_Layer: 0
+  m_Name: LevelManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1443198673236297384
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1443198673236297398}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1443198673236297399
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1443198673236297398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f0b41dc690381740a8caee5a068edd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SpawnGem: {fileID: 11400000, guid: 526dbcb9a32c6734491400074494a562, type: 2}
+  CurrentlyBroken: []
+  BreakableCrates: []
+--- !u!114 &1443198673236297388
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1443198673236297398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2ad4a54a985cfb49b98f20762f871a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CrateGem: {fileID: 0}
+  DisableTotalCrates: {fileID: 11400000, guid: c9153cccb8bd14444b32b7f3a0c0c905, type: 2}
+  CollectedItems: {fileID: 11400000, guid: be1f995f06c814e47b9af02c3215b9bd, type: 2}
+  AllGemsAvailable: {fileID: 11400000, guid: a51a597bacc683443b4f854031c91b02, type: 2}
+  GemsCollected: []
+  GemsInLevel: []
+  GemSpawnersInLevel: []
+--- !u!114 &1443198673236297385
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1443198673236297398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72e9521e68e659a4cbffcd04f6d2d34c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _gameEventInt: {fileID: 11400000, guid: 80ba4f4513136074b833a8fb1b3a2dc8, type: 2}
+  _responseInt:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1443198673236297399}
+        m_TargetAssemblyTypeName: CrateSystem, Assembly-CSharp
+        m_MethodName: SaveCheckpointCount
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1443198673236297386
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1443198673236297398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90749240303c2b24e8c1aea0adbdc041, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _gameEvent: {fileID: 11400000, guid: 5f965b2e97384fb4192d9b9b866aa59e, type: 2}
+  _response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1443198673236297399}
+        m_TargetAssemblyTypeName: CrateSystem, Assembly-CSharp
+        m_MethodName: UpdateCurrentCrateCount
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1443198673236297387
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1443198673236297398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6be31de2386aac429fae94d72a7add1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _gameEventTransform: {fileID: 11400000, guid: 0b1ffb039cd9a3e4db5a080c127a7b18, type: 2}
+  _responseTransform:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1443198673236297399}
+        m_TargetAssemblyTypeName: CrateSystem, Assembly-CSharp
+        m_MethodName: CheckTotalCount
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1443198673236297389
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1443198673236297398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6be31de2386aac429fae94d72a7add1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _gameEventTransform: {fileID: 11400000, guid: 526dbcb9a32c6734491400074494a562, type: 2}
+  _responseTransform:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1443198673236297388}
+        m_TargetAssemblyTypeName: Gemsystem, Assembly-CSharp
+        m_MethodName: SpawnGem
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1443198673236297390
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1443198673236297398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ed7021b1e5afb84496ceb0d1a4c3818, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _gameEventGem: {fileID: 11400000, guid: 4d8ebe0244460bb438d844e39d4d7760, type: 2}
+  _responseGem:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1443198673236297388}
+        m_TargetAssemblyTypeName: Gemsystem, Assembly-CSharp
+        m_MethodName: GemCollected
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1443198673236297391
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1443198673236297398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90749240303c2b24e8c1aea0adbdc041, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _gameEvent: {fileID: 11400000, guid: 6727d1dc794bc8648abe56d82bd4ca30, type: 2}
+  _response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1443198673236297388}
+        m_TargetAssemblyTypeName: Gemsystem, Assembly-CSharp
+        m_MethodName: SaveGemsCollected
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

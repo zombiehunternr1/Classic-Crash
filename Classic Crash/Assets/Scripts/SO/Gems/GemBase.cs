@@ -6,6 +6,7 @@ using UnityEngine;
 public class GemBase : ScriptableObject
 {
     public GameObject Gem;
+    public int Level;
     public enum GemColor { BoxCrate, Hidden, Blue, Green, Orange, Purple, Red, Yellow }
     public GemColor Type;
 }

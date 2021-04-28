@@ -8,13 +8,11 @@ public class GemSpawner : MonoBehaviour
     public GemBase Gemtype;
     public GameEventGem GemCollected;
 
-    private GameObject Gem;
-    public List<Renderer> GemVariants;
+    private List<Renderer> GemVariants;
     private int Selected;
 
     private void Awake()
     {
-        Gem = Gemtype.Gem;
         GetGemVariants();
     }
 

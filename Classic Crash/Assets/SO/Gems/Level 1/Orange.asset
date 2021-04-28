@@ -10,7 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a83d8033f142a6a478f0890ea8313573, type: 3}
-  m_Name: Box Gem
+  m_Name: Orange
   m_EditorClassIdentifier: 
   Gem: {fileID: 7362626314865477622, guid: e5407991d9dea98488b8380ab09c081c, type: 3}
-  Type: 0
+  Level: 1
+  Type: 4

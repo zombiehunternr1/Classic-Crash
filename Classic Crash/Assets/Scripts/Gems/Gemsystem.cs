@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using System;
 
 public class Gemsystem : MonoBehaviour
 {
@@ -16,8 +18,11 @@ public class Gemsystem : MonoBehaviour
     [HideInInspector]
     public List<GemSpawner> GemSpawnersInLevel;
 
-    private void Awake()
+    public int Level;
+
+    private void Start()
     {
+        Level = SceneManager.GetActiveScene().buildIndex;
         GetCollectedGems();
         GetAllGemSpawnersInLevel();
         CheckGemsCollected();
@@ -55,18 +60,31 @@ public class Gemsystem : MonoBehaviour
         foreach (GemBase CollectedGem in GemsCollected)
         {
             if (GemsInLevel.Contains(CollectedGem))
-            {
-                if (CollectedGem.Type == GemBase.GemColor.BoxCrate)
+            {    
+                if(CollectedGem.Level == Level)
                 {
-                    foreach(GemSpawner Spawner in GemSpawnersInLevel)
+                    if (CollectedGem.Type == GemBase.GemColor.BoxCrate)
                     {
-                        if(Spawner.Gemtype.Type == GemBase.GemColor.BoxCrate)
+                        foreach (GemSpawner Spawner in GemSpawnersInLevel)
                         {
-                            Spawner.gameObject.SetActive(false);
-                            DisableTotalCrates.Raise();
+                            if (Spawner.Gemtype.Type == GemBase.GemColor.BoxCrate)
+                            {
+                                Spawner.gameObject.SetActive(false);
+                                DisableTotalCrates.Raise();
+                            }
                         }
                     }
-                }
+                    if (CollectedGem.Type == GemBase.GemColor.Orange)
+                    {
+                        foreach (GemSpawner Spawner in GemSpawnersInLevel)
+                        {
+                            if (Spawner.Gemtype.Type == GemBase.GemColor.Orange)
+                            {
+                                Spawner.gameObject.SetActive(false);
+                            }
+                        }
+                    }
+                }                   
             }
         }
     }
