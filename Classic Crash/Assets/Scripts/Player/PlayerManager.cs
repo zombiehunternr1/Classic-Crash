@@ -4,21 +4,26 @@ using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
 {
+    public GameObject AkuAkuPlayerPosition;
     CrateSystem CrateSystem;
     public ItemsCollected CollectedItems;
 
     private bool IsGameOver;
-    private InputManager LastCheckPoint;
+    private InputManager Player;
 
     private void Awake()
     {
         IsGameOver = false;
         CrateSystem = GetComponent<CrateSystem>();
+        if(CollectedItems.AkuAkus > 0)
+        {
+            AkuAkuPlayerPosition.transform.GetChild(0).gameObject.SetActive(true);
+        }
     }
 
-    public void PlayerHit(Transform Player)
+    public void PlayerHit(Transform PlayerHit)
     {
-        LastCheckPoint = Player.GetComponent<InputManager>();
+        Player = PlayerHit.GetComponent<InputManager>();
         CheckAkuAkuCount();
         if (IsGameOver)
         {
@@ -48,6 +53,10 @@ public class PlayerManager : MonoBehaviour
     {
         if(CollectedItems.AkuAkus < 3)
         {
+            if(CollectedItems.AkuAkus == 0)
+            {
+                AkuAkuPlayerPosition.transform.GetChild(0).gameObject.SetActive(true);
+            }
             CollectedItems.AkuAkus++;
         }
         else
@@ -65,6 +74,10 @@ public class PlayerManager : MonoBehaviour
         else if(CollectedItems.AkuAkus != 0)
         {
             CollectedItems.AkuAkus--;
+            if(CollectedItems.AkuAkus == 0)
+            {
+                AkuAkuPlayerPosition.transform.GetChild(0).gameObject.SetActive(false);
+            }
             Debug.Log("Temporarely invulnerability");
         }
         else
@@ -80,7 +93,7 @@ public class PlayerManager : MonoBehaviour
             CollectedItems.Lives--;
             CollectedItems.AkuAkus = 0;
             IsGameOver = false;
-            LastCheckPoint.LoadLastCheckpoint();
+            Player.LoadLastCheckpoint();
             CrateSystem.ResetCrates();
         }
         else

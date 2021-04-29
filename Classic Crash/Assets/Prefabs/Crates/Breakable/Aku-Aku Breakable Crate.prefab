@@ -111,4 +111,5 @@ MonoBehaviour:
   AkuAku: {fileID: 1760063695144674584, guid: 46358cb776d78aa469ebdd93567d6bf6, type: 3}
   AutoAdd: 0
   CrateBroken: {fileID: 11400000, guid: 5f965b2e97384fb4192d9b9b866aa59e, type: 2}
+  AddAkuAku: {fileID: 11400000, guid: 2fecc180878a97f4888599fa556cb1c5, type: 2}
   IsBroken: 0

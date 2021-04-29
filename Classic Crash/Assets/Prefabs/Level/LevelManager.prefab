@@ -89,6 +89,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66d61913a721b3444a0788aca58ce1d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AkuAkuPlayerPosition: {fileID: 0}
   CollectedItems: {fileID: 11400000, guid: be1f995f06c814e47b9af02c3215b9bd, type: 2}
 --- !u!114 &1443198673236297385
 MonoBehaviour:

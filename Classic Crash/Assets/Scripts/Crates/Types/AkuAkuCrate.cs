@@ -7,6 +7,7 @@ public class AkuAkuCrate : MonoBehaviour, ICrateBase
     public GameObject AkuAku;
     public bool AutoAdd;
     public GameEvent CrateBroken;
+    public GameEvent AddAkuAku;
     [HideInInspector]
     public bool IsBroken;
     public void Break(int Side)
@@ -40,7 +41,7 @@ public class AkuAkuCrate : MonoBehaviour, ICrateBase
     {
         if (AutoAdd)
         {
-            Debug.Log("auto add");
+            AddAkuAku.Raise();
         }
         else
         {
