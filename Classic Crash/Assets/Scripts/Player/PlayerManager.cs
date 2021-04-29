@@ -8,14 +8,21 @@ public class PlayerManager : MonoBehaviour
     CrateSystem CrateSystem;
     public ItemsCollected CollectedItems;
 
-    private bool IsGameOver;
     private InputManager Player;
+    private AudioSource SFXAkuAkuSource;
+    private AudioClip SFXAkaAkuAdd;
+    private AudioClip SFXAkuAkuWithdraw;
+    private AudioClip SFXInvinsibility;
+
+    private bool IsInvinsible;
+    private float InvinsibleTimer = 21;
 
     private void Awake()
     {
-        IsGameOver = false;
         CrateSystem = GetComponent<CrateSystem>();
-        if(CollectedItems.AkuAkus > 0)
+        GetSFXAkuAku();
+
+        if (CollectedItems.AkuAkus > 0)
         {
             AkuAkuPlayerPosition.transform.GetChild(0).gameObject.SetActive(true);
         }
@@ -24,10 +31,9 @@ public class PlayerManager : MonoBehaviour
     public void PlayerHit(Transform PlayerHit)
     {
         Player = PlayerHit.GetComponent<InputManager>();
-        CheckAkuAkuCount();
-        if (IsGameOver)
+        if (!IsInvinsible)
         {
-            GameOver();
+            WithdrawAkuAku();
         }
     }
 
@@ -51,60 +57,92 @@ public class PlayerManager : MonoBehaviour
 
     public void AddAkuAku()
     {
-        if(CollectedItems.AkuAkus < 3)
+        if (CollectedItems.AkuAkus == 0)
         {
-            if(CollectedItems.AkuAkus == 0)
-            {
-                AkuAkuPlayerPosition.transform.GetChild(0).gameObject.SetActive(true);
-            }
             CollectedItems.AkuAkus++;
+            SFXAkuAkuSource.PlayOneShot(SFXAkaAkuAdd);
+            AkuAkuPlayerPosition.transform.GetChild(0).gameObject.SetActive(true);
         }
         else
         {
-            Debug.Log("Invinsibility mode");
+            CollectedItems.AkuAkus++;
+            SFXAkuAkuSource.PlayOneShot(SFXAkaAkuAdd);
+            CheckAkuAkuCount();
         }
     }
 
     public void CheckAkuAkuCount()
     {
-        if(CollectedItems.AkuAkus == 3)
+        if(CollectedItems.AkuAkus == 3 && !IsInvinsible)
         {
             Debug.Log("Activate invinsibility");
+            SFXAkuAkuSource.PlayOneShot(SFXInvinsibility);
+            StartCoroutine(InvinsibilityTimer());
         }
-        else if(CollectedItems.AkuAkus != 0)
+        else if(CollectedItems.AkuAkus > 3)
         {
-            CollectedItems.AkuAkus--;
-            if(CollectedItems.AkuAkus == 0)
-            {
-                AkuAkuPlayerPosition.transform.GetChild(0).gameObject.SetActive(false);
-            }
-            Debug.Log("Temporarely invulnerability");
-        }
-        else
-        {
-            CheckLifeTotal();
+            CollectedItems.AkuAkus = 3;
         }
     }
 
-    public void CheckLifeTotal()
+    private void CheckLifeTotal()
     {
         if (CollectedItems.Lives > 0)
         {
             CollectedItems.Lives--;
             CollectedItems.AkuAkus = 0;
-            IsGameOver = false;
             Player.LoadLastCheckpoint();
             CrateSystem.ResetCrates();
         }
         else
         {
-            IsGameOver = true;
             GameOver();
         }
     }
 
-    public void GameOver()
+    private void GameOver()
     {
         Debug.Log("Game Over");
+    }
+
+    private void WithdrawAkuAku()
+    {
+        CollectedItems.AkuAkus--;
+        if (CollectedItems.AkuAkus == 0)
+        {
+            SFXAkuAkuSource.PlayOneShot(SFXAkuAkuWithdraw);
+            AkuAkuPlayerPosition.transform.GetChild(0).gameObject.SetActive(false);
+        }
+        else if(CollectedItems.AkuAkus > 0)
+        {
+            SFXAkuAkuSource.PlayOneShot(SFXAkuAkuWithdraw);
+            Debug.Log("Temporarely Invulnerable");
+        }
+        else
+        {
+            CollectedItems.AkuAkus = 0;
+            CheckLifeTotal();
+        }
+    }
+
+    private void GetSFXAkuAku()
+    {
+        AudioSource[] AudioSources = AkuAkuPlayerPosition.GetComponents<AudioSource>();
+        SFXAkuAkuSource = AudioSources[0];
+        SFXAkaAkuAdd = AudioSources[0].clip;
+        SFXAkuAkuWithdraw = AudioSources[1].clip;
+        SFXInvinsibility = AudioSources[2].clip;
+    }
+
+    private IEnumerator InvinsibilityTimer()
+    {
+        IsInvinsible = true;
+        while(InvinsibleTimer > 0)
+        {
+            InvinsibleTimer -= Time.deltaTime;
+            yield return InvinsibleTimer;
+        }
+        IsInvinsible = false;
+        CollectedItems.AkuAkus--;
     }
 }
