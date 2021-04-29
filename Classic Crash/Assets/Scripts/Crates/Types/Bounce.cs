@@ -4,11 +4,15 @@ using UnityEngine;
 
 public class Bounce : MonoBehaviour, ICrateBase
 {
+    public GameObject Wumpa;
     public CrateType crateType;
     public int breakAfter = 5;
     public float DistanceRadius = 0.1f;
     public float BounceForce = 10;
+    public int Amount = 1;
+    public bool AutoAdd;
     public GameEvent CrateBroken;
+    public GameEventInt AddWumpa;
     [HideInInspector]
     public bool IsBroken;
 
@@ -52,6 +56,14 @@ public class Bounce : MonoBehaviour, ICrateBase
         {
             IsBroken = true;
             CrateBroken.Raise();
+            if (AutoAdd && crateType == CrateType.BreakInstant)
+            {
+                AddWumpa.RaiseInt(Amount);
+            }
+            else if(crateType == CrateType.BreakInstant)
+            {
+                Instantiate(Wumpa, transform.position, transform.rotation);
+            }
             gameObject.SetActive(false);
         }
     }
@@ -60,6 +72,7 @@ public class Bounce : MonoBehaviour, ICrateBase
     {
         if (!FirstBounce)
         {
+            AddWumpa.RaiseInt(Amount);
             FirstBounce = true;
             currentBounces++;
             Bouncing();
@@ -67,6 +80,7 @@ public class Bounce : MonoBehaviour, ICrateBase
         }
         else if (CurrentTime < MaxTime)
         {
+            AddWumpa.RaiseInt(Amount);
             currentBounces++;
             CurrentTime = 0;
             if (currentBounces >= breakAfter)
@@ -82,6 +96,7 @@ public class Bounce : MonoBehaviour, ICrateBase
         }
         else
         {
+            AddWumpa.RaiseInt(Amount);
             StopCoroutine(ResetCounter());
             CurrentTime = 0;
             Bouncing();

@@ -29,7 +29,7 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
-    public void AddWumpa()
+    public void AddWumpa(int Amount)
     {
         if (CollectedItems.Wumpa >= 99)
         {
@@ -38,7 +38,7 @@ public class PlayerManager : MonoBehaviour
         }
         else
         {
-            CollectedItems.Wumpa++;
+            CollectedItems.Wumpa += Amount;
         }
     }
 

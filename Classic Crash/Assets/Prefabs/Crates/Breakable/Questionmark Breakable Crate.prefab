@@ -108,8 +108,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2576eaa91f2a0784ea3602649e994c87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Item: {fileID: 6819524890254654404, guid: e27d6c3911a6e1b45a3fe8c71ea1221d, type: 3}
+  Wumpa: {fileID: 6819524890254654404, guid: e27d6c3911a6e1b45a3fe8c71ea1221d, type: 3}
+  Life: {fileID: 4519319795387716966, guid: 886071fb8e8f37b4187d13c2eb04d97a, type: 3}
   CrateBroken: {fileID: 11400000, guid: 5f965b2e97384fb4192d9b9b866aa59e, type: 2}
+  AddWumpa: {fileID: 11400000, guid: f82ac4f0a1e91a84492ef53485bbbcad, type: 2}
+  AddLife: {fileID: 11400000, guid: 9ebfb660800920140b45dfe62e91a11b, type: 2}
+  IsWumpa: 1
   amount: 10
   AutoAdd: 0
   IsBroken: 0

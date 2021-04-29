@@ -108,9 +108,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cf9c488e3b5e304789ecf7664247546, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Wumpa: {fileID: 6819524890254654404, guid: e27d6c3911a6e1b45a3fe8c71ea1221d, type: 3}
   crateType: 1
   breakAfter: 5
   DistanceRadius: 0.1
   BounceForce: 7
+  Amount: 1
+  AutoAdd: 0
   CrateBroken: {fileID: 11400000, guid: 5f965b2e97384fb4192d9b9b866aa59e, type: 2}
+  AddWumpa: {fileID: 11400000, guid: f82ac4f0a1e91a84492ef53485bbbcad, type: 2}
   IsBroken: 0

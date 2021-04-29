@@ -4,10 +4,15 @@ using UnityEngine;
 
 public class Questionmark : MonoBehaviour, ICrateBase, ISpawnable
 {
-    public GameObject Item;
+    public GameObject Wumpa;
+    public GameObject Life;
     public GameEvent CrateBroken;
-    public int amount = 1;
+    public GameEventInt AddWumpa;
+    public GameEvent AddLife;
+    public bool IsWumpa;
     public bool AutoAdd;
+    private bool WasLife = true;
+    public int amount = 1;
     [HideInInspector]
     public bool IsBroken;
 
@@ -44,23 +49,42 @@ public class Questionmark : MonoBehaviour, ICrateBase, ISpawnable
     {
         if (AutoAdd)
         {
-            Debug.Log("Auto add");
+            if (IsWumpa || !WasLife)
+            {
+                AddWumpa.RaiseInt(amount);
+            }
+            else
+            {
+                if (WasLife)
+                {
+                    WasLife = false;
+                    AddLife.Raise();
+                }
+            }
         }
         else
         {
-            for (int i = 0; i < amount; i++)
+            if (IsWumpa || !WasLife)
             {
-                if (i > 0)
+                for (int i = 0; i < amount; i++)
                 {
-                    var x = Random.Range(-0.5f, 0.5f);
-                    var z = Random.Range(-0.5f, 0.5f);
-                    Instantiate(Item, new Vector3(transform.position.x + x, transform.position.y, transform.position.z + z), Quaternion.identity);
+                    if (i > 0)
+                    {
+                        var x = Random.Range(-0.5f, 0.5f);
+                        var z = Random.Range(-0.5f, 0.5f);
+                        Instantiate(Wumpa, new Vector3(transform.position.x + x, transform.position.y, transform.position.z + z), Quaternion.identity);
+                    }
+                    else
+                    {
+                        Instantiate(Wumpa, transform.position, Quaternion.identity);
+                    }
                 }
-                else
-                {
-                    Instantiate(Item, transform.position, Quaternion.identity);
-                }
-            }         
+            }
+            else
+            {
+                WasLife = false;
+                Instantiate(Life, transform.position, Quaternion.identity);
+            }              
         }
         DisableCrate();
     }

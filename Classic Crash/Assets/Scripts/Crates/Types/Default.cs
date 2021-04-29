@@ -7,9 +7,12 @@ public class Default : MonoBehaviour, ICrateBase, ISpawnable
     public GameObject Item;
     public bool AutoAdd;
     public GameEvent CrateBroken;
+    public GameEventInt AddWumpa;
 
     [HideInInspector]
     public bool IsBroken;
+
+    private int Amount = 1;
 
     public void Break(int side)
     {
@@ -44,7 +47,7 @@ public class Default : MonoBehaviour, ICrateBase, ISpawnable
     {
         if (AutoAdd)
         {
-            Debug.Log("Auto add");
+            AddWumpa.RaiseInt(Amount);
         }
         else
         {

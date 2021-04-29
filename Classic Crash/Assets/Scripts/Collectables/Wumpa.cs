@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Wumpa : MonoBehaviour, IInteractable
 {
-    public GameEvent AddWumpa;
+    public GameEventInt AddWumpa;
+    private int amount = 1;
     public void Interacting(int Side)
     {
         if(Side >= 1 && Side <= 6 || Side >= 8 && Side <= 9)
@@ -15,7 +16,7 @@ public class Wumpa : MonoBehaviour, IInteractable
 
     private void CollectItem()
     {
-        AddWumpa.Raise();
+        AddWumpa.RaiseInt(amount);
         DestroyItem();
     }
 

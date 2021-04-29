@@ -5,6 +5,7 @@ using UnityEngine;
 public class LifeCrate : MonoBehaviour, ICrateBase
 {
     public GameObject Life;
+    public GameEvent AddLife;
     public bool AutoAdd;
     public GameEvent CrateBroken;
     [HideInInspector]
@@ -41,7 +42,7 @@ public class LifeCrate : MonoBehaviour, ICrateBase
     {
         if (AutoAdd)
         {
-            Debug.Log("auto add");
+            AddLife.Raise();
         }
         else
         {

@@ -20,7 +20,7 @@ GameObject:
   - component: {fileID: 1443198673236297391}
   - component: {fileID: 7979579677245581869}
   - component: {fileID: 357520324293727712}
-  - component: {fileID: 2006747199479651721}
+  - component: {fileID: 5683567089101173067}
   m_Layer: 0
   m_Name: LevelManager
   m_TagString: Untagged
@@ -313,7 +313,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &2006747199479651721
+--- !u!114 &5683567089101173067
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -322,17 +322,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 1443198673236297398}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 90749240303c2b24e8c1aea0adbdc041, type: 3}
+  m_Script: {fileID: 11500000, guid: 72e9521e68e659a4cbffcd04f6d2d34c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _gameEvent: {fileID: 11400000, guid: f82ac4f0a1e91a84492ef53485bbbcad, type: 2}
-  _response:
+  _gameEventInt: {fileID: 11400000, guid: f82ac4f0a1e91a84492ef53485bbbcad, type: 2}
+  _responseInt:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 6227356818941958945}
         m_TargetAssemblyTypeName: PlayerManager, Assembly-CSharp
         m_MethodName: AddWumpa
-        m_Mode: 1
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
