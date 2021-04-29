@@ -162,6 +162,7 @@ MonoBehaviour:
   BigJump: 10
   DistanceToGround: 1.01
   SpinRadius: 1.5
+  PlayerGotHit: {fileID: 11400000, guid: 8f43e180b82338747ac9d4a689449921, type: 2}
 --- !u!1 &7896145975642277779
 GameObject:
   m_ObjectHideFlags: 0

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Objective : MonoBehaviour, IInteractable
+public class Gem : MonoBehaviour, IInteractable
 {
     private GemSpawner GemObject;
     private void Awake()

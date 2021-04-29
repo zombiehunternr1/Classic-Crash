@@ -150,10 +150,10 @@ public class InputManager : MonoBehaviour
             {
                 Item.Interacting((int)ReturnDirection(gameObject, hitCollider.gameObject));
             }
-            HurtPlayer HurtPlayer = hitCollider.GetComponent<HurtPlayer>();
-            if(HurtPlayer != null)
+            HurtPlayer Player = hitCollider.GetComponent<HurtPlayer>();
+            if(Player != null)
             {
-                HurtPlayer.PlayerHit(this);
+                Player.GotHit(this);
             }
         }
         RaycastHit MyRayHit;

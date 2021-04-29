@@ -11,12 +11,15 @@ GameObject:
   - component: {fileID: 1443198673236297384}
   - component: {fileID: 1443198673236297399}
   - component: {fileID: 1443198673236297388}
+  - component: {fileID: 6227356818941958945}
   - component: {fileID: 1443198673236297385}
   - component: {fileID: 1443198673236297386}
   - component: {fileID: 1443198673236297387}
   - component: {fileID: 1443198673236297389}
   - component: {fileID: 1443198673236297390}
   - component: {fileID: 1443198673236297391}
+  - component: {fileID: 378193536116259155}
+  - component: {fileID: 7979579677245581869}
   m_Layer: 0
   m_Name: LevelManager
   m_TagString: Untagged
@@ -72,6 +75,18 @@ MonoBehaviour:
   GemsCollected: []
   GemsInLevel: []
   GemSpawnersInLevel: []
+--- !u!114 &6227356818941958945
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1443198673236297398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66d61913a721b3444a0788aca58ce1d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1443198673236297385
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -232,6 +247,46 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: Gemsystem, Assembly-CSharp
         m_MethodName: SaveGemsCollected
         m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &378193536116259155
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1443198673236297398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66d61913a721b3444a0788aca58ce1d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7979579677245581869
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1443198673236297398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6be31de2386aac429fae94d72a7add1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _gameEventTransform: {fileID: 11400000, guid: 8f43e180b82338747ac9d4a689449921, type: 2}
+  _responseTransform:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6227356818941958945}
+        m_TargetAssemblyTypeName: PlayerManager, Assembly-CSharp
+        m_MethodName: PlayerHit
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
