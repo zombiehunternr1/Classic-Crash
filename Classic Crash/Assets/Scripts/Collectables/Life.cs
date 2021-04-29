@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Life : MonoBehaviour, IInteractable
 {
+    public GameEvent LifeCollected;
+
     public void Interacting(int Side)
     {
         if (Side >= 1 && Side <= 6 || Side >= 8 && Side <= 9)
@@ -14,7 +16,8 @@ public class Life : MonoBehaviour, IInteractable
 
     private void CollectItem()
     {
-        gameObject.SetActive(false);
+        LifeCollected.Raise();
+        DestroyItem();
     }
 
     private void DestroyItem()
