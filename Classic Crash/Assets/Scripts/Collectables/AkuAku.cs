@@ -4,20 +4,22 @@ using UnityEngine;
 
 public class AkuAku : MonoBehaviour, IInteractable
 {
+    public GameEvent AddAkuAku;
     public void Interacting(int side)
     {
         if(side <= 6)
             CollectItem();
         if(side >= 7)
-            DestoryItem();
+            DestroyItem();
     }
 
     private void CollectItem()
     {
-        gameObject.SetActive(false);
+        AddAkuAku.Raise();
+        DestroyItem();
     }
 
-    private void DestoryItem()
+    private void DestroyItem()
     {
         Destroy(gameObject);
     }

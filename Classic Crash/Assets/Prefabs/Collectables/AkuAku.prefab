@@ -60,6 +60,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8506d97e59091c341b9a58417be93374, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AddAkuAku: {fileID: 11400000, guid: 2fecc180878a97f4888599fa556cb1c5, type: 2}
 --- !u!1 &3365842385824381529
 GameObject:
   m_ObjectHideFlags: 0

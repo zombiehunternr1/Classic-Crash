@@ -8,6 +8,7 @@ public class PlayerManager : MonoBehaviour
     public ItemsCollected CollectedItems;
 
     private bool IsGameOver;
+    private InputManager LastCheckPoint;
 
     private void Awake()
     {
@@ -17,15 +18,11 @@ public class PlayerManager : MonoBehaviour
 
     public void PlayerHit(Transform Player)
     {
-        CheckLifeTotal();
+        LastCheckPoint = Player.GetComponent<InputManager>();
+        CheckAkuAkuCount();
         if (IsGameOver)
         {
             GameOver();
-        }
-        else
-        {
-            Player.GetComponent<InputManager>().LoadLastCheckpoint();
-            CrateSystem.ResetCrates();
         }
     }
 
@@ -47,12 +44,44 @@ public class PlayerManager : MonoBehaviour
         CollectedItems.Lives++;
     }
 
+    public void AddAkuAku()
+    {
+        if(CollectedItems.AkuAkus < 3)
+        {
+            CollectedItems.AkuAkus++;
+        }
+        else
+        {
+            Debug.Log("Invinsibility mode");
+        }
+    }
+
+    public void CheckAkuAkuCount()
+    {
+        if(CollectedItems.AkuAkus == 3)
+        {
+            Debug.Log("Activate invinsibility");
+        }
+        else if(CollectedItems.AkuAkus != 0)
+        {
+            CollectedItems.AkuAkus--;
+            Debug.Log("Temporarely invulnerability");
+        }
+        else
+        {
+            CheckLifeTotal();
+        }
+    }
+
     public void CheckLifeTotal()
     {
         if (CollectedItems.Lives > 0)
         {
             CollectedItems.Lives--;
+            CollectedItems.AkuAkus = 0;
             IsGameOver = false;
+            LastCheckPoint.LoadLastCheckpoint();
+            CrateSystem.ResetCrates();
         }
         else
         {
