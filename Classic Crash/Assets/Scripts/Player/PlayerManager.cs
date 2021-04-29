@@ -7,16 +7,26 @@ public class PlayerManager : MonoBehaviour
     CrateSystem CrateSystem;
     public ItemsCollected CollectedItems;
 
+    private bool IsGameOver;
+
     private void Awake()
     {
+        IsGameOver = false;
         CrateSystem = GetComponent<CrateSystem>();
     }
 
     public void PlayerHit(Transform Player)
     {
-        WithdrawLife();
-        Player.GetComponent<InputManager>().LoadLastCheckpoint();
-        CrateSystem.ResetCrates();
+        CheckLifeTotal();
+        if (IsGameOver)
+        {
+            GameOver();
+        }
+        else
+        {
+            Player.GetComponent<InputManager>().LoadLastCheckpoint();
+            CrateSystem.ResetCrates();
+        }
     }
 
     public void AddWumpa()
@@ -37,15 +47,22 @@ public class PlayerManager : MonoBehaviour
         CollectedItems.Lives++;
     }
 
-    public void WithdrawLife()
+    public void CheckLifeTotal()
     {
-        if(CollectedItems.Lives > 0)
+        if (CollectedItems.Lives > 0)
         {
             CollectedItems.Lives--;
+            IsGameOver = false;
         }
         else
         {
-            Debug.Log("Game Over");
+            IsGameOver = true;
+            GameOver();
         }
+    }
+
+    public void GameOver()
+    {
+        Debug.Log("Game Over");
     }
 }
