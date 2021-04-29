@@ -8,7 +8,7 @@ public class Gemsystem : MonoBehaviour
 {
     public GameObject CrateGem;
     public GameEvent DisableTotalCrates;
-    public ItemsCollected CollectedItems;
+    public ItemsCollected CollectedGems;
     public AllGems AllGemsAvailable;
 
     [HideInInspector]
@@ -32,7 +32,7 @@ public class Gemsystem : MonoBehaviour
     private void GetCollectedGems()
     {
         GemsCollected = new List<GemBase>();
-        foreach (GemBase Gem in CollectedItems.GemsCollected)
+        foreach (GemBase Gem in CollectedGems.GemsCollected)
         {
             GemsCollected.Add(Gem);
         }
@@ -109,6 +109,6 @@ public class Gemsystem : MonoBehaviour
 
     public void SaveGemsCollected()
     {
-        CollectedItems.GemsCollected = GemsCollected;
+        CollectedGems.GemsCollected = GemsCollected;
     }
 }

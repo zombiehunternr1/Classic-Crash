@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerManager : MonoBehaviour
 {
     CrateSystem CrateSystem;
+    public ItemsCollected CollectedItems;
 
     private void Awake()
     {
