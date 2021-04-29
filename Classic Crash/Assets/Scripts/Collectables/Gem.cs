@@ -5,9 +5,15 @@ using UnityEngine;
 public class Gem : MonoBehaviour, IInteractable
 {
     private GemSpawner GemObject;
+    private Animator Anim;
     private void Awake()
     {
         GemObject = GetComponent<GemSpawner>();
+        Anim = GetComponent<Animator>();
+        if(GemObject.Gemtype.Type != GemBase.GemColor.BoxCrate)
+        {
+            Anim.SetTrigger("Spawn");
+        }
     }
 
     public void Interacting(int side)

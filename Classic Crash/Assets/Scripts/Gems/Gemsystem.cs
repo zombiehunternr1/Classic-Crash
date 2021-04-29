@@ -65,7 +65,7 @@ public class Gemsystem : MonoBehaviour
                 if(CollectedGem.Level == Level)
                 {                  
                     DisableGemTypeSpawner(CollectedGem);
-                }                   
+                }
             }
         }
     }
@@ -98,6 +98,7 @@ public class Gemsystem : MonoBehaviour
         {
             var TotalCrates = location.gameObject.GetComponent<TotalCrates>();
             CrateGem.transform.position = location.position;
+            CrateGem.GetComponent<Animator>().SetTrigger("Spawn");
             TotalCrates.gameObject.SetActive(false);
         }
     }
