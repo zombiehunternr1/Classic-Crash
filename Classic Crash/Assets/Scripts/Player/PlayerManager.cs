@@ -6,7 +6,7 @@ public class PlayerManager : MonoBehaviour
 {
     public ItemsCollected CollectedItems;
 
-    private GameObject AkuAkuPlayerPosition;
+    public GameObject AkuAkuPlayerPosition;
     private CrateSystem CrateSystem;
     private InputManager Player;
 
@@ -16,8 +16,8 @@ public class PlayerManager : MonoBehaviour
     private void Awake()
     {
         CrateSystem = GetComponent<CrateSystem>();
-        AkuAkuPlayerPosition = FindObjectOfType<Animator>().gameObject;
-        StopInvinsibility();       
+        AkuAkuPlayerPosition = FindObjectOfType<InputManager>().GetComponentInChildren<Animator>().gameObject;
+        StopInvinsibility();
     }
 
     public void PlayerHit(Transform PlayerHit)
@@ -53,7 +53,7 @@ public class PlayerManager : MonoBehaviour
         {
             CollectedItems.AkuAkus++;
             GameManager.Instance.SFXAkuAkuAdd();
-            AkuAkuPlayerPosition.transform.GetChild(AkuAkuPlayerPosition.transform.childCount - 1).GetComponent<MeshRenderer>().enabled = true;
+            AkuAkuPlayerPosition.GetComponentInChildren<MeshRenderer>().enabled = true;
         }
         else
         {
@@ -81,21 +81,18 @@ public class PlayerManager : MonoBehaviour
         GameManager.Instance.SFXStopInvinsiblility();
         if (CollectedItems.AkuAkus != 0)
         {
-            if (CollectedItems.AkuAkus == 3)
+            if (CollectedItems.AkuAkus >= 3)
             {
                 CollectedItems.AkuAkus--;
             }
-            if(AkuAkuPlayerPosition != null)
+            if (AkuAkuPlayerPosition != null)
             {
-                AkuAkuPlayerPosition.transform.GetChild(AkuAkuPlayerPosition.transform.childCount - 1).GetComponent<MeshRenderer>().enabled = true;
+                AkuAkuPlayerPosition.GetComponentInChildren<MeshRenderer>().enabled = true;
             }
         }
         else
         {
-            if(AkuAkuPlayerPosition != null)
-            {
-                AkuAkuPlayerPosition.transform.GetChild(AkuAkuPlayerPosition.transform.childCount - 1).GetComponent<MeshRenderer>().enabled = false;
-            }
+            AkuAkuPlayerPosition.GetComponentInChildren<MeshRenderer>().enabled = false;
         }
     }
 
@@ -125,7 +122,7 @@ public class PlayerManager : MonoBehaviour
         if (CollectedItems.AkuAkus == 0)
         {
             GameManager.Instance.SFXWithdrawAkuAku();
-            AkuAkuPlayerPosition.transform.GetChild(0).gameObject.SetActive(false);
+            AkuAkuPlayerPosition.GetComponentInChildren<MeshRenderer>().enabled = false;
         }
         else if(CollectedItems.AkuAkus > 0)
         {
