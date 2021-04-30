@@ -78,7 +78,7 @@ public class Activator : MonoBehaviour, IInteractable
     {
         if(Side <= 2)
             StartCoroutine(ActivateHidden());
-        else if(Side >= 7)
+        else if(Side >= 9)
             StartCoroutine(ActivateHidden());
     }
 

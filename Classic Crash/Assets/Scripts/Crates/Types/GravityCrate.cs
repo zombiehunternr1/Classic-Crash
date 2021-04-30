@@ -63,11 +63,14 @@ public class GravityCrate : MonoBehaviour, IInteractable
                 InputManager Player = MyRayHit.collider.GetComponent<InputManager>();
                 if(Player != null)
                 {
-                    if (CanHit)
+                    if (!Player.PlayerManager.IsInvinsible)
                     {
-                        StartCoroutine(TempDisable(Player));
-                        Debug.Log("Hit player");
-                    }
+                        if (CanHit)
+                        {
+                            StartCoroutine(TempDisable(Player));
+                            Debug.Log("Hit player");
+                        }
+                    }                 
                 }
             }
         }

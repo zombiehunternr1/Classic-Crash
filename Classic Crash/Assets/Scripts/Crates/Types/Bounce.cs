@@ -38,14 +38,35 @@ public class Bounce : MonoBehaviour, ICrateBase
                     BreakAfterX();
                     Bouncing();
                 }
-                else if(Side >= 7)
+                else if(Side == 7)
                     DisableCrate();
+                else if(Side == 8)
+                {
+                    CrateBroken.Raise();
+                    AddWumpa.RaiseInt(5);
+                    gameObject.SetActive(false);
+                }
+                else if(Side == 9)
+                {
+                    AutoAdd = true;
+                    DisableCrate();
+                }
                 break;
             case CrateType.BreakInstant:
                 if(Side == 1)
+                {
                     Bouncing();
-                else if(Side >=7)
-                DisableCrate();
+                }                   
+                else if(Side == 7 || Side == 8)
+                {
+                    AutoAdd = true;
+                    DisableCrate();
+                }
+                else if(Side == 9)
+                {
+                    CrateBroken.Raise();
+                    gameObject.SetActive(false);
+                }
                 break;
         }
     }

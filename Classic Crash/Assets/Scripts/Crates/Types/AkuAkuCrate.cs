@@ -21,7 +21,7 @@ public class AkuAkuCrate : MonoBehaviour, ICrateBase
             AutoAdd = true;
             SpawnAkuAku();
         }
-        else if (Side >= 9)
+        else if (Side == 9)
         {
             DisableCrate();
         }

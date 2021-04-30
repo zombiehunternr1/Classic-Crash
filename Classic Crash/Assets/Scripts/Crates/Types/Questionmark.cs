@@ -29,7 +29,11 @@ public class Questionmark : MonoBehaviour, ICrateBase, ISpawnable
             case 7:
                 SpawnItem();
                 break;
-            case 10:
+            case 8:
+                AutoAdd = true;
+                SpawnItem();
+                break;
+            case 9:
                 DisableCrate();
                 break;
         }

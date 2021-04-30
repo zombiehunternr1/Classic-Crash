@@ -12,7 +12,7 @@ public class CrateSystem : MonoBehaviour
 
     private List<GameObject> InteractCrates = new List<GameObject>();
 
-    private int CurrentlyBrokenAmount;
+    public int CurrentlyBrokenAmount;
 
     private void Awake()
     {

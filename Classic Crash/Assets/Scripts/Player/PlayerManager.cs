@@ -6,11 +6,12 @@ public class PlayerManager : MonoBehaviour
 {
     public ItemsCollected CollectedItems;
 
-    public GameObject AkuAkuPlayerPosition;
+    [HideInInspector]
+    public bool IsInvinsible;
+
+    private GameObject AkuAkuPlayerPosition;
     private CrateSystem CrateSystem;
     private InputManager Player;
-
-    private bool IsInvinsible;
     private float InvinsibleTimer = 21;
     private Vector3 AkuAkuOriginalPos = new Vector3(1,0,0);
     private Vector3 AkuAkuFrontFacePos = new Vector3(0, 0, 1);

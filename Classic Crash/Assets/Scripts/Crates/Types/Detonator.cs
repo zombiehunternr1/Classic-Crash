@@ -34,7 +34,7 @@ public class Detonator : MonoBehaviour, IInteractable
     {
         if (Side <= 2)
             Detonate();
-        else if (Side == 7)
+        else if (Side == 8)
             Detonate();
     }
 

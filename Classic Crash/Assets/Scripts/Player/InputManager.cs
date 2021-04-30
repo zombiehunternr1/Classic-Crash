@@ -16,13 +16,14 @@ public class InputManager : MonoBehaviour
     private bool HoldJump;
     private float JumpTimer = 0.4f;
 
+    [HideInInspector]
+    public PlayerManager PlayerManager;
     private PlayerControls PlayerControls;
     private Vector2 MovementInput;
     private Rigidbody RB;
     private BoxCollider HitBox;
 
     private Vector3 PlayerMovement;
-
     private Vector3 LastCheckpointPosition;
 
     //Enums to help check which side the player hit a certain object or with his attack.
@@ -30,6 +31,10 @@ public class InputManager : MonoBehaviour
 
     private void OnEnable()
     {
+        if(PlayerManager == null)
+        {
+            PlayerManager = FindObjectOfType<PlayerManager>();
+        }
         if (RB == null)
         {
             RB = GetComponent<Rigidbody>();
@@ -146,20 +151,20 @@ public class InputManager : MonoBehaviour
                 Crate.Break((int)ReturnDirection(gameObject, hitCollider.gameObject));
             }
             IInteractable Item = (IInteractable)hitCollider.gameObject.GetComponent(typeof(IInteractable));
-            if(Item != null)
+            if (Item != null)
             {
                 Item.Interacting((int)ReturnDirection(gameObject, hitCollider.gameObject));
             }
             HurtPlayer Player = hitCollider.GetComponent<HurtPlayer>();
-            if(Player != null)
+            if (Player != null)
             {
                 Player.GotHit(this);
             }
         }
         RaycastHit MyRayHit;
-        if(Physics.Raycast(transform.position, -Vector3.up, out MyRayHit))
+        if (Physics.Raycast(transform.position, -Vector3.up, out MyRayHit))
         {
-            if(MyRayHit.collider != null)
+            if (MyRayHit.collider != null)
             {
                 ICrateBase crate = (ICrateBase)MyRayHit.collider.GetComponent(typeof(ICrateBase));
                 if (crate != null)
@@ -213,6 +218,10 @@ public class InputManager : MonoBehaviour
     {
         HitPlayerDirection HitDirection = HitPlayerDirection.None;
 
+        if (PlayerManager.IsInvinsible)
+        {
+            return HitPlayerDirection.Invincibility;
+        }
         if (Spinning)
         {
             return HitPlayerDirection.Spin;

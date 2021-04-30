@@ -43,7 +43,10 @@ public class TNT : MonoBehaviour, ICrateBase
             case 7:
                 Explode();
                 break;
-            case 10:
+            case 8:
+                Explode();
+                break;
+            case 9:
                 Explode();
                 break;
         }

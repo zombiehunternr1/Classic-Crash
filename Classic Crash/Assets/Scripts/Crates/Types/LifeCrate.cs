@@ -22,7 +22,7 @@ public class LifeCrate : MonoBehaviour, ICrateBase
             AutoAdd = true;
             SpawnLife();
         }
-        else if(Side >= 9)
+        else if(Side == 9)
         {
             DisableCrate();   
         }

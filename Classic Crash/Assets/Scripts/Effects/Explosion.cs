@@ -24,19 +24,22 @@ public class Explosion : MonoBehaviour, IInteractable
             ICrateBase Crate = (ICrateBase)hitCollider.gameObject.GetComponent(typeof(ICrateBase));
             if (Crate != null)
             {
-                Crate.Break(10);
+                Crate.Break(9);
             }
             IInteractable Item = (IInteractable)hitCollider.gameObject.GetComponent(typeof(IInteractable));
             if(Item != null)
             {
                 if (!hitCollider.gameObject.GetComponent<Explosion>())
                 {
-                    Item.Interacting(10);
+                    Item.Interacting(9);
                 }
             }
             else if (hitCollider.gameObject.GetComponent<InputManager>())
             {
-                Debug.Log("Hit player");
+                if (!hitCollider.GetComponent<InputManager>().PlayerManager.IsInvinsible)
+                {
+                    Debug.Log("Hit player");
+                }
             }
         }
     }

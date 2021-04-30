@@ -93,7 +93,7 @@ public class Checkpoint : MonoBehaviour, ICrateBase
                 CurrentlyBrokenAmount++;
             }
         }
-        UpdateCrateCount.RaiseInt(CurrentlyBrokenAmount);
+        UpdateCrateCount.RaiseInt(CurrentlyBrokenAmount + 1);
     }
 
     public void DisableCrate()
