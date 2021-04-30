@@ -22,16 +22,7 @@ public class PlayerManager : MonoBehaviour
         GameManager = FindObjectOfType<GameSaveManager>();
 
         SFXAkuAku = GameManager.GetComponentInChildren<SFXAkuAku>();
-        SFXAkuAku.StopInvinsibilitySFX();
-
-        if (CollectedItems.AkuAkus > 0)
-        {
-            if (CollectedItems.AkuAkus == 3)
-            {
-                CollectedItems.AkuAkus--;                
-            }
-            AkuAkuPlayerPosition.transform.GetChild(AkuAkuPlayerPosition.transform.childCount - 1).gameObject.SetActive(true);
-        }
+        StopInvinsibilitySFX();       
     }
 
     public void PlayerHit(Transform PlayerHit)
@@ -88,6 +79,23 @@ public class PlayerManager : MonoBehaviour
         else if(CollectedItems.AkuAkus > 3)
         {
             CollectedItems.AkuAkus = 3;
+        }
+    }
+
+    public void StopInvinsibilitySFX()
+    {
+        SFXAkuAku.StopInvinsibilitySFX();
+        if (CollectedItems.AkuAkus > 0)
+        {
+            if (CollectedItems.AkuAkus == 3)
+            {
+                CollectedItems.AkuAkus--;
+            }
+            AkuAkuPlayerPosition.transform.GetChild(AkuAkuPlayerPosition.transform.childCount - 1).gameObject.SetActive(true);
+        }
+        else
+        {
+            AkuAkuPlayerPosition.transform.GetChild(AkuAkuPlayerPosition.transform.childCount - 1).gameObject.SetActive(false);
         }
     }
 
