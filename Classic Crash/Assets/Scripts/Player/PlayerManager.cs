@@ -129,7 +129,6 @@ public class PlayerManager : MonoBehaviour
         else if(CollectedItems.AkuAkus > 0)
         {
             GameManager.Instance.SFXWithdrawAkuAku();
-            Debug.Log("Temporarely Invulnerable");
         }
         else
         {
