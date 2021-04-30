@@ -22,7 +22,7 @@ public class PlayerManager : MonoBehaviour
         GameManager = FindObjectOfType<GameSaveManager>();
 
         SFXAkuAku = GameManager.GetComponentInChildren<SFXAkuAku>();
-        StopInvinsibilitySFX();       
+        StopInvinsibility();       
     }
 
     public void PlayerHit(Transform PlayerHit)
@@ -58,7 +58,7 @@ public class PlayerManager : MonoBehaviour
         {
             CollectedItems.AkuAkus++;
             SFXAkuAku.PlayAddSFX();
-            AkuAkuPlayerPosition.transform.GetChild(0).gameObject.SetActive(true);
+            AkuAkuPlayerPosition.transform.GetChild(AkuAkuPlayerPosition.transform.childCount - 1).GetComponent<Renderer>().enabled = true;
         }
         else
         {
@@ -82,20 +82,26 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
-    public void StopInvinsibilitySFX()
+    public void StopInvinsibility()
     {
         SFXAkuAku.StopInvinsibilitySFX();
-        if (CollectedItems.AkuAkus > 0)
+        if (CollectedItems.AkuAkus != 0)
         {
             if (CollectedItems.AkuAkus == 3)
             {
                 CollectedItems.AkuAkus--;
             }
-            AkuAkuPlayerPosition.transform.GetChild(AkuAkuPlayerPosition.transform.childCount - 1).gameObject.SetActive(true);
+            if(AkuAkuPlayerPosition != null)
+            {
+                AkuAkuPlayerPosition.transform.GetChild(AkuAkuPlayerPosition.transform.childCount - 1).GetComponent<Renderer>().enabled = true;
+            }
         }
         else
         {
-            AkuAkuPlayerPosition.transform.GetChild(AkuAkuPlayerPosition.transform.childCount - 1).gameObject.SetActive(false);
+            if(AkuAkuPlayerPosition != null)
+            {
+                AkuAkuPlayerPosition.transform.GetChild(AkuAkuPlayerPosition.transform.childCount - 1).GetComponent<Renderer>().enabled = false;
+            }
         }
     }
 

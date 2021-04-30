@@ -260,7 +260,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 6227356818941958945}
         m_TargetAssemblyTypeName: PlayerManager, Assembly-CSharp
-        m_MethodName: StopInvinsibilitySFX
+        m_MethodName: StopInvinsibility
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
