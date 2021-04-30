@@ -4,11 +4,12 @@ using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 
-public class GameSaveManager : MonoBehaviour
+public class GameManager : MonoBehaviour
 {
-    public static GameSaveManager Instance;
-
+    public static GameManager Instance;
     public ItemsCollected PlayerItems;
+
+    private SFXAkuAku SFXAkuAku;
 
     private string SafePath = "/game_save";
 
@@ -23,6 +24,7 @@ public class GameSaveManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        SFXAkuAku = GetComponentInChildren<SFXAkuAku>();
     }
 
     private bool IsSaveFile()
@@ -59,5 +61,25 @@ public class GameSaveManager : MonoBehaviour
                 file.Close();
             }
         }
+    }
+
+    public void SFXAkuAkuAdd()
+    {
+        SFXAkuAku.PlayAddSFX();
+    }
+
+    public void SFXWithdrawAkuAku()
+    {
+        SFXAkuAku.PlayWithdrawSFX();
+    }
+
+    public void SFXInvinsibility()
+    {
+        SFXAkuAku.PlayInvinsibilitySFX();
+    }
+
+    public void SFXStopInvinsiblility()
+    {
+        SFXAkuAku.StopInvinsibility();
     }
 }

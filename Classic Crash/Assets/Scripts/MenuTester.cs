@@ -12,11 +12,11 @@ public class MenuTester : MonoBehaviour
 
     public void SaveGame()
     {
-        GameSaveManager.Instance.SaveGame();
+        GameManager.Instance.SaveGame();
     }
 
     public void LoadGame()
     {
-        GameSaveManager.Instance.LoadGame();
+        GameManager.Instance.LoadGame();
     }
 }

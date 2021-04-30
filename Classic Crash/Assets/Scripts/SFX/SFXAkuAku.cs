@@ -36,7 +36,7 @@ public class SFXAkuAku : MonoBehaviour
         SFXAkuAkuSource.PlayOneShot(SFXInvinsibility);
     }
 
-    public void StopInvinsibilitySFX()
+    public void StopInvinsibility()
     {
         SFXAkuAkuSource.Stop();
     }

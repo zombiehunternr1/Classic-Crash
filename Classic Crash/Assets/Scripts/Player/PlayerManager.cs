@@ -7,10 +7,8 @@ public class PlayerManager : MonoBehaviour
     public ItemsCollected CollectedItems;
 
     private GameObject AkuAkuPlayerPosition;
-    private GameSaveManager GameManager;
     private CrateSystem CrateSystem;
     private InputManager Player;
-    private SFXAkuAku SFXAkuAku;
 
     private bool IsInvinsible;
     private float InvinsibleTimer = 21;
@@ -19,9 +17,6 @@ public class PlayerManager : MonoBehaviour
     {
         CrateSystem = GetComponent<CrateSystem>();
         AkuAkuPlayerPosition = FindObjectOfType<Animator>().gameObject;
-        GameManager = FindObjectOfType<GameSaveManager>();
-
-        SFXAkuAku = GameManager.GetComponentInChildren<SFXAkuAku>();
         StopInvinsibility();       
     }
 
@@ -57,13 +52,13 @@ public class PlayerManager : MonoBehaviour
         if (CollectedItems.AkuAkus == 0)
         {
             CollectedItems.AkuAkus++;
-            SFXAkuAku.PlayAddSFX();
-            AkuAkuPlayerPosition.transform.GetChild(AkuAkuPlayerPosition.transform.childCount - 1).GetComponent<Renderer>().enabled = true;
+            GameManager.Instance.SFXAkuAkuAdd();
+            AkuAkuPlayerPosition.transform.GetChild(AkuAkuPlayerPosition.transform.childCount - 1).GetComponent<MeshRenderer>().enabled = true;
         }
         else
         {
             CollectedItems.AkuAkus++;
-            SFXAkuAku.PlayAddSFX();
+            GameManager.Instance.SFXAkuAkuAdd();
             CheckAkuAkuCount();
         }
     }
@@ -72,8 +67,7 @@ public class PlayerManager : MonoBehaviour
     {
         if(CollectedItems.AkuAkus == 3 && !IsInvinsible)
         {
-            Debug.Log("Activate invinsibility");
-            SFXAkuAku.PlayInvinsibilitySFX();
+            GameManager.Instance.SFXInvinsibility();
             StartCoroutine(InvinsibilityTimer());
         }
         else if(CollectedItems.AkuAkus > 3)
@@ -84,7 +78,7 @@ public class PlayerManager : MonoBehaviour
 
     public void StopInvinsibility()
     {
-        SFXAkuAku.StopInvinsibilitySFX();
+        GameManager.Instance.SFXStopInvinsiblility();
         if (CollectedItems.AkuAkus != 0)
         {
             if (CollectedItems.AkuAkus == 3)
@@ -93,14 +87,14 @@ public class PlayerManager : MonoBehaviour
             }
             if(AkuAkuPlayerPosition != null)
             {
-                AkuAkuPlayerPosition.transform.GetChild(AkuAkuPlayerPosition.transform.childCount - 1).GetComponent<Renderer>().enabled = true;
+                AkuAkuPlayerPosition.transform.GetChild(AkuAkuPlayerPosition.transform.childCount - 1).GetComponent<MeshRenderer>().enabled = true;
             }
         }
         else
         {
             if(AkuAkuPlayerPosition != null)
             {
-                AkuAkuPlayerPosition.transform.GetChild(AkuAkuPlayerPosition.transform.childCount - 1).GetComponent<Renderer>().enabled = false;
+                AkuAkuPlayerPosition.transform.GetChild(AkuAkuPlayerPosition.transform.childCount - 1).GetComponent<MeshRenderer>().enabled = false;
             }
         }
     }
@@ -130,12 +124,12 @@ public class PlayerManager : MonoBehaviour
         CollectedItems.AkuAkus--;
         if (CollectedItems.AkuAkus == 0)
         {
-            SFXAkuAku.PlayWithdrawSFX();
+            GameManager.Instance.SFXWithdrawAkuAku();
             AkuAkuPlayerPosition.transform.GetChild(0).gameObject.SetActive(false);
         }
         else if(CollectedItems.AkuAkus > 0)
         {
-            SFXAkuAku.PlayWithdrawSFX();
+            GameManager.Instance.SFXWithdrawAkuAku();
             Debug.Log("Temporarely Invulnerable");
         }
         else
