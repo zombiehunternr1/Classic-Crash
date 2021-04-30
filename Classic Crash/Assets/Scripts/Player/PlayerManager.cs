@@ -24,6 +24,10 @@ public class PlayerManager : MonoBehaviour
 
         if (CollectedItems.AkuAkus > 0)
         {
+            if (CollectedItems.AkuAkus == 3)
+            {
+                CollectedItems.AkuAkus--;
+            }
             AkuAkuPlayerPosition.transform.GetChild(0).gameObject.SetActive(true);
         }
     }
