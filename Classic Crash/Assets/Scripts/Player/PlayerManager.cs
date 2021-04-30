@@ -12,6 +12,8 @@ public class PlayerManager : MonoBehaviour
 
     private bool IsInvinsible;
     private float InvinsibleTimer = 21;
+    private Vector3 AkuAkuOriginalPos = new Vector3(1,0,0);
+    private Vector3 AkuAkuFrontFacePos = new Vector3(0, 0, 1);
 
     private void Awake()
     {
@@ -138,12 +140,16 @@ public class PlayerManager : MonoBehaviour
 
     private IEnumerator InvinsibilityTimer()
     {
+        AkuAkuPlayerPosition.GetComponent<Animator>().enabled = false;
+        AkuAkuPlayerPosition.transform.localPosition = AkuAkuFrontFacePos;
         IsInvinsible = true;
         while(InvinsibleTimer > 0)
         {
             InvinsibleTimer -= Time.deltaTime;
             yield return InvinsibleTimer;
         }
+        AkuAkuPlayerPosition.transform.localPosition = AkuAkuOriginalPos;
+        AkuAkuPlayerPosition.GetComponent<Animator>().enabled = true;
         IsInvinsible = false;
         CollectedItems.AkuAkus--;
     }
