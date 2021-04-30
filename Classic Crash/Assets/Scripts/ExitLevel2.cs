@@ -12,7 +12,7 @@ public class ExitLevel2 : MonoBehaviour
         if (collision.gameObject.GetComponent<InputManager>())
         {
             SaveProgress.Raise();
-            SceneManager.LoadScene("Reload");
+            SceneManager.LoadScene("TestMenu");
         }
     }
 }

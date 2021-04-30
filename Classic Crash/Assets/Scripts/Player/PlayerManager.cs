@@ -4,15 +4,13 @@ using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
 {
-    public GameObject AkuAkuPlayerPosition;
-    CrateSystem CrateSystem;
     public ItemsCollected CollectedItems;
 
+    private GameObject AkuAkuPlayerPosition;
+    private GameSaveManager GameManager;
+    private CrateSystem CrateSystem;
     private InputManager Player;
-    private AudioSource SFXAkuAkuSource;
-    private AudioClip SFXAkaAkuAdd;
-    private AudioClip SFXAkuAkuWithdraw;
-    private AudioClip SFXInvinsibility;
+    private SFXAkuAku SFXAkuAku;
 
     private bool IsInvinsible;
     private float InvinsibleTimer = 21;
@@ -20,15 +18,19 @@ public class PlayerManager : MonoBehaviour
     private void Awake()
     {
         CrateSystem = GetComponent<CrateSystem>();
-        GetSFXAkuAku();
+        AkuAkuPlayerPosition = FindObjectOfType<Animator>().gameObject;
+        GameManager = FindObjectOfType<GameSaveManager>();
+
+        SFXAkuAku = GameManager.GetComponentInChildren<SFXAkuAku>();
+        SFXAkuAku.StopInvinsibilitySFX();
 
         if (CollectedItems.AkuAkus > 0)
         {
             if (CollectedItems.AkuAkus == 3)
             {
-                CollectedItems.AkuAkus--;
+                CollectedItems.AkuAkus--;                
             }
-            AkuAkuPlayerPosition.transform.GetChild(0).gameObject.SetActive(true);
+            AkuAkuPlayerPosition.transform.GetChild(AkuAkuPlayerPosition.transform.childCount - 1).gameObject.SetActive(true);
         }
     }
 
@@ -64,13 +66,13 @@ public class PlayerManager : MonoBehaviour
         if (CollectedItems.AkuAkus == 0)
         {
             CollectedItems.AkuAkus++;
-            SFXAkuAkuSource.PlayOneShot(SFXAkaAkuAdd);
+            SFXAkuAku.PlayAddSFX();
             AkuAkuPlayerPosition.transform.GetChild(0).gameObject.SetActive(true);
         }
         else
         {
             CollectedItems.AkuAkus++;
-            SFXAkuAkuSource.PlayOneShot(SFXAkaAkuAdd);
+            SFXAkuAku.PlayAddSFX();
             CheckAkuAkuCount();
         }
     }
@@ -80,7 +82,7 @@ public class PlayerManager : MonoBehaviour
         if(CollectedItems.AkuAkus == 3 && !IsInvinsible)
         {
             Debug.Log("Activate invinsibility");
-            SFXAkuAkuSource.PlayOneShot(SFXInvinsibility);
+            SFXAkuAku.PlayInvinsibilitySFX();
             StartCoroutine(InvinsibilityTimer());
         }
         else if(CollectedItems.AkuAkus > 3)
@@ -114,12 +116,12 @@ public class PlayerManager : MonoBehaviour
         CollectedItems.AkuAkus--;
         if (CollectedItems.AkuAkus == 0)
         {
-            SFXAkuAkuSource.PlayOneShot(SFXAkuAkuWithdraw);
+            SFXAkuAku.PlayWithdrawSFX();
             AkuAkuPlayerPosition.transform.GetChild(0).gameObject.SetActive(false);
         }
         else if(CollectedItems.AkuAkus > 0)
         {
-            SFXAkuAkuSource.PlayOneShot(SFXAkuAkuWithdraw);
+            SFXAkuAku.PlayWithdrawSFX();
             Debug.Log("Temporarely Invulnerable");
         }
         else
@@ -127,15 +129,6 @@ public class PlayerManager : MonoBehaviour
             CollectedItems.AkuAkus = 0;
             CheckLifeTotal();
         }
-    }
-
-    private void GetSFXAkuAku()
-    {
-        AudioSource[] AudioSources = AkuAkuPlayerPosition.GetComponents<AudioSource>();
-        SFXAkuAkuSource = AudioSources[0];
-        SFXAkaAkuAdd = AudioSources[0].clip;
-        SFXAkuAkuWithdraw = AudioSources[1].clip;
-        SFXInvinsibility = AudioSources[2].clip;
     }
 
     private IEnumerator InvinsibilityTimer()
