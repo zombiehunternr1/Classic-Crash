@@ -96,6 +96,7 @@ public class Gemsystem : MonoBehaviour
     {
         if (location.gameObject.GetComponent<TotalCrates>())
         {
+            GameManager.Instance.SFXCrateBreak();
             var TotalCrates = location.gameObject.GetComponent<TotalCrates>();
             CrateGem.transform.position = location.position;
             CrateGem.GetComponent<Animator>().SetTrigger("Spawn");
