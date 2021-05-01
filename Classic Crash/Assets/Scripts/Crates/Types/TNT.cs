@@ -113,6 +113,8 @@ public class TNT : MonoBehaviour, ICrateBase
 
     public void Explode()
     {
+        GameManager.Instance.SFXStopTNTCountdown();
+        GameManager.Instance.SFXTNTExplode();
         DisableEmission();
         DisableCrate();
         Instantiate(Explosion, transform.position, Quaternion.identity);
@@ -146,6 +148,7 @@ public class TNT : MonoBehaviour, ICrateBase
 
     public void Countdown()
     {
+        GameManager.Instance.SFXTNTCountdown();
         AnimTNT.SetBool("Active", true);
     }
 }

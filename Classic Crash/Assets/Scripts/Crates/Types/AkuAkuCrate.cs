@@ -28,6 +28,7 @@ public class AkuAkuCrate : MonoBehaviour, ICrateBase
     }
     public void DisableCrate()
     {
+        GameManager.Instance.SFXCrateBreak();
         if (!IsBroken)
         {
             IsBroken = true;

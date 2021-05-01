@@ -30,6 +30,7 @@ public class Nitro : MonoBehaviour, ICrateBase
 
     public void Explode()
     {
+        GameManager.Instance.SFXNitroExplode();
         StopCoroutine(RandomHopCheck());
         DisableCrate();
         Instantiate(Explosion, transform.position, Quaternion.identity);
@@ -50,11 +51,13 @@ public class Nitro : MonoBehaviour, ICrateBase
         float SelectRandom = Random.Range(0, 1);
         if (SelectRandom < 0.5f && SmallhopsTriggered < 5)
         {
+            GameManager.Instance.SFXNitroSmalHop();
             SmallhopsTriggered++;
             AnimNitro.SetTrigger("SmallHop");
         }
         else
         {
+            GameManager.Instance.SFXNitroBigHop();
             SmallhopsTriggered = 0;
             AnimNitro.SetTrigger("BigHop");
         }

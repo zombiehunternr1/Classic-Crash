@@ -50,6 +50,8 @@ public class Checkpoint : MonoBehaviour, ICrateBase
 
     private void BreakableCheckpoint()
     {
+        GameManager.Instance.SFXCrateBreak();
+        GameManager.Instance.SFXCheckPoint();
         Instantiate(BrokenCrate, transform.position, Quaternion.identity);
         SaveProgress();
         DisableCrate();
@@ -57,6 +59,8 @@ public class Checkpoint : MonoBehaviour, ICrateBase
 
     private void UnbreakableCheckpoint()
     {
+        GameManager.Instance.SFXActivator();
+        GameManager.Instance.SFXCheckPoint();
         Instantiate(MetalCrate, transform.position, Quaternion.identity);
         SaveProgress();
         DisableCrate();

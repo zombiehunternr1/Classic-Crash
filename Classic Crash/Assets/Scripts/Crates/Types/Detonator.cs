@@ -34,7 +34,7 @@ public class Detonator : MonoBehaviour, IInteractable
     {
         if (Side <= 2)
             Detonate();
-        else if (Side == 8)
+        else if (Side == 7 || Side == 8)
             Detonate();
     }
 
@@ -42,6 +42,7 @@ public class Detonator : MonoBehaviour, IInteractable
     {
         if (!HasDetonated)
         {
+            GameManager.Instance.SFXActivator();
             Activation.SetBool("Active", true);
             gameObject.GetComponentInChildren<Renderer>().enabled = true;
             HasDetonated = true;            

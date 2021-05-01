@@ -43,6 +43,7 @@ public class Questionmark : MonoBehaviour, ICrateBase, ISpawnable
     {
         if (!IsBroken)
         {
+            GameManager.Instance.SFXCrateBreak();
             IsBroken = true;
             CrateBroken.Raise();
             gameObject.SetActive(false);

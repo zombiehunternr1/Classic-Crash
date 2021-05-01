@@ -785,9 +785,13 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 937861512394146697, guid: 54ea4c1bc4059e045b6d18c5fbf2d602, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4773758666335377724, guid: 54ea4c1bc4059e045b6d18c5fbf2d602, type: 3}
       propertyPath: CanBounce
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4773758666335377725, guid: 54ea4c1bc4059e045b6d18c5fbf2d602, type: 3}
       propertyPath: m_Name

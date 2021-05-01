@@ -40,7 +40,6 @@ public class Activator : MonoBehaviour, IInteractable
                 if (Crate.GetComponent<Nitro>()){
                     Crate.GetComponent<Nitro>().CanBounce = false;
                 }
-
                 int LastChild = Crate.transform.childCount;
                 if (LastChild > 0)
                 {
@@ -60,7 +59,7 @@ public class Activator : MonoBehaviour, IInteractable
                             {
                                 GameObject Child = Instantiate(GhostCrate, Crate.transform.position, Crate.transform.rotation);
                                 Child.transform.SetParent(Crate.transform);
-                                return;
+                                break;
                             }
                         }
                     }
@@ -78,7 +77,7 @@ public class Activator : MonoBehaviour, IInteractable
     {
         if(Side <= 2)
             StartCoroutine(ActivateHidden());
-        else if(Side >= 9)
+        else if(Side >= 7)
             StartCoroutine(ActivateHidden());
     }
 
@@ -86,6 +85,7 @@ public class Activator : MonoBehaviour, IInteractable
     {
         if (!IsActivated)
         {
+            GameManager.Instance.SFXActivator();
             IsActivated = true;
             Activation.SetBool("Active", true);
             foreach (GameObject Crate in Crates)
@@ -98,6 +98,7 @@ public class Activator : MonoBehaviour, IInteractable
                 Crate.GetComponentInChildren<Renderer>();
                 Crate.transform.GetChild(Crate.transform.childCount - 1).GetComponent<Renderer>().enabled = false;
                 Crate.GetComponent<Renderer>().enabled = true;
+                GameManager.Instance.SFXCrateActivating();
                 yield return new WaitForSeconds(ActivatingSpeed);
             }
         }      
