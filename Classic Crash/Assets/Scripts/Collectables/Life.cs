@@ -11,6 +11,7 @@ public class Life : MonoBehaviour, IInteractable
         if (Side >= 1 && Side <= 6 || Side >= 8 && Side <= 9)
             CollectItem();
         else if (Side == 7 || Side >= 10)
+            GameManager.Instance.SFXSpinAway();
             DestroyItem();
     }
 

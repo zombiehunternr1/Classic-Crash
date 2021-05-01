@@ -8,9 +8,10 @@ public class Wumpa : MonoBehaviour, IInteractable
     private int amount = 1;
     public void Interacting(int Side)
     {
-        if(Side >= 1 && Side <= 6 || Side >= 8 && Side <= 9)
+        if (Side >= 1 && Side <= 6 || Side >= 8 && Side <= 9)
             CollectItem();
-        else if(Side == 7 || Side >= 10)
+        else if (Side == 7 || Side >= 10)
+            GameManager.Instance.SFXSpinAway();
             DestroyItem();
     }
 

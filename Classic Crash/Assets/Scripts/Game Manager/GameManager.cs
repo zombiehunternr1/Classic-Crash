@@ -9,7 +9,8 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
     public ItemsCollected PlayerItems;
 
-    private SFXAkuAku SFXAkuAku;
+    public SFXAkuAku SFXAkuAku;
+    public SFXCollectables SFXCollectables;
 
     private string SafePath = "/game_save";
 
@@ -24,7 +25,6 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        SFXAkuAku = GetComponentInChildren<SFXAkuAku>();
     }
 
     private bool IsSaveFile()
@@ -81,5 +81,25 @@ public class GameManager : MonoBehaviour
     public void SFXStopInvinsiblility()
     {
         SFXAkuAku.StopInvinsibility();
+    }
+
+    public void SFXAddWumpa()
+    {
+        SFXCollectables.PlayWumpaAdd();
+    }
+
+    public void SFXAddLife()
+    {
+        SFXCollectables.PlayLifeAdd();
+    }
+
+    public void SFXGemCollected()
+    {
+        SFXCollectables.PlayGemCollected();
+    }
+
+    public void SFXSpinAway()
+    {
+        SFXCollectables.PlaySpinAway();
     }
 }

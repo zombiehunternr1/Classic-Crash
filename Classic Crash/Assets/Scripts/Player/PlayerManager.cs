@@ -34,6 +34,10 @@ public class PlayerManager : MonoBehaviour
 
     public void AddWumpa(int Amount)
     {
+        for(int i = 0; i < Amount; i++)
+        {
+            GameManager.Instance.SFXAddWumpa();
+        }
         if (CollectedItems.Wumpa >= 99)
         {
             CollectedItems.Wumpa = 0;
@@ -47,6 +51,7 @@ public class PlayerManager : MonoBehaviour
 
     public void AddLife()
     {
+        GameManager.Instance.SFXAddLife();
         CollectedItems.Lives++;
     }
 

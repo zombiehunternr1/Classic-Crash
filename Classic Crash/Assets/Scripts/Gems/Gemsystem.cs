@@ -105,6 +105,7 @@ public class Gemsystem : MonoBehaviour
 
     public void GemCollected(GemBase GemType)
     {
+        GameManager.Instance.SFXGemCollected();
         GemsCollected.Add(GemType);
     }
 
