@@ -6,6 +6,7 @@ public class Default : MonoBehaviour, ICrateBase, ISpawnable
 {
     public GameObject Item;
     public bool AutoAdd;
+    public bool HasGravity;
     public GameEvent CrateBroken;
     public GameEventInt AddWumpa;
 
@@ -42,6 +43,10 @@ public class Default : MonoBehaviour, ICrateBase, ISpawnable
     private void Awake()
     {
         RB = GetComponent<Rigidbody>();
+        if (!HasGravity)
+        {
+            RB.useGravity = false;
+        }
     }
 
     private void FixedUpdate()

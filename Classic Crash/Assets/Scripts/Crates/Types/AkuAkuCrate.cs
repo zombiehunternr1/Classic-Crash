@@ -6,10 +6,15 @@ public class AkuAkuCrate : MonoBehaviour, ICrateBase
 {
     public GameObject AkuAku;
     public bool AutoAdd;
+    public bool HasGravity;
     public GameEvent CrateBroken;
     public GameEvent AddAkuAku;
     [HideInInspector]
     public bool IsBroken;
+
+    private Rigidbody RB;
+    private bool CanBounce = true;
+
     public void Break(int Side)
     {
         if (Side <= 2)
@@ -26,6 +31,29 @@ public class AkuAkuCrate : MonoBehaviour, ICrateBase
             DisableCrate();
         }
     }
+
+    private void Awake()
+    {
+        RB = GetComponent<Rigidbody>();
+        if (!HasGravity)
+        {
+            RB.useGravity = false;
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        if (RB.velocity.y > 3 && CanBounce)
+        {
+            CanBounce = false;
+            RB.AddForce(transform.up * 0.1f, ForceMode.Impulse);
+        }
+        if (RB.velocity.y == 0)
+        {
+            CanBounce = true;
+        }
+    }
+
     public void DisableCrate()
     {
         GameManager.Instance.SFXCrateBreak();

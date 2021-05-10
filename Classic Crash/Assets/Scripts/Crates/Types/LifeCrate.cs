@@ -7,9 +7,13 @@ public class LifeCrate : MonoBehaviour, ICrateBase
     public GameObject Life;
     public GameEvent AddLife;
     public bool AutoAdd;
+    public bool HasGravity;
     public GameEvent CrateBroken;
     [HideInInspector]
     public bool IsBroken;
+
+    private Rigidbody RB;
+    private bool CanBounce = true;
 
     public void Break(int Side)
     {
@@ -25,6 +29,28 @@ public class LifeCrate : MonoBehaviour, ICrateBase
         else if(Side == 9)
         {
             DisableCrate();   
+        }
+    }
+
+    private void Awake()
+    {
+        RB = GetComponent<Rigidbody>();
+        if (!HasGravity)
+        {
+            RB.useGravity = false;
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        if (RB.velocity.y > 3 && CanBounce)
+        {
+            CanBounce = false;
+            RB.AddForce(transform.up * 0.1f, ForceMode.Impulse);
+        }
+        if (RB.velocity.y == 0)
+        {
+            CanBounce = true;
         }
     }
 

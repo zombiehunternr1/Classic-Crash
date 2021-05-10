@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2969576154794299961}
   - component: {fileID: 6456903168179412325}
   - component: {fileID: 4632331737346222342}
+  - component: {fileID: -9038360519488574065}
   m_Layer: 0
   m_Name: Questionmark Breakable Crate
   m_TagString: Untagged
@@ -114,6 +115,22 @@ MonoBehaviour:
   AddWumpa: {fileID: 11400000, guid: f82ac4f0a1e91a84492ef53485bbbcad, type: 2}
   AddLife: {fileID: 11400000, guid: 9ebfb660800920140b45dfe62e91a11b, type: 2}
   IsWumpa: 1
-  amount: 10
   AutoAdd: 0
+  amount: 10
   IsBroken: 0
+--- !u!54 &-9038360519488574065
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3618345120150303724}
+  serializedVersion: 2
+  m_Mass: 0.1
+  m_Drag: 0
+  m_AngularDrag: 0
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 122
+  m_CollisionDetection: 0

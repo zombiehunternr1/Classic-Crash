@@ -11,10 +11,14 @@ public class Questionmark : MonoBehaviour, ICrateBase, ISpawnable
     public GameEvent AddLife;
     public bool IsWumpa;
     public bool AutoAdd;
-    private bool WasLife = true;
+    public bool HasGravity;
     public int amount = 1;
     [HideInInspector]
     public bool IsBroken;
+
+    private bool WasLife = true;
+    private Rigidbody RB;
+    private bool CanBounce = true;
 
     public void Break(int side)
     {
@@ -36,6 +40,28 @@ public class Questionmark : MonoBehaviour, ICrateBase, ISpawnable
             case 9:
                 DisableCrate();
                 break;
+        }
+    }
+
+    private void Awake()
+    {
+        RB = GetComponent<Rigidbody>();
+        if (!HasGravity)
+        {
+            RB.useGravity = false;
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        if (RB.velocity.y > 3 && CanBounce)
+        {
+            CanBounce = false;
+            RB.AddForce(transform.up * 0.1f, ForceMode.Impulse);
+        }
+        if (RB.velocity.y == 0)
+        {
+            CanBounce = true;
         }
     }
 
