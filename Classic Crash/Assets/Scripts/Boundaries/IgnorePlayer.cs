@@ -17,4 +17,12 @@ public class IgnorePlayer : MonoBehaviour
             Physics.IgnoreCollision(Hitbox, collision.gameObject.GetComponent<BoxCollider>());
         }
     }
+
+    private void OnCollisionStay(Collision collision)
+    {
+        if (collision.gameObject.GetComponent<InputManager>())
+        {
+            Physics.IgnoreCollision(Hitbox, collision.gameObject.GetComponent<BoxCollider>());
+        }
+    }
 }
