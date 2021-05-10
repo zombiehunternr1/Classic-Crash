@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class TotalCrates : MonoBehaviour
 {
     public GameEventTransform CheckTotal;
+    [HideInInspector]
     public Text BoxCrateUI;
 
     private void Start()
