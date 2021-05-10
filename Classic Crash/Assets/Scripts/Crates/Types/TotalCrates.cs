@@ -1,20 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using TMPro;
 
 public class TotalCrates : MonoBehaviour
 {
     public GameEventTransform CheckTotal;
     [HideInInspector]
-    public Text BoxCrateUI;
-
-    private void Start()
-    {
-        Vector3 CratePos = Camera.main.WorldToScreenPoint(this.transform.position);
-        BoxCrateUI.transform.position = CratePos;
-    }
-
+    public TextMeshPro BoxCrateUI;
 
     private void OnTriggerEnter(Collider other)
     {
