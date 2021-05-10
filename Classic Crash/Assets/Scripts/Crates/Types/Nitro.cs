@@ -51,15 +51,21 @@ public class Nitro : MonoBehaviour, ICrateBase
         float SelectRandom = Random.Range(0, 1);
         if (SelectRandom < 0.5f && SmallhopsTriggered < 5)
         {
-            GameManager.Instance.SFXNitroSmalHop();
-            SmallhopsTriggered++;
-            AnimNitro.SetTrigger("SmallHop");
+            if (CanBounce)
+            {
+                AnimNitro.SetTrigger("SmallHop");
+                GameManager.Instance.SFXNitroSmalHop();
+                SmallhopsTriggered++;
+            }
         }
         else
         {
-            GameManager.Instance.SFXNitroBigHop();
-            SmallhopsTriggered = 0;
-            AnimNitro.SetTrigger("BigHop");
+            if (CanBounce)
+            {
+                AnimNitro.SetTrigger("BigHop");
+                GameManager.Instance.SFXNitroBigHop();
+                SmallhopsTriggered = 0;
+            }
         }
     }
 
