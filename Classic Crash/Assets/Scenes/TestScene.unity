@@ -336,6 +336,10 @@ PrefabInstance:
       propertyPath: m_Mass
       value: 0.1
       objectReference: {fileID: 0}
+    - target: {fileID: 1931187561, guid: 54ea4c1bc4059e045b6d18c5fbf2d602, type: 3}
+      propertyPath: m_AngularDrag
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4773758666335377725, guid: 54ea4c1bc4059e045b6d18c5fbf2d602, type: 3}
       propertyPath: m_Name
       value: Nitro (1)
@@ -516,6 +520,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1874442281, guid: 2ff385c3ae5225441b299830646ab1c7, type: 3}
+      propertyPath: m_AngularDrag
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2522164264643434941, guid: 2ff385c3ae5225441b299830646ab1c7, type: 3}
       propertyPath: m_Name
       value: Default Breakable Crate
@@ -526,15 +534,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2903510754071266055, guid: 2ff385c3ae5225441b299830646ab1c7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.96
+      value: -0.95
       objectReference: {fileID: 0}
     - target: {fileID: 2903510754071266055, guid: 2ff385c3ae5225441b299830646ab1c7, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.87
+      value: 2.61
       objectReference: {fileID: 0}
     - target: {fileID: 2903510754071266055, guid: 2ff385c3ae5225441b299830646ab1c7, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 2.76
+      value: 2.98
       objectReference: {fileID: 0}
     - target: {fileID: 2903510754071266055, guid: 2ff385c3ae5225441b299830646ab1c7, type: 3}
       propertyPath: m_LocalRotation.w
@@ -576,6 +584,14 @@ PrefabInstance:
     - target: {fileID: 1931187561, guid: 54ea4c1bc4059e045b6d18c5fbf2d602, type: 3}
       propertyPath: m_Mass
       value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1931187561, guid: 54ea4c1bc4059e045b6d18c5fbf2d602, type: 3}
+      propertyPath: m_AngularDrag
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4773758666335377699, guid: 54ea4c1bc4059e045b6d18c5fbf2d602, type: 3}
+      propertyPath: m_Material
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 4773758666335377725, guid: 54ea4c1bc4059e045b6d18c5fbf2d602, type: 3}
       propertyPath: m_Name

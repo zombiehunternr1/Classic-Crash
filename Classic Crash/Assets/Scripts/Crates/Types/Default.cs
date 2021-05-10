@@ -13,6 +13,8 @@ public class Default : MonoBehaviour, ICrateBase, ISpawnable
     public bool IsBroken;
 
     private int Amount = 1;
+    private Rigidbody RB;
+    private bool CanBounce = true;
 
     public void Break(int side)
     {
@@ -34,6 +36,24 @@ public class Default : MonoBehaviour, ICrateBase, ISpawnable
             case 9:
                 DisableCrate();
                 break;
+        }
+    }
+
+    private void Awake()
+    {
+        RB = GetComponent<Rigidbody>();
+    }
+
+    private void FixedUpdate()
+    {
+        if(RB.velocity.y > 3 && CanBounce)
+        {
+            CanBounce = false;
+            RB.AddForce(transform.up * 0.1f, ForceMode.Impulse);
+        }
+        if(RB.velocity.y == 0)
+        {
+            CanBounce = true;
         }
     }
 

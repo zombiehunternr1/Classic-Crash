@@ -62,7 +62,7 @@ public class Nitro : MonoBehaviour, ICrateBase
         {
             if (CanBounce)
             {
-                RB.AddForce(transform.up * 1f, ForceMode.Impulse);
+                RB.AddForce(transform.up * 0.7f, ForceMode.Impulse);
                 GameManager.Instance.SFXNitroBigHop();
                 SmallhopsTriggered = 0;
             }
