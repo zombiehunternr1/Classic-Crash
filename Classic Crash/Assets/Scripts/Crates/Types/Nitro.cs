@@ -10,13 +10,13 @@ public class Nitro : MonoBehaviour, ICrateBase
 
     [HideInInspector]
     public bool IsBroken;
-    private Animator AnimNitro;
     private int SmallhopsTriggered = 0;
     private float RandomCheck;
+    private Rigidbody RB;
 
     private void Start()
     {
-        AnimNitro = GetComponent<Animator>();
+        RB = GetComponent<Rigidbody>();
         if (CanBounce)
         {
             StartCoroutine(RandomHopCheck());
@@ -53,7 +53,7 @@ public class Nitro : MonoBehaviour, ICrateBase
         {
             if (CanBounce)
             {
-                AnimNitro.SetTrigger("SmallHop");
+                RB.AddForce(transform.up * 0.5f, ForceMode.Impulse);
                 GameManager.Instance.SFXNitroSmalHop();
                 SmallhopsTriggered++;
             }
@@ -62,7 +62,7 @@ public class Nitro : MonoBehaviour, ICrateBase
         {
             if (CanBounce)
             {
-                AnimNitro.SetTrigger("BigHop");
+                RB.AddForce(transform.up * 1f, ForceMode.Impulse);
                 GameManager.Instance.SFXNitroBigHop();
                 SmallhopsTriggered = 0;
             }
