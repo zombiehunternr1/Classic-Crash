@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6308996865568249622}
   - component: {fileID: 371080811770663226}
   - component: {fileID: 533517088752885471}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cristal
   m_TagString: Untagged
   m_Icon: {fileID: 0}

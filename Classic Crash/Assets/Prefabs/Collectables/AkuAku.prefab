@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1340461058255662386}
   - component: {fileID: 7268034164193920143}
   - component: {fileID: -5915605653680584826}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: AkuAku
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -90,7 +90,7 @@ GameObject:
   - component: {fileID: 2770032639009833052}
   - component: {fileID: 1287740970651373561}
   - component: {fileID: 3907451977175710515}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8150222540718308294}
   - component: {fileID: 4719009616638718232}
   - component: {fileID: 8629686268098214467}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Life
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -90,7 +90,7 @@ GameObject:
   - component: {fileID: 201770964514263690}
   - component: {fileID: 6682937732089663842}
   - component: {fileID: 5604177747718261448}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: model
   m_TagString: Untagged
   m_Icon: {fileID: 0}

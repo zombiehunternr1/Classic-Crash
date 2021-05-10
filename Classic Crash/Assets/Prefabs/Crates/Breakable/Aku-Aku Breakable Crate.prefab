@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1617388788}
   - component: {fileID: 1617388787}
   - component: {fileID: -5934119366219959760}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Aku-Aku Breakable Crate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -111,6 +111,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AkuAku: {fileID: 912024196376739780, guid: 398136c5590a07e43b5b0af5a2bac38b, type: 3}
   AutoAdd: 0
+  HasGravity: 0
   CrateBroken: {fileID: 11400000, guid: 5f965b2e97384fb4192d9b9b866aa59e, type: 2}
   AddAkuAku: {fileID: 11400000, guid: 2fecc180878a97f4888599fa556cb1c5, type: 2}
   IsBroken: 0

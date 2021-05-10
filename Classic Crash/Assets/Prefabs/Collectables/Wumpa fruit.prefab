@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5425802542499892225}
   - component: {fileID: 460183393655488823}
   - component: {fileID: 8118029522105152649}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Wumpa fruit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -90,7 +90,7 @@ GameObject:
   - component: {fileID: 3375039549480541164}
   - component: {fileID: 1138348492777847557}
   - component: {fileID: 6680946543775444221}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: model
   m_TagString: Untagged
   m_Icon: {fileID: 0}

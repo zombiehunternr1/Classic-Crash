@@ -42,10 +42,16 @@ public class Default : MonoBehaviour, ICrateBase, ISpawnable
 
     private void Awake()
     {
+        Physics.IgnoreLayerCollision(6, 7);
         RB = GetComponent<Rigidbody>();
         if (!HasGravity)
         {
+            RB.constraints = RigidbodyConstraints.FreezeAll;
             RB.useGravity = false;
+        }
+        else
+        {
+            RB.mass = 0.1f;
         }
     }
 

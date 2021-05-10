@@ -45,13 +45,13 @@ public class Activator : MonoBehaviour, IInteractable
                 {
                     for (int i = 0; i < LastChild; i++)
                     {
-                        if (Crate.transform.GetChild(i).gameObject.layer == 6)
+                        if (Crate.transform.GetChild(i).gameObject.layer == 3)
                         {
                             Crate.transform.GetChild(Crate.transform.childCount - 1).GetComponent<Renderer>().enabled = true;
                         }
                         else
                         {
-                            if(Crate.transform.GetChild(LastChild - 1).gameObject.layer == 6)
+                            if(Crate.transform.GetChild(LastChild - 1).gameObject.layer == 3)
                             {
                                 Crate.transform.GetChild(Crate.transform.childCount - 1).GetComponent<Renderer>().enabled = true;
                             }
@@ -85,6 +85,7 @@ public class Activator : MonoBehaviour, IInteractable
     {
         if (!IsActivated)
         {
+            gameObject.GetComponent<Renderer>().enabled = false;
             GameManager.Instance.SFXActivator();
             IsActivated = true;
             Activation.SetBool("Active", true);

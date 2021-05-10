@@ -8,11 +8,11 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Ghost
   - Water
   - UI
-  - Ghost
-  - 
+  - Crate
+  - Collectable
   - 
   - 
   - 

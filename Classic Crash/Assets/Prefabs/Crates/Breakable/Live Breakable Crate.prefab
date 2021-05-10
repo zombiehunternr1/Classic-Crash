@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1239288275}
   - component: {fileID: 1239288274}
   - component: {fileID: 4085980613422973643}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Live Breakable Crate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -112,6 +112,7 @@ MonoBehaviour:
   Life: {fileID: 4519319795387716966, guid: 886071fb8e8f37b4187d13c2eb04d97a, type: 3}
   AddLife: {fileID: 11400000, guid: 9ebfb660800920140b45dfe62e91a11b, type: 2}
   AutoAdd: 0
+  HasGravity: 0
   CrateBroken: {fileID: 11400000, guid: 5f965b2e97384fb4192d9b9b866aa59e, type: 2}
   IsBroken: 0
 --- !u!54 &4085980613422973643

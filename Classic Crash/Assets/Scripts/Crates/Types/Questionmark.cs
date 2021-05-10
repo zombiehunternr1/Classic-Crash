@@ -48,7 +48,12 @@ public class Questionmark : MonoBehaviour, ICrateBase, ISpawnable
         RB = GetComponent<Rigidbody>();
         if (!HasGravity)
         {
+            RB.constraints = RigidbodyConstraints.FreezeAll;
             RB.useGravity = false;
+        }
+        else
+        {          
+            RB.mass = 0.1f;
         }
     }
 
