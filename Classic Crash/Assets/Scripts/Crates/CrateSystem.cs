@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CrateSystem : MonoBehaviour
 {
+    public GameObject BoxCrateUI;
     public GameEventTransform SpawnGem;
     [HideInInspector]
     public List<GameObject> CurrentlyBroken = new List<GameObject>();
@@ -11,12 +13,14 @@ public class CrateSystem : MonoBehaviour
     public List<GameObject> BreakableCrates = new List<GameObject>();
 
     private List<GameObject> InteractCrates = new List<GameObject>();
+    private List<GameObject> TotalCrates = new List<GameObject>();
 
     private int CurrentlyBrokenAmount;
 
     private void Awake()
     {
         GetAllCrateTypes();
+        SetTotalCratesUI();
     }
 
     private void GetAllCrateTypes()
@@ -52,6 +56,26 @@ public class CrateSystem : MonoBehaviour
                 {
                     InteractCrates.Add(Crate);
                 }
+            }
+            if (Crate.GetComponent<TotalCrates>())
+            {
+                TotalCrates.Add(Crate);
+            }
+        }
+    }
+
+    public void SetTotalCratesUI()
+    {
+        for(int i = 0; i < TotalCrates.Count; i++)
+        {
+            if(i > 0)
+            {
+                GameObject Test = Instantiate(BoxCrateUI.GetComponentInChildren<Text>().gameObject, BoxCrateUI.transform);
+                TotalCrates[i].GetComponent<TotalCrates>().BoxCrateUI = Test.GetComponentInChildren<Text>();
+            }
+            else
+            {
+                TotalCrates[i].GetComponent<TotalCrates>().BoxCrateUI = BoxCrateUI.GetComponentInChildren<Text>();
             }
         }
     }
