@@ -97,6 +97,7 @@ GameObject:
   - component: {fileID: 7896145975410564720}
   - component: {fileID: 7896145975410564731}
   - component: {fileID: 7896145975410564730}
+  - component: {fileID: 359454567}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -245,6 +246,15 @@ MonoBehaviour:
   BigJump: 10
   DistanceToGround: 1.01
   SpinRadius: 1.5
+  PlayerManager: {fileID: 0}
+--- !u!81 &359454567
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7896145975410564721}
+  m_Enabled: 1
 --- !u!1 &7896145975642277779
 GameObject:
   m_ObjectHideFlags: 0

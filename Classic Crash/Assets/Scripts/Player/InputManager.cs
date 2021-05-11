@@ -62,8 +62,11 @@ public class InputManager : MonoBehaviour
 
     private void Update()
     {
-        Movement();
-        JumpingTImer();
+        if (GameManager.Instance.CanMove)
+        {
+            Movement();
+            JumpingTImer();
+        }
     }
 
     private void Movement()

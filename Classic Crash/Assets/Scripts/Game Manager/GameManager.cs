@@ -3,14 +3,24 @@ using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
     public ItemsCollected PlayerItems;
-
     public SFXAkuAku SFXAkuAku;
     public SFXCollectables SFXCollectables;
+
+    public float FadeSpeed;
+    public int HoldNextFade;
+    [HideInInspector]
+    public bool FadeToBlack;
+    [HideInInspector]
+    public bool CanMove = true;
+    private Image FadePanel;
+    private float FadeAmount;
 
     private string SafePath = "/game_save";
 
@@ -25,6 +35,7 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        FadePanel = GetComponentInChildren<Image>();
     }
 
     private bool IsSaveFile()
@@ -101,5 +112,40 @@ public class GameManager : MonoBehaviour
     public void SFXSpinAway()
     {
         SFXCollectables.PlaySpinAway();
+    }
+
+    public IEnumerator FadingEffect(int scene)
+    {
+        if (FadeToBlack)
+        {
+            CanMove = false;
+            while (FadePanel.color.a < 1)
+            {
+                Color ChangeColor = FadePanel.color;
+                FadeAmount = ChangeColor.a + (FadeSpeed * Time.deltaTime);
+
+                ChangeColor = new Color(ChangeColor.r, ChangeColor.g, ChangeColor.b, FadeAmount);
+                FadePanel.color = ChangeColor;
+                yield return null;
+            }
+            FadeToBlack = false;
+            SceneManager.LoadScene(scene);
+            yield return new WaitForSeconds(HoldNextFade);
+            StartCoroutine(FadingEffect(scene));
+        }
+        else
+        {
+            while(FadePanel.color.a > 0)
+            {
+                Color ChangeColor = FadePanel.color;
+                FadeAmount = ChangeColor.a - (FadeSpeed * Time.deltaTime);
+
+                ChangeColor = new Color(ChangeColor.r, ChangeColor.g, ChangeColor.b, FadeAmount);
+                FadePanel.color = ChangeColor;
+                yield return null;
+            }
+            CanMove = true;
+            FadeToBlack = true;
+        }
     }
 }

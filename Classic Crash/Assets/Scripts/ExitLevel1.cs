@@ -11,8 +11,10 @@ public class ExitLevel1 : MonoBehaviour
     {
         if (collision.gameObject.GetComponent<InputManager>())
         {
+            int LoadScene = SceneManager.GetActiveScene().buildIndex + 1;
             SaveProgress.Raise();
-            SceneManager.LoadScene("Level2");
+            GameManager.Instance.FadeToBlack = true;
+            GameManager.Instance.StartCoroutine(GameManager.Instance.FadingEffect(LoadScene));
         }
     }
 }
