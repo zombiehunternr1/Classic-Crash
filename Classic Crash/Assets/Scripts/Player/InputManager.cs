@@ -46,10 +46,10 @@ public class InputManager : MonoBehaviour
         if (PlayerControls == null)
         {
             PlayerControls = new PlayerControls();
-            PlayerControls.Level.Movement.performed += i => MovementInput = i.ReadValue<Vector2>();
-            PlayerControls.Level.JumpPressed.performed += i => JumpPressed();
-            PlayerControls.Level.JumpReleased.performed += i => JumpReleased();
-            PlayerControls.Level.Spin.performed += i => SpinAttack();
+            PlayerControls.Player.Movement.performed += i => MovementInput = i.ReadValue<Vector2>();
+            PlayerControls.Player.JumpPressed.performed += i => JumpPressed();
+            PlayerControls.Player.JumpReleased.performed += i => JumpReleased();
+            PlayerControls.Player.Spin.performed += i => SpinAttack();
         }
         PlayerControls.Enable();
         LastSavedCheckpoint(transform.position);

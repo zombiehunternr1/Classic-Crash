@@ -15,7 +15,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
     ""name"": ""PlayerControls"",
     ""maps"": [
         {
-            ""name"": ""Level"",
+            ""name"": ""Player"",
             ""id"": ""83b87d96-0126-4d68-b4a9-4ee775e38356"",
             ""actions"": [
                 {
@@ -359,12 +359,12 @@ public class @PlayerControls : IInputActionCollection, IDisposable
     ],
     ""controlSchemes"": []
 }");
-        // Level
-        m_Level = asset.FindActionMap("Level", throwIfNotFound: true);
-        m_Level_Movement = m_Level.FindAction("Movement", throwIfNotFound: true);
-        m_Level_JumpPressed = m_Level.FindAction("JumpPressed", throwIfNotFound: true);
-        m_Level_JumpReleased = m_Level.FindAction("JumpReleased", throwIfNotFound: true);
-        m_Level_Spin = m_Level.FindAction("Spin", throwIfNotFound: true);
+        // Player
+        m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
+        m_Player_Movement = m_Player.FindAction("Movement", throwIfNotFound: true);
+        m_Player_JumpPressed = m_Player.FindAction("JumpPressed", throwIfNotFound: true);
+        m_Player_JumpReleased = m_Player.FindAction("JumpReleased", throwIfNotFound: true);
+        m_Player_Spin = m_Player.FindAction("Spin", throwIfNotFound: true);
         // WorldMap
         m_WorldMap = asset.FindActionMap("WorldMap", throwIfNotFound: true);
         m_WorldMap_Movement = m_WorldMap.FindAction("Movement", throwIfNotFound: true);
@@ -414,44 +414,44 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         asset.Disable();
     }
 
-    // Level
-    private readonly InputActionMap m_Level;
-    private ILevelActions m_LevelActionsCallbackInterface;
-    private readonly InputAction m_Level_Movement;
-    private readonly InputAction m_Level_JumpPressed;
-    private readonly InputAction m_Level_JumpReleased;
-    private readonly InputAction m_Level_Spin;
-    public struct LevelActions
+    // Player
+    private readonly InputActionMap m_Player;
+    private IPlayerActions m_PlayerActionsCallbackInterface;
+    private readonly InputAction m_Player_Movement;
+    private readonly InputAction m_Player_JumpPressed;
+    private readonly InputAction m_Player_JumpReleased;
+    private readonly InputAction m_Player_Spin;
+    public struct PlayerActions
     {
         private @PlayerControls m_Wrapper;
-        public LevelActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Movement => m_Wrapper.m_Level_Movement;
-        public InputAction @JumpPressed => m_Wrapper.m_Level_JumpPressed;
-        public InputAction @JumpReleased => m_Wrapper.m_Level_JumpReleased;
-        public InputAction @Spin => m_Wrapper.m_Level_Spin;
-        public InputActionMap Get() { return m_Wrapper.m_Level; }
+        public PlayerActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Movement => m_Wrapper.m_Player_Movement;
+        public InputAction @JumpPressed => m_Wrapper.m_Player_JumpPressed;
+        public InputAction @JumpReleased => m_Wrapper.m_Player_JumpReleased;
+        public InputAction @Spin => m_Wrapper.m_Player_Spin;
+        public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
         public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(LevelActions set) { return set.Get(); }
-        public void SetCallbacks(ILevelActions instance)
+        public static implicit operator InputActionMap(PlayerActions set) { return set.Get(); }
+        public void SetCallbacks(IPlayerActions instance)
         {
-            if (m_Wrapper.m_LevelActionsCallbackInterface != null)
+            if (m_Wrapper.m_PlayerActionsCallbackInterface != null)
             {
-                @Movement.started -= m_Wrapper.m_LevelActionsCallbackInterface.OnMovement;
-                @Movement.performed -= m_Wrapper.m_LevelActionsCallbackInterface.OnMovement;
-                @Movement.canceled -= m_Wrapper.m_LevelActionsCallbackInterface.OnMovement;
-                @JumpPressed.started -= m_Wrapper.m_LevelActionsCallbackInterface.OnJumpPressed;
-                @JumpPressed.performed -= m_Wrapper.m_LevelActionsCallbackInterface.OnJumpPressed;
-                @JumpPressed.canceled -= m_Wrapper.m_LevelActionsCallbackInterface.OnJumpPressed;
-                @JumpReleased.started -= m_Wrapper.m_LevelActionsCallbackInterface.OnJumpReleased;
-                @JumpReleased.performed -= m_Wrapper.m_LevelActionsCallbackInterface.OnJumpReleased;
-                @JumpReleased.canceled -= m_Wrapper.m_LevelActionsCallbackInterface.OnJumpReleased;
-                @Spin.started -= m_Wrapper.m_LevelActionsCallbackInterface.OnSpin;
-                @Spin.performed -= m_Wrapper.m_LevelActionsCallbackInterface.OnSpin;
-                @Spin.canceled -= m_Wrapper.m_LevelActionsCallbackInterface.OnSpin;
+                @Movement.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMovement;
+                @Movement.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMovement;
+                @Movement.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMovement;
+                @JumpPressed.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJumpPressed;
+                @JumpPressed.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJumpPressed;
+                @JumpPressed.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJumpPressed;
+                @JumpReleased.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJumpReleased;
+                @JumpReleased.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJumpReleased;
+                @JumpReleased.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJumpReleased;
+                @Spin.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSpin;
+                @Spin.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSpin;
+                @Spin.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSpin;
             }
-            m_Wrapper.m_LevelActionsCallbackInterface = instance;
+            m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
             {
                 @Movement.started += instance.OnMovement;
@@ -469,7 +469,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
             }
         }
     }
-    public LevelActions @Level => new LevelActions(this);
+    public PlayerActions @Player => new PlayerActions(this);
 
     // WorldMap
     private readonly InputActionMap m_WorldMap;
@@ -503,7 +503,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         }
     }
     public WorldMapActions @WorldMap => new WorldMapActions(this);
-    public interface ILevelActions
+    public interface IPlayerActions
     {
         void OnMovement(InputAction.CallbackContext context);
         void OnJumpPressed(InputAction.CallbackContext context);
