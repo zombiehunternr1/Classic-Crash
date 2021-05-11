@@ -9,11 +9,11 @@ public class LifeCrate : MonoBehaviour, ICrateBase
     public bool AutoAdd;
     public bool HasGravity;
     public GameEvent CrateBroken;
-    [HideInInspector]
-    public bool IsBroken;
 
+    private bool IsBroken;
     private Rigidbody RB;
     private bool CanBounce = true;
+    private AudioSource BreakSFX;
 
     public void Break(int Side)
     {
@@ -34,6 +34,7 @@ public class LifeCrate : MonoBehaviour, ICrateBase
 
     private void Awake()
     {
+        BreakSFX = GetComponent<AudioSource>();
         RB = GetComponent<Rigidbody>();
         if (!HasGravity)
         {
@@ -63,10 +64,25 @@ public class LifeCrate : MonoBehaviour, ICrateBase
     {
         if (!IsBroken)
         {
+            Invoke("DelayInactive", 1f);
+            GetComponent<BoxCollider>().enabled = false;
+            GetComponent<Renderer>().enabled = false;
+            BreakSFX.Play();
             IsBroken = true;
             CrateBroken.Raise();
-            gameObject.SetActive(false);
+
         }
+    }
+    public void ResetCrate()
+    {
+        GetComponent<BoxCollider>().enabled = true;
+        GetComponent<Renderer>().enabled = true;
+        IsBroken = false;
+    }
+
+    private void DelayInactive()
+    {
+        gameObject.SetActive(false);
     }
 
     private void SpawnLife()

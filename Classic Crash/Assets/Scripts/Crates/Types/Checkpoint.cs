@@ -8,6 +8,10 @@ public class Checkpoint : MonoBehaviour, ICrateBase
     public GameObject BrokenCrate;
     public GameObject MetalCrate;
     public GameEventInt UpdateCrateCount;
+    public AudioSource BreakSFX;
+    public AudioSource CheckpointSFX;
+    public AudioSource ActivatorSFX;
+
     [HideInInspector]
     public bool IsBroken;
     private float DetectionRadius = 1f;
@@ -50,8 +54,8 @@ public class Checkpoint : MonoBehaviour, ICrateBase
 
     private void BreakableCheckpoint()
     {
-        GameManager.Instance.SFXCrateBreak();
-        GameManager.Instance.SFXCheckPoint();
+        BreakSFX.Play();
+        CheckpointSFX.Play();
         Instantiate(BrokenCrate, transform.position, Quaternion.identity);
         SaveProgress();
         DisableCrate();
@@ -59,8 +63,8 @@ public class Checkpoint : MonoBehaviour, ICrateBase
 
     private void UnbreakableCheckpoint()
     {
-        GameManager.Instance.SFXActivator();
-        GameManager.Instance.SFXCheckPoint();
+        ActivatorSFX.Play();
+        CheckpointSFX.Play();
         Instantiate(MetalCrate, transform.position, Quaternion.identity);
         SaveProgress();
         DisableCrate();

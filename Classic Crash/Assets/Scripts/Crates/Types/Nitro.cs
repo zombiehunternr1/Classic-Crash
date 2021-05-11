@@ -23,6 +23,10 @@ public class Nitro : MonoBehaviour, ICrateBase
         {
             StartCoroutine(RandomHopCheck());
         }
+        else
+        {
+            RB.constraints = RigidbodyConstraints.FreezeAll;
+        }
     }
 
     public void Break(int Side)

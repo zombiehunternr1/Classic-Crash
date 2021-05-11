@@ -9,6 +9,8 @@ public class Detonator : MonoBehaviour, IInteractable
     [HideInInspector]
     public bool HasDetonated;
     private Animator Activation;
+    public AudioSource ActivatorSFX;
+    public AudioSource ExplosionSFX;
 
     private void Awake()
     {
@@ -42,7 +44,8 @@ public class Detonator : MonoBehaviour, IInteractable
     {
         if (!HasDetonated)
         {
-            GameManager.Instance.SFXActivator();
+            ActivatorSFX.Play();
+            ExplosionSFX.Play();
             Activation.SetBool("Active", true);
             gameObject.GetComponentInChildren<Renderer>().enabled = true;
             HasDetonated = true;            

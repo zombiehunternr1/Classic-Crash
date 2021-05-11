@@ -10,12 +10,11 @@ public class Default : MonoBehaviour, ICrateBase, ISpawnable
     public GameEvent CrateBroken;
     public GameEventInt AddWumpa;
 
-    [HideInInspector]
-    public bool IsBroken;
-
+    private bool IsBroken;
     private int Amount = 1;
     private Rigidbody RB;
     private bool CanBounce = true;
+    private AudioSource BreakSFX;
 
     public void Break(int side)
     {
@@ -42,6 +41,7 @@ public class Default : MonoBehaviour, ICrateBase, ISpawnable
 
     private void Awake()
     {
+        BreakSFX = GetComponent<AudioSource>();
         Physics.IgnoreLayerCollision(6, 7);
         RB = GetComponent<Rigidbody>();
         if (!HasGravity)
@@ -72,11 +72,19 @@ public class Default : MonoBehaviour, ICrateBase, ISpawnable
     {
         if (!IsBroken)
         {
-            GameManager.Instance.SFXCrateBreak();
+            Invoke("DelayInactive", 1f);
+            GetComponent<BoxCollider>().enabled = false;
+            GetComponent<Renderer>().enabled = false;
+            BreakSFX.Play();
             IsBroken = true;
             CrateBroken.Raise();
-            gameObject.SetActive(false);
         }
+    }
+    public void ResetCrate()
+    {
+        GetComponent<BoxCollider>().enabled = true;
+        GetComponent<Renderer>().enabled = true;
+        IsBroken = false;
     }
 
     public void SpawnItem()
@@ -90,5 +98,10 @@ public class Default : MonoBehaviour, ICrateBase, ISpawnable
             Instantiate(Item, transform.position, Quaternion.identity);
         }
         DisableCrate();
+    }
+
+    private void DelayInactive()
+    {
+        gameObject.SetActive(false);
     }
 }

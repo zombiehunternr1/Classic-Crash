@@ -11,7 +11,6 @@ public class GameManager : MonoBehaviour
 
     public SFXAkuAku SFXAkuAku;
     public SFXCollectables SFXCollectables;
-    public SFXCrateTypes SFXCrateTypes;
 
     private string SafePath = "/game_save";
 
@@ -102,60 +101,5 @@ public class GameManager : MonoBehaviour
     public void SFXSpinAway()
     {
         SFXCollectables.PlaySpinAway();
-    }
-
-    public void SFXCrateBreak()
-    {
-        SFXCrateTypes.PlayCrateBreak();
-    }
-
-    public void SFXCrateBounce()
-    {
-        SFXCrateTypes.PlayCrateBounce();
-    }
-
-    public void SFXTNTCountdown()
-    {
-        SFXCrateTypes.PlayTNTCountdown();
-    }
-
-    public void SFXTNTExplode()
-    {
-        SFXCrateTypes.PlayTNTExplode();
-    }
-
-    public void SFXStopTNTCountdown()
-    {
-        SFXCrateTypes.StopTNTCountdown();
-    }
-
-    public void SFXNitroExplode()
-    {
-        SFXCrateTypes.PlayNitroExplode();
-    }
-
-    public void SFXNitroSmalHop()
-    {
-        SFXCrateTypes.PlayNitroSmalHop();
-    }
-
-    public void SFXNitroBigHop()
-    {
-        SFXCrateTypes.PlayNitroBigHop();
-    }
-
-    public void SFXActivator()
-    {
-        SFXCrateTypes.PlayActivator();
-    }
-
-    public void SFXCrateActivating()
-    {
-        SFXCrateTypes.PlayCrateActivating();
-    }
-
-    public void SFXCheckPoint()
-    {
-        SFXCrateTypes.PlayCheckPoint();
     }
 }

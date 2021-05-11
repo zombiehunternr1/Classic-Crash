@@ -13,12 +13,12 @@ public class Questionmark : MonoBehaviour, ICrateBase, ISpawnable
     public bool AutoAdd;
     public bool HasGravity;
     public int amount = 1;
-    [HideInInspector]
-    public bool IsBroken;
 
+    private bool IsBroken;
     private bool WasLife = true;
     private Rigidbody RB;
     private bool CanBounce = true;
+    private AudioSource BreakSFX;
 
     public void Break(int side)
     {
@@ -45,6 +45,7 @@ public class Questionmark : MonoBehaviour, ICrateBase, ISpawnable
 
     private void Awake()
     {
+        BreakSFX = GetComponent<AudioSource>();
         RB = GetComponent<Rigidbody>();
         if (!HasGravity)
         {
@@ -74,11 +75,20 @@ public class Questionmark : MonoBehaviour, ICrateBase, ISpawnable
     {
         if (!IsBroken)
         {
-            GameManager.Instance.SFXCrateBreak();
+            Invoke("DelayInactive", 1f);
+            GetComponent<BoxCollider>().enabled = false;
+            GetComponent<Renderer>().enabled = false;
+            BreakSFX.Play();
             IsBroken = true;
             CrateBroken.Raise();
-            gameObject.SetActive(false);
         }
+    }
+
+    public void ResetCrate()
+    {
+        GetComponent<BoxCollider>().enabled = true;
+        GetComponent<Renderer>().enabled = true;
+        IsBroken = false;
     }
 
     public void SpawnItem()
@@ -123,5 +133,10 @@ public class Questionmark : MonoBehaviour, ICrateBase, ISpawnable
             }              
         }
         DisableCrate();
+    }
+
+    private void DelayInactive()
+    {
+        gameObject.SetActive(false);
     }
 }

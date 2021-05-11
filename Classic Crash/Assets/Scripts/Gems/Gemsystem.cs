@@ -10,6 +10,8 @@ public class Gemsystem : MonoBehaviour
     public GameEvent DisableTotalCrates;
     public ItemsCollected CollectedGems;
     public AllGems AllGemsAvailable;
+    public AudioSource BreakSFX;
+    public AudioSource GemSFX;
 
     [HideInInspector]
     public List<GemBase> GemsCollected;
@@ -96,7 +98,7 @@ public class Gemsystem : MonoBehaviour
     {
         if (location.gameObject.GetComponent<TotalCrates>())
         {
-            GameManager.Instance.SFXCrateBreak();
+            BreakSFX.Play();
             var TotalCrates = location.gameObject.GetComponent<TotalCrates>();
             CrateGem.transform.position = location.position;
             CrateGem.GetComponent<Animator>().SetTrigger("Spawn");
@@ -106,7 +108,7 @@ public class Gemsystem : MonoBehaviour
 
     public void GemCollected(GemBase GemType)
     {
-        GameManager.Instance.SFXGemCollected();
+        GemSFX.Play();
         GemsCollected.Add(GemType);
     }
 

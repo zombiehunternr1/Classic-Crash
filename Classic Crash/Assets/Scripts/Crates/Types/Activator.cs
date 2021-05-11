@@ -11,9 +11,11 @@ public class Activator : MonoBehaviour, IInteractable
     [HideInInspector]
     public bool IsActivated;
     private Animator Activation;
+    private AudioSource ActivateSFX;
 
     private void Awake()
     {
+        ActivateSFX = GetComponent<AudioSource>();
         Activation = gameObject.GetComponentInChildren<Animator>();
         Setup();
     }
@@ -86,7 +88,7 @@ public class Activator : MonoBehaviour, IInteractable
         if (!IsActivated)
         {
             gameObject.GetComponent<Renderer>().enabled = false;
-            GameManager.Instance.SFXActivator();
+            ActivateSFX.Play();
             IsActivated = true;
             Activation.SetBool("Active", true);
             foreach (GameObject Crate in Crates)
@@ -96,10 +98,9 @@ public class Activator : MonoBehaviour, IInteractable
                     Crate.GetComponent<TNT>().AnimTNT.SetTrigger("SetInactive");
                 }
                 Crate.GetComponent<BoxCollider>().enabled = true;
-                Crate.GetComponentInChildren<Renderer>();
+                Crate.GetComponentInChildren<Ghost>().PlaySFX();
                 Crate.transform.GetChild(Crate.transform.childCount - 1).GetComponent<Renderer>().enabled = false;
                 Crate.GetComponent<Renderer>().enabled = true;
-                GameManager.Instance.SFXCrateActivating();
                 yield return new WaitForSeconds(ActivatingSpeed);
             }
         }      

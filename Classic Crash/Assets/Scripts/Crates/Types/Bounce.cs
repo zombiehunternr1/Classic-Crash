@@ -13,14 +13,16 @@ public class Bounce : MonoBehaviour, ICrateBase
     public bool AutoAdd;
     public GameEvent CrateBroken;
     public GameEventInt AddWumpa;
-    [HideInInspector]
-    public bool IsBroken;
+    public AudioSource BreakSFX;
+    public AudioSource BounceSFX;
 
+    private bool IsBroken;
     private bool FirstBounce;
     private int currentBounces;
-
     private float CurrentTime;
     private float MaxTime = 5f;
+
+
 
     public void Break(int Side)
     {
@@ -29,38 +31,38 @@ public class Bounce : MonoBehaviour, ICrateBase
             case CrateType.Unbreakable:
                 if(Side == 1)
                 {
-                    GameManager.Instance.SFXCrateBounce();
+                    BounceSFX.Play();
                     Bouncing();
                 }
                 break;
             case CrateType.BreakAfterX:
                 if(Side == 1)
                 {
-                    GameManager.Instance.SFXCrateBounce();
+                    BounceSFX.Play();
                     BreakAfterX();
                 }
                 else if(Side == 2)
                 {
-                    GameManager.Instance.SFXCrateBounce();
+                    BounceSFX.Play();
                     BreakAfterX();
                     Bouncing();
                 }
                 else if(Side == 7)
                 {
-                    GameManager.Instance.SFXCrateBreak();
+                    BreakSFX.Play();
                     Bouncing();
                     DisableCrate();
                 }
                 else if(Side == 8)
                 {
-                    GameManager.Instance.SFXCrateBreak();
+                    BreakSFX.Play();
                     CrateBroken.Raise();
                     AddWumpa.RaiseInt(5);
                     gameObject.SetActive(false);
                 }
                 else if(Side == 9)
                 {
-                    GameManager.Instance.SFXCrateBreak();
+                    BreakSFX.Play();
                     AutoAdd = true;
                     DisableCrate();
                 }
@@ -68,18 +70,18 @@ public class Bounce : MonoBehaviour, ICrateBase
             case CrateType.BreakInstant:
                 if(Side == 1)
                 {
-                    GameManager.Instance.SFXCrateBounce();
+                    BounceSFX.Play();
                     Bouncing();
                 }                   
                 else if(Side == 7 || Side == 8)
                 {
-                    GameManager.Instance.SFXCrateBreak();
+                    BreakSFX.Play();
                     AutoAdd = true;
                     DisableCrate();
                 }
                 else if(Side == 9)
                 {
-                    GameManager.Instance.SFXCrateBreak();
+                    BreakSFX.Play();
                     CrateBroken.Raise();
                     gameObject.SetActive(false);
                 }
@@ -91,6 +93,10 @@ public class Bounce : MonoBehaviour, ICrateBase
     {
         if (!IsBroken)
         {
+            Invoke("DelayInactive", 1f);
+            GetComponent<BoxCollider>().enabled = false;
+            GetComponent<Renderer>().enabled = false;
+            BreakSFX.Play();
             IsBroken = true;
             CrateBroken.Raise();
             if (AutoAdd && crateType == CrateType.BreakInstant)
@@ -100,9 +106,19 @@ public class Bounce : MonoBehaviour, ICrateBase
             else if(crateType == CrateType.BreakInstant)
             {
                 Instantiate(Wumpa, transform.position, transform.rotation);
-            }
-            gameObject.SetActive(false);
+            }            
         }
+    }
+    public void ResetCrate()
+    {
+        GetComponent<BoxCollider>().enabled = true;
+        GetComponent<Renderer>().enabled = true;
+        IsBroken = false;
+    }
+
+    private void DelayInactive()
+    {
+        gameObject.SetActive(false);
     }
 
     public void BreakAfterX()
@@ -123,7 +139,7 @@ public class Bounce : MonoBehaviour, ICrateBase
             if (currentBounces >= breakAfter)
             {
                 Bouncing();
-                GameManager.Instance.SFXCrateBreak();
+                BreakSFX.Play();
                 DisableCrate();
                 StopCoroutine(ResetCounter());
             }
@@ -137,7 +153,7 @@ public class Bounce : MonoBehaviour, ICrateBase
             AddWumpa.RaiseInt(Amount);
             StopCoroutine(ResetCounter());
             CurrentTime = 0;
-            GameManager.Instance.SFXCrateBreak();
+            BreakSFX.Play();
             Bouncing();
             DisableCrate();
         }

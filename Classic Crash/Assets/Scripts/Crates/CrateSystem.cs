@@ -38,6 +38,15 @@ public class CrateSystem : MonoBehaviour
                         BreakableCrates.Add(Crate);
                     }
                 }
+                else if (Crate.GetComponent<Bounce>())
+                {
+                    var Bounce = Crate.GetComponent<Bounce>();
+                    if(Bounce.crateType == Bounce.CrateType.BreakAfterX || Bounce.crateType == Bounce.CrateType.BreakInstant)
+                    {
+                        BreakableCrates.Add(Crate);
+                    }
+                }
+
                 else
                 {
                     BreakableCrates.Add(Crate);
@@ -80,23 +89,24 @@ public class CrateSystem : MonoBehaviour
                     Crate.SetActive(true);
                     if (Crate.GetComponent<Default>())
                     {
-                        Crate.GetComponent<Default>().IsBroken = false;
+                        Crate.GetComponent<Default>().ResetCrate();
+                        
                     }
                     if (Crate.GetComponent<AkuAkuCrate>())
                     {
-                        Crate.GetComponent<AkuAkuCrate>().IsBroken = false;
+                        Crate.GetComponent<AkuAkuCrate>().ResetCrate();
                     }
                     if (Crate.GetComponent<Bounce>())
                     {
-                        Crate.GetComponent<Bounce>().IsBroken = false;
+                        Crate.GetComponent<Bounce>().ResetCrate();
                     }
                     if (Crate.GetComponent<LifeCrate>())
                     {
-                        Crate.GetComponent<LifeCrate>().IsBroken = false;
+                        Crate.GetComponent<LifeCrate>().ResetCrate();
                     }
                     if (Crate.GetComponent<Questionmark>())
                     {
-                        Crate.GetComponent<Questionmark>().IsBroken = false;
+                        Crate.GetComponent<Questionmark>().ResetCrate();
                     }
                     if (Crate.GetComponent<Nitro>())
                     {
