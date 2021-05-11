@@ -98,7 +98,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 0 / 0
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 69e44186520c2f244bb01c1f5dd90208, type: 2}
   m_sharedMaterial: {fileID: -2253743501623110477, guid: 69e44186520c2f244bb01c1f5dd90208, type: 2}
@@ -231,7 +231,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CheckTotal: {fileID: 11400000, guid: 0b1ffb039cd9a3e4db5a080c127a7b18, type: 2}
-  BoxCrateUI: {fileID: 0}
+  BoxCrateUI: {fileID: 5975020002443806134}
 --- !u!114 &3889821845680957487
 MonoBehaviour:
   m_ObjectHideFlags: 0

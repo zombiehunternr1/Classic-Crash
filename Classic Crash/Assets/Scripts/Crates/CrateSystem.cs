@@ -19,6 +19,7 @@ public class CrateSystem : MonoBehaviour
     private void Awake()
     {
         GetAllCrateTypes();
+        DisplayCrateCount();
     }
 
     private void GetAllCrateTypes()
@@ -68,6 +69,14 @@ public class CrateSystem : MonoBehaviour
             {
                 TotalCrates.Add(Crate);
             }
+        }
+    }
+
+    private void DisplayCrateCount()
+    {
+        for(int i = 0; i < TotalCrates.Count; i++)
+        {
+            TotalCrates[i].GetComponent<TotalCrates>().BoxCrateUI.text = CurrentlyBrokenAmount + " / " + BreakableCrates.Count;
         }
     }
 
@@ -161,6 +170,7 @@ public class CrateSystem : MonoBehaviour
     public void UpdateCurrentCrateCount()
     {
         CurrentlyBrokenAmount++;
+        DisplayCrateCount();
     }
 
     public void SaveCheckpointCount(int CurrentlyBroken)

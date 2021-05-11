@@ -6,7 +6,6 @@ using TMPro;
 public class TotalCrates : MonoBehaviour
 {
     public GameEventTransform CheckTotal;
-    [HideInInspector]
     public TextMeshPro BoxCrateUI;
 
     private void OnTriggerEnter(Collider other)
