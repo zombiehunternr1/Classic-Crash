@@ -15,7 +15,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
     ""name"": ""PlayerControls"",
     ""maps"": [
         {
-            ""name"": ""Player"",
+            ""name"": ""Level"",
             ""id"": ""83b87d96-0126-4d68-b4a9-4ee775e38356"",
             ""actions"": [
                 {
@@ -229,16 +229,145 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""WorldMap"",
+            ""id"": ""81f682e3-924e-4c61-b065-b4ab4456c317"",
+            ""actions"": [
+                {
+                    ""name"": ""Movement"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""82977681-f9c4-4fe1-a18a-2525a8602d6e"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": ""Keyboard"",
+                    ""id"": ""f866947c-c7fa-48ab-b2fc-4200c3f6a39f"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""6707bcca-9aa7-4385-881b-04861e45fc4b"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""dccc91d4-d539-499e-89e9-87a0f8b95030"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""093e9523-6447-45c0-bd6e-516c3fde13c3"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""3f455357-2596-4bf9-b15f-73287eed3b94"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Gamepad"",
+                    ""id"": ""f350c2a1-2f27-4198-824d-2334d4500f8f"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""c00f9b4f-9062-4fff-80c1-da51be4b7fe1"",
+                    ""path"": ""<Gamepad>/leftStick/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""15c3576c-812d-48b4-989f-40eba0d6ec4f"",
+                    ""path"": ""<Gamepad>/leftStick/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""62aa64be-3b9c-4c74-855f-f48a3e096174"",
+                    ""path"": ""<Gamepad>/leftStick/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""a32e5fcd-cb05-4481-92b1-5ed1fd222051"",
+                    ""path"": ""<Gamepad>/leftStick/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
 }");
-        // Player
-        m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
-        m_Player_Movement = m_Player.FindAction("Movement", throwIfNotFound: true);
-        m_Player_JumpPressed = m_Player.FindAction("JumpPressed", throwIfNotFound: true);
-        m_Player_JumpReleased = m_Player.FindAction("JumpReleased", throwIfNotFound: true);
-        m_Player_Spin = m_Player.FindAction("Spin", throwIfNotFound: true);
+        // Level
+        m_Level = asset.FindActionMap("Level", throwIfNotFound: true);
+        m_Level_Movement = m_Level.FindAction("Movement", throwIfNotFound: true);
+        m_Level_JumpPressed = m_Level.FindAction("JumpPressed", throwIfNotFound: true);
+        m_Level_JumpReleased = m_Level.FindAction("JumpReleased", throwIfNotFound: true);
+        m_Level_Spin = m_Level.FindAction("Spin", throwIfNotFound: true);
+        // WorldMap
+        m_WorldMap = asset.FindActionMap("WorldMap", throwIfNotFound: true);
+        m_WorldMap_Movement = m_WorldMap.FindAction("Movement", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -285,44 +414,44 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         asset.Disable();
     }
 
-    // Player
-    private readonly InputActionMap m_Player;
-    private IPlayerActions m_PlayerActionsCallbackInterface;
-    private readonly InputAction m_Player_Movement;
-    private readonly InputAction m_Player_JumpPressed;
-    private readonly InputAction m_Player_JumpReleased;
-    private readonly InputAction m_Player_Spin;
-    public struct PlayerActions
+    // Level
+    private readonly InputActionMap m_Level;
+    private ILevelActions m_LevelActionsCallbackInterface;
+    private readonly InputAction m_Level_Movement;
+    private readonly InputAction m_Level_JumpPressed;
+    private readonly InputAction m_Level_JumpReleased;
+    private readonly InputAction m_Level_Spin;
+    public struct LevelActions
     {
         private @PlayerControls m_Wrapper;
-        public PlayerActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Movement => m_Wrapper.m_Player_Movement;
-        public InputAction @JumpPressed => m_Wrapper.m_Player_JumpPressed;
-        public InputAction @JumpReleased => m_Wrapper.m_Player_JumpReleased;
-        public InputAction @Spin => m_Wrapper.m_Player_Spin;
-        public InputActionMap Get() { return m_Wrapper.m_Player; }
+        public LevelActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Movement => m_Wrapper.m_Level_Movement;
+        public InputAction @JumpPressed => m_Wrapper.m_Level_JumpPressed;
+        public InputAction @JumpReleased => m_Wrapper.m_Level_JumpReleased;
+        public InputAction @Spin => m_Wrapper.m_Level_Spin;
+        public InputActionMap Get() { return m_Wrapper.m_Level; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
         public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(PlayerActions set) { return set.Get(); }
-        public void SetCallbacks(IPlayerActions instance)
+        public static implicit operator InputActionMap(LevelActions set) { return set.Get(); }
+        public void SetCallbacks(ILevelActions instance)
         {
-            if (m_Wrapper.m_PlayerActionsCallbackInterface != null)
+            if (m_Wrapper.m_LevelActionsCallbackInterface != null)
             {
-                @Movement.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMovement;
-                @Movement.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMovement;
-                @Movement.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMovement;
-                @JumpPressed.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJumpPressed;
-                @JumpPressed.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJumpPressed;
-                @JumpPressed.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJumpPressed;
-                @JumpReleased.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJumpReleased;
-                @JumpReleased.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJumpReleased;
-                @JumpReleased.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJumpReleased;
-                @Spin.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSpin;
-                @Spin.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSpin;
-                @Spin.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSpin;
+                @Movement.started -= m_Wrapper.m_LevelActionsCallbackInterface.OnMovement;
+                @Movement.performed -= m_Wrapper.m_LevelActionsCallbackInterface.OnMovement;
+                @Movement.canceled -= m_Wrapper.m_LevelActionsCallbackInterface.OnMovement;
+                @JumpPressed.started -= m_Wrapper.m_LevelActionsCallbackInterface.OnJumpPressed;
+                @JumpPressed.performed -= m_Wrapper.m_LevelActionsCallbackInterface.OnJumpPressed;
+                @JumpPressed.canceled -= m_Wrapper.m_LevelActionsCallbackInterface.OnJumpPressed;
+                @JumpReleased.started -= m_Wrapper.m_LevelActionsCallbackInterface.OnJumpReleased;
+                @JumpReleased.performed -= m_Wrapper.m_LevelActionsCallbackInterface.OnJumpReleased;
+                @JumpReleased.canceled -= m_Wrapper.m_LevelActionsCallbackInterface.OnJumpReleased;
+                @Spin.started -= m_Wrapper.m_LevelActionsCallbackInterface.OnSpin;
+                @Spin.performed -= m_Wrapper.m_LevelActionsCallbackInterface.OnSpin;
+                @Spin.canceled -= m_Wrapper.m_LevelActionsCallbackInterface.OnSpin;
             }
-            m_Wrapper.m_PlayerActionsCallbackInterface = instance;
+            m_Wrapper.m_LevelActionsCallbackInterface = instance;
             if (instance != null)
             {
                 @Movement.started += instance.OnMovement;
@@ -340,12 +469,49 @@ public class @PlayerControls : IInputActionCollection, IDisposable
             }
         }
     }
-    public PlayerActions @Player => new PlayerActions(this);
-    public interface IPlayerActions
+    public LevelActions @Level => new LevelActions(this);
+
+    // WorldMap
+    private readonly InputActionMap m_WorldMap;
+    private IWorldMapActions m_WorldMapActionsCallbackInterface;
+    private readonly InputAction m_WorldMap_Movement;
+    public struct WorldMapActions
+    {
+        private @PlayerControls m_Wrapper;
+        public WorldMapActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Movement => m_Wrapper.m_WorldMap_Movement;
+        public InputActionMap Get() { return m_Wrapper.m_WorldMap; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(WorldMapActions set) { return set.Get(); }
+        public void SetCallbacks(IWorldMapActions instance)
+        {
+            if (m_Wrapper.m_WorldMapActionsCallbackInterface != null)
+            {
+                @Movement.started -= m_Wrapper.m_WorldMapActionsCallbackInterface.OnMovement;
+                @Movement.performed -= m_Wrapper.m_WorldMapActionsCallbackInterface.OnMovement;
+                @Movement.canceled -= m_Wrapper.m_WorldMapActionsCallbackInterface.OnMovement;
+            }
+            m_Wrapper.m_WorldMapActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Movement.started += instance.OnMovement;
+                @Movement.performed += instance.OnMovement;
+                @Movement.canceled += instance.OnMovement;
+            }
+        }
+    }
+    public WorldMapActions @WorldMap => new WorldMapActions(this);
+    public interface ILevelActions
     {
         void OnMovement(InputAction.CallbackContext context);
         void OnJumpPressed(InputAction.CallbackContext context);
         void OnJumpReleased(InputAction.CallbackContext context);
         void OnSpin(InputAction.CallbackContext context);
+    }
+    public interface IWorldMapActions
+    {
+        void OnMovement(InputAction.CallbackContext context);
     }
 }
