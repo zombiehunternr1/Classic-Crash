@@ -8,9 +8,12 @@ public class Explosion : MonoBehaviour, IInteractable
     public float ExplosionRadius;
 
     private int Side;
+    private AudioSource ExplosionSFX;
 
     private void Awake()
     {
+        ExplosionSFX = GetComponent<AudioSource>();
+        ExplosionSFX.Play();
         HitBox = GetComponent<SphereCollider>();
         Interacting(Side);
         StartCoroutine(DisableCollider());

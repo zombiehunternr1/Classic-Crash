@@ -7,6 +7,8 @@ public class Nitro : MonoBehaviour, ICrateBase
     public ParticleSystem Explosion;
     public bool CanBounce;
     public GameEvent CrateBroken;
+    public AudioSource SmalHopSFX;
+    public AudioSource BigHopSFX;
 
     [HideInInspector]
     public bool IsBroken;
@@ -30,7 +32,6 @@ public class Nitro : MonoBehaviour, ICrateBase
 
     public void Explode()
     {
-        GameManager.Instance.SFXNitroExplode();
         StopCoroutine(RandomHopCheck());
         DisableCrate();
         Instantiate(Explosion, transform.position, Quaternion.identity);
@@ -54,7 +55,7 @@ public class Nitro : MonoBehaviour, ICrateBase
             if (CanBounce)
             {
                 RB.AddForce(transform.up * 0.5f, ForceMode.Impulse);
-                GameManager.Instance.SFXNitroSmalHop();
+                SmalHopSFX.Play();
                 SmallhopsTriggered++;
             }
         }
@@ -63,7 +64,7 @@ public class Nitro : MonoBehaviour, ICrateBase
             if (CanBounce)
             {
                 RB.AddForce(transform.up * 0.7f, ForceMode.Impulse);
-                GameManager.Instance.SFXNitroBigHop();
+                BigHopSFX.Play();
                 SmallhopsTriggered = 0;
             }
         }

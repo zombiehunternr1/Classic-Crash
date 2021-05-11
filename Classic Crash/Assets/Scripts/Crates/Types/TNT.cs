@@ -6,6 +6,7 @@ public class TNT : MonoBehaviour, ICrateBase
 {
     public ParticleSystem Explosion;
     public GameEvent CrateBroken;
+    public AudioSource CountdownSFX;
 
     [HideInInspector]
     public bool IsGhost = false;
@@ -113,8 +114,7 @@ public class TNT : MonoBehaviour, ICrateBase
 
     public void Explode()
     {
-        GameManager.Instance.SFXStopTNTCountdown();
-        GameManager.Instance.SFXTNTExplode();
+        CountdownSFX.Stop();
         DisableEmission();
         DisableCrate();
         Instantiate(Explosion, transform.position, Quaternion.identity);
@@ -148,7 +148,7 @@ public class TNT : MonoBehaviour, ICrateBase
 
     public void Countdown()
     {
-        GameManager.Instance.SFXTNTCountdown();
+        CountdownSFX.Play();
         AnimTNT.SetBool("Active", true);
     }
 }
