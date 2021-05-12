@@ -4,21 +4,20 @@ using UnityEngine;
 
 public class WorldmapPlayerController : MonoBehaviour
 {
-    [HideInInspector]
-    public PlayerManager PlayerManager;
-
     private Vector2 MovementInput;
     private PlayerControls PlayerControls;
     private BoxCollider HitBox;
+    private Transform PlayerPosition;
+
     private void OnEnable()
     {
-        if (PlayerManager == null)
-        {
-            PlayerManager = FindObjectOfType<PlayerManager>();
-        }
         if (HitBox == null)
         {
             HitBox = GetComponent<BoxCollider>();
+        }
+        if(PlayerPosition == null)
+        {
+            PlayerPosition = HitBox.transform.GetChild(transform.childCount - 1);
         }
         if (PlayerControls == null)
         {
