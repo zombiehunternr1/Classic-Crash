@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
 
 public class WorldmapPlayerController : MonoBehaviour
 {
@@ -57,37 +56,34 @@ public class WorldmapPlayerController : MonoBehaviour
         {
             if (MovementInput.x == 1)
             {
-                int Move = Convert.ToInt32(MovementInput.x);
-                MoveToLevel(Move);
+                MoveToLevel(MovementInput);
                 Debug.Log("right");
                 IsMoving = true;
             }
             if (MovementInput.x == -1)
             {
-                int Move = Convert.ToInt32(MovementInput.x);
-                MoveToLevel(Move);
+                MoveToLevel(MovementInput);
                 Debug.Log("Left");
                 IsMoving = true;
             }
             if (MovementInput.y == 1)
             {
-                int Move = Convert.ToInt32(MovementInput.y);
-                MoveToLevel(Move);
+                MoveToLevel(MovementInput);
                 Debug.Log("Up");
                 IsMoving = true;
             }
             if (MovementInput.y == -1)
             {
-                int Move = Convert.ToInt32(MovementInput.y);
-                MoveToLevel(Move);
+                MoveToLevel(MovementInput);
                 Debug.Log("Down");
                 IsMoving = true;
             }
         }    
     }
 
-    private void MoveToLevel(int Move)
+    private void MoveToLevel(Vector2 Move)
     {
+        //if(Move == )
         Debug.Log(Move);
     }
 }
