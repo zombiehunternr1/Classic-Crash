@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class WorldmapPlayerController : MonoBehaviour
 {
@@ -8,16 +9,18 @@ public class WorldmapPlayerController : MonoBehaviour
     private PlayerControls PlayerControls;
     private BoxCollider HitBox;
     private Transform PlayerPosition;
+    private World CurrentWorld;
+    private bool IsMoving = false;
 
     private void OnEnable()
     {
         if (HitBox == null)
         {
-            HitBox = GetComponent<BoxCollider>();
+            HitBox = GetComponentInChildren<BoxCollider>();
         }
         if(PlayerPosition == null)
         {
-            PlayerPosition = HitBox.transform.GetChild(transform.childCount - 1);
+            PlayerPosition = HitBox.transform;
         }
         if (PlayerControls == null)
         {
@@ -31,13 +34,60 @@ public class WorldmapPlayerController : MonoBehaviour
         PlayerControls.Disable();
     }
 
-    private void Update()
+    private void OnTriggerEnter(Collider other)
     {
-        Movement();
+        if (other.gameObject.GetComponent<World>())
+        {
+            if (CurrentWorld == null)
+            {
+                CurrentWorld = other.gameObject.GetComponent<World>();
+            }
+        }
     }
 
-    private void Movement()
+    private void Update()
+    {
+        Move();
+    }
+
+    private void Move()
     {
         MovementInput = new Vector2(MovementInput.x, MovementInput.y);
+        if (!IsMoving)
+        {
+            if (MovementInput.x == 1)
+            {
+                int Move = Convert.ToInt32(MovementInput.x);
+                MoveToLevel(Move);
+                Debug.Log("right");
+                IsMoving = true;
+            }
+            if (MovementInput.x == -1)
+            {
+                int Move = Convert.ToInt32(MovementInput.x);
+                MoveToLevel(Move);
+                Debug.Log("Left");
+                IsMoving = true;
+            }
+            if (MovementInput.y == 1)
+            {
+                int Move = Convert.ToInt32(MovementInput.y);
+                MoveToLevel(Move);
+                Debug.Log("Up");
+                IsMoving = true;
+            }
+            if (MovementInput.y == -1)
+            {
+                int Move = Convert.ToInt32(MovementInput.y);
+                MoveToLevel(Move);
+                Debug.Log("Down");
+                IsMoving = true;
+            }
+        }    
+    }
+
+    private void MoveToLevel(int Move)
+    {
+        Debug.Log(Move);
     }
 }

@@ -16,22 +16,25 @@ public class Level : MonoBehaviour
             case PathType.single:
                 if (level - 1 > -1)
                 {
-                    Debug.Log(gameObject.name);
-                    Debug.Log("Yes");
+                    //Debug.Log(gameObject.name);
+                    //Debug.Log("Yes");
                 }
                 if(level + 1 < GetComponentInParent<Route>().Levels.Count)
                 {
-                    Debug.Log(gameObject.name);
-                    Debug.Log("No");
+                    //Debug.Log(gameObject.name);
+                    //Debug.Log("No");
                 }
                 if(level - 1 < GetComponentInParent<Route>().Levels.Count)
                 {
-                    Debug.Log(gameObject.name);
-                    Debug.Log("No");
+                    //Debug.Log(gameObject.name);
+                    //Debug.Log("No");
                 }
             break;
             case PathType.split:
-
+                foreach(Route Route in SplitRoute)
+                {
+                    //Debug.Log(Route.name);
+                }
             break;
         }
     }

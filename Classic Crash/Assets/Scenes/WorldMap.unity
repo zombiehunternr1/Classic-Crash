@@ -133,6 +133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 189442881}
   - component: {fileID: 189442882}
+  - component: {fileID: 189442883}
   m_Layer: 0
   m_Name: World 1
   m_TagString: Untagged
@@ -170,6 +171,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Routes: []
+--- !u!65 &189442883
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 189442880}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &201844667
 GameObject:
   m_ObjectHideFlags: 0
@@ -1088,10 +1102,6 @@ PrefabInstance:
     - target: {fileID: 319070462012700765, guid: 0896adb270d5a83469852f3878ccdee8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3447850601928028838, guid: 0896adb270d5a83469852f3878ccdee8, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0896adb270d5a83469852f3878ccdee8, type: 3}
