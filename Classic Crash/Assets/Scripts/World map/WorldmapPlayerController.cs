@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class WorldmapPlayerController : MonoBehaviour
 {
+    public int Level;
     private Vector2 MovementInput;
     private PlayerControls PlayerControls;
     private BoxCollider HitBox;
     private Transform PlayerPosition;
-    private World CurrentWorld;
+    public World CurrentWorld;
     private bool IsMoving = false;
 
     private void OnEnable()
@@ -35,13 +36,18 @@ public class WorldmapPlayerController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.GetComponent<World>())
+        if (other.GetComponent<World>())
         {
             if (CurrentWorld == null)
             {
-                CurrentWorld = other.gameObject.GetComponent<World>();
+                CurrentWorld = other.GetComponent<World>();
             }
         }
+        if (other.GetComponent<Level>())
+        {
+            Level = other.GetComponent<Level>().level;
+        }
+
     }
 
     private void Update()
@@ -83,7 +89,21 @@ public class WorldmapPlayerController : MonoBehaviour
 
     private void MoveToLevel(Vector2 Move)
     {
-        //if(Move == )
-        Debug.Log(Move);
+        if (Move == Vector2.up)
+        {
+
+        }
+        if (Move == Vector2.down)
+        {
+
+        }
+        if (Move == Vector2.left)
+        {
+
+        }
+        if (Move == Vector2.right)
+        {
+
+        }
     }
 }
