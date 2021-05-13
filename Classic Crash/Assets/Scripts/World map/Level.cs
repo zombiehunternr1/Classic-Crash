@@ -7,6 +7,7 @@ public class Level : MonoBehaviour
     public enum PathType { single, split};
     public PathType Path;
     public int level;
+    public List<Route> SplitRoute;
 
     private void OnEnable()
     {
