@@ -17,4 +17,17 @@ public class Route : MonoBehaviour
             }
         }
     }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+
+        for(int i = 0; i < Levels.Count; i++)
+        {
+            if (Levels[i].GetComponent<Level>().Path == Level.PathType.single && i + 1 < Levels.Count)
+            {
+                Gizmos.DrawLine(Levels[i].position, Levels[i + 1].position);
+            }
+        }
+    }
 }
