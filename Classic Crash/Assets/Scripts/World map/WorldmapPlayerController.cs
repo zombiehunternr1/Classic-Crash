@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class WorldmapPlayerController : MonoBehaviour
 {
-    public int Level;
+    private int Level;
     private Vector2 MovementInput;
     private PlayerControls PlayerControls;
     private BoxCollider HitBox;
     private Transform PlayerPosition;
-    public World CurrentWorld;
+    private World CurrentWorld;
     private bool IsMoving = false;
 
     private void OnEnable()
@@ -47,7 +47,6 @@ public class WorldmapPlayerController : MonoBehaviour
         {
             Level = other.GetComponent<Level>().level;
         }
-
     }
 
     private void Update()
@@ -63,7 +62,6 @@ public class WorldmapPlayerController : MonoBehaviour
             if (MovementInput.x == 1)
             {
                 MoveToLevel(MovementInput);
-                Debug.Log("right");
                 IsMoving = true;
             }
             if (MovementInput.x == -1)
@@ -89,6 +87,7 @@ public class WorldmapPlayerController : MonoBehaviour
 
     private void MoveToLevel(Vector2 Move)
     {
+        RaycastHit Hit;
         if (Move == Vector2.up)
         {
 
@@ -103,7 +102,16 @@ public class WorldmapPlayerController : MonoBehaviour
         }
         if (Move == Vector2.right)
         {
-
+            if (Physics.Raycast(PlayerPosition.position, transform.TransformDirection(Vector2.right), out Hit))
+            {
+                if (Hit.collider != GetComponent<WorldmapPlayerController>())
+                {
+                    Route CurrentRoute = Hit.collider.GetComponentInParent<Route>();
+                    Level GoToLevel = Hit.collider.GetComponent<Level>();
+                    Debug.Log(CurrentRoute);
+                    Debug.Log(GoToLevel);
+                }
+            }
         }
     }
 }
