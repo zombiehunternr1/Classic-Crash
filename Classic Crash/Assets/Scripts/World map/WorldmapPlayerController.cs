@@ -4,23 +4,26 @@ using UnityEngine;
 
 public class WorldmapPlayerController : MonoBehaviour
 {
+    public float Speed;
+    [HideInInspector]
+    public World CurrentWorld;
+    private Transform PlayerPosition;
     private int Level;
     private Vector2 MovementInput;
     private PlayerControls PlayerControls;
     private BoxCollider HitBox;
-    private Transform PlayerPosition;
-    private World CurrentWorld;
     private bool IsMoving = false;
+    private float Step;
 
     private void OnEnable()
     {
         if (HitBox == null)
         {
-            HitBox = GetComponentInChildren<BoxCollider>();
+            HitBox = GetComponent<BoxCollider>();
         }
         if(PlayerPosition == null)
         {
-            PlayerPosition = HitBox.transform;
+            PlayerPosition = GetComponent<Transform>();
         }
         if (PlayerControls == null)
         {
@@ -36,13 +39,6 @@ public class WorldmapPlayerController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.GetComponent<World>())
-        {
-            if (CurrentWorld == null)
-            {
-                CurrentWorld = other.GetComponent<World>();
-            }
-        }
         if (other.GetComponent<Level>())
         {
             Level = other.GetComponent<Level>().level;
@@ -62,56 +58,80 @@ public class WorldmapPlayerController : MonoBehaviour
             if (MovementInput.x == 1)
             {
                 MoveToLevel(MovementInput);
-                IsMoving = true;
             }
             if (MovementInput.x == -1)
             {
                 MoveToLevel(MovementInput);
-                Debug.Log("Left");
-                IsMoving = true;
             }
             if (MovementInput.y == 1)
             {
                 MoveToLevel(MovementInput);
-                Debug.Log("Up");
-                IsMoving = true;
             }
             if (MovementInput.y == -1)
             {
                 MoveToLevel(MovementInput);
-                Debug.Log("Down");
-                IsMoving = true;
             }
         }    
     }
 
     private void MoveToLevel(Vector2 Move)
     {
-        RaycastHit Hit;
+        IsMoving = true;
         if (Move == Vector2.up)
         {
-
+            Vector3 MoveUp = Vector3.forward;
+            StartCoroutine(CheckDirection(MoveUp));
         }
         if (Move == Vector2.down)
         {
-
+            Vector3 MoveDown = -Vector3.forward;
+            StartCoroutine(CheckDirection(MoveDown));
         }
         if (Move == Vector2.left)
         {
-
+            Vector3 MoveLeft = Vector3.left;
+            StartCoroutine(CheckDirection(MoveLeft));
         }
         if (Move == Vector2.right)
         {
-            if (Physics.Raycast(PlayerPosition.position, transform.TransformDirection(Vector2.right), out Hit))
+            Vector3 MoveRight = Vector3.right;
+            StartCoroutine(CheckDirection(MoveRight));
+        }
+    }
+
+    private IEnumerator CheckDirection(Vector3 Direction)
+    {
+        RaycastHit Hit;
+        float Reset = 0;
+        while(Reset < 0.1)
+        {
+            Reset += Time.deltaTime;
+            if (Physics.Raycast(PlayerPosition.position, transform.TransformDirection(Direction), out Hit))
             {
                 if (Hit.collider != GetComponent<WorldmapPlayerController>())
                 {
                     Route CurrentRoute = Hit.collider.GetComponentInParent<Route>();
                     Level GoToLevel = Hit.collider.GetComponent<Level>();
-                    Debug.Log(CurrentRoute);
-                    Debug.Log(GoToLevel);
+                    if (CurrentWorld.Routes.Contains(CurrentRoute.transform))
+                    {
+                        StartCoroutine(MoveToLevel(GoToLevel));
+                    }
                 }
             }
+            yield return Reset;
         }
+        IsMoving = false;
+    }
+
+    private IEnumerator MoveToLevel(Level GoToLevel)
+    {
+        while (PlayerPosition.position != GoToLevel.transform.position)
+        {
+            Step = Speed * Time.deltaTime;
+            PlayerPosition.position = Vector3.MoveTowards(PlayerPosition.position, GoToLevel.transform.position, Step);
+            yield return PlayerPosition.position;            
+        }
+        Step = 0;
+        IsMoving = false;
     }
 }

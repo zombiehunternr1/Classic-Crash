@@ -17,4 +17,12 @@ public class World : MonoBehaviour
             }
         }
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.GetComponent<WorldmapPlayerController>())
+        {
+            other.GetComponent<WorldmapPlayerController>().CurrentWorld = this;
+        }
+    }
 }
