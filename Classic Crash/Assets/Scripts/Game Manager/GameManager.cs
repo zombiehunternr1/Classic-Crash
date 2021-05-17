@@ -174,6 +174,10 @@ public class GameManager : MonoBehaviour
                 {
                     PlayerInfo.Player.PlayerPosition.position = BonusLevel.position;
                 }
+                if (PlayerInfo.Player.Instakill)
+                {
+                    PlayerInfo.Player.Instakill = false;
+                }
             }
             yield return new WaitForSeconds(HoldNextFade);
             while(FadePanel.color.a > 0)

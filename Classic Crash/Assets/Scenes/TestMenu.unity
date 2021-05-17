@@ -467,6 +467,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Game Manager
       objectReference: {fileID: 0}
+    - target: {fileID: 1413504033817468001, guid: 4054f88baad51a74292ef2e038f8d274, type: 3}
+      propertyPath: HoldNextFade
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1413504033817468002, guid: 4054f88baad51a74292ef2e038f8d274, type: 3}
       propertyPath: m_RootOrder
       value: 5
