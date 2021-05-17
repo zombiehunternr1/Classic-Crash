@@ -20,6 +20,10 @@ public class InputManager : MonoBehaviour
     public PlayerManager PlayerManager;
     [HideInInspector]
     public Transform PlayerPosition;
+    [HideInInspector]
+    public bool BonusArea;
+    [HideInInspector]
+    public bool Instakill;
     private PlayerControls PlayerControls;
     private Vector2 MovementInput;
     private Rigidbody RB;

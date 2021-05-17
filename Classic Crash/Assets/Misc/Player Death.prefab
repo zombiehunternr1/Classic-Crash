@@ -109,3 +109,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerHit: {fileID: 11400000, guid: 8f43e180b82338747ac9d4a689449921, type: 2}
+  Instakill: 0
+  BonusPlatform: {fileID: 0}

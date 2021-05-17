@@ -19,7 +19,9 @@ public class GameManager : MonoBehaviour
     public bool FadeToBlack;
     [HideInInspector]
     public bool CanMove = true;
-    public InputManager PlayerPosition;
+    [HideInInspector]
+    public int Scene;
+    private PlayerManager PlayerInfo;
     private Image FadePanel;
     private float FadeAmount;
 
@@ -37,6 +39,7 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
         FadePanel = GetComponentInChildren<Image>();
+        FindPlayer();
     }
 
     private bool IsSaveFile()
@@ -117,13 +120,18 @@ public class GameManager : MonoBehaviour
 
     public void FindPlayer()
     {
-        if (PlayerPosition == null)
+        if (PlayerInfo == null)
         {
-            PlayerPosition = FindObjectOfType<InputManager>();
+            PlayerInfo = FindObjectOfType<PlayerManager>();
         }
     }
 
-    public IEnumerator FadingEffect(int scene, Transform BonusLevel)
+    public void GetScene()
+    {
+        Scene = SceneManager.GetActiveScene().buildIndex;
+    }
+
+    public IEnumerator FadingEffect(Transform BonusLevel)
     {
         if (FadeToBlack)
         {
@@ -137,26 +145,33 @@ public class GameManager : MonoBehaviour
                 FadePanel.color = ChangeColor;
                 yield return null;
             }
-            FadeToBlack = false;
-            if(BonusLevel == null)
+            FadeToBlack = false;                 
+            if (PlayerInfo != null)
             {
-                SceneManager.LoadScene(scene);
-                yield return new WaitForSeconds(HoldNextFade);
-                StartCoroutine(FadingEffect(scene, null));
+                if (PlayerInfo.Player.Instakill)
+                {
+                    PlayerInfo.CheckLifeTotal();
+                }
+                else
+                {
+                    yield return new WaitForSeconds(HoldNextFade);
+                    StartCoroutine(FadingEffect(BonusLevel));
+                }
             }
-            else
+            if (BonusLevel == null)
             {
+                SceneManager.LoadScene(Scene);
                 yield return new WaitForSeconds(HoldNextFade);
-                StartCoroutine(FadingEffect(scene, BonusLevel));
+                StartCoroutine(FadingEffect(null));
             }
         }
         else
         {
-            if(PlayerPosition != null)
+            if(PlayerInfo != null)
             {
                 if(BonusLevel != null)
                 {
-                    PlayerPosition.PlayerPosition.position = BonusLevel.position;
+                    PlayerInfo.Player.PlayerPosition.position = BonusLevel.position;
                 }
             }
             while(FadePanel.color.a > 0)

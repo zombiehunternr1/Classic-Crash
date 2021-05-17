@@ -7,9 +7,9 @@ public class MenuTester : MonoBehaviour
 {
     public void StartGame()
     {
-        int LoadScene = SceneManager.GetActiveScene().buildIndex + 1;
+        GameManager.Instance.Scene = SceneManager.GetActiveScene().buildIndex + 1;
         GameManager.Instance.FadeToBlack = true;
-        GameManager.Instance.StartCoroutine(GameManager.Instance.FadingEffect(LoadScene, null));
+        GameManager.Instance.StartCoroutine(GameManager.Instance.FadingEffect(null));
     }
 
     public void SaveGame()

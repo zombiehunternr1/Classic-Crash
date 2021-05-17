@@ -949,6 +949,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ae6bce502129a314e9dd3b87238bbfaa, type: 3}
+--- !u!4 &4499334407603935162 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1641179198915484583, guid: ae6bce502129a314e9dd3b87238bbfaa, type: 3}
+  m_PrefabInstance: {fileID: 4499334407603935161}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5975020003704933227
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1127,6 +1132,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1728305087969764073, guid: 9c5944003c19ec64ba071322a8727db8, type: 3}
+      propertyPath: Instakill
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1728305087969764073, guid: 9c5944003c19ec64ba071322a8727db8, type: 3}
+      propertyPath: BonusPlatform
+      value: 
+      objectReference: {fileID: 4499334407603935162}
     - target: {fileID: 6111504209554800787, guid: 9c5944003c19ec64ba071322a8727db8, type: 3}
       propertyPath: m_RootOrder
       value: 0

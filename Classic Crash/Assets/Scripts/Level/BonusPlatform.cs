@@ -1,17 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class BonusPlatform : MonoBehaviour
 {
     public Transform BonusLocation;
-    private Transform BonusEntry;
-    private int CurrentLevel;
-    private void OnEnable()
-    {
-        CurrentLevel = SceneManager.GetActiveScene().buildIndex;
-    }
 
     private void OnTriggerEnter(Collider other)
     {      
@@ -19,7 +12,8 @@ public class BonusPlatform : MonoBehaviour
         {
             if (BonusLocation != null)
             {
-                GameManager.Instance.StartCoroutine(GameManager.Instance.FadingEffect(CurrentLevel, BonusLocation));
+                other.GetComponent<InputManager>().BonusArea = true;
+                GameManager.Instance.StartCoroutine(GameManager.Instance.FadingEffect(BonusLocation));
             }
         }
     }

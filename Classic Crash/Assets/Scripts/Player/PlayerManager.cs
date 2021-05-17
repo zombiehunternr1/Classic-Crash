@@ -10,7 +10,7 @@ public class PlayerManager : MonoBehaviour
     public bool IsInvinsible;
 
     [HideInInspector]
-    private InputManager Player;
+    public InputManager Player;
     private GameObject AkuAkuPlayerPosition;
     private CrateSystem CrateSystem;
     private float InvinsibleTimer = 21;
@@ -19,6 +19,11 @@ public class PlayerManager : MonoBehaviour
 
     private void Awake()
     {
+        if(Player == null)
+        {
+            Player = FindObjectOfType<InputManager>();
+        }
+        GameManager.Instance.GetScene();
         GameManager.Instance.FindPlayer();
         CrateSystem = GetComponent<CrateSystem>();
         AkuAkuPlayerPosition = FindObjectOfType<InputManager>().GetComponentInChildren<Animator>().gameObject;
@@ -27,10 +32,17 @@ public class PlayerManager : MonoBehaviour
 
     public void PlayerHit(Transform PlayerHit)
     {
-        Player = PlayerHit.GetComponent<InputManager>();
-        if (!IsInvinsible)
+        if (PlayerHit.GetComponent<InputManager>()) 
         {
-            WithdrawAkuAku();
+            if (Player.Instakill)
+            {
+                StopInvinsibility();
+
+            }
+            if (!IsInvinsible)
+            {
+                WithdrawAkuAku();
+            }
         }
     }
 
@@ -105,8 +117,7 @@ public class PlayerManager : MonoBehaviour
             AkuAkuPlayerPosition.GetComponentInChildren<MeshRenderer>().enabled = false;
         }
     }
-
-    private void CheckLifeTotal()
+    public void CheckLifeTotal()
     {
         if (CollectedItems.Lives > 0)
         {
@@ -114,6 +125,7 @@ public class PlayerManager : MonoBehaviour
             CollectedItems.AkuAkus = 0;
             Player.LoadLastCheckpoint();
             CrateSystem.ResetCrates();
+            GameManager.Instance.StartCoroutine(GameManager.Instance.FadingEffect(null));
         }
         else
         {
