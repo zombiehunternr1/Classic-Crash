@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
     public bool FadeToBlack;
     [HideInInspector]
     public bool CanMove = true;
+    public InputManager PlayerPosition;
     private Image FadePanel;
     private float FadeAmount;
 
@@ -114,7 +115,15 @@ public class GameManager : MonoBehaviour
         SFXCollectables.PlaySpinAway();
     }
 
-    public IEnumerator FadingEffect(int scene)
+    public void FindPlayer()
+    {
+        if (PlayerPosition == null)
+        {
+            PlayerPosition = FindObjectOfType<InputManager>();
+        }
+    }
+
+    public IEnumerator FadingEffect(int scene, Transform BonusLevel)
     {
         if (FadeToBlack)
         {
@@ -129,12 +138,27 @@ public class GameManager : MonoBehaviour
                 yield return null;
             }
             FadeToBlack = false;
-            SceneManager.LoadScene(scene);
-            yield return new WaitForSeconds(HoldNextFade);
-            StartCoroutine(FadingEffect(scene));
+            if(BonusLevel == null)
+            {
+                SceneManager.LoadScene(scene);
+                yield return new WaitForSeconds(HoldNextFade);
+                StartCoroutine(FadingEffect(scene, null));
+            }
+            else
+            {
+                yield return new WaitForSeconds(HoldNextFade);
+                StartCoroutine(FadingEffect(scene, BonusLevel));
+            }
         }
         else
         {
+            if(PlayerPosition != null)
+            {
+                if(BonusLevel != null)
+                {
+                    PlayerPosition.PlayerPosition.position = BonusLevel.position;
+                }
+            }
             while(FadePanel.color.a > 0)
             {
                 Color ChangeColor = FadePanel.color;

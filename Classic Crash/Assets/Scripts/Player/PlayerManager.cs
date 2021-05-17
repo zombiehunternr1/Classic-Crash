@@ -9,15 +9,17 @@ public class PlayerManager : MonoBehaviour
     [HideInInspector]
     public bool IsInvinsible;
 
+    [HideInInspector]
+    private InputManager Player;
     private GameObject AkuAkuPlayerPosition;
     private CrateSystem CrateSystem;
-    private InputManager Player;
     private float InvinsibleTimer = 21;
     private Vector3 AkuAkuOriginalPos = new Vector3(1,0,0);
     private Vector3 AkuAkuFrontFacePos = new Vector3(0, 0, 1);
 
     private void Awake()
     {
+        GameManager.Instance.FindPlayer();
         CrateSystem = GetComponent<CrateSystem>();
         AkuAkuPlayerPosition = FindObjectOfType<InputManager>().GetComponentInChildren<Animator>().gameObject;
         StopInvinsibility();

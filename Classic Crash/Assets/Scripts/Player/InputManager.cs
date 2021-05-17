@@ -18,6 +18,8 @@ public class InputManager : MonoBehaviour
 
     [HideInInspector]
     public PlayerManager PlayerManager;
+    [HideInInspector]
+    public Transform PlayerPosition;
     private PlayerControls PlayerControls;
     private Vector2 MovementInput;
     private Rigidbody RB;
@@ -42,6 +44,10 @@ public class InputManager : MonoBehaviour
         if (HitBox == null)
         {
             HitBox = GetComponent<BoxCollider>();
+        }
+        if(PlayerPosition == null)
+        {
+            PlayerPosition = GetComponent<Transform>();
         }
         if (PlayerControls == null)
         {

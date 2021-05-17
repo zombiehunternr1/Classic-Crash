@@ -13,8 +13,7 @@ public class ExitLevel1 : MonoBehaviour
         {
             int LoadScene = SceneManager.GetActiveScene().buildIndex + 1;
             SaveProgress.Raise();
-            GameManager.Instance.FadeToBlack = true;
-            GameManager.Instance.StartCoroutine(GameManager.Instance.FadingEffect(LoadScene));
+            GameManager.Instance.StartCoroutine(GameManager.Instance.FadingEffect(LoadScene, null));
         }
     }
 }
