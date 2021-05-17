@@ -5,9 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class HurtPlayer : MonoBehaviour
 {
+    public Transform BonusPlatform;
     public GameEventTransform PlayerHit;
     public bool Instakill;
-    public Transform BonusPlatform;
 
     private int Scene;
     private void OnEnable()

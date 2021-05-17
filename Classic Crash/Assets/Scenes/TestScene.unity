@@ -437,6 +437,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 532708986}
     m_Modifications:
+    - target: {fileID: 391843634501656032, guid: ae6bce502129a314e9dd3b87238bbfaa, type: 3}
+      propertyPath: BonusLocation
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 7164644465877701628, guid: ae6bce502129a314e9dd3b87238bbfaa, type: 3}
       propertyPath: m_Name
       value: Bonus platform

@@ -151,6 +151,7 @@ public class GameManager : MonoBehaviour
                 if (PlayerInfo.Player.Instakill)
                 {
                     PlayerInfo.CheckLifeTotal();
+                    yield break;
                 }
                 else
                 {
@@ -174,6 +175,7 @@ public class GameManager : MonoBehaviour
                     PlayerInfo.Player.PlayerPosition.position = BonusLevel.position;
                 }
             }
+            yield return new WaitForSeconds(HoldNextFade);
             while(FadePanel.color.a > 0)
             {
                 Color ChangeColor = FadePanel.color;
