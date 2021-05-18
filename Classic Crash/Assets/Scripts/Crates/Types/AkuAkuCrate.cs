@@ -7,9 +7,11 @@ public class AkuAkuCrate : MonoBehaviour, ICrateBase
     public GameObject AkuAku;
     public bool AutoAdd;
     public bool HasGravity;
-    public GameEvent CrateBroken;
+    public GameEventTransform CrateBroken;
     public GameEvent AddAkuAku;
 
+    [HideInInspector]
+    public bool IsBonus { get; set; }
     private bool IsBroken;
     private Rigidbody RB;
     private bool CanBounce = true;
@@ -69,7 +71,7 @@ public class AkuAkuCrate : MonoBehaviour, ICrateBase
             GetComponent<Renderer>().enabled = false;
             BreakSFX.Play();
             IsBroken = true;
-            CrateBroken.Raise();
+            CrateBroken.RaiseTransform(transform);
         }
     }
 

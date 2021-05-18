@@ -6,10 +6,12 @@ public class LifeCrate : MonoBehaviour, ICrateBase
 {
     public GameObject Life;
     public GameEvent AddLife;
+    public GameEventTransform CrateBroken;
     public bool AutoAdd;
     public bool HasGravity;
-    public GameEvent CrateBroken;
 
+    [HideInInspector]
+    public bool IsBonus { get; set; }
     private bool IsBroken;
     private Rigidbody RB;
     private bool CanBounce = true;
@@ -69,7 +71,7 @@ public class LifeCrate : MonoBehaviour, ICrateBase
             GetComponent<Renderer>().enabled = false;
             BreakSFX.Play();
             IsBroken = true;
-            CrateBroken.Raise();
+            CrateBroken.RaiseTransform(transform);
 
         }
     }

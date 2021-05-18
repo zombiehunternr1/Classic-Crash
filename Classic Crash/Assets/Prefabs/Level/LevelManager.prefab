@@ -12,8 +12,6 @@ GameObject:
   - component: {fileID: 1443198673236297399}
   - component: {fileID: 1443198673236297388}
   - component: {fileID: 6227356818941958945}
-  - component: {fileID: 1443198673236297385}
-  - component: {fileID: 1443198673236297386}
   - component: {fileID: 1443198673236297387}
   - component: {fileID: 1443198673236297389}
   - component: {fileID: 1443198673236297390}
@@ -22,6 +20,10 @@ GameObject:
   - component: {fileID: 357520324293727712}
   - component: {fileID: 5683567089101173067}
   - component: {fileID: 4933203467546326444}
+  - component: {fileID: 600778244140331989}
+  - component: {fileID: 3055296220266473312}
+  - component: {fileID: 1164683077672812347}
+  - component: {fileID: 2428738199485389617}
   - component: {fileID: -1188325366446711102}
   - component: {fileID: 7805196990945313582}
   m_Layer: 0
@@ -58,6 +60,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SpawnGem: {fileID: 11400000, guid: 526dbcb9a32c6734491400074494a562, type: 2}
+  DespawnGem: {fileID: 11400000, guid: 1ecca0dff66463747a481cb55084b8b2, type: 2}
   CurrentlyBroken: []
   BreakableCrates: []
 --- !u!114 &1443198673236297388
@@ -94,63 +97,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CollectedItems: {fileID: 11400000, guid: be1f995f06c814e47b9af02c3215b9bd, type: 2}
+  ResetLevelCrates: {fileID: 11400000, guid: 8e3834a9103b0f3449d01a2c41b8c2b6, type: 2}
   IsInvinsible: 0
---- !u!114 &1443198673236297385
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1443198673236297398}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72e9521e68e659a4cbffcd04f6d2d34c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _gameEventInt: {fileID: 11400000, guid: 80ba4f4513136074b833a8fb1b3a2dc8, type: 2}
-  _responseInt:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1443198673236297399}
-        m_TargetAssemblyTypeName: CrateSystem, Assembly-CSharp
-        m_MethodName: SaveCheckpointCount
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &1443198673236297386
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1443198673236297398}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 90749240303c2b24e8c1aea0adbdc041, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _gameEvent: {fileID: 11400000, guid: 5f965b2e97384fb4192d9b9b866aa59e, type: 2}
-  _response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1443198673236297399}
-        m_TargetAssemblyTypeName: CrateSystem, Assembly-CSharp
-        m_MethodName: UpdateCurrentCrateCount
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+  Player: {fileID: 0}
 --- !u!114 &1443198673236297387
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -379,6 +328,118 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: PlayerManager, Assembly-CSharp
         m_MethodName: AddAkuAku
         m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &600778244140331989
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1443198673236297398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90749240303c2b24e8c1aea0adbdc041, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _gameEvent: {fileID: 11400000, guid: 8e3834a9103b0f3449d01a2c41b8c2b6, type: 2}
+  _response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1443198673236297399}
+        m_TargetAssemblyTypeName: CrateSystem, Assembly-CSharp
+        m_MethodName: ResetCrates
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &3055296220266473312
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1443198673236297398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6be31de2386aac429fae94d72a7add1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _gameEventTransform: {fileID: 11400000, guid: 1ecca0dff66463747a481cb55084b8b2, type: 2}
+  _responseTransform:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1443198673236297388}
+        m_TargetAssemblyTypeName: Gemsystem, Assembly-CSharp
+        m_MethodName: DespawnGem
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1164683077672812347
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1443198673236297398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90749240303c2b24e8c1aea0adbdc041, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _gameEvent: {fileID: 11400000, guid: 9fb1299e811f420459d7d21ac55b04d9, type: 2}
+  _response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1443198673236297399}
+        m_TargetAssemblyTypeName: CrateSystem, Assembly-CSharp
+        m_MethodName: SaveCrateCount
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &2428738199485389617
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1443198673236297398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6be31de2386aac429fae94d72a7add1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _gameEventTransform: {fileID: 11400000, guid: 5f965b2e97384fb4192d9b9b866aa59e, type: 2}
+  _responseTransform:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1443198673236297399}
+        m_TargetAssemblyTypeName: CrateSystem, Assembly-CSharp
+        m_MethodName: UpdateCurrentCrateCount
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

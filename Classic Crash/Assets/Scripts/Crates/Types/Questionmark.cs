@@ -6,7 +6,8 @@ public class Questionmark : MonoBehaviour, ICrateBase, ISpawnable
 {
     public GameObject Wumpa;
     public GameObject Life;
-    public GameEvent CrateBroken;
+    public GameEventTransform LevelCrateBroken;
+    public GameEventTransform BonusCrateBroken;
     public GameEventInt AddWumpa;
     public GameEvent AddLife;
     public bool IsWumpa;
@@ -14,6 +15,8 @@ public class Questionmark : MonoBehaviour, ICrateBase, ISpawnable
     public bool HasGravity;
     public int amount = 1;
 
+    [HideInInspector]
+    public bool IsBonus { get; set; }
     private bool IsBroken;
     private bool WasLife = true;
     private Rigidbody RB;
@@ -80,7 +83,14 @@ public class Questionmark : MonoBehaviour, ICrateBase, ISpawnable
             GetComponent<Renderer>().enabled = false;
             BreakSFX.Play();
             IsBroken = true;
-            CrateBroken.Raise();
+            if (!IsBonus)
+            {             
+                LevelCrateBroken.RaiseTransform(transform);
+            }
+            else
+            {
+                BonusCrateBroken.RaiseTransform(transform);
+            }
         }
     }
 

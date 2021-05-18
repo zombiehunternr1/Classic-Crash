@@ -7,9 +7,11 @@ public class Default : MonoBehaviour, ICrateBase, ISpawnable
     public GameObject Item;
     public bool AutoAdd;
     public bool HasGravity;
-    public GameEvent CrateBroken;
+    public GameEventTransform CrateBroken;
     public GameEventInt AddWumpa;
 
+    [HideInInspector]
+    public bool IsBonus { get; set; }
     private bool IsBroken;
     private int Amount = 1;
     private Rigidbody RB;
@@ -51,6 +53,7 @@ public class Default : MonoBehaviour, ICrateBase, ISpawnable
         }
         else
         {
+            RB.useGravity = true;
             RB.mass = 0.1f;
         }
     }
@@ -77,7 +80,7 @@ public class Default : MonoBehaviour, ICrateBase, ISpawnable
             GetComponent<Renderer>().enabled = false;
             BreakSFX.Play();
             IsBroken = true;
-            CrateBroken.Raise();
+            CrateBroken.RaiseTransform(transform);
         }
     }
     public void ResetCrate()
@@ -99,7 +102,6 @@ public class Default : MonoBehaviour, ICrateBase, ISpawnable
         }
         DisableCrate();
     }
-
     private void DelayInactive()
     {
         gameObject.SetActive(false);

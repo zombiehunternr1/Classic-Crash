@@ -112,14 +112,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Wumpa: {fileID: 6819524890254654404, guid: e27d6c3911a6e1b45a3fe8c71ea1221d, type: 3}
   Life: {fileID: 4519319795387716966, guid: 886071fb8e8f37b4187d13c2eb04d97a, type: 3}
-  CrateBroken: {fileID: 11400000, guid: 5f965b2e97384fb4192d9b9b866aa59e, type: 2}
+  LevelCrateBroken: {fileID: 11400000, guid: 5f965b2e97384fb4192d9b9b866aa59e, type: 2}
+  BonusCrateBroken: {fileID: 11400000, guid: 5f965b2e97384fb4192d9b9b866aa59e, type: 2}
   AddWumpa: {fileID: 11400000, guid: f82ac4f0a1e91a84492ef53485bbbcad, type: 2}
   AddLife: {fileID: 11400000, guid: 9ebfb660800920140b45dfe62e91a11b, type: 2}
   IsWumpa: 1
   AutoAdd: 0
   HasGravity: 0
   amount: 10
-  IsBroken: 0
 --- !u!54 &-9038360519488574065
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -128,10 +128,10 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3618345120150303724}
   serializedVersion: 2
-  m_Mass: 0.1
+  m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 122

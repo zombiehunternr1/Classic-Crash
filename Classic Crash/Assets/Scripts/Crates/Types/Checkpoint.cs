@@ -7,15 +7,16 @@ public class Checkpoint : MonoBehaviour, ICrateBase
     public CrateType crateType;
     public GameObject BrokenCrate;
     public GameObject MetalCrate;
-    public GameEventInt UpdateCrateCount;
+    public GameEventTransform CrateBroken;
+    public GameEvent SaveCrateCount;
     public AudioSource BreakSFX;
     public AudioSource CheckpointSFX;
     public AudioSource ActivatorSFX;
 
     [HideInInspector]
+    public bool IsBonus { get; set; }
+    [HideInInspector]
     public bool IsBroken;
-    private float DetectionRadius = 1f;
-    private int CurrentlyBrokenAmount;
 
     public void Break(int Side)
     {
@@ -54,6 +55,7 @@ public class Checkpoint : MonoBehaviour, ICrateBase
 
     private void BreakableCheckpoint()
     {
+        CrateBroken.RaiseTransform(transform);
         BreakSFX.Play();
         CheckpointSFX.Play();
         Instantiate(BrokenCrate, transform.position, Quaternion.identity);
@@ -72,36 +74,9 @@ public class Checkpoint : MonoBehaviour, ICrateBase
 
     private void SaveProgress()
     {
-        SavePlayerPosition();
-        SaveCrateCount();
-    }
-
-    private void SavePlayerPosition()
-    {
-        Collider[] hitColliders = Physics.OverlapSphere(GetComponent<BoxCollider>().bounds.center, DetectionRadius);
-        foreach (Collider hitCollider in hitColliders)
-        {
-            if (hitCollider.GetComponent<InputManager>())
-            {
-                Vector3 CheckPointPosition = new Vector3(transform.position.x, transform.position.y + 1, transform.position.z);
-                hitCollider.GetComponent<InputManager>().LastSavedCheckpoint(CheckPointPosition);
-            }
-        }
-    }
-
-    private void SaveCrateCount()
-    {
-        CrateSystem AllCrates = FindObjectOfType<CrateSystem>();
-
-        foreach (GameObject Crate in AllCrates.BreakableCrates)
-        {
-            if (!Crate.activeInHierarchy)
-            {
-                AllCrates.CurrentlyBroken.Add(Crate);
-                CurrentlyBrokenAmount++;
-            }
-        }
-        UpdateCrateCount.RaiseInt(CurrentlyBrokenAmount + 1);
+        Vector3 CheckPointPosition = new Vector3(transform.position.x, transform.position.y + 1, transform.position.z);
+        GameManager.Instance.PlayerInfo.Player.LastCheckpointPosition = CheckPointPosition;
+        SaveCrateCount.Raise();
     }
 
     public void DisableCrate()

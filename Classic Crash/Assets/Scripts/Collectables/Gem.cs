@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class Gem : MonoBehaviour, IInteractable
 {
+    [HideInInspector]
+    public Vector3 OriginalPosition;
     private GemSpawner GemObject;
     private Animator Anim;
     private void Awake()
     {
+        OriginalPosition = new Vector3(transform.position.x, transform.position.y, transform.position.z);
         GemObject = GetComponent<GemSpawner>();
         Anim = GetComponent<Animator>();
         if(GemObject.Gemtype.Type != GemBase.GemColor.BoxCrate)

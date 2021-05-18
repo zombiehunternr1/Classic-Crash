@@ -20,6 +20,7 @@ public class Gemsystem : MonoBehaviour
     [HideInInspector]
     public List<GemSpawner> GemSpawnersInLevel;
 
+    private bool HasSpawned;
     private int Level;
     private int[] GemTypes;
     private int Selected;
@@ -83,8 +84,8 @@ public class Gemsystem : MonoBehaviour
             {
                 if(Spawner.Gemtype.Type == GemBase.GemColor.BoxCrate)
                 {
-                    Spawner.gameObject.SetActive(false);
-                    DisableTotalCrates.Raise();
+                        Spawner.gameObject.SetActive(false);
+                        DisableTotalCrates.Raise();                    
                 }
                 else
                 {
@@ -94,15 +95,26 @@ public class Gemsystem : MonoBehaviour
         }
     }
 
-    public void SpawnGem(Transform location)
+    public void SpawnGem(Transform Location)
     {
-        if (location.gameObject.GetComponent<TotalCrates>())
+        if (Location.gameObject.GetComponent<TotalCrates>())
         {
             BreakSFX.Play();
-            var TotalCrates = location.gameObject.GetComponent<TotalCrates>();
-            CrateGem.transform.position = location.position;
+            TotalCrates TotalCrates = Location.gameObject.GetComponent<TotalCrates>();
+            CrateGem.transform.position = Location.position;
             CrateGem.GetComponent<Animator>().SetTrigger("Spawn");
             TotalCrates.gameObject.SetActive(false);
+        }
+    }
+
+    public void DespawnGem(Transform Location)
+    {
+        if (Location.gameObject.GetComponent<TotalCrates>())
+        {
+            TotalCrates TotalCrate = Location.gameObject.GetComponent<TotalCrates>();
+            CrateGem.transform.position = CrateGem.GetComponent<Gem>().OriginalPosition;
+            CrateGem.GetComponent<Animator>().SetTrigger("Spawn");
+            TotalCrate.gameObject.SetActive(true);
         }
     }
 

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public interface ICrateBase
 {
+    bool IsBonus { get; set;} 
     void Break(int Side);
 
     void DisableCrate();

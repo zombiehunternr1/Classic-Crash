@@ -41,6 +41,7 @@ public class Activator : MonoBehaviour, IInteractable
                 }
                 if (Crate.GetComponent<Nitro>()){
                     Crate.GetComponent<Nitro>().CanBounce = false;
+                    Crate.GetComponent<Nitro>().AllowGravity = false;
                 }
                 int LastChild = Crate.transform.childCount;
                 if (LastChild > 0)

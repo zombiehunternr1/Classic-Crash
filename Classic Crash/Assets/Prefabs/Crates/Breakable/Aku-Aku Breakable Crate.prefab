@@ -115,7 +115,6 @@ MonoBehaviour:
   HasGravity: 0
   CrateBroken: {fileID: 11400000, guid: 5f965b2e97384fb4192d9b9b866aa59e, type: 2}
   AddAkuAku: {fileID: 11400000, guid: 2fecc180878a97f4888599fa556cb1c5, type: 2}
-  IsBroken: 0
 --- !u!54 &-5934119366219959760
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -124,7 +123,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7856323218096374090}
   serializedVersion: 2
-  m_Mass: 0.1
+  m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0
   m_UseGravity: 1

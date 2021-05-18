@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 433631801033383577}
   - component: {fileID: 7894962802420653424}
   - component: {fileID: -2366600317387933995}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Bounce Breakable Crate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -121,7 +121,6 @@ MonoBehaviour:
   AddWumpa: {fileID: 11400000, guid: f82ac4f0a1e91a84492ef53485bbbcad, type: 2}
   BreakSFX: {fileID: 7894962802420653424}
   BounceSFX: {fileID: -2366600317387933995}
-  IsBroken: 0
 --- !u!82 &7894962802420653424
 AudioSource:
   m_ObjectHideFlags: 0

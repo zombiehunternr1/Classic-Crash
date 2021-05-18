@@ -5,11 +5,13 @@ using UnityEngine;
 public class CrateSystem : MonoBehaviour
 {
     public GameEventTransform SpawnGem;
+    public GameEventTransform DespawnGem;
     [HideInInspector]
     public List<GameObject> CurrentlyBroken = new List<GameObject>();
     [HideInInspector]
     public List<GameObject> BreakableCrates = new List<GameObject>();
 
+    private List<GameObject> PermanentlyBroken = new List<GameObject>();
     private List<GameObject> InteractCrates = new List<GameObject>();
     private List<GameObject> TotalCrates = new List<GameObject>();
 
@@ -46,7 +48,6 @@ public class CrateSystem : MonoBehaviour
                         BreakableCrates.Add(Crate);
                     }
                 }
-
                 else
                 {
                     BreakableCrates.Add(Crate);
@@ -81,24 +82,39 @@ public class CrateSystem : MonoBehaviour
 
     public void ResetCrates()
     {
+        ResetSpawnedCrateGem();
         AllBreakablesReset();
         AllInteractablesReset();
+        DisplayCrateCount();
+    }
+
+    private void ResetSpawnedCrateGem()
+    {
+        if (CurrentlyBrokenAmount == BreakableCrates.Count)
+        {
+            foreach (GameObject CrateCounter in TotalCrates)
+            {
+                if (!CrateCounter.activeInHierarchy)
+                {
+                    DespawnGem.RaiseTransform(CrateCounter.transform);
+                }
+            }
+        }
     }
 
     private void AllBreakablesReset()
     {
         foreach (GameObject Crate in BreakableCrates)
         {
-            if (!CurrentlyBroken.Contains(Crate))
+            if (CurrentlyBroken.Contains(Crate))
             {
-                if (!Crate.activeSelf)
+                if (!Crate.activeInHierarchy)
                 {
                     CurrentlyBrokenAmount--;
                     Crate.SetActive(true);
                     if (Crate.GetComponent<Default>())
                     {
                         Crate.GetComponent<Default>().ResetCrate();
-                        
                     }
                     if (Crate.GetComponent<AkuAkuCrate>())
                     {
@@ -118,13 +134,14 @@ public class CrateSystem : MonoBehaviour
                     }
                     if (Crate.GetComponent<Nitro>())
                     {
-                        Crate.GetComponent<Nitro>().IsBroken = false;
+                        Crate.GetComponent<Nitro>().ResetCrate();
                     }
                     if (Crate.GetComponent<TNT>())
                     {
                         Crate.GetComponent<TNT>().CrateReset();
                     }
-                }
+                    CurrentlyBroken.Remove(Crate);
+                }              
             }
         }
     }
@@ -166,15 +183,17 @@ public class CrateSystem : MonoBehaviour
         }
     }
 
-    public void UpdateCurrentCrateCount()
+    public void UpdateCurrentCrateCount(Transform Crate)
     {
+        CurrentlyBroken.Add(Crate.gameObject);
         CurrentlyBrokenAmount++;
         DisplayCrateCount();
     }
 
-    public void SaveCheckpointCount(int CurrentlyBroken)
+    public void SaveCrateCount()
     {
-        CurrentlyBrokenAmount = CurrentlyBroken;
+        PermanentlyBroken = CurrentlyBroken;
+        CurrentlyBroken = new List<GameObject>();
     }
 
     public void CheckTotalCount(Transform SpawnPosition)

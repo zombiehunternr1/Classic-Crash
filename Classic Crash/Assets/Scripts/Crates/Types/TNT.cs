@@ -5,9 +5,11 @@ using UnityEngine;
 public class TNT : MonoBehaviour, ICrateBase
 {
     public ParticleSystem Explosion;
-    public GameEvent CrateBroken;
+    public GameEventTransform CrateBroken;
     public AudioSource CountdownSFX;
 
+    [HideInInspector]
+    public bool IsBonus { get; set; }
     [HideInInspector]
     public bool IsGhost = false;
     [HideInInspector]
@@ -125,7 +127,7 @@ public class TNT : MonoBehaviour, ICrateBase
         if (!Isbroken)
         {
             Isbroken = true;
-            CrateBroken.Raise();
+            CrateBroken.RaiseTransform(transform);
             gameObject.SetActive(false);
         }
     }

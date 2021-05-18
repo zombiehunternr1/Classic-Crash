@@ -11,11 +11,13 @@ public class Bounce : MonoBehaviour, ICrateBase
     public float BounceForce = 10;
     public int Amount = 1;
     public bool AutoAdd;
-    public GameEvent CrateBroken;
+    public GameEventTransform CrateBroken;
     public GameEventInt AddWumpa;
     public AudioSource BreakSFX;
     public AudioSource BounceSFX;
 
+    [HideInInspector]
+    public bool IsBonus { get; set; }
     private bool IsBroken;
     private bool FirstBounce;
     private int currentBounces;
@@ -56,7 +58,7 @@ public class Bounce : MonoBehaviour, ICrateBase
                 else if(Side == 8)
                 {
                     BreakSFX.Play();
-                    CrateBroken.Raise();
+                    CrateBroken.RaiseTransform(transform);
                     AddWumpa.RaiseInt(5);
                     gameObject.SetActive(false);
                 }
@@ -82,7 +84,7 @@ public class Bounce : MonoBehaviour, ICrateBase
                 else if(Side == 9)
                 {
                     BreakSFX.Play();
-                    CrateBroken.Raise();
+                    CrateBroken.RaiseTransform(transform);
                     gameObject.SetActive(false);
                 }
                 break;
@@ -98,7 +100,7 @@ public class Bounce : MonoBehaviour, ICrateBase
             GetComponent<Renderer>().enabled = false;
             BreakSFX.Play();
             IsBroken = true;
-            CrateBroken.Raise();
+            CrateBroken.RaiseTransform(transform);
             if (AutoAdd && crateType == CrateType.BreakInstant)
             {
                 AddWumpa.RaiseInt(Amount);

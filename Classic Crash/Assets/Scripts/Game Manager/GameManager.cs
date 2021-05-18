@@ -21,7 +21,8 @@ public class GameManager : MonoBehaviour
     public bool CanMove = true;
     [HideInInspector]
     public int Scene;
-    private PlayerManager PlayerInfo;
+    [HideInInspector]
+    public PlayerManager PlayerInfo;
     private Image FadePanel;
     private float FadeAmount;
 

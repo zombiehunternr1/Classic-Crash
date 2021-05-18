@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 5719767614287978075}
   - component: {fileID: -2397119418981718683}
   - component: {fileID: -7335624852717707086}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: TNT
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -117,7 +117,6 @@ MonoBehaviour:
   Explosion: {fileID: 7256894595883887071, guid: 8bc6e0d6a0477f04ba82c3f9f16fe5a2, type: 3}
   CrateBroken: {fileID: 11400000, guid: 5f965b2e97384fb4192d9b9b866aa59e, type: 2}
   CountdownSFX: {fileID: -2397119418981718683}
-  ExplosionSFX: {fileID: -7335624852717707086}
   IsGhost: 0
   AnimTNT: {fileID: 0}
   Isbroken: 0
@@ -343,7 +342,7 @@ GameObject:
   - component: {fileID: 2868934260792462302}
   - component: {fileID: 1188768984421663867}
   - component: {fileID: 4006985813847208113}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -424,7 +423,7 @@ GameObject:
   - component: {fileID: 5014106794805674419}
   - component: {fileID: 8231018834405674518}
   - component: {fileID: 6187527303956544220}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -505,7 +504,7 @@ GameObject:
   - component: {fileID: 6460206997193594968}
   - component: {fileID: 7928762636571285501}
   - component: {fileID: 5326747727187960631}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}

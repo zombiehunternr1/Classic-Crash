@@ -24,13 +24,14 @@ public class InputManager : MonoBehaviour
     public bool BonusArea;
     [HideInInspector]
     public bool Instakill;
+    [HideInInspector]
+    public Vector3 LastCheckpointPosition;
     private PlayerControls PlayerControls;
     private Vector2 MovementInput;
     private Rigidbody RB;
     private BoxCollider HitBox;
 
     private Vector3 PlayerMovement;
-    private Vector3 LastCheckpointPosition;
 
     //Enums to help check which side the player hit a certain object or with his attack.
     private enum HitPlayerDirection { None, Top, Bottom, Forward, Back, Left, Right, Spin, Invincibility }
