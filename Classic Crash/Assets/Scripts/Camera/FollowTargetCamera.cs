@@ -11,6 +11,7 @@ public class FollowTargetCamera : MonoBehaviour
 
     private Camera Camera;
     private Vector3 ViewPos;
+    private bool InViewPort;
 
     private Vector3 StartPosition;
     private Vector3 DesiredPosition;
@@ -33,12 +34,15 @@ public class FollowTargetCamera : MonoBehaviour
             transform.position = new Vector3(transform.position.x, transform.position.y, StartPosition.z);
         }
 
-        ViewPos = Camera.WorldToViewportPoint(Target.position);
-        if (ViewPos.x >= 0.2 && ViewPos.x <= 0.8 && ViewPos.y >= 0 && ViewPos.y <= 1 && ViewPos.z > 0)
+        if(transform.position.z > Target.position.z - Offset)
         {
-            return;
+            transform.position = Vector3.MoveTowards(transform.position, Target.position, SmoothSpeed * Time.fixedDeltaTime);
         }
-        else
+
+        ViewPos = Camera.WorldToViewportPoint(Target.position);
+        InViewPort = ViewPos.x >= 0.2 && ViewPos.x <= 0.8 && ViewPos.y >= 0 && ViewPos.y <= 1 && ViewPos.z > 0;
+
+        if (!InViewPort)
         {
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(Target.position - transform.position), SmoothRotation * Time.fixedDeltaTime);
         }
