@@ -33,17 +33,16 @@ public class WorldMapNavigator : MonoBehaviour
 			PlayerControls.WorldMap.Confirm.performed += i => ConfirmLevelSelect();
         }
 		PlayerControls.Enable();
-		if (GameManager.Instance.PathToUnlock != null)
-		{
-			CurrentPath = GameManager.Instance.PathToUnlock;
-			CurrentPath.Unlocked = GameManager.Instance.PathToUnlock.Unlocked;
-			Destroy(GameManager.Instance.PathToUnlock.gameObject);
-		}
 		if (GameManager.Instance.WorldMapPosition != new Vector3(0,0,0))
         {
 			transform.localPosition = GameManager.Instance.WorldMapPosition;
         }
-        else
+		if (GameManager.Instance.PathToUnlock != null)
+		{
+			CurrentPath.Unlocked = GameManager.Instance.PathToUnlock.Unlocked;
+			Destroy(GameManager.Instance.PathToUnlock.gameObject);
+		}
+		else
         {
 			PositionPlayerOnCurve();
 		}
