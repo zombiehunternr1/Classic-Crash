@@ -1,19 +1,20 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
+using UnityEngine.SceneManagement;
 
 public class WorldMapNavigator : MonoBehaviour
 {
 	public BezierCurve CurrentPath;
-	public SwitchPath CurrentLevel;
 	public float Duration = 2f;
-	public int DirectionValue;
 
-	public List<BezierCurve> AvailablePaths;
-
+	private int CurrentLevelNumber;
+	private SwitchPath CurrentLevelNode;
+	private int DirectionValue;
+	private List<BezierCurve> AvailablePaths;
 	private int Default;
-	public float progress;
+	private float progress;
 	private float PositioningSpoed = 5f;
 	private bool goingForward;
 	private bool CanMove;
@@ -23,18 +24,30 @@ public class WorldMapNavigator : MonoBehaviour
 	private Vector2 DirectionInput;
 	private Vector2 Direction;
 
-    private void Start()
+    private void OnEnable()
     {
 		if(PlayerControls == null)
         {
 			PlayerControls = new PlayerControls();
 			PlayerControls.WorldMap.Movement.performed += i => DirectionInput = i.ReadValue<Vector2>();
+			PlayerControls.WorldMap.Confirm.performed += i => ConfirmLevelSelect();
         }
 		PlayerControls.Enable();
+		if(GameManager.Instance.PathToUnlock != null)
+        {
+			CurrentPath = GameManager.Instance.PathToUnlock;
+			CurrentPath.Unlocked = GameManager.Instance.PathToUnlock.Unlocked;
+			Destroy(GameManager.Instance.PathToUnlock.gameObject);
+        }
 		PositionPlayerOnCurve();
 	}
 
-    private void Update()
+	private void OnDisable()
+	{
+		PlayerControls.Disable();
+	}
+
+	private void Update()
 	{
 		if (goingForward)
 		{
@@ -68,6 +81,23 @@ public class WorldMapNavigator : MonoBehaviour
 			}
 		}
 	}
+
+	private void ConfirmLevelSelect()
+    {
+		CanMove = false;
+		if(AvailablePaths.Count > 1)
+        {
+			CurrentPath = AvailablePaths[Default];
+			DontDestroyOnLoad(CurrentPath);
+        }
+        else
+        {
+			DontDestroyOnLoad(CurrentPath);
+		}
+		GameManager.Instance.Scene = SceneManager.GetActiveScene().buildIndex + CurrentLevelNumber;
+		GameManager.Instance.PathToUnlock = CurrentPath;
+		GameManager.Instance.StartCoroutine(GameManager.Instance.FadingEffect(null));
+    }
 
 	private void PositionPlayerOnCurve()
     {
@@ -118,7 +148,7 @@ public class WorldMapNavigator : MonoBehaviour
 		Direction = new Vector2(DirectionInput.x, DirectionInput.y);
 		if(Direction.x == -1)
         {
-			foreach (var i in CurrentLevel.MoveOptions)
+			foreach (var i in CurrentLevelNode.MoveOptions)
 			{
 				if (i == SwitchPath.Connected.left)
 				{
@@ -148,7 +178,7 @@ public class WorldMapNavigator : MonoBehaviour
 		}
 		if(Direction.x == 1)
         {
-			foreach (SwitchPath.Connected i in CurrentLevel.MoveOptions)
+			foreach (SwitchPath.Connected i in CurrentLevelNode.MoveOptions)
 			{
 				if (i == SwitchPath.Connected.right)
 				{
@@ -174,7 +204,7 @@ public class WorldMapNavigator : MonoBehaviour
 		}
 		if(Direction.y == -1)
         {
-			foreach (SwitchPath.Connected i in CurrentLevel.MoveOptions)
+			foreach (SwitchPath.Connected i in CurrentLevelNode.MoveOptions)
 			{
 				if (i == SwitchPath.Connected.down)
 				{
@@ -206,7 +236,7 @@ public class WorldMapNavigator : MonoBehaviour
 		}
 		if(Direction.y == 1)
         {
-			foreach(var i in CurrentLevel.MoveOptions)
+			foreach(var i in CurrentLevelNode.MoveOptions)
             {
 				if(i == SwitchPath.Connected.up)
                 {
@@ -243,8 +273,9 @@ public class WorldMapNavigator : MonoBehaviour
 			SwitchPath Level = other.GetComponent<SwitchPath>();
 			AvailablePaths = Level.ConnectedPaths;
 			Entering = true;
-			CurrentLevel = Level;
-			StartCoroutine(PositionPlayerOnLevel(CurrentLevel.gameObject.transform));
+			CurrentLevelNode = Level;
+			CurrentLevelNumber = Level.Level;
+			StartCoroutine(PositionPlayerOnLevel(CurrentLevelNode.gameObject.transform));
         }
     }
 }

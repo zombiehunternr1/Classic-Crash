@@ -3,16 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class ExitLevel2 : MonoBehaviour
+public class ExitLevel : MonoBehaviour
 {
     public GameEvent SaveProgress;
+
+    private int WorldMap = 1;
 
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.GetComponent<InputManager>())
         {
+            GameManager.Instance.Scene = WorldMap;
+            GameManager.Instance.PathToUnlock.Unlocked = true;
             SaveProgress.Raise();
-            SceneManager.LoadScene("TestMenu");
+            GameManager.Instance.StartCoroutine(GameManager.Instance.FadingEffect(null));
         }
     }
 }

@@ -131,6 +131,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 56277614, guid: 6501ea625a2e2904daec0a42e2bfd993, type: 3}
+      propertyPath: Level
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 56277614, guid: 6501ea625a2e2904daec0a42e2bfd993, type: 3}
       propertyPath: spline
       value: 
       objectReference: {fileID: 0}
@@ -378,6 +382,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 56277614, guid: 6501ea625a2e2904daec0a42e2bfd993, type: 3}
+      propertyPath: Level
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 56277614, guid: 6501ea625a2e2904daec0a42e2bfd993, type: 3}
       propertyPath: MoveOptions.Array.size
       value: 1
@@ -697,6 +705,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 56277614, guid: 6501ea625a2e2904daec0a42e2bfd993, type: 3}
+      propertyPath: Level
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 56277614, guid: 6501ea625a2e2904daec0a42e2bfd993, type: 3}
       propertyPath: MoveOptions.Array.size
       value: 3

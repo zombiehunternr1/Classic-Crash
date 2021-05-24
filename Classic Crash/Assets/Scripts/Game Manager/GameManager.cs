@@ -22,6 +22,8 @@ public class GameManager : MonoBehaviour
     [HideInInspector]
     public int Scene;
     [HideInInspector]
+    public BezierCurve PathToUnlock;
+    [HideInInspector]
     public PlayerManager PlayerInfo;
     private Image FadePanel;
     private float FadeAmount;

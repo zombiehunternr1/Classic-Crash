@@ -296,6 +296,14 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Confirm"",
+                    ""type"": ""Button"",
+                    ""id"": ""7a0dc998-88f0-48d3-a61c-5bb923f798c7"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -463,6 +471,28 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""action"": ""Movement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6d5a23ed-f1c0-46e9-b89d-64396c5619af"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Confirm"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""98d1dd4e-3d36-49a1-b9ab-9852639378bf"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Confirm"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -478,6 +508,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         // WorldMap
         m_WorldMap = asset.FindActionMap("WorldMap", throwIfNotFound: true);
         m_WorldMap_Movement = m_WorldMap.FindAction("Movement", throwIfNotFound: true);
+        m_WorldMap_Confirm = m_WorldMap.FindAction("Confirm", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -585,11 +616,13 @@ public class @PlayerControls : IInputActionCollection, IDisposable
     private readonly InputActionMap m_WorldMap;
     private IWorldMapActions m_WorldMapActionsCallbackInterface;
     private readonly InputAction m_WorldMap_Movement;
+    private readonly InputAction m_WorldMap_Confirm;
     public struct WorldMapActions
     {
         private @PlayerControls m_Wrapper;
         public WorldMapActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movement => m_Wrapper.m_WorldMap_Movement;
+        public InputAction @Confirm => m_Wrapper.m_WorldMap_Confirm;
         public InputActionMap Get() { return m_Wrapper.m_WorldMap; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -602,6 +635,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @Movement.started -= m_Wrapper.m_WorldMapActionsCallbackInterface.OnMovement;
                 @Movement.performed -= m_Wrapper.m_WorldMapActionsCallbackInterface.OnMovement;
                 @Movement.canceled -= m_Wrapper.m_WorldMapActionsCallbackInterface.OnMovement;
+                @Confirm.started -= m_Wrapper.m_WorldMapActionsCallbackInterface.OnConfirm;
+                @Confirm.performed -= m_Wrapper.m_WorldMapActionsCallbackInterface.OnConfirm;
+                @Confirm.canceled -= m_Wrapper.m_WorldMapActionsCallbackInterface.OnConfirm;
             }
             m_Wrapper.m_WorldMapActionsCallbackInterface = instance;
             if (instance != null)
@@ -609,6 +645,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @Movement.started += instance.OnMovement;
                 @Movement.performed += instance.OnMovement;
                 @Movement.canceled += instance.OnMovement;
+                @Confirm.started += instance.OnConfirm;
+                @Confirm.performed += instance.OnConfirm;
+                @Confirm.canceled += instance.OnConfirm;
             }
         }
     }
@@ -623,5 +662,6 @@ public class @PlayerControls : IInputActionCollection, IDisposable
     public interface IWorldMapActions
     {
         void OnMovement(InputAction.CallbackContext context);
+        void OnConfirm(InputAction.CallbackContext context);
     }
 }

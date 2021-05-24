@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SwitchPath : MonoBehaviour
 {
+    public int Level;
     public enum Connected { up, down, left, right };
     public List<Connected> MoveOptions;
     public List<BezierCurve> ConnectedPaths;
