@@ -21,8 +21,10 @@ public class GameManager : MonoBehaviour
     public bool CanMove = true;
     [HideInInspector]
     public int Scene;
-    [HideInInspector]
+    //[HideInInspector]
     public BezierCurve PathToUnlock;
+    [HideInInspector]
+    public Vector3 WorldMapPosition;
     [HideInInspector]
     public PlayerManager PlayerInfo;
     private Image FadePanel;
