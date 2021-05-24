@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class SplineWalker : MonoBehaviour
+public class WorldMapNavigator : MonoBehaviour
 {
 	public BezierCurve CurrentPath;
 	public SwitchPath CurrentLevel;
@@ -60,9 +60,12 @@ public class SplineWalker : MonoBehaviour
 				progress = 0;
 			}
 		}
-		if (CanMove)
-		{
-			Move();
+        if (GameManager.Instance.CanMove)
+        {
+			if (CanMove)
+			{
+				Move();
+			}
 		}
 	}
 
