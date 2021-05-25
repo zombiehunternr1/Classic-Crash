@@ -7,9 +7,10 @@ using UnityEngine.SceneManagement;
 public class WorldMapNavigator : MonoBehaviour
 {
 	public BezierCurve CurrentPath;
-	public BezierCurve PathToUnlock;
 	public float Duration = 2f;
 
+	private World WorldPaths;
+	private BezierCurve PathToUnlock;
 	private int CurrentLevelNumber;
 	private SwitchPath CurrentLevelNode;
 	private int DirectionValue;
@@ -43,24 +44,13 @@ public class WorldMapNavigator : MonoBehaviour
 		if (GameManager.Instance.WorldMapLocation.WorldMapPosition != new Vector3(0,0,0))
         {
 			transform.localPosition = GameManager.Instance.WorldMapLocation.WorldMapPosition;
-			RaycastHit Hit;
-			if(Physics.Raycast(transform.localPosition, Vector3.down, out Hit, 1f)){
-                if (Hit.collider.GetComponent<SwitchPath>())
-                {
-					SwitchPath Level = Hit.collider.GetComponent<SwitchPath>();
-					BezierCurve UnlockPath = Level.ConnectedPaths[Default];
-					if (GameManager.Instance.WorldMapLocation.PathsInWorldUnlocked.Contains(UnlockPath))
-					{
-						UnlockPath.Unlocked = GameManager.Instance.WorldMapLocation.PathsInWorldUnlocked[GameManager.Instance.WorldMapLocation.PathToUnlock] = true;
-					}
-					RB.constraints = RigidbodyConstraints.FreezePositionY;
-				}
-            }
+			UnlockLevel();
         }
 		else
 		{
 			PositionPlayerOnCurve();
-		}		
+		}
+		RB.constraints = RigidbodyConstraints.FreezePositionY;
 	}
 
 	private void OnDisable()
@@ -103,32 +93,33 @@ public class WorldMapNavigator : MonoBehaviour
 		}
 	}
 
+	private void UnlockLevel()
+    {
+		RaycastHit Hit;
+		if (Physics.Raycast(transform.localPosition, Vector3.down, out Hit, 1f))
+		{
+			if (Hit.collider.GetComponent<SwitchPath>())
+			{
+				SwitchPath Level = Hit.collider.GetComponent<SwitchPath>();
+				BezierCurve UnlockPath = Level.ConnectedPaths[Default];
+				if (GameManager.Instance.WorldMapLocation.PathsInWorldUnlocked.Contains(UnlockPath))
+				{
+					UnlockPath.Unlocked = GameManager.Instance.WorldMapLocation.PathsInWorldUnlocked[GameManager.Instance.WorldMapLocation.PathToUnlock] = true;
+				}
+			}
+		}
+	}
+
 	private void ConfirmLevelSelect()
     {
 		CanMove = false;
 
 		if(PathToUnlock != null)
         {
-			if (AvailablePaths.Contains(PathToUnlock))
+			if (WorldPaths.PathsInWorld.Contains(PathToUnlock))
 			{
-				for(int i = 0; i < AvailablePaths.Count; i++)
-                {
-					if(AvailablePaths[i] == PathToUnlock)
-                    {
-						Debug.Log(i);
-					}
-                }
-
-				//int test = GameManager.Instance.WorldMapLocation.PathsInWorldUnlocked.IndexOf(PathToUnlock);
-				//Debug.Log(test);
-				//GameManager.Instance.WorldMapLocation.PathToUnlock = test;
-              /*  if (GameManager.Instance.WorldMapLocation.PathsInWorldUnlocked.Contains(path))
-                {
-				
-					GameManager.Instance.WorldMapLocation.PathToUnlock = Path;
-					Debug.Log(Path);
-				}
-			  */
+				int UnlockPath = WorldPaths.PathsInWorld.IndexOf(PathToUnlock);
+				GameManager.Instance.WorldMapLocation.PathToUnlock = UnlockPath;
 			}
 		}
 		GameManager.Instance.WorldMapLocation.WorldMapPosition = transform.localPosition;
@@ -308,6 +299,10 @@ public class WorldMapNavigator : MonoBehaviour
         if (other.GetComponent<SwitchPath>())
         {
 			SwitchPath Level = other.GetComponent<SwitchPath>();
+			if(WorldPaths == null)
+            {
+				WorldPaths = Level.GetComponentInParent<World>();
+            }
 			AvailablePaths = Level.ConnectedPaths;
 			Entering = true;
 			CurrentLevelNode = Level;
