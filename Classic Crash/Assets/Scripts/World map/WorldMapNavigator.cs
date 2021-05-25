@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class WorldMapNavigator : MonoBehaviour
 {
 	public BezierCurve CurrentPath;
+	public BezierCurve PathToUnlock;
 	public float Duration = 2f;
 
 	private int CurrentLevelNumber;
@@ -105,7 +106,31 @@ public class WorldMapNavigator : MonoBehaviour
 	private void ConfirmLevelSelect()
     {
 		CanMove = false;
-		GameManager.Instance.WorldMapLocation.PathToUnlock = Default;
+
+		if(PathToUnlock != null)
+        {
+			if (AvailablePaths.Contains(PathToUnlock))
+			{
+				for(int i = 0; i < AvailablePaths.Count; i++)
+                {
+					if(AvailablePaths[i] == PathToUnlock)
+                    {
+						Debug.Log(i);
+					}
+                }
+
+				//int test = GameManager.Instance.WorldMapLocation.PathsInWorldUnlocked.IndexOf(PathToUnlock);
+				//Debug.Log(test);
+				//GameManager.Instance.WorldMapLocation.PathToUnlock = test;
+              /*  if (GameManager.Instance.WorldMapLocation.PathsInWorldUnlocked.Contains(path))
+                {
+				
+					GameManager.Instance.WorldMapLocation.PathToUnlock = Path;
+					Debug.Log(Path);
+				}
+			  */
+			}
+		}
 		GameManager.Instance.WorldMapLocation.WorldMapPosition = transform.localPosition;
 		GameManager.Instance.Scene = SceneManager.GetActiveScene().buildIndex + CurrentLevelNumber;
 		GameManager.Instance.StartCoroutine(GameManager.Instance.FadingEffect(null));
@@ -287,6 +312,7 @@ public class WorldMapNavigator : MonoBehaviour
 			Entering = true;
 			CurrentLevelNode = Level;
 			CurrentLevelNumber = Level.Level;
+			PathToUnlock = Level.PathToUnlock;
 			StartCoroutine(PositionPlayerOnLevel(CurrentLevelNode.gameObject.transform));
         }
     }
