@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad0a3d8f7c60aa84a86db30118277be2, type: 3}
   m_Name: WorldMapLocation
   m_EditorClassIdentifier: 
-  UnlockNextPath: 0
-  WorldMapPosition: {x: 0, y: 0, z: 0}
+  PathToUnlock: 0
+  PathsInWorldUnlocked: 
+  WorldMapPosition: {x: 4.0000095, y: 1.0396774, z: 5.000011}

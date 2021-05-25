@@ -48,9 +48,9 @@ public class WorldMapNavigator : MonoBehaviour
                 {
 					SwitchPath Level = Hit.collider.GetComponent<SwitchPath>();
 					BezierCurve UnlockPath = Level.ConnectedPaths[Default];
-					if (GameManager.Instance.WorldMapLocation.UnlockNextPath == true && UnlockPath.Unlocked == false)
+					if (GameManager.Instance.WorldMapLocation.PathsInWorldUnlocked.Contains(UnlockPath))
 					{
-						UnlockPath.Unlocked = GameManager.Instance.WorldMapLocation.UnlockNextPath;
+						UnlockPath.Unlocked = GameManager.Instance.WorldMapLocation.PathsInWorldUnlocked[GameManager.Instance.WorldMapLocation.PathToUnlock] = true;
 					}
 					RB.constraints = RigidbodyConstraints.FreezePositionY;
 				}
@@ -105,8 +105,7 @@ public class WorldMapNavigator : MonoBehaviour
 	private void ConfirmLevelSelect()
     {
 		CanMove = false;
-		CurrentPath = AvailablePaths[Default];
-		GameManager.Instance.WorldMapLocation.UnlockNextPath = CurrentPath.Unlocked;
+		GameManager.Instance.WorldMapLocation.PathToUnlock = Default;
 		GameManager.Instance.WorldMapLocation.WorldMapPosition = transform.localPosition;
 		GameManager.Instance.Scene = SceneManager.GetActiveScene().buildIndex + CurrentLevelNumber;
 		GameManager.Instance.StartCoroutine(GameManager.Instance.FadingEffect(null));

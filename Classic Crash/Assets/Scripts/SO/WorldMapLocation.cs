@@ -6,6 +6,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "WorldMapLocation", menuName = "ScriptableObjects/Worldmap/WorldMapLocation")]
 public class WorldMapLocation : ScriptableObject
 {
-    public bool UnlockNextPath;
+    public int PathToUnlock;
+    public List<bool> PathsInWorldUnlocked;
     public Vector3 WorldMapPosition;
 }
