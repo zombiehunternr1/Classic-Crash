@@ -383,9 +383,13 @@ MonoBehaviour:
   PlayerItems: {fileID: 11400000, guid: be1f995f06c814e47b9af02c3215b9bd, type: 2}
   SFXAkuAku: {fileID: 4671633451492943687}
   SFXCollectables: {fileID: 3584451222039725585}
+  WorldMapLocation: {fileID: 11400000, guid: 01d0e90d7b564cc45be6adc47e901665, type: 2}
   FadeSpeed: 0.5
-  HoldNextFade: 2
+  HoldNextFade: 1
   FadeToBlack: 0
+  CanMove: 1
+  Scene: 0
+  PlayerInfo: {fileID: 0}
 --- !u!114 &-3885495764369574164
 MonoBehaviour:
   m_ObjectHideFlags: 0

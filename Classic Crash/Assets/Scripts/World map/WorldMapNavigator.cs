@@ -20,12 +20,18 @@ public class WorldMapNavigator : MonoBehaviour
 	private bool CanMove;
 	private bool Entering;
 	private PlayerControls PlayerControls;
+	private Rigidbody RB;
 	private Vector3 position;
 	private Vector2 DirectionInput;
 	private Vector2 Direction;
 
     private void OnEnable()
     {
+		if(RB == null)
+        {
+			RB = GetComponent<Rigidbody>();
+        }
+
 		if(PlayerControls == null)
         {
 			PlayerControls = new PlayerControls();
@@ -33,19 +39,27 @@ public class WorldMapNavigator : MonoBehaviour
 			PlayerControls.WorldMap.Confirm.performed += i => ConfirmLevelSelect();
         }
 		PlayerControls.Enable();
-		if (GameManager.Instance.WorldMapPosition != new Vector3(0,0,0))
+		if (GameManager.Instance.WorldMapLocation.WorldMapPosition != new Vector3(0,0,0))
         {
-			transform.localPosition = GameManager.Instance.WorldMapPosition;
+			transform.localPosition = GameManager.Instance.WorldMapLocation.WorldMapPosition;
+			RaycastHit Hit;
+			if(Physics.Raycast(transform.localPosition, Vector3.down, out Hit, 1f)){
+                if (Hit.collider.GetComponent<SwitchPath>())
+                {
+					SwitchPath Level = Hit.collider.GetComponent<SwitchPath>();
+					BezierCurve UnlockPath = Level.ConnectedPaths[Default];
+					if (GameManager.Instance.WorldMapLocation.UnlockNextPath == true && UnlockPath.Unlocked == false)
+					{
+						UnlockPath.Unlocked = GameManager.Instance.WorldMapLocation.UnlockNextPath;
+					}
+					RB.constraints = RigidbodyConstraints.FreezePositionY;
+				}
+            }
         }
-		if (GameManager.Instance.PathToUnlock != null)
-		{
-			CurrentPath.Unlocked = GameManager.Instance.PathToUnlock.Unlocked;
-			Destroy(GameManager.Instance.PathToUnlock.gameObject);
-		}
 		else
-        {
+		{
 			PositionPlayerOnCurve();
-		}
+		}		
 	}
 
 	private void OnDisable()
@@ -91,18 +105,10 @@ public class WorldMapNavigator : MonoBehaviour
 	private void ConfirmLevelSelect()
     {
 		CanMove = false;
-		if(AvailablePaths.Count > 1)
-        {
-			CurrentPath = AvailablePaths[Default];
-			DontDestroyOnLoad(CurrentPath);
-        }
-        else
-        {
-			DontDestroyOnLoad(CurrentPath);
-		}
-		GameManager.Instance.WorldMapPosition = transform.localPosition;
+		CurrentPath = AvailablePaths[Default];
+		GameManager.Instance.WorldMapLocation.UnlockNextPath = CurrentPath.Unlocked;
+		GameManager.Instance.WorldMapLocation.WorldMapPosition = transform.localPosition;
 		GameManager.Instance.Scene = SceneManager.GetActiveScene().buildIndex + CurrentLevelNumber;
-		GameManager.Instance.PathToUnlock = CurrentPath;
 		GameManager.Instance.StartCoroutine(GameManager.Instance.FadingEffect(null));
     }
 

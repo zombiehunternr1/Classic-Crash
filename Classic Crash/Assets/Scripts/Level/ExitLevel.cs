@@ -14,7 +14,7 @@ public class ExitLevel : MonoBehaviour
         if (collision.gameObject.GetComponent<InputManager>())
         {
             GameManager.Instance.Scene = WorldMap;
-            GameManager.Instance.PathToUnlock.Unlocked = true;
+            GameManager.Instance.WorldMapLocation.UnlockNextPath = true;
             SaveProgress.Raise();
             GameManager.Instance.StartCoroutine(GameManager.Instance.FadingEffect(null));
         }

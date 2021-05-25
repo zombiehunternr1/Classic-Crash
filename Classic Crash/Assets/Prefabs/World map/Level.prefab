@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2571347155952441698}
   - component: {fileID: 56277615}
   - component: {fileID: 56277614}
+  - component: {fileID: 5674736595927205773}
   m_Layer: 0
   m_Name: Level
   m_TagString: Untagged
@@ -108,5 +109,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d210c7affeb55b94ea95b418fd4ce4cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Level: 0
   MoveOptions: 
   ConnectedPaths: []
+--- !u!65 &5674736595927205773
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4084693313614919863}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.9999999, y: 0.079304814, z: 2}
+  m_Center: {x: -0.000000059604645, y: 0.00000017881393, z: -0.00000032782555}

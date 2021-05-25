@@ -270,8 +270,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CurrentPath: {fileID: 0}
-  CurrentLevel: {fileID: 0}
   Duration: 2
-  DirectionValue: 0
-  AvailablePaths: []
-  progress: 0

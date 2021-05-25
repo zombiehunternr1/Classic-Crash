@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     public ItemsCollected PlayerItems;
     public SFXAkuAku SFXAkuAku;
     public SFXCollectables SFXCollectables;
+    public WorldMapLocation WorldMapLocation;
 
     public float FadeSpeed;
     public int HoldNextFade;
@@ -21,10 +22,6 @@ public class GameManager : MonoBehaviour
     public bool CanMove = true;
     [HideInInspector]
     public int Scene;
-    //[HideInInspector]
-    public BezierCurve PathToUnlock;
-    [HideInInspector]
-    public Vector3 WorldMapPosition;
     [HideInInspector]
     public PlayerManager PlayerInfo;
     private Image FadePanel;
