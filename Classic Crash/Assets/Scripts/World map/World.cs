@@ -4,13 +4,35 @@ using UnityEngine;
 public class World : MonoBehaviour
 {
     public List<BezierCurve> PathsInWorld;
+    public List<BezierPathVisualisation> PathDecorationsInWorld;
 
     private void Start()
     {
-        if(PathsInWorld.Count == 0)
+        GetAllWorldPaths();
+        GetAllWorldPathDecorations();
+
+        for (int i = 0; i < GameManager.Instance.WorldMapLocation.PathsInWorldUnlocked.Count; i++)
+        {
+            if (GameManager.Instance.WorldMapLocation.PathsInWorldUnlocked[i] == true)
+            {
+                PathsInWorld[i].Unlocked = true;
+            }
+        }
+        for(int i = 0; i < GameManager.Instance.WorldMapLocation.DecorationPathInWorldUnlocked.Count; i++)
+        {
+            if (GameManager.Instance.WorldMapLocation.DecorationPathInWorldUnlocked[i] == false)
+            {
+                PathDecorationsInWorld[i].FirstTime = false;
+            }
+        }
+    }
+
+    private void GetAllWorldPaths()
+    {
+        if (PathsInWorld.Count == 0)
         {
             BezierCurve[] PathsFound = GetComponentsInChildren<BezierCurve>();
-            foreach(BezierCurve Path in PathsFound)
+            foreach (BezierCurve Path in PathsFound)
             {
                 PathsInWorld.Add(Path);
                 if (!GameManager.Instance.WorldMapLocation.PathsInWorldUnlocked.Contains(Path))
@@ -19,13 +41,23 @@ public class World : MonoBehaviour
                 }
             }
         }
+    }
 
-        for(int i = 0; i < GameManager.Instance.WorldMapLocation.PathsInWorldUnlocked.Count; i++)
+    private void GetAllWorldPathDecorations()
+    {
+        if (PathDecorationsInWorld.Count == 0)
         {
-            if (GameManager.Instance.WorldMapLocation.PathsInWorldUnlocked[i] == true)
+            BezierPathVisualisation[] DecorationPathsFound = GetComponentsInChildren<BezierPathVisualisation>();
+            foreach (BezierPathVisualisation PathDecoration in DecorationPathsFound)
             {
-                PathsInWorld[i].Unlocked = true;
+                PathDecorationsInWorld.Add(PathDecoration);
+                if (!GameManager.Instance.WorldMapLocation.DecorationPathInWorldUnlocked.Contains(PathDecoration))
+                {
+                    GameManager.Instance.WorldMapLocation.DecorationPathInWorldUnlocked.Add(PathDecoration);
+                }
             }
         }
     }
 }
+
+

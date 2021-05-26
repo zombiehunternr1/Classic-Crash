@@ -8,5 +8,6 @@ public class WorldMapLocation : ScriptableObject
 {
     public int PathToUnlock;
     public List<bool> PathsInWorldUnlocked;
+    public List<bool> DecorationPathInWorldUnlocked;
     public Vector3 WorldMapPosition;
 }

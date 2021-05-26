@@ -340,6 +340,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PathsInWorld: []
+  PathDecorationsInWorld: []
 --- !u!1 &1751121640
 GameObject:
   m_ObjectHideFlags: 0
@@ -498,7 +499,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 573299472136979029}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4, y: 1, z: 5}
+  m_LocalPosition: {x: 5, y: 1, z: 5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1700835811}
@@ -514,6 +515,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6099152880596324560}
   - component: {fileID: 4792637587443922802}
+  - component: {fileID: 934131503061550377}
   m_Layer: 0
   m_Name: Route 2/3
   m_TagString: Untagged
@@ -521,6 +523,23 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &934131503061550377
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 934131503061550376}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e34b693a23f682c46b9ebf20c4b92229, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  WaitDisplayNextPathDecoration: 0.4
+  Frequency: 6
+  DecorationItems:
+  - {fileID: 7114022601208465934, guid: 7035f27af6bc84a40a78bdaf980b2d45, type: 3}
+  FirstTime: 1
 --- !u!1 &934131504476175193
 GameObject:
   m_ObjectHideFlags: 0
@@ -531,6 +550,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6099152878772907681}
   - component: {fileID: 4792637586834606339}
+  - component: {fileID: 934131504476175194}
   m_Layer: 0
   m_Name: Route 2/Bonus
   m_TagString: Untagged
@@ -538,6 +558,23 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &934131504476175194
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 934131504476175193}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e34b693a23f682c46b9ebf20c4b92229, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  WaitDisplayNextPathDecoration: 0.4
+  Frequency: 6
+  DecorationItems:
+  - {fileID: 7114022601208465934, guid: 7035f27af6bc84a40a78bdaf980b2d45, type: 3}
+  FirstTime: 1
 --- !u!23 &2086354809439085440
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -712,6 +749,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8368070262657390436}
   - component: {fileID: 7063630851821351110}
+  - component: {fileID: 3203012665714066077}
   m_Layer: 0
   m_Name: Route 1/2
   m_TagString: Untagged
@@ -719,6 +757,23 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &3203012665714066077
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3203012665714066076}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e34b693a23f682c46b9ebf20c4b92229, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  WaitDisplayNextPathDecoration: 0.4
+  Frequency: 6
+  DecorationItems:
+  - {fileID: 7114022601208465934, guid: 7035f27af6bc84a40a78bdaf980b2d45, type: 3}
+  FirstTime: 1
 --- !u!4 &3739234818397938822
 Transform:
   m_ObjectHideFlags: 0
@@ -1017,7 +1072,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Unlocked: 0
   points:
-  - {x: 0.56543374, y: 0.37027133, z: -0.6845708}
+  - {x: 1.5968137, y: 0.37027133, z: -0.6845708}
   - {x: 5.6915417, y: 0, z: -6.499695}
   - {x: 8.180543, y: 0, z: 8.060831}
   - {x: 12.267092, y: 2.2664676, z: -1.5287204}
@@ -1066,7 +1121,7 @@ MonoBehaviour:
   - {x: 0.5089836, y: 0, z: 0.7071934}
   - {x: -7.2090282, y: 0, z: 2.174078}
   - {x: -5.6432304, y: 0, z: -5.8494844}
-  - {x: -0.3954339, y: 0, z: -4.28828}
+  - {x: 0.50054264, y: 0, z: -4.28828}
 --- !u!4 &8368070262657390436
 Transform:
   m_ObjectHideFlags: 0
