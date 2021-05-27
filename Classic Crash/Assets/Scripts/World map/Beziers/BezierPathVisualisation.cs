@@ -42,7 +42,7 @@ public class BezierPathVisualisation : MonoBehaviour
                     {
                         if(CurrentWorld.PathDecorationsInWorld[j] == this)
                         {
-                            GameManager.Instance.WorldMapLocation.DecorationPathInWorldUnlocked[j] = false;
+                            GameManager.Instance.WorldMapLocation.DecorationPathsUnlockedFirstTime[j] = false;
                         }
                     }
                     yield return new WaitForSeconds(WaitDisplayNextPathDecoration);

@@ -59,18 +59,18 @@ public class World : MonoBehaviour
 
     private void CheckAllPathDecorations()
     {
-        if(GameManager.Instance.WorldMapLocation.DecorationPathInWorldUnlocked.Count != 0)
+        if(GameManager.Instance.WorldMapLocation.DecorationPathsUnlockedFirstTime.Count != 0)
         {
-            for(int i = 0; i < GameManager.Instance.WorldMapLocation.DecorationPathInWorldUnlocked.Count; i++)
+            for(int i = 0; i < GameManager.Instance.WorldMapLocation.DecorationPathsUnlockedFirstTime.Count; i++)
             {
-                PathDecorationsInWorld[i].FirstTime = GameManager.Instance.WorldMapLocation.DecorationPathInWorldUnlocked[i];
+                PathDecorationsInWorld[i].FirstTime = GameManager.Instance.WorldMapLocation.DecorationPathsUnlockedFirstTime[i];
             }
         }
         else
         {
             for(int i = 0; i < PathDecorationsInWorld.Count; i++)
             {
-                GameManager.Instance.WorldMapLocation.DecorationPathInWorldUnlocked.Add(PathDecorationsInWorld[i]);
+                GameManager.Instance.WorldMapLocation.DecorationPathsUnlockedFirstTime.Add(PathDecorationsInWorld[i]);
             }
         }
     }
