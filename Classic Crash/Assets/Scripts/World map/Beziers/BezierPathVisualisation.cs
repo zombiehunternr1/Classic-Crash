@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class BezierPathVisualisation : MonoBehaviour
 {
+    public int WaitBeforePathDecorating = 3;
     public float WaitDisplayNextPathDecoration;
     public int Frequency;
     public Transform[] DecorationItems;
@@ -27,6 +28,10 @@ public class BezierPathVisualisation : MonoBehaviour
             yield return null;
         }
         float StepSize = 1f / (Frequency * DecorationItems.Length);
+        if (FirstTime)
+        {
+            yield return new WaitForSeconds(WaitBeforePathDecorating);
+        }
         for (int p = 0, f = 0; f < Frequency; f++)
         {
             for(int i = 0; i < DecorationItems.Length; i++, p++)
