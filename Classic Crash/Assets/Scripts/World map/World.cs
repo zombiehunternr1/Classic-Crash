@@ -10,21 +10,6 @@ public class World : MonoBehaviour
     {
         GetAllWorldPaths();
         GetAllWorldPathDecorations();
-
-        for (int i = 0; i < GameManager.Instance.WorldMapLocation.PathsInWorldUnlocked.Count; i++)
-        {
-            if (GameManager.Instance.WorldMapLocation.PathsInWorldUnlocked[i] == true)
-            {
-                PathsInWorld[i].Unlocked = true;
-            }
-        }
-        for(int i = 0; i < GameManager.Instance.WorldMapLocation.DecorationPathInWorldUnlocked.Count; i++)
-        {
-            if (GameManager.Instance.WorldMapLocation.DecorationPathInWorldUnlocked[i] == false)
-            {
-                PathDecorationsInWorld[i].FirstTime = false;
-            }
-        }
     }
 
     private void GetAllWorldPaths()
@@ -34,13 +19,10 @@ public class World : MonoBehaviour
             BezierCurve[] PathsFound = GetComponentsInChildren<BezierCurve>();
             foreach (BezierCurve Path in PathsFound)
             {
-                PathsInWorld.Add(Path);
-                if (!GameManager.Instance.WorldMapLocation.PathsInWorldUnlocked.Contains(Path))
-                {
-                    GameManager.Instance.WorldMapLocation.PathsInWorldUnlocked.Add(Path.Unlocked);
-                }
+                PathsInWorld.Add(Path);             
             }
         }
+        CheckAllWorldPaths();
     }
 
     private void GetAllWorldPathDecorations()
@@ -50,11 +32,45 @@ public class World : MonoBehaviour
             BezierPathVisualisation[] DecorationPathsFound = GetComponentsInChildren<BezierPathVisualisation>();
             foreach (BezierPathVisualisation PathDecoration in DecorationPathsFound)
             {
-                PathDecorationsInWorld.Add(PathDecoration);
-                if (!GameManager.Instance.WorldMapLocation.DecorationPathInWorldUnlocked.Contains(PathDecoration))
-                {
-                    GameManager.Instance.WorldMapLocation.DecorationPathInWorldUnlocked.Add(PathDecoration);
-                }
+                PathDecorationsInWorld.Add(PathDecoration);             
+            }
+        }
+        CheckAllPathDecorations();
+    }
+
+    private void CheckAllWorldPaths()
+    {
+        if(GameManager.Instance.WorldMapLocation.PathsInWorldUnlocked.Count != 0)
+        {
+            for(int i = 0; i < GameManager.Instance.WorldMapLocation.PathsInWorldUnlocked.Count; i++)
+            {
+                PathsInWorld[i].Unlocked = GameManager.Instance.WorldMapLocation.PathsInWorldUnlocked[i];
+            }
+        }
+        else
+        {
+            for(int i = 0; i < PathsInWorld.Count; i++)
+            {
+                GameManager.Instance.WorldMapLocation.PathsInWorldUnlocked.Add(PathsInWorld[i]);
+                GameManager.Instance.WorldMapLocation.PathsInWorldUnlocked[i] = false;
+            }
+        }
+    }
+
+    private void CheckAllPathDecorations()
+    {
+        if(GameManager.Instance.WorldMapLocation.DecorationPathInWorldUnlocked.Count != 0)
+        {
+            for(int i = 0; i < GameManager.Instance.WorldMapLocation.DecorationPathInWorldUnlocked.Count; i++)
+            {
+                PathDecorationsInWorld[i].FirstTime = GameManager.Instance.WorldMapLocation.DecorationPathInWorldUnlocked[i];
+            }
+        }
+        else
+        {
+            for(int i = 0; i < PathDecorationsInWorld.Count; i++)
+            {
+                GameManager.Instance.WorldMapLocation.DecorationPathInWorldUnlocked.Add(PathDecorationsInWorld[i]);
             }
         }
     }
