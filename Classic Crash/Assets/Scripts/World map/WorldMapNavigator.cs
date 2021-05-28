@@ -12,7 +12,7 @@ public class WorldMapNavigator : MonoBehaviour
 	private World WorldPaths;
 	private BezierCurve PathToUnlock;
 	private int CurrentLevelNumber;
-	private SwitchPath CurrentLevelNode;
+	private LevelInfo CurrentLevelNode;
 	private int DirectionValue;
 	private List<BezierCurve> AvailablePaths;
 	private int Default;
@@ -98,9 +98,9 @@ public class WorldMapNavigator : MonoBehaviour
 		RaycastHit Hit;
 		if (Physics.Raycast(transform.localPosition, Vector3.down, out Hit, 1f))
 		{
-			if (Hit.collider.GetComponent<SwitchPath>())
+			if (Hit.collider.GetComponent<LevelInfo>())
 			{
-				SwitchPath Level = Hit.collider.GetComponent<SwitchPath>();
+				LevelInfo Level = Hit.collider.GetComponent<LevelInfo>();
 				BezierCurve UnlockPath = Level.ConnectedPaths[Default];
 				if (GameManager.Instance.WorldMapLocation.PathsInWorldUnlocked.Contains(UnlockPath))
 				{
@@ -178,7 +178,7 @@ public class WorldMapNavigator : MonoBehaviour
         {
 			foreach (var i in CurrentLevelNode.MoveOptions)
 			{
-				if (i == SwitchPath.Connected.left)
+				if (i == LevelInfo.Connected.left)
 				{
 					DirectionValue = Convert.ToInt32(i);
 					if (AvailablePaths.Count == 1)
@@ -206,9 +206,9 @@ public class WorldMapNavigator : MonoBehaviour
 		}
 		if(Direction.x == 1)
         {
-			foreach (SwitchPath.Connected i in CurrentLevelNode.MoveOptions)
+			foreach (LevelInfo.Connected i in CurrentLevelNode.MoveOptions)
 			{
-				if (i == SwitchPath.Connected.right)
+				if (i == LevelInfo.Connected.right)
 				{
 					DirectionValue = Convert.ToInt32(i);
 					if (AvailablePaths.Count == 1)
@@ -232,9 +232,9 @@ public class WorldMapNavigator : MonoBehaviour
 		}
 		if(Direction.y == -1)
         {
-			foreach (SwitchPath.Connected i in CurrentLevelNode.MoveOptions)
+			foreach (LevelInfo.Connected i in CurrentLevelNode.MoveOptions)
 			{
-				if (i == SwitchPath.Connected.down)
+				if (i == LevelInfo.Connected.down)
 				{
 					DirectionValue = Convert.ToInt32(i);
 					if (AvailablePaths.Count == 1)
@@ -266,7 +266,7 @@ public class WorldMapNavigator : MonoBehaviour
         {
 			foreach(var i in CurrentLevelNode.MoveOptions)
             {
-				if(i == SwitchPath.Connected.up)
+				if(i == LevelInfo.Connected.up)
                 {
 					DirectionValue = Convert.ToInt32(i);
 					if (AvailablePaths.Count == 1)
@@ -296,9 +296,9 @@ public class WorldMapNavigator : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.GetComponent<SwitchPath>())
+        if (other.GetComponent<LevelInfo>())
         {
-			SwitchPath Level = other.GetComponent<SwitchPath>();
+			LevelInfo Level = other.GetComponent<LevelInfo>();
 			if(WorldPaths == null)
             {
 				WorldPaths = Level.GetComponentInParent<World>();

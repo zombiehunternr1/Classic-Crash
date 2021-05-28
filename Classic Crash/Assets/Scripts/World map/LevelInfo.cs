@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SwitchPath : MonoBehaviour
+public class LevelInfo : MonoBehaviour
 {
     public int Level;
     public BezierCurve PathToUnlock;
