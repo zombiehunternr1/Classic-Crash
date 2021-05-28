@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,8 +19,11 @@ public class LevelInfo : MonoBehaviour
     public enum Connected { up, down, left, right };
     public List<Connected> MoveOptions;
     public List<BezierCurve> ConnectedPaths;
-
-    public List<Sprite> LockedGemImages;
+    
+    [HideInInspector]
+    public List<Sprite> UnlockedGems;
+    [HideInInspector]
+    public List<Sprite> LockedGems;
 
     [HideInInspector]
     public List<Image> GemImages;
@@ -30,6 +34,7 @@ public class LevelInfo : MonoBehaviour
         foreach(Image Gem in FoundGemUIs)
         {
             GemImages.Add(Gem);
+            UnlockedGems.Add(Gem.sprite);
             Gem.enabled = false;
         }
     }
@@ -38,6 +43,13 @@ public class LevelInfo : MonoBehaviour
     {
         Background.gameObject.SetActive(true);
         LevelNumber.text = Level.ToString();
+
+        DisplayLockedGems();
+        DisplayUnlockedGems(Gems);      
+    }
+
+    private void DisplayUnlockedGems(ItemsCollected Gems)
+    {
         for (int i = 0; i < Gems.GemsCollected.Count; i++)
         {
             if (Gems.GemsCollected[i].Level == Level)
@@ -46,46 +58,46 @@ public class LevelInfo : MonoBehaviour
                 {
                     if ((int)Gems.GemsCollected[i].Type == (int)GemTypes[j])
                     {
-                        foreach(GemColor GemColor in GemTypes)
+                        foreach (GemColor GemColor in GemTypes)
                         {
-                            if(GemTypes[j] == GemColor.BoxCrate)
+                            if (GemTypes[j] == GemColor.BoxCrate)
                             {
-                                GemImages[(int)GemColor.BoxCrate].enabled = true;
+                                GemImages[(int)GemColor.BoxCrate].sprite = UnlockedGems[(int)GemColor.BoxCrate];
                                 break;
                             }
                             else if (GemTypes[j] == GemColor.Hidden)
                             {
-                                GemImages[(int)GemColor.Hidden].enabled = true;
+                                GemImages[(int)GemColor.Hidden].sprite = UnlockedGems[(int)GemColor.Hidden];
                                 break;
                             }
                             else if (GemTypes[j] == GemColor.Blue)
                             {
-                                GemImages[(int)GemColor.Blue].enabled = true;
+                                GemImages[(int)GemColor.Blue].sprite = UnlockedGems[(int)GemColor.Blue];
                                 break;
                             }
                             else if (GemTypes[j] == GemColor.Green)
                             {
-                                GemImages[(int)GemColor.Green].enabled = true;
+                                GemImages[(int)GemColor.Green].sprite = UnlockedGems[(int)GemColor.Green];
                                 break;
                             }
-                            else if(GemTypes[j] == GemColor.Orange)
+                            else if (GemTypes[j] == GemColor.Orange)
                             {
-                                GemImages[(int)GemColor.Orange].enabled = true;
+                                GemImages[(int)GemColor.Orange].sprite = UnlockedGems[(int)GemColor.Orange];
                                 break;
                             }
                             else if (GemTypes[j] == GemColor.Purple)
                             {
-                                GemImages[(int)GemColor.Purple].enabled = true;
+                                GemImages[(int)GemColor.Purple].sprite = UnlockedGems[(int)GemColor.Purple];
                                 break;
                             }
                             else if (GemTypes[j] == GemColor.Red)
                             {
-                                GemImages[(int)GemColor.Red].enabled = true;
+                                GemImages[(int)GemColor.Red].sprite = UnlockedGems[(int)GemColor.Red];
                                 break;
                             }
                             else if (GemTypes[j] == GemColor.Yellow)
                             {
-                                GemImages[(int)GemColor.Yellow].enabled = true;
+                                GemImages[(int)GemColor.Yellow].sprite = UnlockedGems[(int)GemColor.Yellow];
                                 break;
                             }
                         }
@@ -96,8 +108,29 @@ public class LevelInfo : MonoBehaviour
         }
     }
 
+    private void DisplayLockedGems()
+    {
+        for (int i = 0; i < GemTypes.Count; i++)
+        {
+            int Color = Convert.ToInt32(GemTypes[i]);
+
+            for (int j = 0; j < LockedGems.Count; j++)
+            {
+                if (j == Color)
+                {
+                    GemImages[j].sprite = LockedGems[j];
+                    GemImages[j].enabled = true;
+                }
+            }
+        }
+    }
+
     public void HideDisplayInfo()
     {
+        foreach(Image Gem in GemImages)
+        {
+            Gem.enabled = false;
+        }
         Background.gameObject.SetActive(false);
     }
 }
