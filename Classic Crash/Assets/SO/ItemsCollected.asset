@@ -12,9 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a54a41515a70c984b81fe1fb448f3a0e, type: 3}
   m_Name: ItemsCollected
   m_EditorClassIdentifier: 
-  GemsCollected:
-  - {fileID: 11400000, guid: e2f71f0e315dde045b1ee94d6bf7b677, type: 2}
-  - {fileID: 11400000, guid: 53231091fa9e00941b7c4449640ed17e, type: 2}
+  GemsCollected: []
   Wumpa: 0
   Lives: 0
   AkuAkus: 0
