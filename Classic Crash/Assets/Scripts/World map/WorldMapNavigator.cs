@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class WorldMapNavigator : MonoBehaviour
 {
+	public ItemsCollected GemsCollected;
 	public BezierCurve CurrentPath;
 	public float Duration = 2f;
 
@@ -264,7 +265,7 @@ public class WorldMapNavigator : MonoBehaviour
 		}
 		if(Direction.y == 1)
         {
-			foreach(var i in CurrentLevelNode.MoveOptions)
+			foreach(LevelInfo.Connected i in CurrentLevelNode.MoveOptions)
             {
 				if(i == LevelInfo.Connected.up)
                 {
@@ -308,6 +309,7 @@ public class WorldMapNavigator : MonoBehaviour
 			CurrentLevelNode = Level;
 			CurrentLevelNumber = Level.Level;
 			PathToUnlock = Level.PathToUnlock;
+			Level.DisplayLevelInfo(GemsCollected);
 			StartCoroutine(PositionPlayerOnLevel(CurrentLevelNode.gameObject.transform));
         }
     }

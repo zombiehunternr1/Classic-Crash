@@ -269,5 +269,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5d70add2ba661243a20243c982c352a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GemsCollected: {fileID: 11400000, guid: be1f995f06c814e47b9af02c3215b9bd, type: 2}
   CurrentPath: {fileID: 0}
   Duration: 2
