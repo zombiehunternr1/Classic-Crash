@@ -313,4 +313,13 @@ public class WorldMapNavigator : MonoBehaviour
 			StartCoroutine(PositionPlayerOnLevel(CurrentLevelNode.gameObject.transform));
         }
     }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.GetComponent<LevelInfo>())
+        {
+			LevelInfo Level = other.GetComponent<LevelInfo>();
+			Level.HideDisplayInfo();
+        }
+    }
 }

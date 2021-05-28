@@ -10,6 +10,7 @@ public class LevelInfo : MonoBehaviour
     public BezierCurve PathToUnlock;
     public TextMeshProUGUI LevelNumber;
     public RectTransform GemsPosition;
+    public Image Background;
 
     public enum GemColor { BoxCrate, Hidden, Blue, Green, Orange, Purple, Red, Yellow };
     public List<GemColor> GemTypes;
@@ -33,6 +34,7 @@ public class LevelInfo : MonoBehaviour
 
     public void DisplayLevelInfo(ItemsCollected Gems)
     {
+        Background.gameObject.SetActive(true);
         LevelNumber.text = Level.ToString();
         for (int i = 0; i < Gems.GemsCollected.Count; i++)
         {
@@ -90,5 +92,10 @@ public class LevelInfo : MonoBehaviour
 
             }
         }
+    }
+
+    public void HideDisplayInfo()
+    {
+        Background.gameObject.SetActive(false);
     }
 }

@@ -699,6 +699,7 @@ MonoBehaviour:
   PathToUnlock: {fileID: 0}
   LevelNumber: {fileID: 1826504012}
   GemsPosition: {fileID: 1555395244}
+  Background: {fileID: 1732873061}
   GemTypes: 0000000003000000
   MoveOptions: 03000000
   ConnectedPaths:
@@ -1139,6 +1140,7 @@ MonoBehaviour:
   PathToUnlock: {fileID: 0}
   LevelNumber: {fileID: 1826504012}
   GemsPosition: {fileID: 1555395244}
+  Background: {fileID: 1732873061}
   GemTypes: 0000000001000000
   MoveOptions: 01000000
   ConnectedPaths:
@@ -2173,6 +2175,7 @@ MonoBehaviour:
   PathToUnlock: {fileID: 7063630851821351110}
   LevelNumber: {fileID: 1826504012}
   GemsPosition: {fileID: 1555395244}
+  Background: {fileID: 1732873061}
   GemTypes: 000000000100000004000000
   MoveOptions: 00000000
   ConnectedPaths:
@@ -2215,6 +2218,7 @@ MonoBehaviour:
   PathToUnlock: {fileID: 4792637587443922802}
   LevelNumber: {fileID: 1826504012}
   GemsPosition: {fileID: 1555395244}
+  Background: {fileID: 1732873061}
   GemTypes: 00000000
   MoveOptions: 000000000100000002000000
   ConnectedPaths:

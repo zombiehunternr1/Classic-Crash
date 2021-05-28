@@ -7,6 +7,7 @@ public class BezierPathVisualisation : MonoBehaviour
     public float WaitDisplayNextPathDecoration;
     public int Frequency;
     public Transform[] DecorationItems;
+    [HideInInspector]
     public bool FirstTime = true;
     private BezierCurve PathToDecorate;
     private World CurrentWorld;
