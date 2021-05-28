@@ -704,6 +704,15 @@ MonoBehaviour:
   MoveOptions: 03000000
   ConnectedPaths:
   - {fileID: 4792637586834606339}
+  LockedGemImages:
+  - {fileID: 21300000, guid: 9fd907b1ce58c174cbba33c6cd16f180, type: 3}
+  - {fileID: 21300000, guid: 9fd907b1ce58c174cbba33c6cd16f180, type: 3}
+  - {fileID: 21300000, guid: 2d287c5edecbefa4c8e32e12e91117f2, type: 3}
+  - {fileID: 21300000, guid: 7b6be3f9249f28f40b060fe098504fd3, type: 3}
+  - {fileID: 21300000, guid: 50ebc631b80dd544db31585dfdde988a, type: 3}
+  - {fileID: 21300000, guid: 5b49d4b0240074640a307c5123049d8b, type: 3}
+  - {fileID: 21300000, guid: 9c3b4c1101c5f924a8ccb967d9d9e7f5, type: 3}
+  - {fileID: 21300000, guid: 4f1c514b05d60b4478133f4d09b35521, type: 3}
   GemImages: []
 --- !u!1 &1202725863
 GameObject:
@@ -1145,6 +1154,15 @@ MonoBehaviour:
   MoveOptions: 01000000
   ConnectedPaths:
   - {fileID: 4792637587443922802}
+  LockedGemImages:
+  - {fileID: 21300000, guid: 9fd907b1ce58c174cbba33c6cd16f180, type: 3}
+  - {fileID: 21300000, guid: 9fd907b1ce58c174cbba33c6cd16f180, type: 3}
+  - {fileID: 21300000, guid: 2d287c5edecbefa4c8e32e12e91117f2, type: 3}
+  - {fileID: 21300000, guid: 7b6be3f9249f28f40b060fe098504fd3, type: 3}
+  - {fileID: 21300000, guid: 50ebc631b80dd544db31585dfdde988a, type: 3}
+  - {fileID: 21300000, guid: 5b49d4b0240074640a307c5123049d8b, type: 3}
+  - {fileID: 21300000, guid: 9c3b4c1101c5f924a8ccb967d9d9e7f5, type: 3}
+  - {fileID: 21300000, guid: 4f1c514b05d60b4478133f4d09b35521, type: 3}
   GemImages: []
 --- !u!1 &1700835810
 GameObject:
@@ -2180,6 +2198,15 @@ MonoBehaviour:
   MoveOptions: 00000000
   ConnectedPaths:
   - {fileID: 7063630851821351110}
+  LockedGemImages:
+  - {fileID: 21300000, guid: 9fd907b1ce58c174cbba33c6cd16f180, type: 3}
+  - {fileID: 21300000, guid: 9fd907b1ce58c174cbba33c6cd16f180, type: 3}
+  - {fileID: 21300000, guid: 2d287c5edecbefa4c8e32e12e91117f2, type: 3}
+  - {fileID: 21300000, guid: 7b6be3f9249f28f40b060fe098504fd3, type: 3}
+  - {fileID: 21300000, guid: 50ebc631b80dd544db31585dfdde988a, type: 3}
+  - {fileID: 21300000, guid: 5b49d4b0240074640a307c5123049d8b, type: 3}
+  - {fileID: 21300000, guid: 9c3b4c1101c5f924a8ccb967d9d9e7f5, type: 3}
+  - {fileID: 21300000, guid: 4f1c514b05d60b4478133f4d09b35521, type: 3}
   GemImages: []
 --- !u!65 &4084693313594360541
 BoxCollider:
@@ -2225,6 +2252,15 @@ MonoBehaviour:
   - {fileID: 4792637587443922802}
   - {fileID: 7063630851821351110}
   - {fileID: 4792637586834606339}
+  LockedGemImages:
+  - {fileID: 21300000, guid: 9fd907b1ce58c174cbba33c6cd16f180, type: 3}
+  - {fileID: 21300000, guid: 9fd907b1ce58c174cbba33c6cd16f180, type: 3}
+  - {fileID: 21300000, guid: 2d287c5edecbefa4c8e32e12e91117f2, type: 3}
+  - {fileID: 21300000, guid: 7b6be3f9249f28f40b060fe098504fd3, type: 3}
+  - {fileID: 21300000, guid: 50ebc631b80dd544db31585dfdde988a, type: 3}
+  - {fileID: 21300000, guid: 5b49d4b0240074640a307c5123049d8b, type: 3}
+  - {fileID: 21300000, guid: 9c3b4c1101c5f924a8ccb967d9d9e7f5, type: 3}
+  - {fileID: 21300000, guid: 4f1c514b05d60b4478133f4d09b35521, type: 3}
   GemImages: []
 --- !u!65 &4565377029541740685
 BoxCollider:

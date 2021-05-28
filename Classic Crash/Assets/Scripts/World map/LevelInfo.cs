@@ -19,6 +19,8 @@ public class LevelInfo : MonoBehaviour
     public List<Connected> MoveOptions;
     public List<BezierCurve> ConnectedPaths;
 
+    public List<Sprite> LockedGemImages;
+
     [HideInInspector]
     public List<Image> GemImages;
 
