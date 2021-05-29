@@ -27,7 +27,8 @@ public class GameManager : MonoBehaviour
     private Image FadePanel;
     private float FadeAmount;
 
-    private string SafePath = "/game_save";
+    private string SavePath = "/game_save";
+    private string PlayerData = "/player_data";
 
     private void Awake()
     {
@@ -46,24 +47,27 @@ public class GameManager : MonoBehaviour
 
     private bool IsSaveFile()
     {
-        return Directory.Exists(Application.persistentDataPath + SafePath);
+        return Directory.Exists(Application.persistentDataPath + SavePath);
     }
 
     public void SaveGame()
     {
         if (!IsSaveFile())
         {
-            Directory.CreateDirectory(Application.persistentDataPath + SafePath);
+            Directory.CreateDirectory(Application.persistentDataPath + SavePath);
         }
-        if (!Directory.Exists(Application.persistentDataPath + SafePath  + "/player_data"))
+        if (!Directory.Exists(Application.persistentDataPath + SavePath  + PlayerData))
         {
-            Directory.CreateDirectory(Application.persistentDataPath + SafePath + "/player_data");
+            Directory.CreateDirectory(Application.persistentDataPath + SavePath + PlayerData);
         }
         BinaryFormatter bf = new BinaryFormatter();
-        FileStream file = File.Create(Application.persistentDataPath + SafePath + "/player_data/collected_items.CB");
-        var json = JsonUtility.ToJson(PlayerItems);
-        bf.Serialize(file, json);
-        file.Close();
+        FileStream CollectedItems = File.Create(Application.persistentDataPath + SavePath + PlayerData + "/collected_items.CB");
+        FileStream WorldMap = File.Create(Application.persistentDataPath + SavePath + PlayerData + "/worldmap.CB");
+        string CollectedItemsJson = JsonUtility.ToJson(PlayerItems);
+        string WorldMapJson = JsonUtility.ToJson(WorldMapLocation);
+        bf.Serialize(CollectedItems, CollectedItemsJson);
+        bf.Serialize(WorldMap, WorldMapJson);
+        CollectedItems.Close();
     }
 
     public void LoadGame()
@@ -71,11 +75,17 @@ public class GameManager : MonoBehaviour
         if (IsSaveFile())
         {
             BinaryFormatter bf = new BinaryFormatter();
-            if (File.Exists(Application.persistentDataPath + SafePath + "/player_data/collected_items.CB"))
+            if (File.Exists(Application.persistentDataPath + SavePath + PlayerData + "/collected_items.CB"))
             {
-                FileStream file = File.Open(Application.persistentDataPath + SafePath + "/player_data/collected_items.CB", FileMode.Open);
-                JsonUtility.FromJsonOverwrite((string)bf.Deserialize(file), PlayerItems);
-                file.Close();
+                FileStream CollectedItems = File.Open(Application.persistentDataPath + SavePath + PlayerData + "/collected_items.CB", FileMode.Open);
+                JsonUtility.FromJsonOverwrite((string)bf.Deserialize(CollectedItems), PlayerItems);
+                CollectedItems.Close();
+            }
+            if(File.Exists(Application.persistentDataPath + SavePath + PlayerData + "/worldmap.CB"))
+            {
+                FileStream Worldmap = File.Open(Application.persistentDataPath + SavePath + PlayerData + "/worldmap.CB", FileMode.Open);
+                JsonUtility.FromJsonOverwrite((string)bf.Deserialize(Worldmap), WorldMapLocation);
+                Worldmap.Close();
             }
         }
     }
