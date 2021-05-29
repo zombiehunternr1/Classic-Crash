@@ -125,6 +125,7 @@ public class WorldMapNavigator : MonoBehaviour
 		}
 		GameManager.Instance.WorldMapLocation.WorldMapPosition = transform.localPosition;
 		GameManager.Instance.Scene = SceneManager.GetActiveScene().buildIndex + CurrentLevelNumber;
+		GameManager.Instance.SaveGame();
 		GameManager.Instance.StartCoroutine(GameManager.Instance.FadingEffect(null));
     }
 

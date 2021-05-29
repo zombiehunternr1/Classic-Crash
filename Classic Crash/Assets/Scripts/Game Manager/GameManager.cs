@@ -87,6 +87,8 @@ public class GameManager : MonoBehaviour
                 JsonUtility.FromJsonOverwrite((string)bf.Deserialize(Worldmap), WorldMapLocation);
                 Worldmap.Close();
             }
+            Scene = SceneManager.GetActiveScene().buildIndex + 1;
+            StartCoroutine(FadingEffect(null));
         }
     }
 
