@@ -638,7 +638,7 @@ MonoBehaviour:
   Level: 0
   LevelName: Ancient Misteries
   PathToUnlock: {fileID: 0}
-  LevelNumber: {fileID: 1826504012}
+  LevelNameDisplay: {fileID: 1826504012}
   Gems: {fileID: 1341084923}
   Display: {fileID: 1555395244}
   Background: {fileID: 1732873061}
@@ -1232,10 +1232,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d210c7affeb55b94ea95b418fd4ce4cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Level: 0
+  Level: 4
   LevelName: Flowing troubles
   PathToUnlock: {fileID: 0}
-  LevelNumber: {fileID: 1826504012}
+  LevelNameDisplay: {fileID: 1826504012}
   Gems: {fileID: 1341084923}
   Display: {fileID: 1555395244}
   Background: {fileID: 1732873061}
@@ -2284,7 +2284,7 @@ MonoBehaviour:
   Level: 1
   LevelName: A Crashing start
   PathToUnlock: {fileID: 7063630851821351110}
-  LevelNumber: {fileID: 1826504012}
+  LevelNameDisplay: {fileID: 1826504012}
   Gems: {fileID: 1341084923}
   Display: {fileID: 1555395244}
   Background: {fileID: 1732873061}
@@ -2340,7 +2340,7 @@ MonoBehaviour:
   Level: 2
   LevelName: Jungle stumble
   PathToUnlock: {fileID: 4792637587443922802}
-  LevelNumber: {fileID: 1826504012}
+  LevelNameDisplay: {fileID: 1826504012}
   Gems: {fileID: 1341084923}
   Display: {fileID: 1555395244}
   Background: {fileID: 1732873061}
