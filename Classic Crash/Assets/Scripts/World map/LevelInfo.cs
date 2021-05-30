@@ -8,8 +8,9 @@ using TMPro;
 public class LevelInfo : MonoBehaviour
 {
     public int Level;
+    public string LevelName;
     public BezierCurve PathToUnlock;
-    public TextMeshProUGUI LevelNumber;
+    public TextMeshProUGUI LevelNameDisplay;
     public RectTransform Gems;
     public RectTransform Display;
     public Image Background;
@@ -51,7 +52,7 @@ public class LevelInfo : MonoBehaviour
     public void DisplayLevelInfo(ItemsCollected Gems)
     {
         Background.gameObject.SetActive(true);
-        LevelNumber.text = Level.ToString();
+        LevelNameDisplay.text = LevelName;
 
         DisplayLockedGems();
         DisplayUnlockedGems(Gems);      
