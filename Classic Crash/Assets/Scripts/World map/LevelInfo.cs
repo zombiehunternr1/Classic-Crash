@@ -130,6 +130,15 @@ public class LevelInfo : MonoBehaviour
                     DisplayGemType[DisplayCount].sprite = LockedGems[j];
                     DisplayCount++;
                 }
+            }        
+        }
+        foreach (Image GemDisplay in DisplayGemType)
+        {
+            if (GemDisplay.sprite == null)
+            {
+                Color HideColor = GemDisplay.color;
+                HideColor.a = 0f;
+                GemDisplay.color = HideColor;
             }
         }
     }
