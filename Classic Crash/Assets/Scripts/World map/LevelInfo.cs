@@ -51,7 +51,6 @@ public class LevelInfo : MonoBehaviour
 
     public void DisplayLevelInfo(ItemsCollected Gems)
     {
-        Background.gameObject.SetActive(true);
         LevelNameDisplay.text = LevelName;
 
         DisplayLockedGems();
@@ -127,6 +126,9 @@ public class LevelInfo : MonoBehaviour
             {
                 if (j == GemColor)
                 {
+                    Color ShowColor = DisplayGemType[DisplayCount].color;
+                    ShowColor.a = 255f;
+                    DisplayGemType[DisplayCount].color = ShowColor;
                     DisplayGemType[DisplayCount].sprite = LockedGems[j];
                     DisplayCount++;
                 }
@@ -145,11 +147,20 @@ public class LevelInfo : MonoBehaviour
 
     public void HideDisplayInfo()
     {
-        foreach(Image Display in DisplayGemType)
+        LevelNameDisplay.text = "";
+        foreach (Image Display in DisplayGemType)
         {
             Display.sprite = null;
         }
+        foreach (Image GemDisplay in DisplayGemType)
+        {
+            if (GemDisplay.sprite == null)
+            {
+                Color HideColor = GemDisplay.color;
+                HideColor.a = 0f;
+                GemDisplay.color = HideColor;
+            }
+        }
         DisplayCount = 0;
-        Background.gameObject.SetActive(false);
     }
 }
