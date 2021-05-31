@@ -121,11 +121,11 @@ public class LevelInfo : MonoBehaviour
     {
         for (int i = 0; i < GemTypes.Count; i++)
         {
-            int Color = Convert.ToInt32(GemTypes[i]);
+            int GemColor = Convert.ToInt32(GemTypes[i]);
 
             for (int j = 0; j < LockedGems.Count; j++)
             {
-                if (j == Color)
+                if (j == GemColor)
                 {
                     DisplayGemType[DisplayCount].sprite = LockedGems[j];
                     DisplayCount++;
