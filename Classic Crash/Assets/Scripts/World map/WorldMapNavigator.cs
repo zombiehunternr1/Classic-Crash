@@ -10,7 +10,7 @@ public class WorldMapNavigator : MonoBehaviour
 	public BezierCurve CurrentPath;
 	public float Duration = 2f;
 
-	private World WorldPaths;
+	private World CurrentWorld;
 	private BezierCurve PathToUnlock;
 	private int CurrentLevelNumber;
 	private LevelInfo CurrentLevelNode;
@@ -117,9 +117,9 @@ public class WorldMapNavigator : MonoBehaviour
 
 		if(PathToUnlock != null)
         {
-			if (WorldPaths.PathsInWorld.Contains(PathToUnlock))
+			if (CurrentWorld.PathsInWorld.Contains(PathToUnlock))
 			{
-				int UnlockPath = WorldPaths.PathsInWorld.IndexOf(PathToUnlock);
+				int UnlockPath = CurrentWorld.PathsInWorld.IndexOf(PathToUnlock);
 				GameManager.Instance.WorldMapLocation.PathToUnlock = UnlockPath;
 			}
 		}
@@ -296,22 +296,27 @@ public class WorldMapNavigator : MonoBehaviour
         }
     }
 
+	private void GetLevelNodeData(LevelInfo Level, World World)
+    {
+		AvailablePaths = Level.ConnectedPaths;
+		Entering = true;
+		CurrentLevelNode = Level;
+		CurrentLevelNumber = Level.Level;
+		PathToUnlock = Level.PathToUnlock;
+		Level.PlayDisplayAnimation(GemsCollected);
+		StartCoroutine(PositionPlayerOnLevel(CurrentLevelNode.gameObject.transform));
+	}
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.GetComponent<LevelInfo>())
         {
 			LevelInfo Level = other.GetComponent<LevelInfo>();
-			if(WorldPaths == null)
+			if(CurrentWorld == null)
             {
-				WorldPaths = Level.GetComponentInParent<World>();
+				CurrentWorld = Level.GetComponentInParent<World>();
             }
-			AvailablePaths = Level.ConnectedPaths;
-			Entering = true;
-			CurrentLevelNode = Level;
-			CurrentLevelNumber = Level.Level;
-			PathToUnlock = Level.PathToUnlock;
-			Level.DisplayLevelInfo(GemsCollected);
-			StartCoroutine(PositionPlayerOnLevel(CurrentLevelNode.gameObject.transform));
+			GetLevelNodeData(Level, CurrentWorld);
         }
     }
 
@@ -320,7 +325,7 @@ public class WorldMapNavigator : MonoBehaviour
         if (other.GetComponent<LevelInfo>())
         {
 			LevelInfo Level = other.GetComponent<LevelInfo>();
-			Level.HideDisplayInfo();
+			Level.PlayHideAnimation();
         }
     }
 }

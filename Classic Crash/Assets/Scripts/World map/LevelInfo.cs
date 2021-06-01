@@ -14,6 +14,7 @@ public class LevelInfo : MonoBehaviour
     public RectTransform Gems;
     public RectTransform Display;
     public Image Background;
+    public Animator DisplayAnim;
 
     public enum GemColor { BoxCrate, Hidden, Blue, Green, Orange, Purple, Red, Yellow };
     public List<GemColor> GemTypes;
@@ -49,7 +50,19 @@ public class LevelInfo : MonoBehaviour
         }
     }
 
-    public void DisplayLevelInfo(ItemsCollected Gems)
+    public void PlayDisplayAnimation(ItemsCollected Gems)
+    {
+        DisplayAnim.SetTrigger("Display");
+        DisplayLevelInfo(Gems);
+    }
+
+    public void PlayHideAnimation()
+    {
+        DisplayAnim.SetTrigger("Display");
+        HideDisplayInfo();
+    }
+
+    private void DisplayLevelInfo(ItemsCollected Gems)
     {
         LevelNameDisplay.text = LevelName;
 
@@ -144,8 +157,7 @@ public class LevelInfo : MonoBehaviour
             }
         }
     }
-
-    public void HideDisplayInfo()
+    private void HideDisplayInfo()
     {
         LevelNameDisplay.text = "";
         foreach (Image Display in DisplayGemType)
