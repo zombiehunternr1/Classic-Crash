@@ -146,7 +146,7 @@ public class WorldMapNavigator : MonoBehaviour
 		{
 			position = CurrentPath.GetPoint(progress);
 			transform.position = position;
-			LookDirection(transform);
+			LookDirection();
 		}
 	}
 
@@ -172,7 +172,7 @@ public class WorldMapNavigator : MonoBehaviour
 		}
 	}
 
-	public void LookDirection(Transform LevelPosition)
+	public void LookDirection()
     {
 		if (goingForward)
 		{
