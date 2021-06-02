@@ -3,12 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Cinemachine;
 
 public class WorldMapNavigator : MonoBehaviour
 {
 	public ItemsCollected GemsCollected;
 	public BezierCurve CurrentPath;
 	public float Duration = 2f;
+
+	public CinemachineVirtualCamera WorldMapCam;
 
 	private World CurrentWorld;
 	private BezierCurve PathToUnlock;
@@ -296,7 +299,7 @@ public class WorldMapNavigator : MonoBehaviour
         }
     }
 
-	private void GetLevelNodeData(LevelInfo Level, World World)
+	private void GetLevelNodeData(LevelInfo Level)
     {
 		AvailablePaths = Level.ConnectedPaths;
 		Entering = true;
@@ -312,11 +315,8 @@ public class WorldMapNavigator : MonoBehaviour
         if (other.GetComponent<LevelInfo>())
         {
 			LevelInfo Level = other.GetComponent<LevelInfo>();
-			if(CurrentWorld == null)
-            {
-				CurrentWorld = Level.GetComponentInParent<World>();
-            }
-			GetLevelNodeData(Level, CurrentWorld);
+			CurrentWorld = Level.GetComponentInParent<World>();
+			GetLevelNodeData(Level);
         }
     }
 
