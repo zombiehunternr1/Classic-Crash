@@ -200,6 +200,7 @@ public class WorldMapNavigator : MonoBehaviour
                         {
 							CurrentPath = AvailablePaths[Default];
 							CurrentTrack = CurrentPath.CinemaPath;
+							CamPosition.m_Path = CurrentTrack;
 							CanMove = false;
 							goingForward = true;
 							Entering = false;
@@ -211,6 +212,7 @@ public class WorldMapNavigator : MonoBehaviour
                         {
 							CurrentPath = AvailablePaths[DirectionValue];
 							CurrentTrack = CurrentPath.CinemaPath;
+							CamPosition.m_Path = CurrentTrack;
 							CanMove = false;
 							goingForward = true;
 							Entering = false;
@@ -230,6 +232,7 @@ public class WorldMapNavigator : MonoBehaviour
 					{
 						CurrentPath = AvailablePaths[Default];
 						CurrentTrack = CurrentPath.CinemaPath;
+						CamPosition.m_Path = CurrentTrack;
 						CanMove = false;
 						progress = 1f;
 						goingForward = false;
@@ -239,6 +242,7 @@ public class WorldMapNavigator : MonoBehaviour
 					{
 						CurrentPath = AvailablePaths[DirectionValue];
 						CurrentTrack = CurrentPath.CinemaPath;
+						CamPosition.m_Path = CurrentTrack;
 						CanMove = false;
 						progress = 1f;
 						goingForward = false;
@@ -260,6 +264,7 @@ public class WorldMapNavigator : MonoBehaviour
 						{
 							CurrentPath = AvailablePaths[Default];
 							CurrentTrack = CurrentPath.CinemaPath;
+							CamPosition.m_Path = CurrentTrack;
 							CanMove = false;
 							progress = 1f;
 							goingForward = false;
@@ -272,6 +277,7 @@ public class WorldMapNavigator : MonoBehaviour
 						{
 							CurrentPath = AvailablePaths[DirectionValue];
 							CurrentTrack = CurrentPath.CinemaPath;
+							CamPosition.m_Path = CurrentTrack;
 							CanMove = false;
 							progress = 1f;
 							goingForward = false;
@@ -294,6 +300,7 @@ public class WorldMapNavigator : MonoBehaviour
 						{
 							CurrentPath = AvailablePaths[Default];
 							CurrentTrack = CurrentPath.CinemaPath;
+							CamPosition.m_Path = CurrentTrack;
 							CanMove = false;
 							goingForward = true;
 							Entering = false;
@@ -305,6 +312,7 @@ public class WorldMapNavigator : MonoBehaviour
 						{
 							CurrentPath = AvailablePaths[DirectionValue];
 							CurrentTrack = CurrentPath.CinemaPath;
+							CamPosition.m_Path = CurrentTrack;
 							CanMove = false;
 							goingForward = true;
 							Entering = false;
