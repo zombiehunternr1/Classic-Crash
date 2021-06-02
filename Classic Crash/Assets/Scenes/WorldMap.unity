@@ -147,7 +147,7 @@ GameObject:
   - component: {fileID: 148942136}
   - component: {fileID: 148942135}
   m_Layer: 0
-  m_Name: WorldCamera
+  m_Name: World Camera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1996,7 +1996,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1913931715}
   m_Layer: 0
-  m_Name: WorldCameraTracks
+  m_Name: World CameraTracks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2766,6 +2766,10 @@ PrefabInstance:
       propertyPath: WorldMapCam
       value: 
       objectReference: {fileID: 148942135}
+    - target: {fileID: 4631023588300821305, guid: 0896adb270d5a83469852f3878ccdee8, type: 3}
+      propertyPath: CurrentTrack
+      value: 
+      objectReference: {fileID: 1790665593}
     - target: {fileID: 4631023588300821309, guid: 0896adb270d5a83469852f3878ccdee8, type: 3}
       propertyPath: m_Name
       value: Player
@@ -2828,6 +2832,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7b6b4e22427e4efbb847bd026324e59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CinemaPath: {fileID: 1790665593}
   Unlocked: 0
   points:
   - {x: -0.17221928, y: 0, z: 0}
@@ -2846,6 +2851,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7b6b4e22427e4efbb847bd026324e59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CinemaPath: {fileID: 1401529823}
   Unlocked: 0
   points:
   - {x: 1.5968137, y: 0.37027133, z: -0.6845708}
@@ -2892,6 +2898,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7b6b4e22427e4efbb847bd026324e59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CinemaPath: {fileID: 1790665593}
   Unlocked: 0
   points:
   - {x: 0.5089836, y: 0, z: 0.7071934}

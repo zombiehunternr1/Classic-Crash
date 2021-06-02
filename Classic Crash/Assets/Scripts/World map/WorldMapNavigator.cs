@@ -12,6 +12,8 @@ public class WorldMapNavigator : MonoBehaviour
 	public float Duration = 2f;
 
 	public CinemachineVirtualCamera WorldMapCam;
+	public CinemachineSmoothPath CurrentTrack;
+	public int CurrentWaypoint;
 
 	private World CurrentWorld;
 	private BezierCurve PathToUnlock;
@@ -191,6 +193,7 @@ public class WorldMapNavigator : MonoBehaviour
                         if (AvailablePaths[Default].Unlocked)
                         {
 							CurrentPath = AvailablePaths[Default];
+							CurrentTrack = CurrentPath.CinemaPath;
 							CanMove = false;
 							goingForward = true;
 							Entering = false;
@@ -201,6 +204,7 @@ public class WorldMapNavigator : MonoBehaviour
                         if (AvailablePaths[DirectionValue].Unlocked)
                         {
 							CurrentPath = AvailablePaths[DirectionValue];
+							CurrentTrack = CurrentPath.CinemaPath;
 							CanMove = false;
 							goingForward = true;
 							Entering = false;
@@ -219,6 +223,7 @@ public class WorldMapNavigator : MonoBehaviour
 					if (AvailablePaths.Count == 1)
 					{
 						CurrentPath = AvailablePaths[Default];
+						CurrentTrack = CurrentPath.CinemaPath;
 						CanMove = false;
 						progress = 1f;
 						goingForward = false;
@@ -227,6 +232,7 @@ public class WorldMapNavigator : MonoBehaviour
 					else
 					{
 						CurrentPath = AvailablePaths[DirectionValue];
+						CurrentTrack = CurrentPath.CinemaPath;
 						CanMove = false;
 						progress = 1f;
 						goingForward = false;
@@ -247,6 +253,7 @@ public class WorldMapNavigator : MonoBehaviour
 						if (AvailablePaths[Default].Unlocked)
 						{
 							CurrentPath = AvailablePaths[Default];
+							CurrentTrack = CurrentPath.CinemaPath;
 							CanMove = false;
 							progress = 1f;
 							goingForward = false;
@@ -258,6 +265,7 @@ public class WorldMapNavigator : MonoBehaviour
 						if (AvailablePaths[DirectionValue].Unlocked)
 						{
 							CurrentPath = AvailablePaths[DirectionValue];
+							CurrentTrack = CurrentPath.CinemaPath;
 							CanMove = false;
 							progress = 1f;
 							goingForward = false;
@@ -279,6 +287,7 @@ public class WorldMapNavigator : MonoBehaviour
 						if (AvailablePaths[Default].Unlocked)
 						{
 							CurrentPath = AvailablePaths[Default];
+							CurrentTrack = CurrentPath.CinemaPath;
 							CanMove = false;
 							goingForward = true;
 							Entering = false;
@@ -289,6 +298,7 @@ public class WorldMapNavigator : MonoBehaviour
 						if (AvailablePaths[DirectionValue].Unlocked)
 						{
 							CurrentPath = AvailablePaths[DirectionValue];
+							CurrentTrack = CurrentPath.CinemaPath;
 							CanMove = false;
 							goingForward = true;
 							Entering = false;

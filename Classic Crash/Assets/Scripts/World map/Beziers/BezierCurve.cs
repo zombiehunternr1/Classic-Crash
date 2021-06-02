@@ -1,7 +1,9 @@
 ﻿using UnityEngine;
+using Cinemachine;
 
 public class BezierCurve : MonoBehaviour {
 
+	public CinemachineSmoothPath CinemaPath;
 	public bool Unlocked;
 	public Vector3[] points;
 
