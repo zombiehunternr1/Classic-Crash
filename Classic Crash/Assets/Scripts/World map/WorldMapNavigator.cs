@@ -13,7 +13,7 @@ public class WorldMapNavigator : MonoBehaviour
 
 	public CinemachineVirtualCamera WorldMapCam;
 	public CinemachineSmoothPath CurrentTrack;
-	public int CurrentWaypoint;
+	public CinemachineTrackedDolly CamPosition;
 
 	private World CurrentWorld;
 	private BezierCurve PathToUnlock;
@@ -38,6 +38,10 @@ public class WorldMapNavigator : MonoBehaviour
 		if(RB == null)
         {
 			RB = GetComponent<Rigidbody>();
+        }
+		if(CamPosition == null)
+        {
+			CamPosition = WorldMapCam.GetCinemachineComponent<CinemachineTrackedDolly>();
         }
 
 		if(PlayerControls == null)
@@ -71,6 +75,7 @@ public class WorldMapNavigator : MonoBehaviour
 			if (progress < 1f)
 			{
 				progress += Time.deltaTime / Duration;
+				CamPosition.m_PathPosition += Time.deltaTime / Duration;
 				PositionPlayerOnCurve();
 			}
 			else
@@ -83,6 +88,7 @@ public class WorldMapNavigator : MonoBehaviour
 			if (progress > 0)
 			{
 				progress -= Time.deltaTime / Duration;
+				CamPosition.m_PathPosition -= Time.deltaTime / Duration;
 				PositionPlayerOnCurve();
 			}
             else
