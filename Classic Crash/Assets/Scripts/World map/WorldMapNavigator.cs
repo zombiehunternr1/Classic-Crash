@@ -169,7 +169,8 @@ public class WorldMapNavigator : MonoBehaviour
 			}
 			transform.localRotation = Quaternion.identity;
 			CanMove = true;
-		}
+			CamPosition.m_PathPosition = Mathf.Round(CamPosition.m_PathPosition);
+		}		
 	}
 
 	public void LookDirection()
@@ -199,8 +200,12 @@ public class WorldMapNavigator : MonoBehaviour
                         if (AvailablePaths[Default].Unlocked)
                         {
 							CurrentPath = AvailablePaths[Default];
-							CurrentTrack = CurrentPath.CinemaPath;
-							CamPosition.m_Path = CurrentTrack;
+							if (CurrentTrack != CurrentPath.CinemaPath)
+							{
+								CamPosition.m_PathPosition = CurrentPath.CinemaPath.WayPointSwitch;
+								CurrentTrack = CurrentPath.CinemaPath;
+								CamPosition.m_Path = CurrentTrack;
+							}
 							CanMove = false;
 							goingForward = true;
 							Entering = false;
@@ -211,8 +216,12 @@ public class WorldMapNavigator : MonoBehaviour
                         if (AvailablePaths[DirectionValue].Unlocked)
                         {
 							CurrentPath = AvailablePaths[DirectionValue];
-							CurrentTrack = CurrentPath.CinemaPath;
-							CamPosition.m_Path = CurrentTrack;
+							if (CurrentTrack != CurrentPath.CinemaPath)
+							{
+								CamPosition.m_PathPosition = CurrentPath.CinemaPath.WayPointSwitch;
+								CurrentTrack = CurrentPath.CinemaPath;
+								CamPosition.m_Path = CurrentTrack;
+							}
 							CanMove = false;
 							goingForward = true;
 							Entering = false;
@@ -231,8 +240,12 @@ public class WorldMapNavigator : MonoBehaviour
 					if (AvailablePaths.Count == 1)
 					{
 						CurrentPath = AvailablePaths[Default];
-						CurrentTrack = CurrentPath.CinemaPath;
-						CamPosition.m_Path = CurrentTrack;
+						if (CurrentTrack != CurrentPath.CinemaPath)
+						{
+							CamPosition.m_PathPosition = CurrentPath.CinemaPath.WayPointSwitch;
+							CurrentTrack = CurrentPath.CinemaPath;
+							CamPosition.m_Path = CurrentTrack;
+						}
 						CanMove = false;
 						progress = 1f;
 						goingForward = false;
@@ -241,8 +254,12 @@ public class WorldMapNavigator : MonoBehaviour
 					else
 					{
 						CurrentPath = AvailablePaths[DirectionValue];
-						CurrentTrack = CurrentPath.CinemaPath;
-						CamPosition.m_Path = CurrentTrack;
+						if (CurrentTrack != CurrentPath.CinemaPath)
+						{
+							CamPosition.m_PathPosition = CurrentPath.CinemaPath.WayPointSwitch;
+							CurrentTrack = CurrentPath.CinemaPath;
+							CamPosition.m_Path = CurrentTrack;
+						}
 						CanMove = false;
 						progress = 1f;
 						goingForward = false;
@@ -263,8 +280,12 @@ public class WorldMapNavigator : MonoBehaviour
 						if (AvailablePaths[Default].Unlocked)
 						{
 							CurrentPath = AvailablePaths[Default];
-							CurrentTrack = CurrentPath.CinemaPath;
-							CamPosition.m_Path = CurrentTrack;
+							if (CurrentTrack != CurrentPath.CinemaPath)
+							{
+								CamPosition.m_PathPosition = CurrentPath.CinemaPath.WayPointSwitch;
+								CurrentTrack = CurrentPath.CinemaPath;
+								CamPosition.m_Path = CurrentTrack;
+							}
 							CanMove = false;
 							progress = 1f;
 							goingForward = false;
@@ -276,8 +297,12 @@ public class WorldMapNavigator : MonoBehaviour
 						if (AvailablePaths[DirectionValue].Unlocked)
 						{
 							CurrentPath = AvailablePaths[DirectionValue];
-							CurrentTrack = CurrentPath.CinemaPath;
-							CamPosition.m_Path = CurrentTrack;
+							if (CurrentTrack != CurrentPath.CinemaPath)
+							{
+								CamPosition.m_PathPosition = CurrentPath.CinemaPath.WayPointSwitch;
+								CurrentTrack = CurrentPath.CinemaPath;
+								CamPosition.m_Path = CurrentTrack;
+							}
 							CanMove = false;
 							progress = 1f;
 							goingForward = false;
@@ -299,8 +324,12 @@ public class WorldMapNavigator : MonoBehaviour
 						if (AvailablePaths[Default].Unlocked)
 						{
 							CurrentPath = AvailablePaths[Default];
-							CurrentTrack = CurrentPath.CinemaPath;
-							CamPosition.m_Path = CurrentTrack;
+							if(CurrentTrack != CurrentPath.CinemaPath)
+                            {
+								CamPosition.m_PathPosition = CurrentPath.CinemaPath.WayPointSwitch;
+								CurrentTrack = CurrentPath.CinemaPath;
+								CamPosition.m_Path = CurrentTrack;
+							}
 							CanMove = false;
 							goingForward = true;
 							Entering = false;
@@ -311,8 +340,12 @@ public class WorldMapNavigator : MonoBehaviour
 						if (AvailablePaths[DirectionValue].Unlocked)
 						{
 							CurrentPath = AvailablePaths[DirectionValue];
-							CurrentTrack = CurrentPath.CinemaPath;
-							CamPosition.m_Path = CurrentTrack;
+							if (CurrentTrack != CurrentPath.CinemaPath)
+							{
+								CamPosition.m_PathPosition = CurrentPath.CinemaPath.WayPointSwitch;
+								CurrentTrack = CurrentPath.CinemaPath;
+								CamPosition.m_Path = CurrentTrack;
+							}
 							CanMove = false;
 							goingForward = true;
 							Entering = false;

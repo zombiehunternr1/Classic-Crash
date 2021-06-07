@@ -1082,6 +1082,7 @@ MonoBehaviour:
     inactivePathColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
     width: 0.2
   m_Looped: 0
+  WayPointSwitch: 0
   m_Waypoints:
   - position: {x: 0, y: 0, z: -10}
     roll: 0
@@ -1831,6 +1832,7 @@ MonoBehaviour:
     inactivePathColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
     width: 0.2
   m_Looped: 0
+  WayPointSwitch: 1
   m_Waypoints:
   - position: {x: 0, y: 0, z: -5}
     roll: 0
