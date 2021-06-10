@@ -23,7 +23,7 @@ public class WorldMapNavigator : MonoBehaviour
 	private List<BezierCurve> AvailablePaths;
 	private int Default;
 	private float progress;
-	private float PositioningSpoed = 5f;
+	private float PositioningSpeed = 5f;
 	private bool goingForward;
 	private bool CanMove;
 	private bool Entering;
@@ -60,7 +60,8 @@ public class WorldMapNavigator : MonoBehaviour
 		{
 			PositionPlayerOnCurve();
 		}
-		RB.constraints = RigidbodyConstraints.FreezePositionY;
+		RB.constraints = RigidbodyConstraints.FreezeAll;
+		CanMove = true;
 	}
 
 	private void OnDisable()
@@ -70,6 +71,13 @@ public class WorldMapNavigator : MonoBehaviour
 
 	private void Update()
 	{
+		if (GameManager.Instance.CanMove)
+		{
+			if (CanMove)
+			{
+				Move();
+			}
+		}
 		if (goingForward)
 		{
 			if (progress < 1f)
@@ -96,13 +104,6 @@ public class WorldMapNavigator : MonoBehaviour
 				progress = 0;
 			}
 		}
-        if (GameManager.Instance.CanMove)
-        {
-			if (CanMove)
-			{
-				Move();
-			}
-		}
 	}
 
 	private void UnlockLevel()
@@ -125,7 +126,6 @@ public class WorldMapNavigator : MonoBehaviour
 	private void ConfirmLevelSelect()
     {
 		CanMove = false;
-
 		if(PathToUnlock != null)
         {
 			if (CurrentWorld.PathsInWorld.Contains(PathToUnlock))
@@ -159,18 +159,43 @@ public class WorldMapNavigator : MonoBehaviour
         {
 			while (transform.localPosition != LevelPosition.position)
 			{
-				transform.localPosition = Vector3.MoveTowards(transform.localPosition, LevelPosition.position, Time.deltaTime * PositioningSpoed);
+				transform.localPosition = Vector3.MoveTowards(transform.localPosition, LevelPosition.position, Time.deltaTime * PositioningSpeed);
 				yield return null;
 			}
 			while(transform.localRotation != Quaternion.Euler(0, 0, 0))
 			{
-				transform.localRotation = Quaternion.Slerp(transform.localRotation, Quaternion.Euler(0, 0, 0), Time.deltaTime * PositioningSpoed);
+				transform.localRotation = Quaternion.Slerp(transform.localRotation, Quaternion.Euler(0, 0, 0), Time.deltaTime * PositioningSpeed);
 				yield return null;
 			}
 			transform.localRotation = Quaternion.identity;
 			CanMove = true;
-			CamPosition.m_PathPosition = Mathf.Round(CamPosition.m_PathPosition);
+			StopCoroutine(PositionPlayerOnLevel(transform));
 		}		
+	}
+
+	private IEnumerator PositionCamera()
+    {
+		float TargetPosition = Mathf.Round(CamPosition.m_PathPosition);
+
+		if (CamPosition.m_PathPosition > TargetPosition)
+		{
+			while (CamPosition.m_PathPosition !<= TargetPosition)
+            {
+				CamPosition.m_PathPosition -= Time.deltaTime * PositioningSpeed;
+				yield return CamPosition.m_PathPosition;
+			}
+			CamPosition.m_PathPosition = TargetPosition;
+		}
+		else if (CamPosition.m_PathPosition < TargetPosition)
+		{
+			while(CamPosition.m_PathPosition !>= TargetPosition)
+            {
+				CamPosition.m_PathPosition += Time.deltaTime / PositioningSpeed;
+				yield return CamPosition.m_PathPosition;
+			}
+			CamPosition.m_PathPosition = TargetPosition;
+		}
+		StopCoroutine(PositionCamera());
 	}
 
 	public void LookDirection()
@@ -365,6 +390,7 @@ public class WorldMapNavigator : MonoBehaviour
 		PathToUnlock = Level.PathToUnlock;
 		Level.PlayDisplayAnimation(GemsCollected);
 		StartCoroutine(PositionPlayerOnLevel(CurrentLevelNode.gameObject.transform));
+		StartCoroutine(PositionCamera());
 	}
 
     private void OnTriggerEnter(Collider other)
@@ -374,7 +400,7 @@ public class WorldMapNavigator : MonoBehaviour
 			LevelInfo Level = other.GetComponent<LevelInfo>();
 			CurrentWorld = Level.GetComponentInParent<World>();
 			GetLevelNodeData(Level);
-        }
+		}
     }
 
     private void OnTriggerExit(Collider other)
@@ -383,6 +409,6 @@ public class WorldMapNavigator : MonoBehaviour
         {
 			LevelInfo Level = other.GetComponent<LevelInfo>();
 			Level.PlayHideAnimation();
-        }
+		}
     }
 }
