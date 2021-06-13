@@ -10,9 +10,9 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
     public ItemsCollected PlayerItems;
+    public WorldMapLocation WorldMapLocation;
     public SFXAkuAku SFXAkuAku;
     public SFXCollectables SFXCollectables;
-    public WorldMapLocation WorldMapLocation;
 
     public float FadeSpeed;
     public int HoldNextFade;
