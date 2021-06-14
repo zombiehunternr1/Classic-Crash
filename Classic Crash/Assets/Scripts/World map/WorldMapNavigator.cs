@@ -10,6 +10,7 @@ public class WorldMapNavigator : MonoBehaviour
 	public ItemsCollected GemsCollected;
 	public BezierCurve CurrentPath;
 	public float Duration = 2f;
+	public float CamPositioningSpeed = 5f;
 
 	public CinemachineVirtualCamera WorldMapCam;
 	public CinemachineSmoothPath CurrentTrack;
@@ -179,18 +180,18 @@ public class WorldMapNavigator : MonoBehaviour
 
 		if (CamPosition.m_PathPosition > TargetPosition)
 		{
-			while (CamPosition.m_PathPosition !<= TargetPosition)
+			while (CamPosition.m_PathPosition !>= TargetPosition)
             {
-				CamPosition.m_PathPosition -= Time.deltaTime * PositioningSpeed;
+				CamPosition.m_PathPosition -= Time.deltaTime / CamPositioningSpeed;
 				yield return CamPosition.m_PathPosition;
 			}
 			CamPosition.m_PathPosition = TargetPosition;
 		}
 		else if (CamPosition.m_PathPosition < TargetPosition)
 		{
-			while(CamPosition.m_PathPosition !>= TargetPosition)
+			while(CamPosition.m_PathPosition !<= TargetPosition)
             {
-				CamPosition.m_PathPosition += Time.deltaTime / PositioningSpeed;
+				CamPosition.m_PathPosition += Time.deltaTime / CamPositioningSpeed;
 				yield return CamPosition.m_PathPosition;
 			}
 			CamPosition.m_PathPosition = TargetPosition;
@@ -389,8 +390,8 @@ public class WorldMapNavigator : MonoBehaviour
 		CurrentLevelNumber = Level.Level;
 		PathToUnlock = Level.PathToUnlock;
 		Level.PlayDisplayAnimation(GemsCollected);
-		StartCoroutine(PositionPlayerOnLevel(CurrentLevelNode.gameObject.transform));
 		StartCoroutine(PositionCamera());
+		StartCoroutine(PositionPlayerOnLevel(CurrentLevelNode.gameObject.transform));
 	}
 
     private void OnTriggerEnter(Collider other)
