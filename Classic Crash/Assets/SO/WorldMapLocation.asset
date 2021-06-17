@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: WorldMapLocation
   m_EditorClassIdentifier: 
   PathToUnlock: 0
-  PathsInWorldUnlocked: 010101
+  PathsInWorldUnlocked: 000000
   DecorationPathsUnlockedFirstTime: 000000
-  WorldMapPosition: {x: 0, y: 0, z: 0}
+  WorldMapPosition: {x: 5, y: 0.9999998, z: 10}

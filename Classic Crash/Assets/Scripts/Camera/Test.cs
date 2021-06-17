@@ -6,11 +6,12 @@ public class Test : MonoBehaviour
 {
     public Transform Player;
     public Vector3 Offset;
-    public float SmoothTime = .5f;
+    public float SmoothPositioning = .5f;
 
     public float MinZoom = 40f;
     public float MaxZoom = 10f;
     public float ZoomLimiter = 50f;
+    public float SmoothZoom = 5f;
 
     private Vector3 Velocity;
     private Vector3 LastPosition;
@@ -33,21 +34,21 @@ public class Test : MonoBehaviour
 
     private void Move()
     {
-        LastPosition = transform.position;
         Vector3 CenterPoint = GetCenterPoint();
         Vector3 NewPosition = CenterPoint + Offset;
-        transform.position = Vector3.SmoothDamp(transform.position, NewPosition, ref Velocity, SmoothTime);
+        LastPosition = NewPosition;
+        transform.position = Vector3.SmoothDamp(transform.position, NewPosition, ref Velocity, SmoothPositioning);
     }
 
     private void Zoom()
     {
         if(transform.position == LastPosition)
         {
-            Cam.fieldOfView = Mathf.Lerp(Cam.fieldOfView, MaxZoom, MinZoom * Time.deltaTime);
+            Cam.fieldOfView = Mathf.Lerp(Cam.fieldOfView, MaxZoom, SmoothZoom * Time.deltaTime);
         }
         else
         {
-            Cam.fieldOfView = Mathf.Lerp(Cam.fieldOfView, MinZoom, MaxZoom * Time.deltaTime);
+            Cam.fieldOfView = Mathf.Lerp(Cam.fieldOfView, MinZoom, SmoothZoom * Time.deltaTime);
         }
     }
 
