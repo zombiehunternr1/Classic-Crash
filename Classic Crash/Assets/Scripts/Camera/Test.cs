@@ -13,13 +13,15 @@ public class Test : MonoBehaviour
     public float ZoomLimiter = 50f;
     public float SmoothZoom = 5f;
 
+    public static bool AllowY;
+    public float YLock;
     private Vector3 Velocity;
     private Vector3 LastPosition;
     private Camera Cam;
 
     private void Start()
     {
-        Cam = GetComponent<Camera>();
+        SetupCam();
     }
 
     private void LateUpdate()
@@ -37,7 +39,18 @@ public class Test : MonoBehaviour
         Vector3 CenterPoint = GetCenterPoint();
         Vector3 NewPosition = CenterPoint + Offset;
         LastPosition = NewPosition;
-        transform.position = Vector3.SmoothDamp(transform.position, NewPosition, ref Velocity, SmoothPositioning);
+        if (AllowY)
+        {
+            transform.position = Vector3.SmoothDamp(transform.position, NewPosition, ref Velocity, SmoothPositioning);
+        }
+        else
+        {
+            if(YLock != LastPosition.y)
+            {
+                SetupCam();
+            }
+            transform.position = Vector3.SmoothDamp(transform.position, new Vector3(NewPosition.x, YLock, NewPosition.z), ref Velocity, SmoothPositioning);
+        }
     }
 
     private void Zoom()
@@ -50,6 +63,14 @@ public class Test : MonoBehaviour
         {
             Cam.fieldOfView = Mathf.Lerp(Cam.fieldOfView, MinZoom, SmoothZoom * Time.deltaTime);
         }
+    }
+
+    private void SetupCam()
+    {
+        Cam = GetComponent<Camera>();
+        Vector3 CenterPoint = GetCenterPoint();
+        Vector3 Newposition = CenterPoint + Offset;
+        YLock = Newposition.y;
     }
 
     private Vector3 GetCenterPoint()
