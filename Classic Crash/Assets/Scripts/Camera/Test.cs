@@ -13,7 +13,7 @@ public class Test : MonoBehaviour
     public float ZoomLimiter = 50f;
     public float SmoothZoom = 5f;
 
-    public static bool AllowY;
+    public static bool AllowY = true;
     public float YLock;
     private Vector3 Velocity;
     private Vector3 LastPosition;
@@ -21,6 +21,7 @@ public class Test : MonoBehaviour
 
     private void Start()
     {
+        Cam = GetComponent<Camera>();
         SetupCam();
     }
 
@@ -42,6 +43,8 @@ public class Test : MonoBehaviour
         if (AllowY)
         {
             transform.position = Vector3.SmoothDamp(transform.position, NewPosition, ref Velocity, SmoothPositioning);
+            YLock = transform.position.y;
+
         }
         else
         {
@@ -49,7 +52,10 @@ public class Test : MonoBehaviour
             {
                 SetupCam();
             }
-            transform.position = Vector3.SmoothDamp(transform.position, new Vector3(NewPosition.x, YLock, NewPosition.z), ref Velocity, SmoothPositioning);
+            else
+            {
+                transform.position = Vector3.SmoothDamp(transform.position, new Vector3(NewPosition.x, YLock, NewPosition.z), ref Velocity, SmoothPositioning);
+            }
         }
     }
 
@@ -67,10 +73,19 @@ public class Test : MonoBehaviour
 
     private void SetupCam()
     {
-        Cam = GetComponent<Camera>();
-        Vector3 CenterPoint = GetCenterPoint();
-        Vector3 Newposition = CenterPoint + Offset;
-        YLock = Newposition.y;
+        if (AllowY)
+        {
+            Vector3 CenterPoint = GetCenterPoint();
+            Vector3 Newposition = CenterPoint + Offset;
+            YLock = Newposition.y;
+        }
+        else
+        {
+            Vector3 CenterPoint = GetCenterPoint();
+            Vector3 NewPosition = CenterPoint + Offset;
+            YLock = Mathf.Round(YLock);
+            transform.position = Vector3.SmoothDamp(transform.position, new Vector3(NewPosition.x, YLock, NewPosition.z), ref Velocity, SmoothPositioning);
+        }
     }
 
     private Vector3 GetCenterPoint()
