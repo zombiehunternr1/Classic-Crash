@@ -14,7 +14,9 @@ public class Test : MonoBehaviour
     public float SmoothZoom = 5f;
 
     public static bool AllowY = true;
+    public static bool AllowZ = true;
     public float YLock;
+    public float ZLock;
     private Vector3 Velocity;
     private Vector3 LastPosition;
     private Camera Cam;
@@ -40,22 +42,47 @@ public class Test : MonoBehaviour
         Vector3 CenterPoint = GetCenterPoint();
         Vector3 NewPosition = CenterPoint + Offset;
         LastPosition = NewPosition;
-        if (AllowY)
+        CheckAllowedCameraMovement(NewPosition);
+        UpdateCameraPosition(NewPosition);
+    }
+
+    private void CheckAllowedCameraMovement(Vector3 NewPosition)
+    {
+        if (AllowY && AllowZ)
         {
             transform.position = Vector3.SmoothDamp(transform.position, NewPosition, ref Velocity, SmoothPositioning);
-            YLock = transform.position.y;
+        }
+        else if (AllowY && !AllowZ)
+        {
+            transform.position = Vector3.SmoothDamp(transform.position, new Vector3(NewPosition.x, NewPosition.y, ZLock), ref Velocity, SmoothPositioning);
+        }
+        else if (!AllowY && AllowZ)
+        {
+            transform.position = Vector3.SmoothDamp(transform.position, new Vector3(NewPosition.x, YLock, NewPosition.z), ref Velocity, SmoothPositioning);
+        }
+    }
 
+    private void UpdateCameraPosition(Vector3 NewPosition)
+    {
+        if (AllowY)
+        {
+            YLock = transform.position.y;
+        }
+        if (AllowZ)
+        {
+            ZLock = transform.position.z;
         }
         else
         {
-            if(YLock != LastPosition.y)
+            if (YLock != LastPosition.y)
             {
                 SetupCam();
             }
-            else
+            if (ZLock != LastPosition.z)
             {
-                transform.position = Vector3.SmoothDamp(transform.position, new Vector3(NewPosition.x, YLock, NewPosition.z), ref Velocity, SmoothPositioning);
+                SetupCam();
             }
+            transform.position = Vector3.SmoothDamp(transform.position, new Vector3(NewPosition.x, YLock, ZLock), ref Velocity, SmoothPositioning);
         }
     }
 
@@ -79,12 +106,25 @@ public class Test : MonoBehaviour
             Vector3 Newposition = CenterPoint + Offset;
             YLock = Newposition.y;
         }
-        else
+        if (AllowZ)
+        {
+            Vector3 CenterPoint = GetCenterPoint();
+            Vector3 Newposition = CenterPoint + Offset;
+            ZLock = Newposition.z;
+        }
+        else if(!AllowY)
         {
             Vector3 CenterPoint = GetCenterPoint();
             Vector3 NewPosition = CenterPoint + Offset;
             YLock = Mathf.Round(YLock);
-            transform.position = Vector3.SmoothDamp(transform.position, new Vector3(NewPosition.x, YLock, NewPosition.z), ref Velocity, SmoothPositioning);
+            transform.position = Vector3.SmoothDamp(transform.position, new Vector3(NewPosition.x, YLock, ZLock), ref Velocity, SmoothPositioning);
+        }
+        else if (!AllowZ)
+        {
+            Vector3 CenterPoint = GetCenterPoint();
+            Vector3 NewPosition = CenterPoint + Offset;
+            ZLock = Mathf.Round(ZLock);
+            transform.position = Vector3.SmoothDamp(transform.position, new Vector3(NewPosition.x, YLock, ZLock), ref Velocity, SmoothPositioning);
         }
     }
 
