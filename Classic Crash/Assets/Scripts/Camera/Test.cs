@@ -15,8 +15,8 @@ public class Test : MonoBehaviour
 
     public static bool AllowY = true;
     public static bool AllowZ = true;
-    public float YLock;
-    public float ZLock;
+    private float YLock;
+    private float ZLock;
     private Vector3 Velocity;
     private Vector3 LastPosition;
     private Camera Cam;
