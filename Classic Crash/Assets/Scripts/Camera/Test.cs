@@ -119,7 +119,6 @@ public class Test : MonoBehaviour
             ZLock = Mathf.Round(ZLock);
 
         }
-        transform.position = Vector3.SmoothDamp(transform.position, new Vector3(NewPosition.x, YLock, ZLock), ref Velocity, SmoothPositioning);
     }
 
     private Vector3 GetCenterPoint()
