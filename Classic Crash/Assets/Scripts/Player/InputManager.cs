@@ -150,7 +150,6 @@ public class InputManager : MonoBehaviour
     private void JumpPressed()
     {
         HoldJump = true;
-        
     }
 
     private void JumpReleased()
@@ -174,7 +173,7 @@ public class InputManager : MonoBehaviour
             hitColliders = Physics.OverlapBox(HitBox.bounds.center, BigHitBox);
         }
 
-        foreach (var hitCollider in hitColliders)
+        foreach (Collider hitCollider in hitColliders)
         {
             ICrateBase Crate = (ICrateBase)hitCollider.gameObject.GetComponent(typeof(ICrateBase));
             if (Crate != null)
