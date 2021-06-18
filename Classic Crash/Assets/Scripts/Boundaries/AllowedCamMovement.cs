@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Triggertest : MonoBehaviour
+public class AllowedCamMovement : MonoBehaviour
 {
     public bool AllowY;
     public bool AllowZ;
@@ -10,8 +10,8 @@ public class Triggertest : MonoBehaviour
     {
         if (other.GetComponent<InputManager>())
         {
-            Test.AllowY = AllowY;
-            Test.AllowZ = AllowZ;
+            LevelCam.AllowY = AllowY;
+            LevelCam.AllowZ = AllowZ;
         }
     }
 }

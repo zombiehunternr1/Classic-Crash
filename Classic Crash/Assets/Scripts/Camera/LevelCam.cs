@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Test : MonoBehaviour
+public class LevelCam : MonoBehaviour
 {
     public Transform Player;
     public Vector3 Offset;
