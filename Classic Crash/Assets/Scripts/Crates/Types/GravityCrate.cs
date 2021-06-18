@@ -68,7 +68,6 @@ public class GravityCrate : MonoBehaviour, IInteractable
                         if (CanHit)
                         {
                             StartCoroutine(TempDisable(Player));
-                            Debug.Log("Hit player");
                         }
                     }                 
                 }
