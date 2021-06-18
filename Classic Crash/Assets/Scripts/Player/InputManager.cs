@@ -9,7 +9,6 @@ public class InputManager : MonoBehaviour
     public float RegularJump = 7;
     public float BigJump = 10;
     public float DistanceToGround = 1.01f;
-    public float SpinRadius = 1.5f;
 
     private int SideHitValue;
     private bool Spinning;
@@ -33,12 +32,20 @@ public class InputManager : MonoBehaviour
 
     private Vector3 PlayerMovement;
 
+    private Vector3 LastPosition;
+
+    private Vector3 SmallHitBox;
+    private Vector3 BigHitBox;
+
+    private Collider[] hitColliders;
     //Enums to help check which side the player hit a certain object or with his attack.
     private enum HitPlayerDirection { None, Top, Bottom, Forward, Back, Left, Right, Spin, Invincibility }
 
     private void OnEnable()
     {
-        if(PlayerManager == null)
+        SmallHitBox = new Vector3(2, 0.1f, 2);
+        BigHitBox = new Vector3(2, 0.5f, 2);
+        if (PlayerManager == null)
         {
             PlayerManager = FindObjectOfType<PlayerManager>();
         }
@@ -64,6 +71,7 @@ public class InputManager : MonoBehaviour
         }
         PlayerControls.Enable();
         LastSavedCheckpoint(transform.position);
+        LastPosition = transform.position + PlayerMovement;
     }
 
     private void OnDisable()
@@ -83,6 +91,7 @@ public class InputManager : MonoBehaviour
     private void Movement()
     {
         PlayerMovement = new Vector3(MovementInput.x, 0, MovementInput.y);
+        LastPosition = transform.position + PlayerMovement;
         RB.MovePosition(transform.position + PlayerMovement * Time.fixedDeltaTime * Speed);
         LookDirection();
     }
@@ -156,7 +165,15 @@ public class InputManager : MonoBehaviour
     private void SpinAttack()
     {
         Spinning = true;
-        Collider[] hitColliders = Physics.OverlapSphere(HitBox.bounds.center, SpinRadius);
+        if (transform.position == LastPosition)
+        {
+            hitColliders = Physics.OverlapBox(HitBox.bounds.center, SmallHitBox);
+        }
+        else
+        {
+            hitColliders = Physics.OverlapBox(HitBox.bounds.center, BigHitBox);
+        }
+
         foreach (var hitCollider in hitColliders)
         {
             ICrateBase Crate = (ICrateBase)hitCollider.gameObject.GetComponent(typeof(ICrateBase));
