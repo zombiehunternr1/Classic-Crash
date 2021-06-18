@@ -100,32 +100,26 @@ public class Test : MonoBehaviour
 
     private void SetupCam()
     {
+        Vector3 CenterPoint = GetCenterPoint();
+        Vector3 NewPosition = CenterPoint + Offset;
         if (AllowY)
         {
-            Vector3 CenterPoint = GetCenterPoint();
-            Vector3 Newposition = CenterPoint + Offset;
-            YLock = Newposition.y;
+            YLock = NewPosition.y;
         }
         if (AllowZ)
         {
-            Vector3 CenterPoint = GetCenterPoint();
-            Vector3 Newposition = CenterPoint + Offset;
-            ZLock = Newposition.z;
+            ZLock = NewPosition.z;
         }
         else if(!AllowY)
         {
-            Vector3 CenterPoint = GetCenterPoint();
-            Vector3 NewPosition = CenterPoint + Offset;
             YLock = Mathf.Round(YLock);
-            transform.position = Vector3.SmoothDamp(transform.position, new Vector3(NewPosition.x, YLock, ZLock), ref Velocity, SmoothPositioning);
         }
         else if (!AllowZ)
         {
-            Vector3 CenterPoint = GetCenterPoint();
-            Vector3 NewPosition = CenterPoint + Offset;
             ZLock = Mathf.Round(ZLock);
-            transform.position = Vector3.SmoothDamp(transform.position, new Vector3(NewPosition.x, YLock, ZLock), ref Velocity, SmoothPositioning);
+
         }
+        transform.position = Vector3.SmoothDamp(transform.position, new Vector3(NewPosition.x, YLock, ZLock), ref Velocity, SmoothPositioning);
     }
 
     private Vector3 GetCenterPoint()
