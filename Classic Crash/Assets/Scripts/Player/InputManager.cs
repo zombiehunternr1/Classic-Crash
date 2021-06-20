@@ -9,6 +9,7 @@ public class InputManager : MonoBehaviour
     public float RegularJump = 7;
     public float BigJump = 10;
     public float DistanceToGround = 1.01f;
+    public float FallMultiplier;
 
     private int SideHitValue;
     private bool Spinning;
@@ -79,12 +80,16 @@ public class InputManager : MonoBehaviour
         PlayerControls.Disable();
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         if (GameManager.Instance.CanMove)
         {
             Movement();
             JumpingTImer();
+            if (RB.velocity.y < 0)
+            {
+                RB.velocity += Vector3.up * Physics.gravity.y * (FallMultiplier - 1) * Time.deltaTime;
+            }
         }
     }
 
