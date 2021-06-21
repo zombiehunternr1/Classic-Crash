@@ -193,9 +193,12 @@ MonoBehaviour:
   RegularJump: 7
   BigJump: 10
   DistanceToGround: 1.01
-  SpinRadius: 1.5
+  FallMultiplier: 3.5
   PlayerManager: {fileID: 0}
   PlayerPosition: {fileID: 0}
+  BonusArea: 0
+  Instakill: 0
+  LastCheckpointPosition: {x: 0, y: 0, z: 0}
 --- !u!81 &6128266806477017731
 AudioListener:
   m_ObjectHideFlags: 0

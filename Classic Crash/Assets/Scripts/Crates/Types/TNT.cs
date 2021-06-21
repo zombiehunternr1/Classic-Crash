@@ -68,7 +68,7 @@ public class TNT : MonoBehaviour, ICrateBase
         }
     }
 
-    public void CrateReset()
+    public void ResetCrate()
     {
         Isbroken = false;
         if (AnimTNT.GetCurrentAnimatorStateInfo(0).IsName("Ghost"))

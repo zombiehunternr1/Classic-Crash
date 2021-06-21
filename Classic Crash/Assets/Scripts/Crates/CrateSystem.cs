@@ -138,7 +138,7 @@ public class CrateSystem : MonoBehaviour
                     }
                     if (Crate.GetComponent<TNT>())
                     {
-                        Crate.GetComponent<TNT>().CrateReset();
+                        Crate.GetComponent<TNT>().ResetCrate();
                     }
                     CurrentlyBroken.Remove(Crate);
                 }              
