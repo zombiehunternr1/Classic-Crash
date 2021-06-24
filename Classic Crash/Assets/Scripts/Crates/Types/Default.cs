@@ -5,6 +5,7 @@ using UnityEngine;
 public class Default : MonoBehaviour, ICrateBase, ISpawnable
 {
     public GameObject Item;
+    public GameObject BrokenEffect;
     public bool AutoAdd;
     public bool HasGravity;
     public GameEventTransform CrateBroken;
@@ -75,6 +76,7 @@ public class Default : MonoBehaviour, ICrateBase, ISpawnable
     {
         if (!IsBroken)
         {
+            Instantiate(BrokenEffect, transform.position, transform.rotation);
             Invoke("DelayInactive", 1f);
             GetComponent<BoxCollider>().enabled = false;
             GetComponent<Renderer>().enabled = false;
