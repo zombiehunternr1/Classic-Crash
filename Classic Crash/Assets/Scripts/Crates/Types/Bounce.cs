@@ -6,6 +6,7 @@ public class Bounce : MonoBehaviour, ICrateBase
 {
     public GameObject Wumpa;
     public GameObject BrokenEffect;
+    public GameObject SpawnedItems;
     public CrateType crateType;
     public int breakAfter = 5;
     public float DistanceRadius = 0.1f;
@@ -109,7 +110,8 @@ public class Bounce : MonoBehaviour, ICrateBase
             }
             else if(crateType == CrateType.BreakInstant)
             {
-                Instantiate(Wumpa, transform.position, transform.rotation);
+                GameObject ItemSpawned = Instantiate(Wumpa, transform.position, transform.rotation);
+                ItemSpawned.transform.SetParent(SpawnedItems.transform);
             }            
         }
     }

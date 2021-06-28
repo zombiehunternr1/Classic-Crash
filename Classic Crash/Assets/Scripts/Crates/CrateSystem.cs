@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CrateSystem : MonoBehaviour
 {
+    public GameObject SpawnedItems;
     public GameEventTransform SpawnGem;
     public GameEventTransform DespawnGem;
     [HideInInspector]
@@ -80,12 +81,26 @@ public class CrateSystem : MonoBehaviour
         }
     }
 
-    public void ResetCrates()
+    public void ResetLevel()
     {
+        SpawnedItemsReset();
         ResetSpawnedCrateGem();
         AllBreakablesReset();
         AllInteractablesReset();
         DisplayCrateCount();
+    }
+
+    private void SpawnedItemsReset()
+    {
+        BoxCollider[] Spawned = SpawnedItems.GetComponentsInChildren<BoxCollider>();
+        if(Spawned == null)
+        {
+            return;
+        }
+        foreach(BoxCollider Item in Spawned)
+        {
+            Destroy(Item.gameObject);
+        }
     }
 
     private void ResetSpawnedCrateGem()

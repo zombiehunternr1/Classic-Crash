@@ -6,6 +6,7 @@ public class Default : MonoBehaviour, ICrateBase, ISpawnable
 {
     public GameObject Item;
     public GameObject BrokenEffect;
+    public GameObject SpawnedItems;
     public bool AutoAdd;
     public bool HasGravity;
     public GameEventTransform CrateBroken;
@@ -100,7 +101,8 @@ public class Default : MonoBehaviour, ICrateBase, ISpawnable
         }
         else
         {
-            Instantiate(Item, transform.position, Quaternion.identity);
+            GameObject ItemSpawned = Instantiate(Item, transform.position, Quaternion.identity);
+            ItemSpawned.transform.SetParent(SpawnedItems.transform);
         }
         DisableCrate();
     }

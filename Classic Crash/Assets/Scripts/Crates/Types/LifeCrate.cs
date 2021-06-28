@@ -6,6 +6,7 @@ public class LifeCrate : MonoBehaviour, ICrateBase
 {
     public GameObject Life;
     public GameObject BrokenEffect;
+    public GameObject SpawnedItems;
     public GameEvent AddLife;
     public GameEventTransform CrateBroken;
     public bool AutoAdd;
@@ -97,7 +98,8 @@ public class LifeCrate : MonoBehaviour, ICrateBase
         }
         else
         {
-            Instantiate(Life, transform.position, Quaternion.identity);
+            GameObject ItemSpawned = Instantiate(Life, transform.position, Quaternion.identity);
+            ItemSpawned.transform.SetParent(SpawnedItems.transform);
         }
         DisableCrate();
     }

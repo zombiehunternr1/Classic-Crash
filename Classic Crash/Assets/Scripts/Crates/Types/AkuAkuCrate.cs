@@ -6,6 +6,7 @@ public class AkuAkuCrate : MonoBehaviour, ICrateBase
 {
     public GameObject AkuAku;
     public GameObject BrokenEffect;
+    public GameObject SpawnedItems;
     public bool AutoAdd;
     public bool HasGravity;
     public GameEventTransform CrateBroken;
@@ -92,7 +93,8 @@ public class AkuAkuCrate : MonoBehaviour, ICrateBase
         }
         else
         {
-            Instantiate(AkuAku, transform.position, Quaternion.identity);
+            GameObject ItemSpawned = Instantiate(AkuAku, transform.position, Quaternion.identity);
+            ItemSpawned.transform.SetParent(SpawnedItems.transform);
         }
         DisableCrate();
     }

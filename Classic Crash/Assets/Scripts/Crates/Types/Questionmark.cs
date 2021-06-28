@@ -6,6 +6,7 @@ public class Questionmark : MonoBehaviour, ICrateBase, ISpawnable
 {
     public GameObject Wumpa;
     public GameObject BrokenEffect;
+    public GameObject SpawnedItems;
     public GameObject Life;
     public GameEventTransform LevelCrateBroken;
     public GameEventTransform BonusCrateBroken;
@@ -130,18 +131,21 @@ public class Questionmark : MonoBehaviour, ICrateBase, ISpawnable
                     {
                         var x = Random.Range(-0.5f, 0.5f);
                         var z = Random.Range(-0.5f, 0.5f);
-                        Instantiate(Wumpa, new Vector3(transform.position.x + x, transform.position.y, transform.position.z + z), Quaternion.identity);
+                        GameObject ItemSpawned = Instantiate(Wumpa, new Vector3(transform.position.x + x, transform.position.y, transform.position.z + z), Quaternion.identity);
+                        ItemSpawned.transform.SetParent(SpawnedItems.transform);
                     }
                     else
                     {
-                        Instantiate(Wumpa, transform.position, Quaternion.identity);
+                        GameObject ItemSpawned = Instantiate(Wumpa, transform.position, Quaternion.identity);
+                        ItemSpawned.transform.SetParent(SpawnedItems.transform);
                     }
                 }
             }
             else
             {
                 WasLife = false;
-                Instantiate(Life, transform.position, Quaternion.identity);
+                GameObject ItemSpawned = Instantiate(Life, transform.position, Quaternion.identity);
+                ItemSpawned.transform.SetParent(SpawnedItems.transform);
             }              
         }
         DisableCrate();

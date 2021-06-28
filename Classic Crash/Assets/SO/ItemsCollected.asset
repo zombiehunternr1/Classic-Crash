@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GemsCollected: []
   Wumpa: 0
-  Lives: 0
+  Lives: 96
   AkuAkus: 0

@@ -224,9 +224,9 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1152685292, guid: 2ff385c3ae5225441b299830646ab1c7, type: 3}
-      propertyPath: HasGravity
-      value: 1
-      objectReference: {fileID: 0}
+      propertyPath: SpawnedItems
+      value: 
+      objectReference: {fileID: 1443198673340923449}
     - target: {fileID: 2522164264643434941, guid: 2ff385c3ae5225441b299830646ab1c7, type: 3}
       propertyPath: m_Name
       value: Default Breakable Crate (2)
@@ -534,9 +534,9 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1152685292, guid: 2ff385c3ae5225441b299830646ab1c7, type: 3}
-      propertyPath: HasGravity
-      value: 1
-      objectReference: {fileID: 0}
+      propertyPath: SpawnedItems
+      value: 
+      objectReference: {fileID: 1443198673340923449}
     - target: {fileID: 2522164264643434941, guid: 2ff385c3ae5225441b299830646ab1c7, type: 3}
       propertyPath: m_Name
       value: Default Breakable Crate (1)
@@ -595,9 +595,9 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1152685292, guid: 2ff385c3ae5225441b299830646ab1c7, type: 3}
-      propertyPath: HasGravity
-      value: 1
-      objectReference: {fileID: 0}
+      propertyPath: SpawnedItems
+      value: 
+      objectReference: {fileID: 1443198673340923449}
     - target: {fileID: 2522164264643434941, guid: 2ff385c3ae5225441b299830646ab1c7, type: 3}
       propertyPath: m_Name
       value: Default Breakable Crate (3)
@@ -782,6 +782,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1152685292, guid: 2ff385c3ae5225441b299830646ab1c7, type: 3}
+      propertyPath: SpawnedItems
+      value: 
+      objectReference: {fileID: 1443198673340923449}
     - target: {fileID: 2522164264643434941, guid: 2ff385c3ae5225441b299830646ab1c7, type: 3}
       propertyPath: m_Name
       value: Default Breakable Crate
@@ -953,7 +957,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7836013274490878913, guid: cc2041f3dbcebf543ac96d83a21581bd, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -2.819984
+      value: -6.28
       objectReference: {fileID: 0}
     - target: {fileID: 7836013274490878913, guid: cc2041f3dbcebf543ac96d83a21581bd, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1046,6 +1050,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5b44b3a551619074191799a8945f3593, type: 3}
+--- !u!1 &1443198673340923449 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5124344608563301294, guid: 5b44b3a551619074191799a8945f3593, type: 3}
+  m_PrefabInstance: {fileID: 1443198673340923448}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5619443936054401827
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1101,6 +1110,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3846310574438675014, guid: 690056a1c307bb946ac918174c8a7a9d, type: 3}
+      propertyPath: SpawnedItems
+      value: 
+      objectReference: {fileID: 1443198673340923449}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 690056a1c307bb946ac918174c8a7a9d, type: 3}
 --- !u!1001 &5975020003704933227
