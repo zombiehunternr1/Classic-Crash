@@ -112,7 +112,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   crateType: 0
-  BrokenCrate: {fileID: 9048058967566234233, guid: 2a6f459c8f657b241be83bd554d145d7, type: 3}
+  BrokenCrate: {fileID: 0}
   MetalCrate: {fileID: 334549118307310939, guid: 84ae75b7eb7dfbb4dadd41d166479656, type: 3}
   CrateBroken: {fileID: 11400000, guid: 5f965b2e97384fb4192d9b9b866aa59e, type: 2}
   SaveCrateCount: {fileID: 11400000, guid: 9fb1299e811f420459d7d21ac55b04d9, type: 2}

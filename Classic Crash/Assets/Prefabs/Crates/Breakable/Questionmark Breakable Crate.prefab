@@ -111,7 +111,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Wumpa: {fileID: 6819524890254654404, guid: e27d6c3911a6e1b45a3fe8c71ea1221d, type: 3}
-  BrokenEffect: {fileID: 2031954304608051364, guid: 31f2a3fd4236e2b419879488f7dd2e91, type: 3}
+  BrokenEffect: {fileID: 7996875078582666147, guid: 31f2a3fd4236e2b419879488f7dd2e91, type: 3}
   Life: {fileID: 4519319795387716966, guid: 886071fb8e8f37b4187d13c2eb04d97a, type: 3}
   LevelCrateBroken: {fileID: 11400000, guid: 5f965b2e97384fb4192d9b9b866aa59e, type: 2}
   BonusCrateBroken: {fileID: 11400000, guid: 5f965b2e97384fb4192d9b9b866aa59e, type: 2}

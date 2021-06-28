@@ -111,7 +111,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AkuAku: {fileID: 912024196376739780, guid: 398136c5590a07e43b5b0af5a2bac38b, type: 3}
-  BrokenEffect: {fileID: 2031954304608051364, guid: 31f2a3fd4236e2b419879488f7dd2e91, type: 3}
+  BrokenEffect: {fileID: 7996875078582666147, guid: 31f2a3fd4236e2b419879488f7dd2e91, type: 3}
   AutoAdd: 0
   HasGravity: 0
   CrateBroken: {fileID: 11400000, guid: 5f965b2e97384fb4192d9b9b866aa59e, type: 2}
