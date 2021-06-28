@@ -5,6 +5,7 @@ using UnityEngine;
 public class Bounce : MonoBehaviour, ICrateBase
 {
     public GameObject Wumpa;
+    public GameObject BrokenEffect;
     public CrateType crateType;
     public int breakAfter = 5;
     public float DistanceRadius = 0.1f;
@@ -95,6 +96,7 @@ public class Bounce : MonoBehaviour, ICrateBase
     {
         if (!IsBroken)
         {
+            Instantiate(BrokenEffect, transform.position, transform.rotation);
             Invoke("DelayInactive", 1f);
             GetComponent<BoxCollider>().enabled = false;
             GetComponent<Renderer>().enabled = false;

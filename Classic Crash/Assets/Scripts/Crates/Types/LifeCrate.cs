@@ -5,6 +5,7 @@ using UnityEngine;
 public class LifeCrate : MonoBehaviour, ICrateBase
 {
     public GameObject Life;
+    public GameObject BrokenEffect;
     public GameEvent AddLife;
     public GameEventTransform CrateBroken;
     public bool AutoAdd;
@@ -66,6 +67,7 @@ public class LifeCrate : MonoBehaviour, ICrateBase
     {
         if (!IsBroken)
         {
+            Instantiate(BrokenEffect, transform.position, transform.rotation);
             Invoke("DelayInactive", 1f);
             GetComponent<BoxCollider>().enabled = false;
             GetComponent<Renderer>().enabled = false;

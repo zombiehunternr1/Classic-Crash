@@ -5,6 +5,7 @@ using UnityEngine;
 public class AkuAkuCrate : MonoBehaviour, ICrateBase
 {
     public GameObject AkuAku;
+    public GameObject BrokenEffect;
     public bool AutoAdd;
     public bool HasGravity;
     public GameEventTransform CrateBroken;
@@ -66,6 +67,7 @@ public class AkuAkuCrate : MonoBehaviour, ICrateBase
     {
         if (!IsBroken)
         {
+            Instantiate(BrokenEffect, transform.position, transform.rotation);
             Invoke("DelayInactive", 1f);
             GetComponent<BoxCollider>().enabled = false;
             GetComponent<Renderer>().enabled = false;

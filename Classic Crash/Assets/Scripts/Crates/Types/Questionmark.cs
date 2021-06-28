@@ -5,6 +5,7 @@ using UnityEngine;
 public class Questionmark : MonoBehaviour, ICrateBase, ISpawnable
 {
     public GameObject Wumpa;
+    public GameObject BrokenEffect;
     public GameObject Life;
     public GameEventTransform LevelCrateBroken;
     public GameEventTransform BonusCrateBroken;
@@ -78,6 +79,7 @@ public class Questionmark : MonoBehaviour, ICrateBase, ISpawnable
     {
         if (!IsBroken)
         {
+            Instantiate(BrokenEffect, transform.position, transform.rotation);
             Invoke("DelayInactive", 1f);
             GetComponent<BoxCollider>().enabled = false;
             GetComponent<Renderer>().enabled = false;
