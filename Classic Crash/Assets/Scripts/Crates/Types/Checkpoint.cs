@@ -5,7 +5,7 @@ using UnityEngine;
 public class Checkpoint : MonoBehaviour, ICrateBase
 {
     public CrateType crateType;
-    public GameObject BrokenCrate;
+    public Animation BrokenCrate;
     public GameObject MetalCrate;
     public GameEventTransform CrateBroken;
     public GameEvent SaveCrateCount;
@@ -56,11 +56,10 @@ public class Checkpoint : MonoBehaviour, ICrateBase
     private void BreakableCheckpoint()
     {
         CrateBroken.RaiseTransform(transform);
+        BrokenCrate.Play();
         BreakSFX.Play();
         CheckpointSFX.Play();
-        Instantiate(BrokenCrate, transform.position, Quaternion.identity);
         SaveProgress();
-        DisableCrate();
     }
 
     private void UnbreakableCheckpoint()
@@ -69,7 +68,6 @@ public class Checkpoint : MonoBehaviour, ICrateBase
         CheckpointSFX.Play();
         Instantiate(MetalCrate, transform.position, Quaternion.identity);
         SaveProgress();
-        DisableCrate();
     }
 
     private void SaveProgress()
@@ -81,12 +79,7 @@ public class Checkpoint : MonoBehaviour, ICrateBase
 
     public void DisableCrate()
     {
-        if (!IsBroken)
-        {
-            IsBroken = true;
-            gameObject.GetComponent<BoxCollider>().enabled = false;
-            gameObject.GetComponent<Renderer>().enabled = false;
-        }
+        throw new System.NotImplementedException();
     }
 
     public enum CrateType { Breakable, Unbreakable }
