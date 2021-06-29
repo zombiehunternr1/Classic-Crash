@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 814d4b7d9acf5384dbb682d704810611
+guid: db9184481a88b804caf818aeeef127db
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable: []
@@ -7,8 +7,23 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: Border
+    second: {fileID: 2100000, guid: c439c811e8d649846ae442788efbd951, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Crate
+    second: {fileID: 2100000, guid: 1c818d5d1c802804fa30b20f839ad0fc, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: Life
     second: {fileID: 2100000, guid: 3cdf84c2245e7974cbf513ee223d5171, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Nail
+    second: {fileID: 2100000, guid: c82a87243ee510240a02577d4f32f458, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
