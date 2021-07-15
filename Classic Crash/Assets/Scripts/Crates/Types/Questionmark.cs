@@ -15,7 +15,7 @@ public class Questionmark : MonoBehaviour, ICrateBase, ISpawnable
     public bool IsWumpa;
     public bool AutoAdd;
     public bool HasGravity;
-    public int amount = 1;
+    public int Amount = 1;
 
     [HideInInspector]
     public bool IsBonus { get; set; }
@@ -110,7 +110,7 @@ public class Questionmark : MonoBehaviour, ICrateBase, ISpawnable
         {
             if (IsWumpa || !WasLife)
             {
-                AddWumpa.RaiseInt(amount);
+                AddWumpa.RaiseInt(Amount);
             }
             else
             {
@@ -125,7 +125,7 @@ public class Questionmark : MonoBehaviour, ICrateBase, ISpawnable
         {
             if (IsWumpa || !WasLife)
             {
-                for (int i = 0; i < amount; i++)
+                for (int i = 0; i < Amount; i++)
                 {
                     if (i > 0)
                     {

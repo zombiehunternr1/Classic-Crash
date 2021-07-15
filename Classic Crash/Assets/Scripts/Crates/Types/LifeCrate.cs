@@ -5,16 +5,22 @@ using UnityEngine;
 public class LifeCrate : MonoBehaviour, ICrateBase
 {
     public GameObject Life;
+    public GameObject Wumpa;
     public GameObject BrokenEffect;
     public GameObject SpawnedItems;
     public GameEvent AddLife;
+    public GameEventInt AddWumpa;
     public GameEventTransform CrateBroken;
+    public int Amount = 10;
     public bool AutoAdd;
     public bool HasGravity;
 
     [HideInInspector]
     public bool IsBonus { get; set; }
+    [HideInInspector]
+    public List<Renderer> CrateTypes;
     private bool IsBroken;
+    private bool WasLife;
     private Rigidbody RB;
     private bool CanBounce = true;
     private AudioSource BreakSFX;
@@ -38,6 +44,12 @@ public class LifeCrate : MonoBehaviour, ICrateBase
 
     private void Awake()
     {
+        Renderer[] CrateType = GetComponentsInChildren<Renderer>();
+        foreach(MeshRenderer Crate in CrateType)
+        {
+            CrateTypes.Add(Crate);
+        }
+        CrateTypes[CrateTypes.Count - 1].enabled = false;
         BreakSFX = GetComponent<AudioSource>();
         RB = GetComponent<Rigidbody>();
         if (!HasGravity)
@@ -71,17 +83,24 @@ public class LifeCrate : MonoBehaviour, ICrateBase
             Instantiate(BrokenEffect, transform.position, transform.rotation);
             Invoke("DelayInactive", 1f);
             GetComponent<BoxCollider>().enabled = false;
-            GetComponent<Renderer>().enabled = false;
+            foreach(Renderer Mesh in CrateTypes)
+            {
+                Mesh.enabled = false;
+            }
             BreakSFX.Play();
             IsBroken = true;
+            WasLife = true;
             CrateBroken.RaiseTransform(transform);
-
         }
     }
     public void ResetCrate()
     {
         GetComponent<BoxCollider>().enabled = true;
-        GetComponent<Renderer>().enabled = true;
+        foreach (Renderer Mesh in CrateTypes)
+        {
+            Mesh.enabled = false;
+        }
+        CrateTypes[CrateTypes.Count - 1].enabled = true;
         IsBroken = false;
     }
 
@@ -94,12 +113,37 @@ public class LifeCrate : MonoBehaviour, ICrateBase
     {
         if (AutoAdd)
         {
+            if (WasLife)
+            {
+                AddWumpa.RaiseInt(Amount);
+            }
             AddLife.Raise();
         }
         else
         {
-            GameObject ItemSpawned = Instantiate(Life, transform.position, Quaternion.identity);
-            ItemSpawned.transform.SetParent(SpawnedItems.transform);
+            if (WasLife)
+            {
+                for (int i = 0; i < Amount; i++)
+                {
+                    if (i > 0)
+                    {
+                        var x = Random.Range(-0.5f, 0.5f);
+                        var z = Random.Range(-0.5f, 0.5f);
+                        GameObject SpawnItem = Instantiate(Wumpa, new Vector3(transform.position.x + x, transform.position.y, transform.position.z + z), Quaternion.identity);
+                        SpawnItem.transform.SetParent(SpawnedItems.transform);
+                    }
+                    else
+                    {
+                        GameObject SpawnItem = Instantiate(Wumpa, transform.position, Quaternion.identity);
+                        SpawnItem.transform.SetParent(SpawnedItems.transform);
+                    }
+                }
+            }
+            else
+            {
+                GameObject ItemSpawned = Instantiate(Life, transform.position, Quaternion.identity);
+                ItemSpawned.transform.SetParent(SpawnedItems.transform);
+            }
         }
         DisableCrate();
     }
