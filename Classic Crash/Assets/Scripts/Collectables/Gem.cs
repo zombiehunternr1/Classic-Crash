@@ -10,6 +10,7 @@ public class Gem : MonoBehaviour, IInteractable
     private Animator Anim;
     private void Awake()
     {
+        Physics.IgnoreLayerCollision(6, 7);
         OriginalPosition = new Vector3(transform.position.x, transform.position.y, transform.position.z);
         GemObject = GetComponent<GemSpawner>();
         Anim = GetComponent<Animator>();

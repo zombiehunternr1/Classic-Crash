@@ -12,7 +12,6 @@ public class CrateSystem : MonoBehaviour
     [HideInInspector]
     public List<GameObject> BreakableCrates = new List<GameObject>();
 
-    private List<GameObject> PermanentlyBroken = new List<GameObject>();
     private List<GameObject> InteractCrates = new List<GameObject>();
     private List<GameObject> TotalCrates = new List<GameObject>();
 
@@ -207,7 +206,6 @@ public class CrateSystem : MonoBehaviour
 
     public void SaveCrateCount()
     {
-        PermanentlyBroken = CurrentlyBroken;
         CurrentlyBroken = new List<GameObject>();
     }
 

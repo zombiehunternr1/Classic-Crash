@@ -505,7 +505,7 @@ MonoBehaviour:
   BrokenCrate: {fileID: 6156445280579486511}
   MetalCrate: {fileID: 334549118307310939, guid: 84ae75b7eb7dfbb4dadd41d166479656, type: 3}
   CrateBroken: {fileID: 11400000, guid: 5f965b2e97384fb4192d9b9b866aa59e, type: 2}
-  SaveCrateCount: {fileID: 11400000, guid: 6727d1dc794bc8648abe56d82bd4ca30, type: 2}
+  SaveCrateCount: {fileID: 11400000, guid: 9fb1299e811f420459d7d21ac55b04d9, type: 2}
   BreakSFX: {fileID: 5578237382879737267}
   CheckpointSFX: {fileID: 8885648703749238162}
   ActivatorSFX: {fileID: 8864052564534486633}

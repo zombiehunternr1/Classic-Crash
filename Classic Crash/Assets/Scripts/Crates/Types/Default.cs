@@ -9,6 +9,7 @@ public class Default : MonoBehaviour, ICrateBase, ISpawnable
     public GameObject SpawnedItems;
     public bool AutoAdd;
     public bool HasGravity;
+    private bool WasGravity;
     public GameEventTransform CrateBroken;
     public GameEventInt AddWumpa;
 
@@ -48,16 +49,8 @@ public class Default : MonoBehaviour, ICrateBase, ISpawnable
         BreakSFX = GetComponent<AudioSource>();
         Physics.IgnoreLayerCollision(6, 7);
         RB = GetComponent<Rigidbody>();
-        if (!HasGravity)
-        {
-            RB.constraints = RigidbodyConstraints.FreezeAll;
-            RB.useGravity = false;
-        }
-        else
-        {
-            RB.useGravity = true;
-            RB.mass = 0.1f;
-        }
+        WasGravity = HasGravity;
+        CheckGravity();
     }
 
     private void FixedUpdate()
@@ -77,6 +70,8 @@ public class Default : MonoBehaviour, ICrateBase, ISpawnable
     {
         if (!IsBroken)
         {
+            HasGravity = false;
+            CheckGravity();
             Instantiate(BrokenEffect, transform.position, transform.rotation);
             Invoke("DelayInactive", 1f);
             GetComponent<BoxCollider>().enabled = false;
@@ -88,6 +83,15 @@ public class Default : MonoBehaviour, ICrateBase, ISpawnable
     }
     public void ResetCrate()
     {
+        if (WasGravity)
+        {
+            HasGravity = WasGravity;
+            CheckGravity();
+        }
+        else
+        {
+            CheckGravity();
+        }
         GetComponent<BoxCollider>().enabled = true;
         GetComponent<Renderer>().enabled = true;
         IsBroken = false;
@@ -106,6 +110,22 @@ public class Default : MonoBehaviour, ICrateBase, ISpawnable
         }
         DisableCrate();
     }
+
+    private void CheckGravity()
+    {
+        if (!HasGravity)
+        {
+            RB.constraints = RigidbodyConstraints.FreezeAll;
+            RB.useGravity = false;
+        }
+        else
+        {
+            RB.constraints = ~RigidbodyConstraints.FreezePositionY;
+            RB.useGravity = true;
+            RB.mass = 0.1f;
+        }
+    }
+
     private void DelayInactive()
     {
         gameObject.SetActive(false);

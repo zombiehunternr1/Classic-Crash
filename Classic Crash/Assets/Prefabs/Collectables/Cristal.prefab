@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 8100560043712144348}
   - component: {fileID: 6308996865568249622}
   - component: {fileID: 371080811770663226}
-  - component: {fileID: 533517088752885471}
   m_Layer: 7
   m_Name: Cristal
   m_TagString: Untagged
@@ -96,15 +95,3 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.321345, y: 0.32747498, z: 1.16947}
   m_Center: {x: 0.032657504, y: 0.005977503, z: -0.584745}
---- !u!114 &533517088752885471
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5516614089298687683}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d129b88fcbaf914abbef7710a05a6ab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

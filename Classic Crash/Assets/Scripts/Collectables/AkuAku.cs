@@ -5,6 +5,12 @@ using UnityEngine;
 public class AkuAku : MonoBehaviour, IInteractable
 {
     public GameEvent AddAkuAku;
+
+    private void Awake()
+    {
+        Physics.IgnoreLayerCollision(6, 7);
+    }
+
     public void Interacting(int side)
     {
         if(side <= 6)

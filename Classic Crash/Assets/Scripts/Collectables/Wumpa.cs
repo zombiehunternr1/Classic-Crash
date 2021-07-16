@@ -6,6 +6,12 @@ public class Wumpa : MonoBehaviour, IInteractable
 {
     public GameEventInt AddWumpa;
     private int amount = 1;
+
+    private void Awake()
+    {
+        Physics.IgnoreLayerCollision(6, 7);
+    }
+
     public void Interacting(int Side)
     {
         if (Side >= 1 && Side <= 6 || Side >= 8 && Side <= 9)

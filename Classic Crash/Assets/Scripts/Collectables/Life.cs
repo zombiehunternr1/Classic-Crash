@@ -6,6 +6,11 @@ public class Life : MonoBehaviour, IInteractable
 {
     public GameEvent LifeCollected;
 
+    private void Awake()
+    {
+        Physics.IgnoreLayerCollision(6, 7);
+    }
+
     public void Interacting(int Side)
     {
         if (Side >= 1 && Side <= 6 || Side >= 8 && Side <= 9)
